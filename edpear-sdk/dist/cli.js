@@ -213,23 +213,56 @@ class EdPearCLI {
             console.log(chalk_1.default.gray('Run "edpear login" to get started'));
             return;
         }
-        console.log(chalk_1.default.blue('📊 EdPear Status\n'));
-        if (this.config.user) {
-            console.log(chalk_1.default.green(`👤 User: ${this.config.user.name}`));
-            console.log(chalk_1.default.green(`📧 Email: ${this.config.user.email}`));
-            console.log(chalk_1.default.green(`💳 Credits: ${this.config.user.credits}`));
+        const spinner = (0, ora_1.default)('Fetching status...').start();
+        try {
+            // Fetch latest user stats and API keys
+            const [userStatus, keysResponse] = await Promise.all([
+                this.makeRequest('/api/user/status'),
+                this.makeRequest('/api/keys/list')
+            ]);
+            spinner.stop();
+            console.log(chalk_1.default.blue('📊 EdPear Status\n'));
+            if (userStatus.user) {
+                // Update local config
+                this.config.user = {
+                    id: userStatus.user.id,
+                    name: userStatus.user.name,
+                    email: userStatus.user.email,
+                    credits: userStatus.user.credits
+                };
+                this.saveConfig();
+                console.log(chalk_1.default.green(`👤 User: ${userStatus.user.name}`));
+                console.log(chalk_1.default.green(`📧 Email: ${userStatus.user.email}`));
+                console.log(chalk_1.default.green(`💳 Credits: ${userStatus.user.credits}`));
+            }
+            const apiKeys = keysResponse.apiKeys || [];
+            if (apiKeys.length > 0) {
+                console.log(chalk_1.default.blue(`\n🔑 Latest API Keys (Top 5):`));
+                // Show top 5 keys
+                apiKeys.slice(0, 5).forEach((key, index) => {
+                    console.log(chalk_1.default.gray(`  ${index + 1}. ${key.name}`));
+                    // The API returns masked keys, which is good for status
+                    console.log(chalk_1.default.yellow(`     ${key.key}`));
+                    console.log(chalk_1.default.gray(`     Created: ${new Date(key.createdAt).toLocaleDateString()}`));
+                    if (key.usageCount !== undefined) {
+                        console.log(chalk_1.default.gray(`     Uses: ${key.usageCount}`));
+                    }
+                });
+            }
+            else {
+                console.log(chalk_1.default.yellow('\n🔑 No API keys found'));
+                console.log(chalk_1.default.gray('Run "edpear generate-key" to create your first API key'));
+            }
         }
-        if (this.config.apiKeys && this.config.apiKeys.length > 0) {
-            console.log(chalk_1.default.blue(`\n🔑 API Keys (${this.config.apiKeys.length}):`));
-            this.config.apiKeys.forEach((key, index) => {
-                console.log(chalk_1.default.gray(`  ${index + 1}. ${key.name}`));
-                console.log(chalk_1.default.yellow(`     ${key.key}`));
-                console.log(chalk_1.default.gray(`     Created: ${new Date(key.createdAt).toLocaleDateString()}`));
-            });
-        }
-        else {
-            console.log(chalk_1.default.yellow('\n🔑 No API keys found'));
-            console.log(chalk_1.default.gray('Run "edpear generate-key" to create your first API key'));
+        catch (error) {
+            spinner.fail(chalk_1.default.red('❌ Failed to fetch status'));
+            // Fallback to local config if API fails
+            if (this.config.user) {
+                console.log(chalk_1.default.gray('\nShowing cached data:'));
+                console.log(chalk_1.default.green(`👤 User: ${this.config.user.name}`));
+                console.log(chalk_1.default.green(`📧 Email: ${this.config.user.email}`));
+                console.log(chalk_1.default.green(`💳 Credits: ${this.config.user.credits}`));
+            }
         }
     }
     async logout() {
