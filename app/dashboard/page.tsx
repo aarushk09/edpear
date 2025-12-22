@@ -43,8 +43,6 @@ interface Stats {
   requestsToday: number;
   creditsUsedToday: number;
   avgResponseTime: string;
-  is2FAEnabled?: boolean;
-  twoFactorMethod?: string | null;
 }
 
 interface ApiLog {
@@ -66,9 +64,7 @@ function DashboardContent() {
     totalRequests: 0,
     requestsToday: 0,
     creditsUsedToday: 0,
-    avgResponseTime: '0s',
-    is2FAEnabled: false,
-    twoFactorMethod: null
+    avgResponseTime: '0s'
   });
   const [logs, setLogs] = useState<ApiLog[]>([]);
   const [loading, setLoading] = useState(true);
@@ -304,30 +300,8 @@ function DashboardContent() {
               </button>
             </div>
           </div>
-        </header>
-
-        {/* 2FA Banner */}
-        {!loading && !stats.is2FAEnabled && (
-          <div className="bg-[#1a1a00] border-b border-yellow-900/30 text-yellow-200 px-6 py-3">
-            <div className="max-w-7xl mx-auto flex items-center justify-between">
-              <div className="flex items-center space-x-3">
-                <div className="p-1 bg-yellow-900/50 rounded-full">
-                  <Activity className="w-4 h-4 text-yellow-500" />
-                </div>
-                <p className="text-sm">
-                  <span className="font-semibold">Developer Account Notice:</span> Two-Factor Authentication (2FA) is required for advanced features like CLI access.
-                </p>
-              </div>
-              <Link 
-                href="/dashboard/settings"
-                className="text-xs font-medium bg-yellow-900/40 hover:bg-yellow-900/60 border border-yellow-900/50 px-3 py-1.5 rounded-lg transition-colors flex items-center space-x-1"
-              >
-                <span>Enable 2FA</span>
-                <Plus className="w-3 h-3" />
-              </Link>
-            </div>
-          </div>
-        )}
+        </div>
+      </header>
 
       <div className="max-w-7xl mx-auto px-6 py-8 space-y-8">
         {/* CLI Authorization Prompt */}

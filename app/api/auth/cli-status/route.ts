@@ -6,21 +6,18 @@ export async function GET(request: NextRequest) {
   try {
     const { searchParams } = new URL(request.url);
     const tempToken = searchParams.get('token');
-    // userId is optional now because the token might not be associated with a user yet
     const userId = searchParams.get('userId');
 
-    if (!tempToken) {
-      return NextResponse.json({ error: 'Missing token parameter' }, { status: 400 });
+    if (!tempToken || !userId) {
+      return NextResponse.json({ error: 'Missing parameters' }, { status: 400 });
     }
 
     // Find CLI auth request
-    let query = adminDb.collection('cliAuthRequests').where('tempToken', '==', tempToken);
-    
-    if (userId) {
-      query = query.where('userId', '==', userId);
-    }
-
-    const authSnapshot = await query.limit(1).get();
+    const authSnapshot = await adminDb.collection('cliAuthRequests')
+      .where('userId', '==', userId)
+      .where('tempToken', '==', tempToken)
+      .limit(1)
+      .get();
 
     if (authSnapshot.empty) {
       return NextResponse.json({ error: 'Invalid token' }, { status: 404 });
@@ -41,7 +38,7 @@ export async function GET(request: NextRequest) {
       otpRequired: authData.status === 'pending' && !authData.cliToken,
       cliToken: authData.cliToken || null,
       user: authData.status === 'completed' && authData.cliToken ? {
-        id: authData.userId, // Use userId from doc since it might not be in params
+        id: userId,
         name: authData.userName,
         email: authData.userEmail,
         credits: authData.userCredits,

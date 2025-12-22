@@ -94,14 +94,14 @@ class EdPearCLI {
     console.log(chalk.blue('🔐 EdPear Authentication'));
     
     const baseURL = process.env.EDPEAR_API_URL || DEFAULT_API_URL;
-
+    
     console.log(chalk.gray(`Connecting to: ${baseURL}`));
-    console.log(chalk.gray('Press ENTER to open the browser for authentication...'));
+    console.log(chalk.yellow('Press ENTER to open the browser for authentication...'));
 
     await inquirer.prompt([
       {
         type: 'input',
-        name: 'confirm',
+        name: 'enter',
         message: '',
       },
     ]);
@@ -109,25 +109,24 @@ class EdPearCLI {
     try {
       // 1. Initialize CLI auth session
       const initResponse = await axios.post(`${baseURL}/api/auth/cli/init`);
-      const { tempToken, url } = initResponse.data;
+      const { requestId, url } = initResponse.data;
 
       // 2. Open browser
       await open(url);
       console.log(chalk.green('✅ Browser opened!'));
-      console.log(chalk.yellow('Please login and complete 2FA verification in your browser.'));
+      console.log(chalk.yellow('Please login and approve the request in your browser.'));
       console.log(chalk.gray('The CLI will automatically detect when you are authenticated.\n'));
-
       // 3. Poll for completion
-      const spinner = ora('Waiting for authentication...').start();
-      const maxAttempts = 200; // 10 minutes (3 seconds * 200)
+      const spinner = ora('Waiting for approval...').start();
+      const maxAttempts = 200; // 10 minutes
       let attempts = 0;
 
       while (attempts < maxAttempts) {
         await new Promise(resolve => setTimeout(resolve, 3000));
         
         try {
-          // Poll the status endpoint using the tempToken
-          const statusResponse = await axios.get(`${baseURL}/api/auth/cli-status?token=${tempToken}`);
+          // Poll status using requestId
+          const statusResponse = await axios.get(`${baseURL}/api/auth/cli/status?requestId=${requestId}`);
           
           if (statusResponse.data.status === 'completed' && statusResponse.data.cliToken) {
             spinner.stop();
@@ -142,12 +141,10 @@ class EdPearCLI {
             console.log(chalk.gray(`Email: ${statusResponse.data.user.email}`));
             console.log(chalk.gray(`Credits: ${statusResponse.data.user.credits}`));
             return;
-          } else if (statusResponse.data.status === 'expired' || statusResponse.data.status === 'failed') {
+          } else if (statusResponse.data.status === 'expired') {
             spinner.stop();
-            console.log(chalk.red(`\n❌ Authentication ${statusResponse.data.status}. Please try again.`));
+            console.log(chalk.red(`\n❌ Authentication request expired. Please try again.`));
             process.exit(1);
-          } else if (statusResponse.data.otpRequired) {
-             spinner.text = 'Waiting for OTP verification... (Check your email)';
           }
           
           attempts++;
@@ -323,3 +320,4 @@ program
   .action(() => cli.logout());
 
 program.parse();
+

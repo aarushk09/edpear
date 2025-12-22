@@ -74,32 +74,32 @@ class EdPearCLI {
         console.log(chalk_1.default.blue('🔐 EdPear Authentication'));
         const baseURL = process.env.EDPEAR_API_URL || DEFAULT_API_URL;
         console.log(chalk_1.default.gray(`Connecting to: ${baseURL}`));
-        console.log(chalk_1.default.gray('Press ENTER to open the browser for authentication...'));
+        console.log(chalk_1.default.yellow('Press ENTER to open the browser for authentication...'));
         await inquirer_1.default.prompt([
             {
                 type: 'input',
-                name: 'confirm',
+                name: 'enter',
                 message: '',
             },
         ]);
         try {
             // 1. Initialize CLI auth session
             const initResponse = await axios_1.default.post(`${baseURL}/api/auth/cli/init`);
-            const { tempToken, url } = initResponse.data;
+            const { requestId, url } = initResponse.data;
             // 2. Open browser
             await (0, open_1.default)(url);
             console.log(chalk_1.default.green('✅ Browser opened!'));
-            console.log(chalk_1.default.yellow('Please login and complete 2FA verification in your browser.'));
+            console.log(chalk_1.default.yellow('Please login and approve the request in your browser.'));
             console.log(chalk_1.default.gray('The CLI will automatically detect when you are authenticated.\n'));
             // 3. Poll for completion
-            const spinner = (0, ora_1.default)('Waiting for authentication...').start();
-            const maxAttempts = 200; // 10 minutes (3 seconds * 200)
+            const spinner = (0, ora_1.default)('Waiting for approval...').start();
+            const maxAttempts = 200; // 10 minutes
             let attempts = 0;
             while (attempts < maxAttempts) {
                 await new Promise(resolve => setTimeout(resolve, 3000));
                 try {
-                    // Poll the status endpoint using the tempToken
-                    const statusResponse = await axios_1.default.get(`${baseURL}/api/auth/cli-status?token=${tempToken}`);
+                    // Poll status using requestId
+                    const statusResponse = await axios_1.default.get(`${baseURL}/api/auth/cli/status?requestId=${requestId}`);
                     if (statusResponse.data.status === 'completed' && statusResponse.data.cliToken) {
                         spinner.stop();
                         // Save token and user data
@@ -112,13 +112,10 @@ class EdPearCLI {
                         console.log(chalk_1.default.gray(`Credits: ${statusResponse.data.user.credits}`));
                         return;
                     }
-                    else if (statusResponse.data.status === 'expired' || statusResponse.data.status === 'failed') {
+                    else if (statusResponse.data.status === 'expired') {
                         spinner.stop();
-                        console.log(chalk_1.default.red(`\n❌ Authentication ${statusResponse.data.status}. Please try again.`));
+                        console.log(chalk_1.default.red(`\n❌ Authentication request expired. Please try again.`));
                         process.exit(1);
-                    }
-                    else if (statusResponse.data.otpRequired) {
-                        spinner.text = 'Waiting for OTP verification... (Check your email)';
                     }
                     attempts++;
                 }

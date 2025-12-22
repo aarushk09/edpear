@@ -26,7 +26,7 @@ export class EdPearClient {
 
   constructor(config: EdPearConfig) {
     this.apiKey = config.apiKey;
-    this.baseURL = config.baseURL || 'https://api.edpear.com';
+    this.baseURL = config.baseURL || 'https://edpearofficial.vercel.app';
   }
 
   /**

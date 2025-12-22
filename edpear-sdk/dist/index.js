@@ -9,7 +9,7 @@ const axios_1 = __importDefault(require("axios"));
 class EdPearClient {
     constructor(config) {
         this.apiKey = config.apiKey;
-        this.baseURL = config.baseURL || 'https://api.edpear.com';
+        this.baseURL = config.baseURL || 'https://edpearofficial.vercel.app';
     }
     /**
      * Analyze an image or process text using EdPear's AI

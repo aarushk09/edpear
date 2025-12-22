@@ -2,13 +2,12 @@
 
 import { useEffect, useState, Suspense } from 'react';
 import { useSearchParams } from 'next/navigation';
-import { CheckCircle, XCircle, Loader2, Mail, RefreshCw, Shield } from 'lucide-react';
-import Link from 'next/link';
+import { CheckCircle, XCircle, Loader2, Mail, RefreshCw } from 'lucide-react';
 import { toast } from 'sonner';
 
 function CLICallbackContent() {
   const searchParams = useSearchParams();
-  const [step, setStep] = useState<'checking' | '2fa-required' | 'init' | 'otp-sent' | 'verifying' | 'success' | 'error'>('checking');
+  const [step, setStep] = useState<'init' | 'otp-sent' | 'verifying' | 'success' | 'error'>('init');
   const [message, setMessage] = useState('');
   const [otp, setOtp] = useState('');
   const [sendingOTP, setSendingOTP] = useState(false);
@@ -25,40 +24,6 @@ function CLICallbackContent() {
       setMessage('Missing authentication parameters');
       return;
     }
-
-    const check2FAStatus = async () => {
-      const jwtToken = localStorage.getItem('token');
-      if (!jwtToken) {
-        // Not logged in, redirect to login
-        window.location.href = `/auth/login?cli=true&token=${token}`;
-        return;
-      }
-
-      try {
-        const response = await fetch('/api/user/stats', {
-          headers: {
-            'Authorization': `Bearer ${jwtToken}`
-          }
-        });
-        const data = await response.json();
-
-        if (data.success) {
-          if (data.stats.is2FAEnabled) {
-            setStep('init');
-          } else {
-            setStep('2fa-required');
-          }
-        } else {
-          setStep('error');
-          setMessage('Failed to verify account status');
-        }
-      } catch (error) {
-        setStep('error');
-        setMessage('Failed to verify account status');
-      }
-    };
-
-    check2FAStatus();
   }, [token, userId]);
 
   useEffect(() => {
@@ -189,31 +154,6 @@ function CLICallbackContent() {
   return (
     <div className="min-h-screen bg-[#0f0f0f] flex items-center justify-center p-4">
       <div className="bg-[#1a1a1a] border border-[#2a2a2a] rounded-lg p-8 max-w-md w-full">
-        {step === 'checking' && (
-          <div className="text-center">
-            <Loader2 className="w-12 h-12 text-[#4a9eff] animate-spin mx-auto mb-4" />
-            <h2 className="text-xl font-semibold text-white mb-2">Verifying Security...</h2>
-          </div>
-        )}
-
-        {step === '2fa-required' && (
-          <div className="text-center">
-             <div className="w-16 h-16 bg-yellow-900/20 rounded-full flex items-center justify-center mx-auto mb-4">
-              <Shield className="w-8 h-8 text-yellow-500" />
-            </div>
-            <h2 className="text-xl font-semibold text-white mb-2">2FA Required</h2>
-            <p className="text-[#888] mb-6">
-              To use the CLI, you must enable Two-Factor Authentication on your account for added security.
-            </p>
-            <Link
-              href="/dashboard/settings"
-              className="block w-full bg-[#4a9eff] hover:bg-[#3a8eef] text-white font-medium py-3 px-4 rounded-lg transition-colors text-center"
-            >
-              Go to Settings
-            </Link>
-          </div>
-        )}
-
         {step === 'init' && (
           <div className="text-center">
             <div className="w-16 h-16 bg-[#4a9eff]/10 rounded-full flex items-center justify-center mx-auto mb-4">

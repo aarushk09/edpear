@@ -30,8 +30,6 @@ export async function GET(request: NextRequest) {
     
     const userData = userDoc.data();
     const credits = userData?.credits !== undefined ? userData.credits : 0;
-    const is2FAEnabled = userData?.is2FAEnabled || false;
-    const twoFactorMethod = userData?.twoFactorMethod || null;
 
     // Calculate total requests
     const totalRequests = userRequestsSnapshot.size;
@@ -65,9 +63,7 @@ export async function GET(request: NextRequest) {
       totalRequests,
       requestsToday,
       creditsUsedToday,
-      avgResponseTime,
-      is2FAEnabled,
-      twoFactorMethod
+      avgResponseTime
     };
 
     return NextResponse.json({

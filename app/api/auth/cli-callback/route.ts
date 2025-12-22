@@ -98,7 +98,7 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({
       success: true,
       token: tempToken,
-      url: `${process.env.NEXT_PUBLIC_BASE_URL || 'http://localhost:3000'}/auth/cli-callback?token=${tempToken}&userId=${decoded.userId}`,
+      url: `${process.env.NEXT_PUBLIC_BASE_URL || 'https://edpearofficial.vercel.app'}/auth/cli-callback?token=${tempToken}&userId=${decoded.userId}`,
     });
   } catch (error: any) {
     console.error('Generate temp token error:', error);
