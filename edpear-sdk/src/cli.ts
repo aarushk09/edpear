@@ -263,7 +263,7 @@ class EdPearCLI {
     try {
       // Fetch latest user stats and API keys
       const [userStatus, keysResponse] = await Promise.all([
-        this.makeRequest('/api/user/status'),
+        this.makeRequest('/api/auth/me'),
         this.makeRequest('/api/keys/list')
       ]);
 
