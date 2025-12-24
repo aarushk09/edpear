@@ -266,9 +266,18 @@ class EdPearCLI {
         }
     }
     async logout() {
+        if (!this.config.token) {
+            console.log(chalk_1.default.yellow('💡 You are not logged in.'));
+            return;
+        }
+        // Clear user data but keep the structure
+        const email = this.config.user?.email;
         this.config = {};
         this.saveConfig();
         console.log(chalk_1.default.green('✅ Logged out successfully'));
+        if (email) {
+            console.log(chalk_1.default.gray(`Disconnected from ${email}`));
+        }
     }
 }
 // CLI Commands

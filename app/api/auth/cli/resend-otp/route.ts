@@ -26,21 +26,20 @@ export async function POST(request: NextRequest) {
     // 3. Find the auth request
     const requestsSnapshot = await adminDb.collection('cliAuthRequests')
       .where('requestId', '==', requestId)
-      .where('status', '==', 'pending')
+      .where('status', '==', 'otp_pending')
       .limit(1)
       .get();
 
     if (requestsSnapshot.empty) {
-      return NextResponse.json({ error: 'Invalid or expired request' }, { status: 404 });
+      return NextResponse.json({ error: 'Invalid request' }, { status: 404 });
     }
 
     const requestDoc = requestsSnapshot.docs[0];
     const requestData = requestDoc.data();
 
-    // Check expiration
-    if (requestData.expiresAt && requestData.expiresAt.toMillis() < Date.now()) {
-      await requestDoc.ref.update({ status: 'expired' });
-      return NextResponse.json({ error: 'Request expired' }, { status: 400 });
+    // Check if user matches
+    if (requestData.userId !== userId) {
+      return NextResponse.json({ error: 'Unauthorized' }, { status: 403 });
     }
 
     // 4. Get User Data
@@ -50,7 +49,7 @@ export async function POST(request: NextRequest) {
     }
     const userData = userDoc.data();
 
-    // 5. Generate 6-digit OTP
+    // 5. Generate new 6-digit OTP
     const otp = crypto.randomInt(100000, 999999).toString();
     const otpExpiresAt = new Date(Date.now() + 10 * 60 * 1000); // 10 minutes
 
@@ -59,34 +58,29 @@ export async function POST(request: NextRequest) {
       await sendOTPEmail(userEmail, otp, userData?.name);
     } catch (emailError: any) {
       console.error('Failed to send OTP email:', emailError);
-      // Continue anyway - OTP is stored, user can still verify
+      return NextResponse.json({ error: 'Failed to send OTP email' }, { status: 500 });
     }
 
-    // 7. Update the request with OTP (hashed for security) and set status to otp_pending
+    // 7. Update the request with new OTP
     const otpHash = crypto.createHash('sha256').update(otp).digest('hex');
     
     await requestDoc.ref.update({
-      status: 'otp_pending',
-      userId,
-      userEmail,
-      userName: userData?.name,
-      userCredits: userData?.credits || 0,
       otpHash,
       otpExpiresAt,
-      otpAttempts: 0, // Track failed attempts
+      otpAttempts: 0, // Reset attempts
     });
 
     return NextResponse.json({ 
       success: true,
-      message: 'OTP sent to your email',
-      email: userEmail.substring(0, 3) + '***@' + userEmail.split('@')[1], // Masked email
+      message: 'New OTP sent to your email',
     });
 
   } catch (error: any) {
-    console.error('CLI approve error:', error);
+    console.error('CLI resend OTP error:', error);
     return NextResponse.json(
-      { error: error.message || 'Failed to approve request' },
+      { error: error.message || 'Failed to resend OTP' },
       { status: 500 }
     );
   }
 }
+

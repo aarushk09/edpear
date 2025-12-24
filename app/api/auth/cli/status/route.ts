@@ -36,6 +36,13 @@ export async function GET(request: NextRequest) {
       });
     }
 
+    if (requestData.status === 'otp_pending') {
+      return NextResponse.json({ 
+        status: 'otp_pending',
+        message: 'Waiting for OTP verification'
+      });
+    }
+
     if (requestData.status === 'expired' || (requestData.expiresAt && requestData.expiresAt.toMillis() < Date.now())) {
       return NextResponse.json({ status: 'expired' });
     }
