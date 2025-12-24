@@ -1,49 +1,48 @@
-# Email OTP Setup Guide (Brevo)
+# Email OTP Setup Guide (Resend)
 
-This guide explains how to set up email OTP (One-Time Password) verification for the EdPear platform using **Brevo** (formerly Sendinblue).
+This guide explains how to set up email OTP (One-Time Password) verification for the EdPear platform using **Resend**.
 
-## 1. Get a Brevo API Key
+## 1. Get a Resend API Key
 
-1.  Go to [Brevo](https://www.brevo.com/) and sign up for a free account.
-2.  Once logged in, click on your name at the top right and select **SMTP & API**.
-3.  Go to the **API Keys** tab.
-4.  Click **Generate a new API key**.
-5.  Give it a name (e.g., "EdPear CLI") and copy the key (it starts with `xkeysib-`).
+1.  Go to [Resend](https://resend.com) and sign up for a free account.
+2.  Navigate to the **API Keys** section in the dashboard.
+3.  Click **Create API Key**.
+4.  Give it a name (e.g., "EdPear Production") and select "Full Access".
+5.  Copy the API key starting with `re_`.
 
 ## 2. Configure Environment Variables
 
 Add the following to your `.env.local` (local development) and your Vercel project's Environment Variables:
 
 ```env
-# Brevo API Configuration
-BREVO_API_KEY=xkeysib-your_copied_api_key
+# Resend API Configuration
+RESEND_API_KEY=re_your_copied_api_key
 
 # The sender email address
-# Important: This email must be a verified sender in your Brevo account.
-# You can add/verify senders in Brevo under "Senders & IP" > "Senders".
-EMAIL_FROM=noreply@yourdomain.com
+# For testing (without a custom domain), use: EdPear <onboarding@resend.dev>
+# For production, verify your domain in Resend and use your own email (e.g., hello@yourdomain.com)
+EMAIL_FROM=EdPear <onboarding@resend.dev>
 ```
 
-## 3. (Optional) Verify Your Domain
+## 3. (Optional) Verify a Custom Domain
 
-While Brevo allows you to send emails from a verified email address, it is highly recommended to authenticate your domain (DKIM) for better deliverability.
+For production use, you should verify your domain in Resend to remove the `onboarding@resend.dev` restriction:
 
-1.  In Brevo, go to **Senders & IP** > **Domains**.
-2.  Click **Add a domain**.
-3.  Follow the instructions to add the required TXT/DNS records to your domain provider.
+1.  In the Resend dashboard, go to **Domains**.
+2.  Click **Add Domain**.
+3.  Enter your domain name.
+4.  Add the provided DNS records to your domain provider (GoDaddy, Namecheap, etc.).
+5.  Once verified, you can change `EMAIL_FROM` to use any address on your domain.
 
 ## How it works
 
 - When a user tries to authorize the CLI, the server generates a 6-digit OTP.
-- The `lib/email-service.ts` uses the `@getbrevo/brevo` SDK to send the email.
+- The `lib/email-service.ts` uses the `resend` SDK to send the email.
 - The email is styled with a professional template.
-- If `BREVO_API_KEY` is missing in development, the OTP will be logged to the terminal console instead of sending an email.
+- If `RESEND_API_KEY` is missing in development, the OTP will be logged to the terminal console instead of sending an email.
 
 ## Troubleshooting
 
-- **Email not arriving?** 
-  - Check your Brevo dashboard's "Transactional" tab to see if the email was sent or bounced.
-  - Ensure the `EMAIL_FROM` address exactly matches a verified sender in Brevo.
-  - Check your spam folder.
-- **API Error?** Ensure the `BREVO_API_KEY` is correctly copied.
-- **Vercel Deployment?** Make sure you add `BREVO_API_KEY` to your Vercel environment variables and redeploy.
+- **Email not arriving?** Check if you're using `onboarding@resend.dev` as the sender. If you are, you can only send to the email address you signed up with at Resend unless you verify a domain.
+- **API Error?** Ensure the `RESEND_API_KEY` is correctly copied and has not been revoked.
+- **Vercel Deployment?** Make sure you add `RESEND_API_KEY` to your Vercel environment variables and redeploy.
