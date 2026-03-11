@@ -4,8 +4,6 @@ import { Command } from 'commander';
 import inquirer from 'inquirer';
 import chalk from 'chalk';
 import ora from 'ora';
-import open from 'open';
-import axios from 'axios';
 import fs from 'fs-extra';
 import path from 'path';
 import { homedir } from 'os';
@@ -21,25 +19,9 @@ const program = new Command();
 // Configuration
 const CONFIG_DIR = path.join(homedir(), '.edpear');
 const CONFIG_FILE = path.join(CONFIG_DIR, 'config.json');
-const ENV_FILE = path.join(process.cwd(), '.env.local');
-
-// Default production URL
-const DEFAULT_API_URL = 'https://edpearofficial.vercel.app';
 
 interface Config {
-  token?: string;
-  user?: {
-    id: string;
-    name: string;
-    email: string;
-    credits: number;
-  };
-  apiKeys?: Array<{
-    id: string;
-    key: string;
-    name: string;
-    createdAt: string;
-  }>;
+  groqApiKey?: string;
 }
 
 class EdPearCLI {
@@ -68,295 +50,96 @@ class EdPearCLI {
     }
   }
 
-  private async makeRequest(endpoint: string, data?: any, method: string = 'GET') {
-    const baseURL = process.env.EDPEAR_API_URL || DEFAULT_API_URL;
-    
-    try {
-      const response = await axios({
-        method,
-        url: `${baseURL}${endpoint}`,
-        data,
-        headers: {
-          'Content-Type': 'application/json',
-          ...(this.config.token && { 'Authorization': `Bearer ${this.config.token}` }),
-        },
-      });
-      return response.data;
-    } catch (error: any) {
-      if (error.response?.status === 401) {
-        console.error(chalk.red('Authentication required. Please run "edpear login" first.'));
-        process.exit(1);
-      }
-      throw error;
-    }
-  }
+  // ─── Setup: save Groq API key ─────────────────────────────────────────────
 
-  async login() {
-    console.log(chalk.blue('🔐 EdPear Authentication'));
-    
-    const baseURL = process.env.EDPEAR_API_URL || DEFAULT_API_URL;
-    
-    console.log(chalk.gray(`Connecting to: ${baseURL}`));
-    console.log(chalk.yellow('Press ENTER to open the browser for authentication...'));
+  async setup() {
+    console.log(chalk.blue('🔧 EdPear Setup\n'));
+    console.log(chalk.gray('EdPear uses the Groq API for AI-powered analysis.'));
+    console.log(chalk.gray('Get your free API key at: https://console.groq.com/keys\n'));
 
-    await inquirer.prompt([
+    const { groqKey } = await inquirer.prompt([
       {
-        type: 'input',
-        name: 'enter',
-        message: '',
-      },
-    ]);
-
-    try {
-      // 1. Initialize CLI auth session
-      const initResponse = await axios.post(`${baseURL}/api/auth/cli/init`);
-      const { requestId, url } = initResponse.data;
-
-      // 2. Open browser
-      await open(url);
-      console.log(chalk.green('✅ Browser opened!'));
-      console.log(chalk.yellow('Please login and approve the request in your browser.'));
-      console.log(chalk.gray('You will receive a 6-digit verification code via email.'));
-      console.log(chalk.gray('The CLI will automatically detect when you are authenticated.\n'));
-      // 3. Poll for completion
-      const spinner = ora('Waiting for approval...').start();
-      const maxAttempts = 200; // 10 minutes
-      let attempts = 0;
-      let lastStatus = 'pending';
-
-      while (attempts < maxAttempts) {
-        await new Promise(resolve => setTimeout(resolve, 3000));
-        
-        try {
-          // Poll status using requestId
-          const statusResponse = await axios.get(`${baseURL}/api/auth/cli/status?requestId=${requestId}`);
-          const currentStatus = statusResponse.data.status;
-          
-          // Update spinner message based on status
-          if (currentStatus !== lastStatus) {
-            if (currentStatus === 'otp_pending') {
-              spinner.text = 'Waiting for OTP verification... (Check your email)';
-            } else if (currentStatus === 'pending') {
-              spinner.text = 'Waiting for approval...';
-            }
-            lastStatus = currentStatus;
-          }
-          
-          if (statusResponse.data.status === 'completed' && statusResponse.data.cliToken) {
-            spinner.stop();
-            
-            // Save token and user data
-            this.config.token = statusResponse.data.cliToken;
-            this.config.user = statusResponse.data.user;
-            this.saveConfig();
-
-            console.log(chalk.green('\n✅ Successfully authenticated!'));
-            console.log(chalk.blue(`\nWelcome, ${statusResponse.data.user.name}!`));
-            console.log(chalk.gray(`Email: ${statusResponse.data.user.email}`));
-            console.log(chalk.gray(`Credits: ${statusResponse.data.user.credits}`));
-            return;
-          } else if (statusResponse.data.status === 'expired') {
-            spinner.stop();
-            console.log(chalk.red(`\n❌ Authentication request expired. Please try again.`));
-            process.exit(1);
-          }
-          
-          attempts++;
-        } catch (error: any) {
-          // Continue polling on error
-          attempts++;
-        }
-      }
-
-      spinner.stop();
-      console.log(chalk.yellow('\n⏱️  Authentication timeout. Please try again.'));
-      process.exit(1);
-
-    } catch (error: any) {
-      console.error(chalk.red('Error during login:'), error.message);
-      process.exit(1);
-    }
-  }
-
-  async generateKey() {
-    if (!this.config.token) {
-      console.error(chalk.red('Please login first: edpear login'));
-      process.exit(1);
-    }
-
-    console.log(chalk.blue('🔑 Generate New API Key\n'));
-
-    const { name } = await inquirer.prompt([
-      {
-        type: 'input',
-        name: 'name',
-        message: 'Enter a name for your API key:',
-        default: 'My API Key',
+        type: 'password',
+        name: 'groqKey',
+        message: 'Paste your Groq API key:',
+        mask: '*',
         validate: (input: string) => {
-          if (!input.trim()) {
-            return 'Name is required';
-          }
+          if (!input.trim()) return 'API key is required';
+          if (!input.trim().startsWith('gsk_')) return 'Groq API keys start with "gsk_"';
           return true;
         },
       },
     ]);
 
-    const spinner = ora('Generating API key...').start();
+    const key = groqKey.trim();
 
-    try {
-      const result = await this.makeRequest('/api/keys/generate', {
-        name,
-      }, 'POST');
+    // Save to ~/.edpear/config.json (global)
+    this.config.groqApiKey = key;
+    this.saveConfig();
+    console.log(chalk.green('✅ Saved to ~/.edpear/config.json'));
 
-      spinner.succeed(chalk.green('✅ API key generated successfully!'));
+    // Optionally also save to local .env
+    const { saveLocal } = await inquirer.prompt([
+      {
+        type: 'confirm',
+        name: 'saveLocal',
+        message: 'Also save to .env in the current directory?',
+        default: true,
+      },
+    ]);
 
-      // Add to config
-      if (!this.config.apiKeys) {
-        this.config.apiKeys = [];
-      }
-      this.config.apiKeys.push(result.apiKey);
-      this.saveConfig();
-
-      console.log(chalk.blue('\n📋 Your new API key:'));
-      console.log(chalk.yellow(result.apiKey.key));
-      console.log(chalk.gray('\n💡 Save this key securely. It will not be shown again.'));
-
-      // Ask if user wants to save to .env.local
-      const { saveToEnv } = await inquirer.prompt([
-        {
-          type: 'confirm',
-          name: 'saveToEnv',
-          message: 'Save API key to .env.local file?',
-          default: true,
-        },
-      ]);
-
-      if (saveToEnv) {
-        await this.saveToEnvFile(result.apiKey.key);
-      }
-    } catch (error: any) {
-      spinner.fail(chalk.red('❌ Failed to generate API key'));
-      console.error(chalk.red('Error:'), error.response?.data?.error || error.message);
-      process.exit(1);
+    if (saveLocal) {
+      this.saveToEnvFile(key);
     }
+
+    console.log(chalk.green('\n🎉 All set! You can now use all EdPear features.'));
+    console.log(chalk.gray('Try: edpear math-debug <image-path>'));
   }
 
-  private async saveToEnvFile(apiKey: string) {
+  private saveToEnvFile(groqKey: string) {
+    const envPath = path.join(process.cwd(), '.env');
     try {
       let envContent = '';
-      
-      if (fs.existsSync(ENV_FILE)) {
-        envContent = fs.readFileSync(ENV_FILE, 'utf8');
+      if (fs.existsSync(envPath)) {
+        envContent = fs.readFileSync(envPath, 'utf8');
       }
-
-      // Remove existing EDPEAR_API_KEY if present
-      envContent = envContent.replace(/^EDPEAR_API_KEY=.*$/m, '');
-      
-      // Add new API key
-      if (envContent && !envContent.endsWith('\n')) {
-        envContent += '\n';
-      }
-      envContent += `EDPEAR_API_KEY=${apiKey}\n`;
-
-      fs.writeFileSync(ENV_FILE, envContent);
-      console.log(chalk.green('✅ API key saved to .env.local'));
+      // Remove existing GROQ_API_KEY if present
+      envContent = envContent.replace(/^GROQ_API_KEY=.*$/m, '').trim();
+      if (envContent) envContent += '\n';
+      envContent += `GROQ_API_KEY=${groqKey}\n`;
+      fs.writeFileSync(envPath, envContent);
+      console.log(chalk.green('✅ Saved to .env'));
     } catch (error) {
-      console.error(chalk.red('Error saving to .env.local:'), error);
+      console.error(chalk.red('Error saving to .env:'), error);
     }
   }
 
   async status() {
-    if (!this.config.token) {
-      console.log(chalk.red('❌ Not authenticated'));
-      console.log(chalk.gray('Run "edpear login" to get started'));
-      return;
-    }
+    console.log(chalk.blue('📊 EdPear Status\n'));
 
-    const spinner = ora('Fetching status...').start();
-
-    try {
-      // Fetch latest user stats and API keys
-      const [userStatus, keysResponse] = await Promise.all([
-        this.makeRequest('/api/auth/me'),
-        this.makeRequest('/api/keys/list')
-      ]);
-
-      spinner.stop();
-
-      console.log(chalk.blue('📊 EdPear Status\n'));
-      
-      if (userStatus.user) {
-        // Update local config
-        this.config.user = {
-          id: userStatus.user.id,
-          name: userStatus.user.name,
-          email: userStatus.user.email,
-          credits: userStatus.user.credits
-        };
-        this.saveConfig();
-
-        console.log(chalk.green(`👤 User: ${userStatus.user.name}`));
-        console.log(chalk.green(`📧 Email: ${userStatus.user.email}`));
-        console.log(chalk.green(`💳 Credits: ${userStatus.user.credits}`));
-      }
-
-      const apiKeys = keysResponse.apiKeys || [];
-      
-      if (apiKeys.length > 0) {
-        console.log(chalk.blue(`\n🔑 Latest API Keys (Top 5):`));
-        // Show top 5 keys
-        apiKeys.slice(0, 5).forEach((key: any, index: number) => {
-          console.log(chalk.gray(`  ${index + 1}. ${key.name}`));
-          // The API returns masked keys, which is good for status
-          console.log(chalk.yellow(`     ${key.key}`)); 
-          console.log(chalk.gray(`     Created: ${new Date(key.createdAt).toLocaleDateString()}`));
-          if (key.usageCount !== undefined) {
-             console.log(chalk.gray(`     Uses: ${key.usageCount}`));
-          }
-        });
-      } else {
-        console.log(chalk.yellow('\n🔑 No API keys found'));
-        console.log(chalk.gray('Run "edpear generate-key" to create your first API key'));
-      }
-
-    } catch (error: any) {
-      spinner.fail(chalk.red('❌ Failed to fetch status'));
-      // Fallback to local config if API fails
-      if (this.config.user) {
-        console.log(chalk.gray('\nShowing cached data:'));
-        console.log(chalk.green(`👤 User: ${this.config.user.name}`));
-        console.log(chalk.green(`📧 Email: ${this.config.user.email}`));
-        console.log(chalk.green(`💳 Credits: ${this.config.user.credits}`));
-      }
-    }
-  }
-
-  async logout() {
-    if (!this.config.token) {
-      console.log(chalk.yellow('💡 You are not logged in.'));
-      return;
-    }
-    
-    // Clear user data but keep the structure
-    const email = this.config.user?.email;
-    this.config = {};
-    this.saveConfig();
-    
-    console.log(chalk.green('✅ Logged out successfully'));
-    if (email) {
-      console.log(chalk.gray(`Disconnected from ${email}`));
+    const groqKey = this.getGroqKey(true);
+    if (groqKey) {
+      const masked = groqKey.slice(0, 7) + '...' + groqKey.slice(-4);
+      console.log(chalk.green(`🔑 Groq API Key: ${masked}`));
+      const source = process.env.GROQ_API_KEY
+        ? '.env / environment'
+        : '~/.edpear/config.json';
+      console.log(chalk.gray(`   Source: ${source}`));
+    } else {
+      console.log(chalk.yellow('🔑 No Groq API key configured'));
+      console.log(chalk.gray('   Run "edpear setup" to get started'));
     }
   }
 
   // ─── Shared helpers for AI feature commands ──────────────────────────────────
 
-  private getApiKey(): string {
-    const envKey = process.env.EDPEAR_API_KEY;
+  private getGroqKey(silent = false): string {
+    const envKey = process.env.GROQ_API_KEY;
     if (envKey) return envKey;
-    const storedKeys = this.config.apiKeys;
-    if (storedKeys && storedKeys.length > 0) return storedKeys[0].key;
-    console.error(chalk.red('❌ No API key found.'));
-    console.error(chalk.gray('Run "edpear generate-key" or set EDPEAR_API_KEY in your environment.'));
+    if (this.config.groqApiKey) return this.config.groqApiKey;
+    if (silent) return '';
+    console.error(chalk.red('❌ No Groq API key found.'));
+    console.error(chalk.gray('Run "edpear setup" to configure your key.'));
     process.exit(1);
   }
 
@@ -383,7 +166,7 @@ class EdPearCLI {
   async mathDebug(imagePath: string) {
     const spinner = ora('Analyzing math solution...').start();
     try {
-      const client = new EdPearClient({ apiKey: this.getApiKey() });
+      const client = new EdPearClient({ groqApiKey: this.getGroqKey() });
       const image = this.imageToBase64(imagePath);
       const result = await client.debugMathSolution(image);
       spinner.succeed(chalk.green('✅ Analysis complete'));
@@ -400,7 +183,7 @@ class EdPearCLI {
   async verifyConcept(imagePath: string, concept: string) {
     const spinner = ora(`Verifying concept: "${concept}"...`).start();
     try {
-      const client = new EdPearClient({ apiKey: this.getApiKey() });
+      const client = new EdPearClient({ groqApiKey: this.getGroqKey() });
       const image = this.imageToBase64(imagePath);
       const result = await client.verifyRealWorldConcept(image, concept);
       spinner.succeed(chalk.green('✅ Verification complete'));
@@ -417,7 +200,7 @@ class EdPearCLI {
   async labCheck(imagePath: string, experimentType: string) {
     const spinner = ora(`Checking lab setup for: "${experimentType}"...`).start();
     try {
-      const client = new EdPearClient({ apiKey: this.getApiKey() });
+      const client = new EdPearClient({ groqApiKey: this.getGroqKey() });
       const image = this.imageToBase64(imagePath);
       const result = await client.checkLabSetup(image, experimentType);
       spinner.succeed(chalk.green('✅ Lab check complete'));
@@ -434,7 +217,7 @@ class EdPearCLI {
   async flashcards(imagePath: string, outputFile?: string) {
     const spinner = ora('Generating spatial flashcards...').start();
     try {
-      const client = new EdPearClient({ apiKey: this.getApiKey() });
+      const client = new EdPearClient({ groqApiKey: this.getGroqKey() });
       const image = this.imageToBase64(imagePath);
       const result = await client.generateSpatialFlashcards(image);
       spinner.succeed(chalk.green(`✅ Generated ${result.totalCards} flashcard(s)`));
@@ -455,7 +238,7 @@ class EdPearCLI {
   async whiteboardToCode(imagePath: string, format: string) {
     const spinner = ora(`Converting whiteboard to ${format}...`).start();
     try {
-      const client = new EdPearClient({ apiKey: this.getApiKey() });
+      const client = new EdPearClient({ groqApiKey: this.getGroqKey() });
       const image = this.imageToBase64(imagePath);
       const result = await client.whiteboardToCode(image, format);
       spinner.succeed(chalk.green('✅ Conversion complete'));
@@ -472,7 +255,7 @@ class EdPearCLI {
   async gradeRubric(imagePath: string, constraints: string[]) {
     const spinner = ora('Grading against visual rubric...').start();
     try {
-      const client = new EdPearClient({ apiKey: this.getApiKey() });
+      const client = new EdPearClient({ groqApiKey: this.getGroqKey() });
       const image = this.imageToBase64(imagePath);
       const result = await client.gradeVisualRubric(image, constraints);
       spinner.succeed(chalk.green(`✅ Graded: ${result.totalScore}/${result.maxScore} (${result.grade})`));
@@ -489,7 +272,7 @@ class EdPearCLI {
   async simplify(imagePath: string, outputFile?: string) {
     const spinner = ora('Reducing cognitive load...').start();
     try {
-      const client = new EdPearClient({ apiKey: this.getApiKey() });
+      const client = new EdPearClient({ groqApiKey: this.getGroqKey() });
       const image = this.imageToBase64(imagePath);
       const result = await client.reduceCognitiveLoad(image);
       spinner.succeed(chalk.green('✅ Simplified'));
@@ -513,7 +296,7 @@ class EdPearCLI {
   async manipulatives(imagePath: string) {
     const spinner = ora('Translating manipulatives...').start();
     try {
-      const client = new EdPearClient({ apiKey: this.getApiKey() });
+      const client = new EdPearClient({ groqApiKey: this.getGroqKey() });
       const image = this.imageToBase64(imagePath);
       const result = await client.translateManipulatives(image);
       spinner.succeed(chalk.green('✅ Manipulatives translated'));
@@ -530,7 +313,7 @@ class EdPearCLI {
   async artifact(imagePath: string) {
     const spinner = ora('Analyzing historical artifact...').start();
     try {
-      const client = new EdPearClient({ apiKey: this.getApiKey() });
+      const client = new EdPearClient({ groqApiKey: this.getGroqKey() });
       const image = this.imageToBase64(imagePath);
       const result = await client.analyzeHistoricalArtifact(image);
       spinner.succeed(chalk.green(`✅ Identified: ${result.title}`));
@@ -547,7 +330,7 @@ class EdPearCLI {
   async storyboard(imagePath: string, outputFile?: string) {
     const spinner = ora('Converting storyboard to outline...').start();
     try {
-      const client = new EdPearClient({ apiKey: this.getApiKey() });
+      const client = new EdPearClient({ groqApiKey: this.getGroqKey() });
       const image = this.imageToBase64(imagePath);
       const result = await client.storyboardToOutline(image);
       spinner.succeed(chalk.green(`✅ Outline created – ${result.totalNodes} nodes`));
@@ -570,33 +353,18 @@ const cli = new EdPearCLI();
 
 program
   .name('edpear')
-  .description('EdPear CLI - AI-powered educational components')
-  .version('1.0.0');
+  .description('EdPear CLI - AI-powered educational components (powered by Groq)')
+  .version('1.3.0');
 
 program
-  .command('login')
-  .description('Authenticate with EdPear')
-  .action(() => cli.login());
-
-program
-  .command('generate-key')
-  .description('Generate a new API key')
-  .action(() => cli.generateKey());
+  .command('setup')
+  .description('Configure your Groq API key (saved to ~/.edpear/config.json and optionally .env)')
+  .action(() => cli.setup());
 
 program
   .command('status')
-  .description('Show current status and API keys')
+  .description('Show current configuration')
   .action(() => cli.status());
-
-program
-  .command('command-line')
-  .description('Alias for login')
-  .action(() => cli.login());
-
-program
-  .command('logout')
-  .description('Logout from EdPear')
-  .action(() => cli.logout());
 
 // ─── AI Feature Commands ──────────────────────────────────────────────────────
 

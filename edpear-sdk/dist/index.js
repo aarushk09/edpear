@@ -20,6 +20,10 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.EdPearClient = void 0;
 exports.createEdPearClient = createEdPearClient;
 const axios_1 = __importDefault(require("axios"));
+const dotenv_1 = __importDefault(require("dotenv"));
+const path_1 = __importDefault(require("path"));
+const fs_1 = __importDefault(require("fs"));
+const os_1 = require("os");
 const debugMathSolution_1 = require("./features/debugMathSolution");
 const verifyRealWorldConcept_1 = require("./features/verifyRealWorldConcept");
 const checkLabSetup_1 = require("./features/checkLabSetup");
@@ -30,79 +34,97 @@ const reduceCognitiveLoad_1 = require("./features/reduceCognitiveLoad");
 const translateManipulatives_1 = require("./features/translateManipulatives");
 const analyzeHistoricalArtifact_1 = require("./features/analyzeHistoricalArtifact");
 const storyboardToOutline_1 = require("./features/storyboardToOutline");
+// Auto-load .env / .env.local from cwd
+dotenv_1.default.config();
+dotenv_1.default.config({ path: path_1.default.join(process.cwd(), '.env.local') });
 __exportStar(require("./features/types"), exports);
-class EdPearClient {
-    constructor(config) {
-        this.apiKey = config.apiKey;
-        this.baseURL = config.baseURL || 'https://edpearofficial.vercel.app';
+const GROQ_API_URL = 'https://api.groq.com/openai/v1/chat/completions';
+const DEFAULT_VISION_MODEL = 'llama-3.2-11b-vision-preview';
+const DEFAULT_TEXT_MODEL = 'llama3-8b-8192';
+const SYSTEM_PROMPT = `You are EdPear Vision AI, a specialized AI assistant for educational technology applications. You excel at analyzing educational content in images, providing clear explanations, and returning structured JSON when asked. Always provide accurate, educational responses.`;
+/**
+ * Resolves the Groq API key from (in priority order):
+ * 1. Explicit parameter
+ * 2. GROQ_API_KEY environment variable
+ * 3. ~/.edpear/config.json → groqApiKey field
+ */
+function resolveGroqKey(explicit) {
+    if (explicit)
+        return explicit;
+    if (process.env.GROQ_API_KEY)
+        return process.env.GROQ_API_KEY;
+    try {
+        const cfgPath = path_1.default.join((0, os_1.homedir)(), '.edpear', 'config.json');
+        if (fs_1.default.existsSync(cfgPath)) {
+            const cfg = JSON.parse(fs_1.default.readFileSync(cfgPath, 'utf-8'));
+            if (cfg.groqApiKey)
+                return cfg.groqApiKey;
+        }
     }
-    /**
-     * Analyze an image or process text using EdPear's AI
-     * @param request - The request containing prompt and optional image
-     * @returns Promise<VisionResponse>
-     */
+    catch { /* ignore */ }
+    throw new Error('Groq API key not found. Run "npx edpear setup" to configure it, ' +
+        'or set the GROQ_API_KEY environment variable.');
+}
+class EdPearClient {
+    constructor(config = {}) {
+        this.groqApiKey = resolveGroqKey(config.groqApiKey);
+        this.model = config.model;
+    }
     async analyzeImage(request) {
         return this.processRequest(request);
     }
-    /**
-     * Send a chat/text request to EdPear's AI
-     * @param prompt - The text prompt
-     * @param options - Optional parameters like maxTokens and temperature
-     * @returns Promise<VisionResponse>
-     */
     async chat(prompt, options) {
-        return this.processRequest({
-            prompt,
-            ...options
-        });
+        return this.processRequest({ prompt, ...options });
     }
     async processRequest(request) {
+        const hasImage = !!request.image;
+        const model = this.model || (hasImage ? DEFAULT_VISION_MODEL : DEFAULT_TEXT_MODEL);
+        // Build user content
+        let userContent;
+        if (hasImage) {
+            // Normalise image: ensure it's a data-URI
+            let imageUrl = request.image;
+            if (!imageUrl.startsWith('data:')) {
+                imageUrl = `data:image/jpeg;base64,${imageUrl}`;
+            }
+            userContent = [
+                { type: 'text', text: request.prompt },
+                { type: 'image_url', image_url: { url: imageUrl } },
+            ];
+        }
+        else {
+            userContent = request.prompt;
+        }
+        const startTime = Date.now();
         try {
-            const response = await axios_1.default.post(`${this.baseURL}/api/vision`, request, {
+            const response = await axios_1.default.post(GROQ_API_URL, {
+                model,
+                messages: [
+                    { role: 'system', content: SYSTEM_PROMPT },
+                    { role: 'user', content: userContent },
+                ],
+                max_tokens: request.maxTokens || 1024,
+                temperature: request.temperature || 0.7,
+                stream: false,
+            }, {
                 headers: {
+                    'Authorization': `Bearer ${this.groqApiKey}`,
                     'Content-Type': 'application/json',
-                    'x-api-key': this.apiKey,
                 },
             });
-            return response.data;
+            return {
+                success: true,
+                result: response.data.choices[0].message.content,
+                processingTime: Date.now() - startTime,
+            };
         }
         catch (error) {
+            const msg = error.response?.data?.error?.message || error.message;
             if (error.response?.status === 401) {
-                throw new Error('Invalid API key. Please check your EdPear API key.');
+                throw new Error('Invalid Groq API key. Run "npx edpear setup" to reconfigure.');
             }
-            else if (error.response?.status === 402) {
-                throw new Error('Insufficient credits. Please add more credits to your account.');
-            }
-            else if (error.response?.status === 400) {
-                throw new Error(`Bad request: ${error.response.data.error}`);
-            }
-            else {
-                throw new Error(`API request failed: ${error.message}`);
-            }
+            throw new Error(`Groq API request failed: ${msg}`);
         }
-    }
-    /**
-     * Get account status and remaining credits
-     * @returns Promise<{credits: number, user: any}>
-     */
-    async getStatus() {
-        try {
-            const response = await axios_1.default.get(`${this.baseURL}/api/user/status`, {
-                headers: {
-                    'x-api-key': this.apiKey,
-                },
-            });
-            return response.data;
-        }
-        catch (error) {
-            throw new Error(`Failed to get account status: ${error.message}`);
-        }
-    }
-    // ─── Helper ──────────────────────────────────────────────────────────────────
-    parseJsonResult(raw) {
-        // Strip markdown code fences if present
-        const cleaned = raw.replace(/^```(?:json)?\s*/i, '').replace(/\s*```\s*$/, '').trim();
-        return JSON.parse(cleaned);
     }
     // ─── Feature 1: debugMathSolution ────────────────────────────────────────────
     /**
@@ -187,8 +209,8 @@ class EdPearClient {
 }
 exports.EdPearClient = EdPearClient;
 // Convenience function for quick setup
-function createEdPearClient(apiKey, baseURL) {
-    return new EdPearClient({ apiKey, baseURL });
+function createEdPearClient(groqApiKey) {
+    return new EdPearClient({ groqApiKey });
 }
 // Default export
 exports.default = EdPearClient;
