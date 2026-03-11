@@ -132,12 +132,9 @@
 <!-- ── Header ────────────────────────────────────────────────────────────────── -->
 <header class="header">
   <div class="header-logo">EdPear SDK <span class="header-badge">v1.4.0</span></div>
-  <div class="api-key-row">
-    <label for="global-api-key">🔑 Groq API Key</label>
-    <input id="global-api-key" type="text" placeholder="gsk_xxxxxxxxxxxxxxxxxxxxxxxx" autocomplete="off" />
-    <div id="key-status" style="white-space:nowrap;display:none"></div>
+  <div class="api-key-row" style="justify-content:flex-end">
+    <span class="pill pill-green" style="font-size:12px">🔑 Groq API Key configured (server .env)</span>
   </div>
-  <div id="credits-bar" class="credits-bar">Credits: <span id="credits-val">–</span></div>
 </header>
 
 <!-- ── Main layout ────────────────────────────────────────────────────────────── -->
@@ -432,10 +429,6 @@ function switchTab(id) {
   });
 }
 
-function getApiKey() {
-  return $('global-api-key')?.value?.trim() || '';
-}
-
 // ── Image uploader builder ─────────────────────────────────────────────────────
 function buildUploaders() {
   document.querySelectorAll('.img-uploader').forEach(el => {
@@ -518,11 +511,6 @@ async function runFeature(endpoint, extraParams, tabId) {
   const tid = tabId || endpointToTab[endpoint] || endpoint;
   const resultEl = $('result-' + tid);
 
-  const apiKey = getApiKey();
-  if (!apiKey) {
-    resultEl.innerHTML = `<div class="nokey-hint">⚠️ Please enter your Groq API key in the top bar first (get one free at <a href="https://console.groq.com/keys" target="_blank" style="color:var(--accent2)">console.groq.com</a>).</div>`;
-    return;
-  }
   const image = images[tid];
   if (!image) {
     resultEl.innerHTML = `<div class="msg-error">Please upload an image before running.</div>`;
@@ -537,7 +525,7 @@ async function runFeature(endpoint, extraParams, tabId) {
     const resp = await fetch('/api/' + endpoint, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ groqApiKey: apiKey, image, ...extraParams }),
+      body: JSON.stringify({ image, ...extraParams }),
     });
     const data = await resp.json();
     const elapsed = ((Date.now() - t0) / 1000).toFixed(2);
@@ -588,17 +576,6 @@ function removeConstraint(btn) {
   if (list.children.length <= 1) return;
   btn.parentElement.remove();
 }
-
-// ── API key live feedback ──────────────────────────────────────────────────────
-$('global-api-key').addEventListener('input', function() {
-  const ks = $('key-status');
-  if (this.value.trim().length > 8) {
-    ks.style.display = 'inline-block';
-    ks.innerHTML = '<span class="pill pill-green">key set ✓</span>';
-  } else {
-    ks.style.display = 'none';
-  }
-});
 
 // ── Init ──────────────────────────────────────────────────────────────────────
 buildUploaders();
