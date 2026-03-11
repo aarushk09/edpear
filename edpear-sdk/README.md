@@ -78,6 +78,147 @@ const status = await client.getStatus();
 console.log(`Credits remaining: ${status.credits}`);
 ```
 
+---
+
+## Educational AI Wrappers (v1.3+)
+
+All 10 methods below accept a **base64-encoded image string** as their first argument (format: `data:image/<mime>;base64,<data>`) and return structured, typed JSON — no prompt engineering required.
+
+### 1. `debugMathSolution(image)`
+
+Pinpoints the exact line of an error in a handwritten multi-step math solution.
+
+```typescript
+const result = await client.debugMathSolution(base64Image);
+// result.errorAtLine  → line number (0 = no error)
+// result.incorrectStep, result.correctFormula, result.explanation, result.hints
+```
+
+CLI: `edpear math-debug ./photo.jpg`
+
+---
+
+### 2. `verifyRealWorldConcept(image, concept)`
+
+Validates whether a photograph demonstrates a specific physics or geometry concept.
+
+```typescript
+const result = await client.verifyRealWorldConcept(base64Image, 'acute angle');
+// result.matches (boolean), result.confidence (0–1), result.explanation
+```
+
+CLI: `edpear verify-concept ./photo.jpg "acute angle"`
+
+---
+
+### 3. `checkLabSetup(image, experimentType)`
+
+Inspects lab equipment or circuit wiring for safety issues and correctness.
+
+```typescript
+const result = await client.checkLabSetup(base64Image, 'series circuit');
+// result.overallCorrect, result.safetyIssues[], result.correctnessIssues[], result.riskLevel
+```
+
+CLI: `edpear lab-check ./circuit.jpg "series circuit"`
+
+---
+
+### 4. `generateSpatialFlashcards(image)`
+
+Generates image-occlusion flashcards from a complex educational diagram.
+
+```typescript
+const result = await client.generateSpatialFlashcards(base64Image);
+// result.flashcards[].front, .back, .region, .difficulty, .tags
+```
+
+CLI: `edpear flashcards ./diagram.png --output cards.json`
+
+---
+
+### 5. `whiteboardToCode(image, targetFormat?)`
+
+Converts whiteboard equations to LaTeX or flowcharts to Python pseudocode.
+
+```typescript
+const result = await client.whiteboardToCode(base64Image, 'latex');
+// result.output (string), result.format, result.explanation, result.variables
+```
+
+CLI: `edpear whiteboard-to-code ./board.jpg --format latex`
+
+---
+
+### 6. `gradeVisualRubric(image, rubricConstraints)`
+
+Evaluates a drawing against an array of rubric constraint strings (scored 0–2 each).
+
+```typescript
+const result = await client.gradeVisualRubric(base64Image, [
+  'has a clear vanishing point',
+  'uses hatching for shading',
+]);
+// result.totalScore, result.grade, result.breakdown[].feedback
+```
+
+CLI: `edpear grade-rubric ./drawing.jpg "has vanishing point" "uses hatching"`
+
+---
+
+### 7. `reduceCognitiveLoad(image)`
+
+Reformats dense textbook text into dyslexia-friendly, bulleted markdown.
+
+```typescript
+const result = await client.reduceCognitiveLoad(base64Image);
+// result.markdown, result.keyTerms[], result.summary, result.readingLevel
+```
+
+CLI: `edpear simplify ./textbook.jpg --output simplified.md`
+
+---
+
+### 8. `translateManipulatives(image)`
+
+Reads physical educational blocks/tiles on a desk and returns a digital state object.
+
+```typescript
+const result = await client.translateManipulatives(base64Image);
+// result.blocks[].type/value/position, result.totalValue, result.digitalState
+```
+
+CLI: `edpear manipulatives ./blocks.jpg`
+
+---
+
+### 9. `analyzeHistoricalArtifact(image)`
+
+Acts as an AR museum docent — returns period, origin, techniques, and historical context.
+
+```typescript
+const result = await client.analyzeHistoricalArtifact(base64Image);
+// result.title, result.period, result.origin, result.techniques[], result.significance
+```
+
+CLI: `edpear artifact ./painting.jpg`
+
+---
+
+### 10. `storyboardToOutline(image)`
+
+Converts sticky-note storyboards or mind maps into a hierarchical JSON outline.
+
+```typescript
+const result = await client.storyboardToOutline(base64Image);
+// result.title, result.nodes[].text/level/children, result.linearSummary
+```
+
+CLI: `edpear storyboard ./sticky-notes.jpg --output outline.json`
+
+---
+
+
 ## Types
 
 ### VisionRequest
