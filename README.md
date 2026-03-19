@@ -1,147 +1,107 @@
-# EdPear - AI-Powered Educational Components
+# EdPear
 
-Professional AI components for educational technology applications. Build smarter learning experiences with our vision AI and component library.
+EdPear is an edtech-focused React component library for teams building quizzes, course flows, video lessons, practice experiences, and learner feedback loops. It combines production-ready Tailwind components with a small set of optional OpenRouter-powered teaching helpers so product teams can ship faster without inventing their own design system from scratch.
 
-## 🚀 Features
+## Who It's For
 
-- **Vision AI**: Advanced image analysis for educational content, textbooks, and learning materials
-- **Easy Integration**: Simple API calls and CLI tools to integrate AI into your applications
-- **Secure & Reliable**: Enterprise-grade security with usage tracking and credit management
-- **Developer-First**: Comprehensive SDK and CLI tools for seamless integration
+EdPear is built for edtech product builders: startup teams, internal learning platforms, curriculum tools, tutoring products, coding practice apps, and course marketplaces that need opinionated but flexible UI primitives.
 
-## 📦 Installation
+## Quick Start
 
-### CLI Tool
-```bash
-npm install -g @edpear/cli
-```
+```tsx
+import "edpear/styles.css";
+import { QuizCard } from "edpear";
 
-### SDK
-```bash
-npm install @edpear/sdk
-```
-
-## 🛠️ Quick Start
-
-### 1. Install CLI and Login
-```bash
-# Install the CLI globally
-npm install -g @edpear/cli
-
-# Login to your account
-edpear login
-```
-
-### 2. Generate API Key
-```bash
-# Generate a new API key
-edpear generate-key
-
-# Check your status
-edpear status
-```
-
-### 3. Use in Your Code
-```javascript
-const { EdPearClient } = require('@edpear/sdk');
-
-const client = new EdPearClient({
-  apiKey: process.env.EDPEAR_API_KEY
-});
-
-// Analyze an image
-const result = await client.analyzeImage({
-  image: base64Image,
-  prompt: "Analyze this textbook page and explain the main concepts"
-});
-
-console.log(result.result);
-```
-
-## 🔧 CLI Commands
-
-| Command | Description |
-|---------|-------------|
-| `edpear login` | Authenticate with EdPear |
-| `edpear generate-key` | Generate a new API key |
-| `edpear status` | Show current status and API keys |
-| `edpear logout` | Logout from EdPear |
-
-## 📚 API Reference
-
-### Vision Analysis
-
-Analyze educational images with our specialized AI model.
-
-```javascript
-const result = await client.analyzeImage({
-  image: 'base64-encoded-image',
-  prompt: 'Your analysis prompt',
-  maxTokens: 1000,        // Optional
-  temperature: 0.7        // Optional
-});
-```
-
-**Response:**
-```javascript
-{
-  success: true,
-  result: "Analysis result...",
-  creditsUsed: 5,
-  remainingCredits: 95,
-  processingTime: 1200
+export function Demo() {
+  return <QuizCard question="2 + 2 = ?" correctAnswer="4" variant="short-answer" />;
 }
 ```
 
-### Account Status
+## Installation
 
-Check your account information and remaining credits.
-
-```javascript
-const status = await client.getStatus();
+```bash
+npm install edpear
 ```
 
-## 🎯 Use Cases
+## CLI Usage
 
-- **Textbook Analysis**: Extract key concepts from textbook pages
-- **Handwritten Notes**: Convert handwritten notes to structured content
-- **Study Guides**: Generate comprehensive study materials
-- **Educational Content**: Analyze diagrams, charts, and educational images
-- **Learning Assessment**: Create quizzes and assessments from content
+```bash
+npx edpear add quiz-card lesson-progress
+```
 
-## 🔒 Security
+The CLI copies source files into your app, including shared utilities like `lib/cn.ts` and `lib/openrouter.ts` when needed.
 
-- All API keys are securely stored and encrypted
-- Requests are proxied through our secure infrastructure
-- Usage tracking and rate limiting
-- No direct access to underlying AI models
+## Component Index
 
-## 📊 Dashboard
+- [`QuizCard`](./src/components/quiz-card/README.md)
+- [`LessonProgress`](./src/components/lesson-progress/README.md)
+- [`FlashCard`](./src/components/flash-card/README.md)
+- [`VideoLesson`](./src/components/video-lesson/README.md)
+- [`CourseCard`](./src/components/course-card/README.md)
+- [`BadgeAward`](./src/components/badge-award/README.md)
+- [`TimedQuiz`](./src/components/timed-quiz/README.md)
+- [`RichTextEditor`](./src/components/rich-text-editor/README.md)
+- [`CodePlayground`](./src/components/code-playground/README.md)
+- [`StreakTracker`](./src/components/streak-tracker/README.md)
+- [`ScoreDisplay`](./src/components/score-display/README.md)
+- [`DiscussionThread`](./src/components/discussion-thread/README.md)
+- [`AIFeedback`](./src/components/ai-feedback/README.md)
+- [`AIQuizGenerator`](./src/components/ai-quiz-generator/README.md)
+- [`AIHint`](./src/components/ai-hint/README.md)
 
-Access your dashboard at [https://edpear.com/dashboard](https://edpear.com/dashboard) to:
+## Theming Guide
 
-- View usage statistics
-- Manage API keys
-- Monitor credit usage
-- Access documentation
+Import `edpear/styles.css` once and layer it into your Tailwind app shell. EdPear follows shadcn-style CSS variables and ships these additional edtech tokens:
 
-## 🛡️ Privacy
+- `--lesson`
+- `--quiz`
+- `--progress`
+- `--feedback-correct`
+- `--feedback-incorrect`
 
-- Your data is never stored permanently
-- Images are processed and immediately discarded
-- All requests are logged for usage tracking only
-- No personal information is shared with third parties
+Example theme override:
 
-## 📞 Support
+```css
+:root {
+  --lesson: 263 85% 64%;
+  --quiz: 28 96% 55%;
+  --progress: 153 71% 40%;
+}
 
-- Documentation: [https://docs.edpear.com](https://docs.edpear.com)
-- Support: [support@edpear.com](mailto:support@edpear.com)
-- GitHub: [https://github.com/edpear](https://github.com/edpear)
+.dark {
+  --lesson: 263 90% 72%;
+  --quiz: 30 95% 60%;
+}
+```
 
-## 📄 License
+## AI Setup
 
-MIT License - see [LICENSE](LICENSE) file for details.
+AI components are optional and use OpenRouter only.
 
----
+1. Create an OpenRouter key.
+2. Pass it into the component via the `apiKey` prop.
+3. Optionally override the model with `model`, otherwise EdPear defaults to `openai/gpt-4o`.
 
-Built with ❤️ for the educational technology community.
+```tsx
+import { AIFeedback } from "edpear";
+
+<AIFeedback
+  apiKey={process.env.NEXT_PUBLIC_OPENROUTER_KEY!}
+  studentAnswer="Photosynthesis happens in the roots."
+  correctAnswer="Photosynthesis happens primarily in the leaves."
+/>;
+```
+
+## Package Exports
+
+- `edpear`
+- `edpear/openrouter`
+- `edpear/styles.css`
+
+## Quality Bar
+
+- Full TypeScript
+- Tailwind-first styling
+- Controlled and uncontrolled APIs where relevant
+- Keyboard-accessible interactive primitives
+- AI helpers with loading, error, and callback states
