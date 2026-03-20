@@ -23,6 +23,7 @@ import {
   ReadingAnnotator,
   KnowledgeCheck,
   CertificateRenderer,
+  LearningPathMap,
 } from "edpear";
 
 import { DemoFrame, ShowcaseNav, ThemeToggle } from "../components/showcase-shell";
@@ -92,7 +93,7 @@ export default function ShowcasePage() {
           </div>
           <div className="flex flex-wrap items-center gap-2">
             <span className="rounded-full border border-border bg-muted/50 px-3 py-1 text-xs font-medium text-muted-foreground">
-              21 components
+              22 components
             </span>
             <span className="rounded-full border border-border bg-muted/50 px-3 py-1 text-xs font-medium text-muted-foreground">
               Tailwind v4
@@ -376,6 +377,30 @@ export default function ShowcasePage() {
                 organizationName="EdPear Academy"
               />
             </div>
+          </DemoFrame>
+
+          <DemoFrame
+            id="learning-path-map"
+            title="<LearningPathMap />"
+            description="SVG curriculum graph with locked, available, current, and completed nodes plus directed edges."
+          >
+            <LearningPathMap
+              edges={[
+                { from: "a", to: "b" },
+                { from: "b", to: "c" },
+                { from: "b", to: "d" },
+                { from: "c", to: "e" },
+                { from: "d", to: "e" },
+              ]}
+              nodes={[
+                { id: "a", label: "Start", x: 120, y: 260, state: "completed" },
+                { id: "b", label: "Foundations", x: 320, y: 260, state: "completed" },
+                { id: "c", label: "Track A", x: 520, y: 140, state: "current" },
+                { id: "d", label: "Track B", x: 520, y: 380, state: "available" },
+                { id: "e", label: "Capstone", x: 780, y: 260, state: "locked" },
+              ]}
+              onNodeSelect={() => {}}
+            />
           </DemoFrame>
 
           <DemoFrame

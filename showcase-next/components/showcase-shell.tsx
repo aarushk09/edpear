@@ -22,6 +22,7 @@ const NAV_GROUPS = [
       { id: "reading-annotator", label: "ReadingAnnotator" },
       { id: "knowledge-check", label: "KnowledgeCheck" },
       { id: "certificate-renderer", label: "CertificateRenderer" },
+      { id: "learning-path-map", label: "LearningPathMap" },
     ],
   },
   {
