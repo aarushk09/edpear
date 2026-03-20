@@ -53,6 +53,7 @@ const NAV_GROUPS = [
       { id: "live-class-banner", label: "LiveClassBanner" },
       { id: "student-profile-card", label: "StudentProfileCard" },
       { id: "enrollment-gate", label: "EnrollmentGate" },
+      { id: "activity-feed", label: "ActivityFeed" },
     ],
   },
 ] as const;

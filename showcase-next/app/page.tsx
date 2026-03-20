@@ -33,6 +33,7 @@ import {
   FeedbackSlider,
   DiffViewer,
   EnrollmentGate,
+  ActivityFeed,
 } from "edpear";
 import type { ReadingHighlight } from "edpear";
 
@@ -224,7 +225,7 @@ export default function ShowcasePage() {
           </div>
           <div className="flex flex-wrap items-center gap-2">
             <span className="rounded-full border border-border bg-muted/50 px-3 py-1 text-xs font-medium text-muted-foreground">
-              31 components
+              32 components
             </span>
             <span className="rounded-full border border-border bg-muted/50 px-3 py-1 text-xs font-medium text-muted-foreground">
               Tailwind v4
@@ -558,6 +559,39 @@ export default function ShowcasePage() {
             description="Dismissible learner checklist with XP hints; use embedded for in-page layouts or default fixed for app chrome."
           >
             <OnboardingDemo />
+          </DemoFrame>
+
+          <DemoFrame
+            id="activity-feed"
+            title="<ActivityFeed />"
+            description="Chronological course activity with icons and relative timestamps."
+          >
+            <div className="max-w-md">
+              <ActivityFeed
+                items={[
+                  {
+                    id: "a1",
+                    type: "lesson_complete",
+                    actor: "Maya",
+                    message: "completed Lesson 3 · Cellular respiration",
+                    timestamp: new Date(Date.now() - 120000),
+                  },
+                  {
+                    id: "a2",
+                    type: "discussion",
+                    actor: "Alex",
+                    message: "posted in Module 2 discussion",
+                    timestamp: new Date(Date.now() - 3600000),
+                  },
+                  {
+                    id: "a3",
+                    type: "badge",
+                    message: "You earned badge “Week warrior”",
+                    timestamp: new Date(Date.now() - 86400000),
+                  },
+                ]}
+              />
+            </div>
           </DemoFrame>
 
           <DemoFrame
