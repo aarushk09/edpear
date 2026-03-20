@@ -18,6 +18,7 @@ const NAV_GROUPS = [
       { id: "video-lesson", label: "VideoLesson" },
       { id: "syllabus-navigator", label: "SyllabusNavigator" },
       { id: "assignment-dropzone", label: "AssignmentDropzone" },
+      { id: "grade-book", label: "GradeBook" },
     ],
   },
   {

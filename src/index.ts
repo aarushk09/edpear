@@ -41,6 +41,14 @@ export type {
   AssignmentDropzoneProps,
   AssignmentDropzoneState,
 } from "./components/assignment-dropzone/index.js";
+export { GradeBook } from "./components/grade-book/index.js";
+export type {
+  GradeBookAssignment,
+  GradeBookCategory,
+  GradeBookProps,
+  GradeBookStudent,
+  GradeCellValue,
+} from "./components/grade-book/index.js";
 export { SyllabusNavigator } from "./components/syllabus-navigator/index.js";
 export type {
   SyllabusLesson,

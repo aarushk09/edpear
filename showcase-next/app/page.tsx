@@ -1,5 +1,6 @@
 "use client";
 
+import { useState } from "react";
 import {
   AIFeedback,
   AIHint,
@@ -18,11 +19,44 @@ import {
   VideoLesson,
   SyllabusNavigator,
   AssignmentDropzone,
+  GradeBook,
 } from "edpear";
 
 import { DemoFrame, ShowcaseNav, ThemeToggle } from "../components/showcase-shell";
 
 const apiKey = process.env.NEXT_PUBLIC_OPENROUTER_API_KEY ?? "";
+
+function GradeBookDemo() {
+  const [grades, setGrades] = useState<Record<string, Record<string, string>>>({
+    s1: { q1: "92", q2: "B+", q3: "78" },
+    s2: { q1: "74", q2: "88%", q3: "A-" },
+  });
+  return (
+    <GradeBook
+      assignments={[
+        { id: "q1", title: "Quiz 1", categoryId: "cat-quiz" },
+        { id: "q2", title: "Midterm", categoryId: "cat-exam" },
+        { id: "q3", title: "Project", categoryId: "cat-proj" },
+      ]}
+      categories={[
+        { id: "cat-quiz", name: "Quizzes", weight: 0.25 },
+        { id: "cat-exam", name: "Exams", weight: 0.45 },
+        { id: "cat-proj", name: "Project", weight: 0.3 },
+      ]}
+      grades={grades}
+      onGradeChange={(studentId, assignmentId, value) => {
+        setGrades((g) => ({
+          ...g,
+          [studentId]: { ...(g[studentId] ?? {}), [assignmentId]: value },
+        }));
+      }}
+      students={[
+        { id: "s1", name: "Jordan Lee" },
+        { id: "s2", name: "Sam Rivera" },
+      ]}
+    />
+  );
+}
 
 export default function ShowcasePage() {
   return (
@@ -42,7 +76,7 @@ export default function ShowcasePage() {
           </div>
           <div className="flex flex-wrap items-center gap-2">
             <span className="rounded-full border border-border bg-muted/50 px-3 py-1 text-xs font-medium text-muted-foreground">
-              17 components
+              18 components
             </span>
             <span className="rounded-full border border-border bg-muted/50 px-3 py-1 text-xs font-medium text-muted-foreground">
               Tailwind v4
@@ -260,6 +294,14 @@ export default function ShowcasePage() {
                 maxBytes={12 * 1024 * 1024}
               />
             </div>
+          </DemoFrame>
+
+          <DemoFrame
+            id="grade-book"
+            title="<GradeBook />"
+            description="Students × assignments with colored bands, inline edit, and optional weighted categories."
+          >
+            <GradeBookDemo />
           </DemoFrame>
 
           <DemoFrame
