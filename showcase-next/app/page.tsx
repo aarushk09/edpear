@@ -31,6 +31,7 @@ import {
   QuestionBank,
   StudentProfileCard,
   FeedbackSlider,
+  DiffViewer,
 } from "edpear";
 import type { ReadingHighlight } from "edpear";
 
@@ -222,7 +223,7 @@ export default function ShowcasePage() {
           </div>
           <div className="flex flex-wrap items-center gap-2">
             <span className="rounded-full border border-border bg-muted/50 px-3 py-1 text-xs font-medium text-muted-foreground">
-              29 components
+              30 components
             </span>
             <span className="rounded-full border border-border bg-muted/50 px-3 py-1 text-xs font-medium text-muted-foreground">
               Tailwind v4
@@ -624,6 +625,25 @@ export default function ShowcasePage() {
             description="Searchable question library with filters; drag rows or use the drop zone to stage items for a quiz builder."
           >
             <QuestionBankDemo />
+          </DemoFrame>
+
+          <DemoFrame
+            id="diff-viewer"
+            title="<DiffViewer />"
+            description="Line diff for code or prose—inline unified or side-by-side panels."
+          >
+            <div className="space-y-6">
+              <DiffViewer
+                after={`def greet(name):\n    return f"Hello, {name}!"\n`}
+                before={`def greet(name):\n    return "Hello, " + name\n`}
+                mode="inline"
+              />
+              <DiffViewer
+                after={`def greet(name):\n    return f"Hello, {name}!"\n`}
+                before={`def greet(name):\n    return "Hello, " + name\n`}
+                mode="side-by-side"
+              />
+            </div>
           </DemoFrame>
 
           <DemoFrame

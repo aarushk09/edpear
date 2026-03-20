@@ -89,6 +89,8 @@ export type {
 } from "./components/question-bank/index.js";
 export { LiveClassBanner } from "./components/live-class-banner/index.js";
 export type { LiveClassBannerProps, LiveClassStatus } from "./components/live-class-banner/index.js";
+export { DiffViewer } from "./components/diff-viewer/index.js";
+export type { DiffViewerMode, DiffViewerProps } from "./components/diff-viewer/index.js";
 export { FeedbackSlider } from "./components/feedback-slider/index.js";
 export type { FeedbackPayload, FeedbackSliderProps, FeedbackVariant } from "./components/feedback-slider/index.js";
 export { cn } from "./lib/cn.js";

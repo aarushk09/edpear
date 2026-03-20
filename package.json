@@ -35,7 +35,10 @@
     "build": "tsc -p tsconfig.build.json",
     "typecheck": "tsc -p tsconfig.json --noEmit",
     "lint": "eslint src --ext .ts,.tsx",
-    "format:check": "prettier --check ."
+    "format:check": "prettier --check .",
+    "dev": "npm run showcase:dev",
+    "showcase:dev": "npm run dev --prefix showcase-next",
+    "showcase:build": "npm run build --prefix showcase-next"
   },
   "keywords": [
     "edpear",
@@ -60,7 +63,9 @@
     "chalk": "^5.6.2",
     "clsx": "^2.1.1",
     "commander": "^14.0.1",
+    "diff": "^8.0.3",
     "fs-extra": "^11.3.2",
+    "katex": "^0.16.39",
     "lucide-react": "^0.542.0",
     "ora": "^8.2.0",
     "tailwind-merge": "^3.3.1",
@@ -72,6 +77,7 @@
     "@types/node": "^24.3.0",
     "@types/react": "^19.1.12",
     "@types/react-dom": "^19.1.9",
+    "@vitejs/plugin-react": "^5.0.2",
     "eslint": "^9.36.0",
     "globals": "^16.4.0",
     "prettier": "^3.6.2",
@@ -79,6 +85,7 @@
     "react-dom": "^19.1.1",
     "tailwindcss": "^4.1.13",
     "typescript": "^5.9.2",
-    "typescript-eslint": "^8.44.0"
+    "typescript-eslint": "^8.44.0",
+    "vite": "^7.1.5"
   }
 }
