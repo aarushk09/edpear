@@ -26,11 +26,41 @@ import {
   LearningPathMap,
   PeerReviewPanel,
   SessionTimer,
+  OnboardingChecklist,
 } from "edpear";
 
 import { DemoFrame, ShowcaseNav, ThemeToggle } from "../components/showcase-shell";
 
 const apiKey = process.env.NEXT_PUBLIC_OPENROUTER_API_KEY ?? "";
+
+function OnboardingDemo() {
+  const [done, setDone] = useState<string[]>(["profile"]);
+  return (
+    <div className="relative min-h-[360px] rounded-lg border border-dashed border-border bg-muted/10">
+      <OnboardingChecklist
+        completedIds={done}
+        embedded
+        items={[
+          { id: "profile", label: "Complete your profile", xp: 50 },
+          { id: "lesson", label: "Watch your first lesson", xp: 100 },
+          { id: "discuss", label: "Join a discussion thread", xp: 75 },
+        ]}
+        onToggle={(id, completed) => {
+          setDone((prev) =>
+            completed ? [...new Set([...prev, id])] : prev.filter((x) => x !== id),
+          );
+        }}
+        rewardSlot={
+          <p className="text-xs text-muted-foreground">
+            Hook: award streak or badge when <code className="rounded bg-muted px-1">completedIds.length</code>{" "}
+            matches your product rules.
+          </p>
+        }
+        title="Welcome checklist"
+      />
+    </div>
+  );
+}
 
 function PeerReviewDemo() {
   const [scores, setScores] = useState({ thesis: 8, evidence: 7, clarity: 6 });
@@ -120,7 +150,7 @@ export default function ShowcasePage() {
           </div>
           <div className="flex flex-wrap items-center gap-2">
             <span className="rounded-full border border-border bg-muted/50 px-3 py-1 text-xs font-medium text-muted-foreground">
-              24 components
+              25 components
             </span>
             <span className="rounded-full border border-border bg-muted/50 px-3 py-1 text-xs font-medium text-muted-foreground">
               Tailwind v4
@@ -446,6 +476,14 @@ export default function ShowcasePage() {
             <div className="max-w-sm">
               <SessionTimer breakDurationSec={4} workDurationSec={8} />
             </div>
+          </DemoFrame>
+
+          <DemoFrame
+            id="onboarding-checklist"
+            title="<OnboardingChecklist />"
+            description="Dismissible learner checklist with XP hints; use embedded for in-page layouts or default fixed for app chrome."
+          >
+            <OnboardingDemo />
           </DemoFrame>
 
           <DemoFrame

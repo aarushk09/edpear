@@ -43,6 +43,8 @@ export type {
 } from "./components/assignment-dropzone/index.js";
 export { CertificateRenderer } from "./components/certificate-renderer/index.js";
 export type { CertificateData, CertificateRendererProps } from "./components/certificate-renderer/index.js";
+export { OnboardingChecklist } from "./components/onboarding-checklist/index.js";
+export type { OnboardingChecklistProps, OnboardingItem } from "./components/onboarding-checklist/index.js";
 export { SessionTimer } from "./components/session-timer/index.js";
 export type { SessionLogEntry, SessionPhase, SessionTimerProps } from "./components/session-timer/index.js";
 export { PeerReviewPanel } from "./components/peer-review-panel/index.js";

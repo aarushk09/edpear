@@ -25,6 +25,7 @@ const NAV_GROUPS = [
       { id: "learning-path-map", label: "LearningPathMap" },
       { id: "peer-review-panel", label: "PeerReviewPanel" },
       { id: "session-timer", label: "SessionTimer" },
+      { id: "onboarding-checklist", label: "OnboardingChecklist" },
     ],
   },
   {
