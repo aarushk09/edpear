@@ -36,6 +36,11 @@ export type {
 } from "./components/ai-quiz-generator/index.js";
 export { AIHint } from "./components/ai-hint/index.js";
 export type { AIHintProps } from "./components/ai-hint/index.js";
+export { AssignmentDropzone } from "./components/assignment-dropzone/index.js";
+export type {
+  AssignmentDropzoneProps,
+  AssignmentDropzoneState,
+} from "./components/assignment-dropzone/index.js";
 export { SyllabusNavigator } from "./components/syllabus-navigator/index.js";
 export type {
   SyllabusLesson,

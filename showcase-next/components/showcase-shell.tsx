@@ -17,6 +17,7 @@ const NAV_GROUPS = [
       { id: "score-display", label: "ScoreDisplay" },
       { id: "video-lesson", label: "VideoLesson" },
       { id: "syllabus-navigator", label: "SyllabusNavigator" },
+      { id: "assignment-dropzone", label: "AssignmentDropzone" },
     ],
   },
   {

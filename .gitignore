@@ -1,5 +1,7 @@
 node_modules/
 dist/
+showcase-next/.next/
+dist-showcase/
 coverage/
 *.tsbuildinfo
 .DS_Store

@@ -17,6 +17,7 @@ import {
   TimedQuiz,
   VideoLesson,
   SyllabusNavigator,
+  AssignmentDropzone,
 } from "edpear";
 
 import { DemoFrame, ShowcaseNav, ThemeToggle } from "../components/showcase-shell";
@@ -41,7 +42,7 @@ export default function ShowcasePage() {
           </div>
           <div className="flex flex-wrap items-center gap-2">
             <span className="rounded-full border border-border bg-muted/50 px-3 py-1 text-xs font-medium text-muted-foreground">
-              16 components
+              17 components
             </span>
             <span className="rounded-full border border-border bg-muted/50 px-3 py-1 text-xs font-medium text-muted-foreground">
               Tailwind v4
@@ -244,6 +245,21 @@ export default function ShowcasePage() {
                 },
               ]}
             />
+          </DemoFrame>
+
+          <DemoFrame
+            id="assignment-dropzone"
+            title="<AssignmentDropzone />"
+            description="Assignment-scoped uploads with accept list, optional size cap, live deadline countdown, and receipt state."
+          >
+            <div className="max-w-lg">
+              <AssignmentDropzone
+                accept=".pdf,.py,.zip,image/*"
+                assignmentTitle="Lab 3 — Submit notebook"
+                deadline={new Date(Date.now() + 86400000 * 2).toISOString()}
+                maxBytes={12 * 1024 * 1024}
+              />
+            </div>
           </DemoFrame>
 
           <DemoFrame
