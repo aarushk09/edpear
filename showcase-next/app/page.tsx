@@ -27,6 +27,7 @@ import {
   PeerReviewPanel,
   SessionTimer,
   OnboardingChecklist,
+  LiveClassBanner,
 } from "edpear";
 import type { ReadingHighlight } from "edpear";
 
@@ -151,7 +152,7 @@ export default function ShowcasePage() {
           </div>
           <div className="flex flex-wrap items-center gap-2">
             <span className="rounded-full border border-border bg-muted/50 px-3 py-1 text-xs font-medium text-muted-foreground">
-              25 components
+              26 components
             </span>
             <span className="rounded-full border border-border bg-muted/50 px-3 py-1 text-xs font-medium text-muted-foreground">
               Tailwind v4
@@ -485,6 +486,32 @@ export default function ShowcasePage() {
             description="Dismissible learner checklist with XP hints; use embedded for in-page layouts or default fixed for app chrome."
           >
             <OnboardingDemo />
+          </DemoFrame>
+
+          <DemoFrame
+            id="live-class-banner"
+            title="<LiveClassBanner />"
+            description="Top banner for scheduled, live (elapsed + headcount), or ended sessions with join CTA."
+          >
+            <div className="space-y-4">
+              <LiveClassBanner
+                hostName="Dr. Kim"
+                joinHref="#"
+                participantCount={24}
+                scheduledFor={new Date(Date.now() + 3600000)}
+                sessionTitle="Cell biology review"
+                status="scheduled"
+              />
+              <LiveClassBanner
+                hostName="Dr. Kim"
+                joinHref="#"
+                participantCount={24}
+                sessionTitle="Cell biology review"
+                startedAt={new Date(Date.now() - 125000)}
+                status="live"
+              />
+              <LiveClassBanner hostName="Dr. Kim" sessionTitle="Cell biology review" status="ended" />
+            </div>
           </DemoFrame>
 
           <DemoFrame

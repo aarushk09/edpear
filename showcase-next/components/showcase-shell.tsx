@@ -44,6 +44,10 @@ const NAV_GROUPS = [
       { id: "ai-quiz-generator", label: "AIQuizGenerator" },
     ],
   },
+  {
+    title: "Course shell",
+    items: [{ id: "live-class-banner", label: "LiveClassBanner" }],
+  },
 ] as const;
 
 export function ThemeToggle() {
