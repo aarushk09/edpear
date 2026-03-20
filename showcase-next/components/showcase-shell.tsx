@@ -21,6 +21,7 @@ const NAV_GROUPS = [
       { id: "grade-book", label: "GradeBook" },
       { id: "reading-annotator", label: "ReadingAnnotator" },
       { id: "knowledge-check", label: "KnowledgeCheck" },
+      { id: "certificate-renderer", label: "CertificateRenderer" },
     ],
   },
   {

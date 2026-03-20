@@ -22,6 +22,7 @@ import {
   GradeBook,
   ReadingAnnotator,
   KnowledgeCheck,
+  CertificateRenderer,
 } from "edpear";
 
 import { DemoFrame, ShowcaseNav, ThemeToggle } from "../components/showcase-shell";
@@ -91,7 +92,7 @@ export default function ShowcasePage() {
           </div>
           <div className="flex flex-wrap items-center gap-2">
             <span className="rounded-full border border-border bg-muted/50 px-3 py-1 text-xs font-medium text-muted-foreground">
-              20 components
+              21 components
             </span>
             <span className="rounded-full border border-border bg-muted/50 px-3 py-1 text-xs font-medium text-muted-foreground">
               Tailwind v4
@@ -355,6 +356,25 @@ export default function ShowcasePage() {
                   check passes.
                 </div>
               </KnowledgeCheck>
+            </div>
+          </DemoFrame>
+
+          <DemoFrame
+            id="certificate-renderer"
+            title="<CertificateRenderer />"
+            description="Completion certificate preview; PNG download via canvas, PDF via system print-to-PDF."
+          >
+            <div className="max-w-3xl">
+              <CertificateRenderer
+                data={{
+                  studentName: "Alex Morgan",
+                  courseName: "Introduction to Data Literacy",
+                  completedAt: new Date(),
+                  instructorName: "Dr. Priya Nair",
+                  subtitle: "With distinction",
+                }}
+                organizationName="EdPear Academy"
+              />
             </div>
           </DemoFrame>
 
