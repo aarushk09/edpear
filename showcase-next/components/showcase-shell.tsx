@@ -19,6 +19,7 @@ const NAV_GROUPS = [
       { id: "syllabus-navigator", label: "SyllabusNavigator" },
       { id: "assignment-dropzone", label: "AssignmentDropzone" },
       { id: "grade-book", label: "GradeBook" },
+      { id: "reading-annotator", label: "ReadingAnnotator" },
     ],
   },
   {

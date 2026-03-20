@@ -20,11 +20,25 @@ import {
   SyllabusNavigator,
   AssignmentDropzone,
   GradeBook,
+  ReadingAnnotator,
 } from "edpear";
 
 import { DemoFrame, ShowcaseNav, ThemeToggle } from "../components/showcase-shell";
 
 const apiKey = process.env.NEXT_PUBLIC_OPENROUTER_API_KEY ?? "";
+
+function ReadingAnnotatorDemo() {
+  const [highlights, setHighlights] = useState([
+    { id: "h1", start: 0, end: 42, color: "#bfdbfe", note: "Define jurisdiction early." },
+  ]);
+  return (
+    <ReadingAnnotator
+      highlights={highlights}
+      onAnnotationsChange={(p) => setHighlights(p.highlights)}
+      text={`Courts must determine whether they have personal jurisdiction before reaching the merits. The familiar minimum-contacts framework balances fairness with purposeful availment.\n\nLong-form readings benefit from inline highlights and persistent margin notes stored as JSON.`}
+    />
+  );
+}
 
 function GradeBookDemo() {
   const [grades, setGrades] = useState<Record<string, Record<string, string>>>({
@@ -76,7 +90,7 @@ export default function ShowcasePage() {
           </div>
           <div className="flex flex-wrap items-center gap-2">
             <span className="rounded-full border border-border bg-muted/50 px-3 py-1 text-xs font-medium text-muted-foreground">
-              18 components
+              19 components
             </span>
             <span className="rounded-full border border-border bg-muted/50 px-3 py-1 text-xs font-medium text-muted-foreground">
               Tailwind v4
@@ -302,6 +316,14 @@ export default function ShowcasePage() {
             description="Students × assignments with colored bands, inline edit, and optional weighted categories."
           >
             <GradeBookDemo />
+          </DemoFrame>
+
+          <DemoFrame
+            id="reading-annotator"
+            title="<ReadingAnnotator />"
+            description="Selectable text, saved highlights, margin notes—serialize highlights via onAnnotationsChange."
+          >
+            <ReadingAnnotatorDemo />
           </DemoFrame>
 
           <DemoFrame

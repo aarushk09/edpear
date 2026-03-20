@@ -41,6 +41,12 @@ export type {
   AssignmentDropzoneProps,
   AssignmentDropzoneState,
 } from "./components/assignment-dropzone/index.js";
+export { ReadingAnnotator } from "./components/reading-annotator/index.js";
+export type {
+  ReadingAnnotatorProps,
+  ReadingAnnotationsPayload,
+  ReadingHighlight,
+} from "./components/reading-annotator/index.js";
 export { GradeBook } from "./components/grade-book/index.js";
 export type {
   GradeBookAssignment,
