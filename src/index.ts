@@ -89,6 +89,8 @@ export type {
 } from "./components/question-bank/index.js";
 export { LiveClassBanner } from "./components/live-class-banner/index.js";
 export type { LiveClassBannerProps, LiveClassStatus } from "./components/live-class-banner/index.js";
+export { MathRenderer } from "./components/math-renderer/index.js";
+export type { MathRendererDisplayMode, MathRendererProps } from "./components/math-renderer/index.js";
 export { ActivityFeed } from "./components/activity-feed/index.js";
 export type { ActivityFeedItem, ActivityFeedItemType, ActivityFeedProps } from "./components/activity-feed/index.js";
 export { EnrollmentGate } from "./components/enrollment-gate/index.js";

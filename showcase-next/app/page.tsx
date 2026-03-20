@@ -34,6 +34,7 @@ import {
   DiffViewer,
   EnrollmentGate,
   ActivityFeed,
+  MathRenderer,
 } from "edpear";
 import type { ReadingHighlight } from "edpear";
 
@@ -225,7 +226,7 @@ export default function ShowcasePage() {
           </div>
           <div className="flex flex-wrap items-center gap-2">
             <span className="rounded-full border border-border bg-muted/50 px-3 py-1 text-xs font-medium text-muted-foreground">
-              32 components
+              33 components
             </span>
             <span className="rounded-full border border-border bg-muted/50 px-3 py-1 text-xs font-medium text-muted-foreground">
               Tailwind v4
@@ -681,6 +682,16 @@ export default function ShowcasePage() {
             description="Searchable question library with filters; drag rows or use the drop zone to stage items for a quiz builder."
           >
             <QuestionBankDemo />
+          </DemoFrame>
+
+          <DemoFrame
+            id="math-renderer"
+            title="<MathRenderer />"
+            description="KaTeX for $inline$ and $$block$$ math plus simple **bold** in prose; copy raw LaTeX."
+          >
+            <div className="max-w-xl">
+              <MathRenderer content="The **quadratic formula** is $x = \frac{-b \pm \sqrt{b^2-4ac}}{2a}$.\n\n$$\n\\int_0^1 x^2\\,dx = \\frac{1}{3}\n$$" />
+            </div>
           </DemoFrame>
 
           <DemoFrame

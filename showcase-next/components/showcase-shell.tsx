@@ -37,6 +37,7 @@ const NAV_GROUPS = [
       { id: "discussion-thread", label: "DiscussionThread" },
       { id: "question-bank", label: "QuestionBank" },
       { id: "diff-viewer", label: "DiffViewer" },
+      { id: "math-renderer", label: "MathRenderer" },
     ],
   },
   {
