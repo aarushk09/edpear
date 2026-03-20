@@ -28,12 +28,64 @@ import {
   SessionTimer,
   OnboardingChecklist,
   LiveClassBanner,
+  QuestionBank,
 } from "edpear";
 import type { ReadingHighlight } from "edpear";
 
 import { DemoFrame, ShowcaseNav, ThemeToggle } from "../components/showcase-shell";
 
 const apiKey = process.env.NEXT_PUBLIC_OPENROUTER_API_KEY ?? "";
+
+function QuestionBankDemo() {
+  const [added, setAdded] = useState<string[]>([]);
+  const pool = [
+    {
+      id: "qb1",
+      topic: "Photosynthesis",
+      difficulty: "medium" as const,
+      type: "mcq" as const,
+      prompt: "Which organelle is the main site of photosynthesis?",
+    },
+    {
+      id: "qb2",
+      topic: "Photosynthesis",
+      difficulty: "easy" as const,
+      type: "short-answer" as const,
+      prompt: "Name one product of the light-dependent reactions.",
+    },
+    {
+      id: "qb3",
+      topic: "Cell division",
+      difficulty: "hard" as const,
+      type: "essay" as const,
+      prompt: "Compare mitosis and meiosis in three sentences.",
+    },
+    {
+      id: "qb4",
+      topic: "Cell division",
+      difficulty: "medium" as const,
+      type: "true-false" as const,
+      prompt: "Crossing over occurs during prophase I of meiosis.",
+    },
+  ];
+  return (
+    <div className="space-y-3">
+      <QuestionBank
+        onAddToQuiz={(ids) =>
+          setAdded((a) => {
+            const next = [...a];
+            for (const id of ids) if (!next.includes(id)) next.push(id);
+            return next;
+          })
+        }
+        questions={pool}
+      />
+      <p className="text-xs text-muted-foreground">
+        Added to builder (demo): {added.length ? added.join(", ") : "—"}
+      </p>
+    </div>
+  );
+}
 
 function OnboardingDemo() {
   const [done, setDone] = useState<string[]>(["profile"]);
@@ -152,7 +204,7 @@ export default function ShowcasePage() {
           </div>
           <div className="flex flex-wrap items-center gap-2">
             <span className="rounded-full border border-border bg-muted/50 px-3 py-1 text-xs font-medium text-muted-foreground">
-              26 components
+              27 components
             </span>
             <span className="rounded-full border border-border bg-muted/50 px-3 py-1 text-xs font-medium text-muted-foreground">
               Tailwind v4
@@ -512,6 +564,14 @@ export default function ShowcasePage() {
               />
               <LiveClassBanner hostName="Dr. Kim" sessionTitle="Cell biology review" status="ended" />
             </div>
+          </DemoFrame>
+
+          <DemoFrame
+            id="question-bank"
+            title="<QuestionBank />"
+            description="Searchable question library with filters; drag rows or use the drop zone to stage items for a quiz builder."
+          >
+            <QuestionBankDemo />
           </DemoFrame>
 
           <DemoFrame

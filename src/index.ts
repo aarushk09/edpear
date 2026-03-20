@@ -78,6 +78,13 @@ export type {
   SyllabusModule,
   SyllabusNavigatorProps,
 } from "./components/syllabus-navigator/index.js";
+export { QuestionBank } from "./components/question-bank/index.js";
+export type {
+  QuestionBankDifficulty,
+  QuestionBankItem,
+  QuestionBankItemType,
+  QuestionBankProps,
+} from "./components/question-bank/index.js";
 export { LiveClassBanner } from "./components/live-class-banner/index.js";
 export type { LiveClassBannerProps, LiveClassStatus } from "./components/live-class-banner/index.js";
 export { cn } from "./lib/cn.js";

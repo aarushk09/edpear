@@ -34,6 +34,7 @@ const NAV_GROUPS = [
       { id: "rich-text-editor", label: "RichTextEditor" },
       { id: "code-playground", label: "CodePlayground" },
       { id: "discussion-thread", label: "DiscussionThread" },
+      { id: "question-bank", label: "QuestionBank" },
     ],
   },
   {
