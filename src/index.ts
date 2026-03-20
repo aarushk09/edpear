@@ -43,6 +43,8 @@ export type {
 } from "./components/assignment-dropzone/index.js";
 export { CertificateRenderer } from "./components/certificate-renderer/index.js";
 export type { CertificateData, CertificateRendererProps } from "./components/certificate-renderer/index.js";
+export { PeerReviewPanel } from "./components/peer-review-panel/index.js";
+export type { PeerReviewPanelProps, PeerRubricCriterion } from "./components/peer-review-panel/index.js";
 export { LearningPathMap } from "./components/learning-path-map/index.js";
 export type {
   LearningPathMapProps,

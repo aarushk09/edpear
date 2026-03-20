@@ -24,11 +24,37 @@ import {
   KnowledgeCheck,
   CertificateRenderer,
   LearningPathMap,
+  PeerReviewPanel,
 } from "edpear";
 
 import { DemoFrame, ShowcaseNav, ThemeToggle } from "../components/showcase-shell";
 
 const apiKey = process.env.NEXT_PUBLIC_OPENROUTER_API_KEY ?? "";
+
+function PeerReviewDemo() {
+  const [scores, setScores] = useState({ thesis: 8, evidence: 7, clarity: 6 });
+  const [comments, setComments] = useState({
+    thesis: "Clear claim in paragraph 1.",
+    evidence: "",
+    clarity: "",
+  });
+  return (
+    <PeerReviewPanel
+      comments={comments}
+      onCommentChange={(id, t) => setComments((c) => ({ ...c, [id]: t }))}
+      onScoreChange={(id, p) => setScores((s) => ({ ...s, [id]: p }))}
+      onSubmitReview={() => {}}
+      rubric={[
+        { id: "thesis", label: "Thesis & focus", maxPoints: 10, description: "Arguable, specific claim" },
+        { id: "evidence", label: "Evidence", maxPoints: 10, description: "Sources support the claim" },
+        { id: "clarity", label: "Clarity", maxPoints: 10, description: "Organization and mechanics" },
+      ]}
+      scores={scores}
+      submissionPreview="In this draft I argue that universal pre-K improves long-term outcomes. I cite three longitudinal studies and address a counterargument about cost…"
+      submissionTitle="Draft essay (peer)"
+    />
+  );
+}
 
 function ReadingAnnotatorDemo() {
   const [highlights, setHighlights] = useState([
@@ -93,7 +119,7 @@ export default function ShowcasePage() {
           </div>
           <div className="flex flex-wrap items-center gap-2">
             <span className="rounded-full border border-border bg-muted/50 px-3 py-1 text-xs font-medium text-muted-foreground">
-              22 components
+              23 components
             </span>
             <span className="rounded-full border border-border bg-muted/50 px-3 py-1 text-xs font-medium text-muted-foreground">
               Tailwind v4
@@ -401,6 +427,14 @@ export default function ShowcasePage() {
               ]}
               onNodeSelect={() => {}}
             />
+          </DemoFrame>
+
+          <DemoFrame
+            id="peer-review-panel"
+            title="<PeerReviewPanel />"
+            description="Submission preview alongside rubric rows, numeric scores, per-criterion comments, and submit."
+          >
+            <PeerReviewDemo />
           </DemoFrame>
 
           <DemoFrame
