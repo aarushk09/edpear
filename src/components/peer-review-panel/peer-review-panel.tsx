@@ -55,9 +55,11 @@ export function PeerReviewPanel({
                     disabled={disabled}
                     className="h-9 w-20 rounded-md border border-input bg-background px-2 text-center text-sm"
                     value={scores[c.id] ?? 0}
-                    onChange={(e) =>
-                      onScoreChange?.(c.id, Math.min(c.maxPoints, Math.max(0, Number(e.target.value))))
-                    }
+                    onChange={(e) => {
+                      const n = Number(e.target.value);
+                      const v = Number.isFinite(n) ? n : 0;
+                      onScoreChange?.(c.id, Math.min(c.maxPoints, Math.max(0, v)));
+                    }}
                     aria-label={`Score for ${c.label}`}
                   />
                   <span className="text-muted-foreground">/ {c.maxPoints}</span>

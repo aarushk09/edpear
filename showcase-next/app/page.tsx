@@ -47,7 +47,7 @@ function OnboardingDemo() {
         ]}
         onToggle={(id, completed) => {
           setDone((prev) =>
-            completed ? [...new Set([...prev, id])] : prev.filter((x) => x !== id),
+            completed ? (prev.includes(id) ? prev : [...prev, id]) : prev.filter((x) => x !== id),
           );
         }}
         rewardSlot={
