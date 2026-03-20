@@ -43,9 +43,11 @@ export function ActivityFeed({ items, title = "Activity", className }: ActivityF
       className={cn("rounded-xl border bg-card text-card-foreground shadow-sm", className)}
       data-slot="activity-feed"
     >
-      <div className="border-b border-border px-4 py-3">
-        <h3 className="text-sm font-semibold">{title}</h3>
-      </div>
+      {title ? (
+        <div className="border-b border-border px-4 py-3">
+          <h3 className="text-sm font-semibold">{title}</h3>
+        </div>
+      ) : null}
       <ul className="max-h-80 divide-y divide-border overflow-y-auto">
         {sorted.map((item) => (
           <li key={item.id} className="flex gap-3 px-4 py-3">

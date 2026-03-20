@@ -35,6 +35,7 @@ import {
   EnrollmentGate,
   ActivityFeed,
   MathRenderer,
+  CourseDashboard,
 } from "edpear";
 import type { ReadingHighlight } from "edpear";
 
@@ -226,7 +227,7 @@ export default function ShowcasePage() {
           </div>
           <div className="flex flex-wrap items-center gap-2">
             <span className="rounded-full border border-border bg-muted/50 px-3 py-1 text-xs font-medium text-muted-foreground">
-              33 components
+              34 components
             </span>
             <span className="rounded-full border border-border bg-muted/50 px-3 py-1 text-xs font-medium text-muted-foreground">
               Tailwind v4
@@ -560,6 +561,44 @@ export default function ShowcasePage() {
             description="Dismissible learner checklist with XP hints; use embedded for in-page layouts or default fixed for app chrome."
           >
             <OnboardingDemo />
+          </DemoFrame>
+
+          <DemoFrame
+            id="course-dashboard"
+            title="<CourseDashboard />"
+            description="Course home shell: header, progress ring, slots for next lesson, activity, instructor, and announcements."
+          >
+            <CourseDashboard
+              activitySlot={
+                <ActivityFeed
+                  items={[
+                    {
+                      id: "d1",
+                      type: "lesson_complete",
+                      message: "You finished Module 1 quiz",
+                      timestamp: new Date(),
+                    },
+                  ]}
+                  title=""
+                />
+              }
+              announcementSlot={<span className="font-medium">Reminder: live review Thursday 4pm.</span>}
+              course={{
+                code: "BIO 101",
+                subtitle: "Spring cohort",
+                title: "Introduction to Cell Biology",
+              }}
+              instructorSlot={<p className="text-sm">Dr. Kim · office hours Wed 2–4</p>}
+              nextLessonSlot={
+                <button
+                  type="button"
+                  className="w-full rounded-md bg-primary py-2 text-sm font-medium text-primary-foreground"
+                >
+                  Resume: Mitochondria lab walkthrough
+                </button>
+              }
+              progressPercent={46}
+            />
           </DemoFrame>
 
           <DemoFrame

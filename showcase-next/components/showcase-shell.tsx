@@ -55,6 +55,7 @@ const NAV_GROUPS = [
       { id: "student-profile-card", label: "StudentProfileCard" },
       { id: "enrollment-gate", label: "EnrollmentGate" },
       { id: "activity-feed", label: "ActivityFeed" },
+      { id: "course-dashboard", label: "CourseDashboard" },
     ],
   },
 ] as const;
