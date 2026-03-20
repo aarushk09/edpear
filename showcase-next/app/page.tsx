@@ -25,6 +25,7 @@ import {
   CertificateRenderer,
   LearningPathMap,
   PeerReviewPanel,
+  SessionTimer,
 } from "edpear";
 
 import { DemoFrame, ShowcaseNav, ThemeToggle } from "../components/showcase-shell";
@@ -119,7 +120,7 @@ export default function ShowcasePage() {
           </div>
           <div className="flex flex-wrap items-center gap-2">
             <span className="rounded-full border border-border bg-muted/50 px-3 py-1 text-xs font-medium text-muted-foreground">
-              23 components
+              24 components
             </span>
             <span className="rounded-full border border-border bg-muted/50 px-3 py-1 text-xs font-medium text-muted-foreground">
               Tailwind v4
@@ -435,6 +436,16 @@ export default function ShowcasePage() {
             description="Submission preview alongside rubric rows, numeric scores, per-criterion comments, and submit."
           >
             <PeerReviewDemo />
+          </DemoFrame>
+
+          <DemoFrame
+            id="session-timer"
+            title="<SessionTimer />"
+            description="Pomodoro phases, rolling log, and focus score; short durations in this demo for quick testing."
+          >
+            <div className="max-w-sm">
+              <SessionTimer breakDurationSec={4} workDurationSec={8} />
+            </div>
           </DemoFrame>
 
           <DemoFrame
