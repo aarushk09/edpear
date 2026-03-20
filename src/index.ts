@@ -41,6 +41,8 @@ export type {
   AssignmentDropzoneProps,
   AssignmentDropzoneState,
 } from "./components/assignment-dropzone/index.js";
+export { KnowledgeCheck } from "./components/knowledge-check/index.js";
+export type { KnowledgeCheckProps, KnowledgeCheckQuestion } from "./components/knowledge-check/index.js";
 export { ReadingAnnotator } from "./components/reading-annotator/index.js";
 export type {
   ReadingAnnotatorProps,

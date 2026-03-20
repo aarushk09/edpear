@@ -21,6 +21,7 @@ import {
   AssignmentDropzone,
   GradeBook,
   ReadingAnnotator,
+  KnowledgeCheck,
 } from "edpear";
 
 import { DemoFrame, ShowcaseNav, ThemeToggle } from "../components/showcase-shell";
@@ -90,7 +91,7 @@ export default function ShowcasePage() {
           </div>
           <div className="flex flex-wrap items-center gap-2">
             <span className="rounded-full border border-border bg-muted/50 px-3 py-1 text-xs font-medium text-muted-foreground">
-              19 components
+              20 components
             </span>
             <span className="rounded-full border border-border bg-muted/50 px-3 py-1 text-xs font-medium text-muted-foreground">
               Tailwind v4
@@ -324,6 +325,37 @@ export default function ShowcasePage() {
             description="Selectable text, saved highlights, margin notes—serialize highlights via onAnnotationsChange."
           >
             <ReadingAnnotatorDemo />
+          </DemoFrame>
+
+          <DemoFrame
+            id="knowledge-check"
+            title="<KnowledgeCheck />"
+            description="Inline comprehension gate (1–3 MCQs); unlocks following lesson content when correct."
+          >
+            <div className="max-w-lg space-y-4">
+              <KnowledgeCheck
+                questions={[
+                  {
+                    id: "k1",
+                    prompt: "What is the primary role of chlorophyll?",
+                    options: ["Store DNA", "Capture light energy", "Move water", "Fix nitrogen"],
+                    correctIndex: 1,
+                  },
+                  {
+                    id: "k2",
+                    prompt: "Photosynthesis outputs include:",
+                    options: ["Only O₂", "Glucose and O₂", "Only CO₂", "ATP only"],
+                    correctIndex: 1,
+                  },
+                ]}
+                title="Before you continue"
+              >
+                <div className="rounded-lg border border-border bg-muted/30 p-4 text-sm">
+                  <strong>Next:</strong> optional lesson body, video embed, or reading that stays locked until the
+                  check passes.
+                </div>
+              </KnowledgeCheck>
+            </div>
           </DemoFrame>
 
           <DemoFrame
