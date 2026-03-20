@@ -29,6 +29,7 @@ import {
   OnboardingChecklist,
   LiveClassBanner,
   QuestionBank,
+  StudentProfileCard,
 } from "edpear";
 import type { ReadingHighlight } from "edpear";
 
@@ -204,7 +205,7 @@ export default function ShowcasePage() {
           </div>
           <div className="flex flex-wrap items-center gap-2">
             <span className="rounded-full border border-border bg-muted/50 px-3 py-1 text-xs font-medium text-muted-foreground">
-              27 components
+              28 components
             </span>
             <span className="rounded-full border border-border bg-muted/50 px-3 py-1 text-xs font-medium text-muted-foreground">
               Tailwind v4
@@ -538,6 +539,32 @@ export default function ShowcasePage() {
             description="Dismissible learner checklist with XP hints; use embedded for in-page layouts or default fixed for app chrome."
           >
             <OnboardingDemo />
+          </DemoFrame>
+
+          <DemoFrame
+            id="student-profile-card"
+            title="<StudentProfileCard />"
+            description="Learner summary with streak, course count, badges, and SVG progress ring; compact variant for tight grids."
+          >
+            <div className="grid max-w-xl gap-4 md:grid-cols-2">
+              <StudentProfileCard
+                badges={[
+                  { id: "1", label: "Early bird" },
+                  { id: "2", label: "Top 10%" },
+                ]}
+                coursesEnrolled={4}
+                name="Jordan Lee"
+                progressPercent={72}
+                streakDays={12}
+              />
+              <StudentProfileCard
+                compact
+                coursesEnrolled={2}
+                name="Sam Rivera"
+                progressPercent={40}
+                streakDays={3}
+              />
+            </div>
           </DemoFrame>
 
           <DemoFrame

@@ -78,6 +78,8 @@ export type {
   SyllabusModule,
   SyllabusNavigatorProps,
 } from "./components/syllabus-navigator/index.js";
+export { StudentProfileCard } from "./components/student-profile-card/index.js";
+export type { StudentProfileBadge, StudentProfileCardProps } from "./components/student-profile-card/index.js";
 export { QuestionBank } from "./components/question-bank/index.js";
 export type {
   QuestionBankDifficulty,
