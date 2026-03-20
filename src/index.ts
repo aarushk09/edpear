@@ -89,6 +89,8 @@ export type {
 } from "./components/question-bank/index.js";
 export { LiveClassBanner } from "./components/live-class-banner/index.js";
 export type { LiveClassBannerProps, LiveClassStatus } from "./components/live-class-banner/index.js";
+export { FeedbackSlider } from "./components/feedback-slider/index.js";
+export type { FeedbackPayload, FeedbackSliderProps, FeedbackVariant } from "./components/feedback-slider/index.js";
 export { cn } from "./lib/cn.js";
 export {
   OPENROUTER_BASE,

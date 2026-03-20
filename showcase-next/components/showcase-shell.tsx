@@ -26,6 +26,7 @@ const NAV_GROUPS = [
       { id: "peer-review-panel", label: "PeerReviewPanel" },
       { id: "session-timer", label: "SessionTimer" },
       { id: "onboarding-checklist", label: "OnboardingChecklist" },
+      { id: "feedback-slider", label: "FeedbackSlider" },
     ],
   },
   {

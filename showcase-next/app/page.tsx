@@ -30,12 +30,29 @@ import {
   LiveClassBanner,
   QuestionBank,
   StudentProfileCard,
+  FeedbackSlider,
 } from "edpear";
 import type { ReadingHighlight } from "edpear";
 
 import { DemoFrame, ShowcaseNav, ThemeToggle } from "../components/showcase-shell";
 
 const apiKey = process.env.NEXT_PUBLIC_OPENROUTER_API_KEY ?? "";
+
+function FeedbackSliderDemo() {
+  const [log, setLog] = useState<string | null>(null);
+  return (
+    <div className="max-w-md space-y-4">
+      <FeedbackSlider
+        onSubmit={(p) => setLog(JSON.stringify(p, null, 2))}
+        title="Quick check-in"
+        variant="stars"
+      />
+      {log ? (
+        <pre className="rounded-md border bg-muted/50 p-3 text-xs">{log}</pre>
+      ) : null}
+    </div>
+  );
+}
 
 function QuestionBankDemo() {
   const [added, setAdded] = useState<string[]>([]);
@@ -205,7 +222,7 @@ export default function ShowcasePage() {
           </div>
           <div className="flex flex-wrap items-center gap-2">
             <span className="rounded-full border border-border bg-muted/50 px-3 py-1 text-xs font-medium text-muted-foreground">
-              28 components
+              29 components
             </span>
             <span className="rounded-full border border-border bg-muted/50 px-3 py-1 text-xs font-medium text-muted-foreground">
               Tailwind v4
@@ -591,6 +608,14 @@ export default function ShowcasePage() {
               />
               <LiveClassBanner hostName="Dr. Kim" sessionTitle="Cell biology review" status="ended" />
             </div>
+          </DemoFrame>
+
+          <DemoFrame
+            id="feedback-slider"
+            title="<FeedbackSlider />"
+            description="Stars, emoji scale, or NPS with optional comment—single onSubmit payload."
+          >
+            <FeedbackSliderDemo />
           </DemoFrame>
 
           <DemoFrame
