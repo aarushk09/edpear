@@ -32,6 +32,7 @@ import {
   StudentProfileCard,
   FeedbackSlider,
   DiffViewer,
+  EnrollmentGate,
 } from "edpear";
 import type { ReadingHighlight } from "edpear";
 
@@ -223,7 +224,7 @@ export default function ShowcasePage() {
           </div>
           <div className="flex flex-wrap items-center gap-2">
             <span className="rounded-full border border-border bg-muted/50 px-3 py-1 text-xs font-medium text-muted-foreground">
-              30 components
+              31 components
             </span>
             <span className="rounded-full border border-border bg-muted/50 px-3 py-1 text-xs font-medium text-muted-foreground">
               Tailwind v4
@@ -557,6 +558,27 @@ export default function ShowcasePage() {
             description="Dismissible learner checklist with XP hints; use embedded for in-page layouts or default fixed for app chrome."
           >
             <OnboardingDemo />
+          </DemoFrame>
+
+          <DemoFrame
+            id="enrollment-gate"
+            title="<EnrollmentGate />"
+            description="Shows children or a lock overlay for purchase, prerequisite, or not-started flows."
+          >
+            <div className="grid gap-6 lg:grid-cols-2">
+              <EnrollmentGate completedPrereq enrolled gateType="prerequisite" hasAccess>
+                <p className="rounded-lg border border-border bg-muted/30 p-6 text-sm">Unlocked lesson body.</p>
+              </EnrollmentGate>
+              <EnrollmentGate
+                completedPrereq={false}
+                enrolled
+                gateType="prerequisite"
+                hasAccess
+                onAction={() => {}}
+              >
+                <p className="p-6 text-sm">Hidden behind prerequisite lock.</p>
+              </EnrollmentGate>
+            </div>
           </DemoFrame>
 
           <DemoFrame
