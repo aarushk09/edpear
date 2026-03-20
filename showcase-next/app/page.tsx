@@ -28,6 +28,7 @@ import {
   SessionTimer,
   OnboardingChecklist,
 } from "edpear";
+import type { ReadingHighlight } from "edpear";
 
 import { DemoFrame, ShowcaseNav, ThemeToggle } from "../components/showcase-shell";
 
@@ -88,7 +89,7 @@ function PeerReviewDemo() {
 }
 
 function ReadingAnnotatorDemo() {
-  const [highlights, setHighlights] = useState([
+  const [highlights, setHighlights] = useState<ReadingHighlight[]>([
     { id: "h1", start: 0, end: 42, color: "#bfdbfe", note: "Define jurisdiction early." },
   ]);
   return (
