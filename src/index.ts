@@ -34,6 +34,8 @@ export type {
   AIQuizGeneratorProps,
   AIQuizGeneratorQuestion,
 } from "./components/ai-quiz-generator/index.js";
+export { AITutor } from "./components/ai-tutor/index.js";
+export type { AITutorProps } from "./components/ai-tutor/index.js";
 export { AIHint } from "./components/ai-hint/index.js";
 export type { AIHintProps } from "./components/ai-hint/index.js";
 export { AssignmentDropzone } from "./components/assignment-dropzone/index.js";

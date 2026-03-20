@@ -36,6 +36,7 @@ import {
   ActivityFeed,
   MathRenderer,
   CourseDashboard,
+  AITutor,
 } from "edpear";
 import type { ReadingHighlight } from "edpear";
 
@@ -227,7 +228,7 @@ export default function ShowcasePage() {
           </div>
           <div className="flex flex-wrap items-center gap-2">
             <span className="rounded-full border border-border bg-muted/50 px-3 py-1 text-xs font-medium text-muted-foreground">
-              34 components
+              35 components
             </span>
             <span className="rounded-full border border-border bg-muted/50 px-3 py-1 text-xs font-medium text-muted-foreground">
               Tailwind v4
@@ -843,6 +844,20 @@ export default function ShowcasePage() {
               sourceText="The water cycle includes evaporation, condensation, precipitation, and collection."
               topic="The water cycle"
             />
+          </DemoFrame>
+
+          <DemoFrame
+            id="ai-tutor"
+            title="<AITutor />"
+            description="Lesson-scoped Socratic chat via OpenRouter; injects lessonContent into the system prompt."
+          >
+            <div className="max-w-lg">
+              <AITutor
+                apiKey={apiKey}
+                lessonContent="Lesson: Photosynthesis. Key ideas: chloroplasts, light reactions, Calvin cycle, outputs O2 and glucose."
+                title="Photosynthesis tutor"
+              />
+            </div>
           </DemoFrame>
         </main>
       </div>

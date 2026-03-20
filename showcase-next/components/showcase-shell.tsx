@@ -46,6 +46,7 @@ const NAV_GROUPS = [
       { id: "ai-feedback", label: "AIFeedback" },
       { id: "ai-hint", label: "AIHint" },
       { id: "ai-quiz-generator", label: "AIQuizGenerator" },
+      { id: "ai-tutor", label: "AITutor" },
     ],
   },
   {
