@@ -36,6 +36,12 @@ export type {
 } from "./components/ai-quiz-generator/index.js";
 export { AIHint } from "./components/ai-hint/index.js";
 export type { AIHintProps } from "./components/ai-hint/index.js";
+export { SyllabusNavigator } from "./components/syllabus-navigator/index.js";
+export type {
+  SyllabusLesson,
+  SyllabusModule,
+  SyllabusNavigatorProps,
+} from "./components/syllabus-navigator/index.js";
 export { cn } from "./lib/cn.js";
 export {
   OPENROUTER_BASE,
