@@ -47,15 +47,16 @@ export function ShowcaseLayoutShell({ children }: { children: React.ReactNode })
       {/* min-h-0 is required so nested overflow-y-auto regions actually scroll (flexbox quirk). */}
       <div className="flex min-h-0 flex-1 flex-col md:flex-row">
         <aside
-          className="flex max-h-[min(42vh,320px)] w-full shrink-0 flex-col border-b border-border/70 bg-muted/20 md:max-h-none md:h-full md:w-56 md:border-b-0 md:border-r lg:w-64"
+          className="flex max-h-[min(42vh,340px)] w-full shrink-0 flex-col border-b border-showcase-sidebar-border bg-showcase-sidebar bg-[radial-gradient(120%_80%_at_0%_0%,hsl(var(--primary)/0.06),transparent_55%)] shadow-[inset_-1px_0_0_0_hsl(var(--showcase-sidebar-border))] dark:bg-[radial-gradient(120%_80%_at_0%_0%,hsl(var(--primary)/0.12),transparent_50%)] md:max-h-none md:h-full md:w-[17rem] md:border-b-0 md:border-r md:border-showcase-sidebar-border lg:w-[18rem]"
           aria-label="Component navigation"
         >
-          <div className="shrink-0 border-b border-border/60 px-4 py-2.5 md:py-3">
-            <p className="text-xs font-medium text-muted-foreground">Components</p>
-          </div>
-          <div className="min-h-0 flex-1 overflow-y-auto overscroll-y-contain px-3 pb-5 pt-2 [-webkit-overflow-scrolling:touch]">
+          <div className="min-h-0 flex-1 overflow-y-auto overscroll-y-contain px-3 pb-6 pt-4 [-webkit-overflow-scrolling:touch] showcase-sidebar-scroll md:px-3.5">
             <ShowcaseNav />
           </div>
+          <div
+            className="pointer-events-none hidden shrink-0 md:block h-6 bg-gradient-to-t from-showcase-sidebar to-transparent"
+            aria-hidden
+          />
         </aside>
 
         <main className="min-h-0 flex-1 overflow-y-auto overscroll-y-contain [-webkit-overflow-scrolling:touch]">
