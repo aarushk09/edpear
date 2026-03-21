@@ -1,0 +1,18 @@
+@import "tailwindcss";
+
+@config "../tailwind.config.ts";
+
+/* Class names live in the library source and the showcase app */
+@source "../../src/**/*.tsx";
+@source "../../src/**/*.ts";
+@source "../components/**/*.tsx";
+@source "../components/**/*.ts";
+@source "./**/*.tsx";
+@source "./**/*.ts";
+
+@import "../../styles/edpear.css";
+
+/* Wins over edpear base body font when both apply */
+body {
+  font-family: var(--font-sans), ui-sans-serif, system-ui, sans-serif;
+}

@@ -1,65 +1,11 @@
 "use client";
 
 import { Moon, Sun } from "lucide-react";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 
-const NAV_GROUPS = [
-  {
-    title: "Learning",
-    items: [
-      { id: "course-card", label: "CourseCard" },
-      { id: "lesson-progress", label: "LessonProgress" },
-      { id: "quiz-card", label: "QuizCard" },
-      { id: "timed-quiz", label: "TimedQuiz" },
-      { id: "flash-card", label: "FlashCard" },
-      { id: "badge-award", label: "BadgeAward" },
-      { id: "streak-tracker", label: "StreakTracker" },
-      { id: "score-display", label: "ScoreDisplay" },
-      { id: "video-lesson", label: "VideoLesson" },
-      { id: "syllabus-navigator", label: "SyllabusNavigator" },
-      { id: "assignment-dropzone", label: "AssignmentDropzone" },
-      { id: "grade-book", label: "GradeBook" },
-      { id: "reading-annotator", label: "ReadingAnnotator" },
-      { id: "knowledge-check", label: "KnowledgeCheck" },
-      { id: "certificate-renderer", label: "CertificateRenderer" },
-      { id: "learning-path-map", label: "LearningPathMap" },
-      { id: "peer-review-panel", label: "PeerReviewPanel" },
-      { id: "session-timer", label: "SessionTimer" },
-      { id: "onboarding-checklist", label: "OnboardingChecklist" },
-      { id: "feedback-slider", label: "FeedbackSlider" },
-    ],
-  },
-  {
-    title: "Authoring",
-    items: [
-      { id: "rich-text-editor", label: "RichTextEditor" },
-      { id: "code-playground", label: "CodePlayground" },
-      { id: "discussion-thread", label: "DiscussionThread" },
-      { id: "question-bank", label: "QuestionBank" },
-      { id: "diff-viewer", label: "DiffViewer" },
-      { id: "math-renderer", label: "MathRenderer" },
-    ],
-  },
-  {
-    title: "OpenRouter",
-    items: [
-      { id: "ai-feedback", label: "AIFeedback" },
-      { id: "ai-hint", label: "AIHint" },
-      { id: "ai-quiz-generator", label: "AIQuizGenerator" },
-      { id: "ai-tutor", label: "AITutor" },
-    ],
-  },
-  {
-    title: "Course shell",
-    items: [
-      { id: "live-class-banner", label: "LiveClassBanner" },
-      { id: "student-profile-card", label: "StudentProfileCard" },
-      { id: "enrollment-gate", label: "EnrollmentGate" },
-      { id: "activity-feed", label: "ActivityFeed" },
-      { id: "course-dashboard", label: "CourseDashboard" },
-    ],
-  },
-] as const;
+import { NAV_GROUPS } from "../lib/showcase-nav";
 
 export function ThemeToggle() {
   const [dark, setDark] = useState(false);
@@ -83,24 +29,34 @@ export function ThemeToggle() {
 }
 
 export function ShowcaseNav() {
+  const pathname = usePathname();
+  const active = pathname?.replace(/^\//, "") ?? "";
+
   return (
-    <nav className="space-y-6" aria-label="Component index">
+    <nav className="space-y-5" aria-label="Component index">
       {NAV_GROUPS.map((group) => (
         <div key={group.title}>
-          <p className="mb-2 text-[11px] font-semibold uppercase tracking-widest text-muted-foreground">
+          <p className="mb-1.5 px-2 text-[10px] font-semibold uppercase tracking-wider text-muted-foreground/90">
             {group.title}
           </p>
-          <ul className="space-y-0.5">
-            {group.items.map((item) => (
-              <li key={item.id}>
-                <a
-                  href={`#${item.id}`}
-                  className="block rounded-md px-2 py-1.5 text-sm text-foreground/80 transition hover:bg-muted hover:text-foreground"
-                >
-                  {item.label}
-                </a>
-              </li>
-            ))}
+          <ul className="space-y-px">
+            {group.items.map((item) => {
+              const isActive = active === item.id;
+              return (
+                <li key={item.id}>
+                  <Link
+                    href={`/${item.id}`}
+                    className={`block rounded-md px-2 py-1.5 text-[13px] leading-none transition-colors ${
+                      isActive
+                        ? "bg-accent font-medium text-accent-foreground"
+                        : "text-muted-foreground hover:bg-muted/80 hover:text-foreground"
+                    }`}
+                  >
+                    {item.label}
+                  </Link>
+                </li>
+              );
+            })}
           </ul>
         </div>
       ))}
@@ -120,10 +76,13 @@ export function DemoFrame({
   children: React.ReactNode;
 }) {
   return (
-    <section id={id} className="scroll-mt-24">
+    <section id={id} className="scroll-mt-24" aria-labelledby={`${id}-heading`}>
       <div className="overflow-hidden rounded-2xl border border-border bg-card shadow-sm ring-1 ring-foreground/5 dark:ring-white/10">
         <header className="flex flex-col gap-1 border-b border-border bg-muted/40 px-5 py-4 sm:flex-row sm:items-start sm:justify-between sm:gap-6">
-          <h2 className="font-mono text-sm font-semibold tracking-tight text-foreground">
+          <h2
+            id={`${id}-heading`}
+            className="font-mono text-sm font-semibold tracking-tight text-foreground"
+          >
             {title}
           </h2>
           <p className="max-w-2xl text-sm leading-relaxed text-muted-foreground">

@@ -39,7 +39,10 @@
     "format:check": "prettier --check .",
     "dev": "npm run showcase:dev",
     "showcase:dev": "npm run dev --prefix showcase-next",
-    "showcase:build": "npm run build --prefix showcase-next"
+    "showcase:build": "npm run build --prefix showcase-next",
+    "sdk:sync": "node edpear-sdk/scripts/sync-from-root.mjs",
+    "sdk:pack": "npm run build && npm run sdk:sync && npm pack ./edpear-sdk",
+    "sdk:publish": "npm run build && npm run sdk:sync && npm publish ./edpear-sdk --access public"
   },
   "keywords": [
     "edpear",

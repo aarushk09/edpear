@@ -29,7 +29,7 @@ export function QuestionBank({
   const [type, setType] = useState<string>("");
 
   const topics = useMemo(
-    () => [...new Set(questions.map((x) => x.topic))].sort(),
+    () => Array.from(new Set(questions.map((x) => x.topic))).sort(),
     [questions],
   );
 
