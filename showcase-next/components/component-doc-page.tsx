@@ -1,6 +1,6 @@
 "use client";
 
-import { Check, ChevronLeft, ChevronRight, Copy } from "lucide-react";
+import { Check, ChevronDown, ChevronLeft, ChevronRight, Copy } from "lucide-react";
 import Link from "next/link";
 import {
   useCallback,
@@ -173,6 +173,10 @@ ${examplesBody}
 `;
 }
 
+/** ~3 lines of Shiki body text at text-[13px] leading-relaxed */
+const CODE_PREVIEW_MAX_HEIGHT_REM = 5.5;
+const CODE_COLLAPSE_LINE_THRESHOLD = 4;
+
 function ExampleShowcaseCard({
   example,
   preview,
@@ -181,6 +185,9 @@ function ExampleShowcaseCard({
   preview: ReactNode | null | undefined;
 }) {
   const showPreview = preview != null && preview !== false;
+  const lineCount = useMemo(() => example.code.trim().split("\n").length, [example.code]);
+  const isTrivialSnippet = lineCount <= CODE_COLLAPSE_LINE_THRESHOLD;
+  const [codeOpen, setCodeOpen] = useState(isTrivialSnippet);
 
   return (
     <div id={example.id} className="scroll-mt-8 space-y-4">
@@ -201,9 +208,37 @@ function ExampleShowcaseCard({
             <span className="text-xs font-medium text-muted-foreground">tsx</span>
             <CopyBtn text={example.code} />
           </div>
-          <div className="max-h-[min(32rem,70vh)] overflow-y-auto overflow-x-auto">
+          <div
+            className={cx(
+              "relative overflow-x-auto",
+              codeOpen ? "max-h-[min(32rem,70vh)] overflow-y-auto" : "overflow-hidden",
+            )}
+            style={!codeOpen && !isTrivialSnippet ? { maxHeight: `${CODE_PREVIEW_MAX_HEIGHT_REM}rem` } : undefined}
+          >
             <ShikiCodeBlock code={example.code} lang="tsx" className="rounded-none bg-transparent shadow-none" />
+            {!codeOpen && !isTrivialSnippet ? (
+              <div
+                className="pointer-events-none absolute inset-x-0 bottom-0 h-20 bg-gradient-to-t from-background from-40% via-background/70 to-transparent dark:from-[hsl(0_0%_4%)] dark:via-[hsl(0_0%_4%)]/75"
+                aria-hidden
+              />
+            ) : null}
           </div>
+          {!isTrivialSnippet ? (
+            <div className="flex justify-center border-t border-foreground/10 bg-muted/15 px-3 py-3 dark:bg-[hsl(0_0%_4%)]">
+              <button
+                type="button"
+                aria-expanded={codeOpen}
+                onClick={() => setCodeOpen((o) => !o)}
+                className="inline-flex items-center gap-1.5 rounded-full border border-border bg-foreground px-4 py-1.5 text-xs font-medium text-background shadow-sm transition hover:bg-foreground/90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background"
+              >
+                {codeOpen ? "Hide code" : "View code"}
+                <ChevronDown
+                  className={cx("h-3.5 w-3.5 transition-transform duration-200", codeOpen && "rotate-180")}
+                  aria-hidden
+                />
+              </button>
+            </div>
+          ) : null}
         </div>
       </div>
     </div>
