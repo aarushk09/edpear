@@ -824,7 +824,10 @@ export function OnboardingComplete() {
 
 // 3) Purchase gate for non-enrolled catalog view
 <EnrollmentGate enrolled={false} gateType="purchase" hasAccess={false} onAction={() => {}}>
-  <p>Preview-only syllabus excerpt.</p>
+  <div className="space-y-3 rounded-lg border border-border bg-muted/25 p-6 text-sm">
+    <p className="font-medium">Unit 3 — Polymorphism</p>
+    <p className="text-muted-foreground">Short preview copy stays behind the blur until checkout.</p>
+  </div>
 </EnrollmentGate>`,
 
   "student-profile-card": `import { StudentProfileCard } from "edpear-sdk";

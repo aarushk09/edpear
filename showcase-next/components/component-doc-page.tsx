@@ -193,15 +193,17 @@ function ExampleShowcaseCard({
       <div className="overflow-hidden rounded-xl border border-foreground/10 ring-1 ring-foreground/10">
         {showPreview ? (
           <div className="border-b border-foreground/10 bg-muted/35 p-6 sm:p-10">
-            <div className="flex justify-center">{preview}</div>
+            <div className="flex w-full min-w-0 justify-center [&>*]:max-w-full">{preview}</div>
           </div>
         ) : null}
-        <div className="bg-muted/15 dark:bg-[hsl(0_0%_4%)]">
+        <div className="min-h-0 bg-muted/15 dark:bg-[hsl(0_0%_4%)]">
           <div className="flex items-center justify-between border-b border-foreground/10 bg-muted/25 px-3 py-2.5 sm:px-4">
             <span className="text-xs font-medium text-muted-foreground">tsx</span>
             <CopyBtn text={example.code} />
           </div>
-          <ShikiCodeBlock code={example.code} lang="tsx" className="rounded-none bg-transparent shadow-none" />
+          <div className="max-h-[min(32rem,70vh)] overflow-y-auto overflow-x-auto">
+            <ShikiCodeBlock code={example.code} lang="tsx" className="rounded-none bg-transparent shadow-none" />
+          </div>
         </div>
       </div>
     </div>
@@ -247,8 +249,8 @@ export function DemoFrame({
   }, [id]);
 
   return (
-    <div className="mx-auto grid w-full max-w-6xl gap-x-10 xl:grid-cols-[minmax(0,42rem)_minmax(0,12rem)] xl:justify-center">
-      <div className="min-w-0 space-y-12">
+    <div className="mx-auto grid w-full max-w-6xl gap-x-10 gap-y-10 xl:grid-cols-[minmax(0,42rem)_minmax(0,12rem)] xl:items-start xl:justify-center">
+      <div className="min-w-0 space-y-12 pb-16">
       <header id="overview" className="scroll-mt-6 space-y-6">
         <div className="flex flex-col gap-6 sm:flex-row sm:items-start sm:justify-between">
           <div className="min-w-0 space-y-2">
@@ -341,7 +343,7 @@ export function DemoFrame({
         )}
       </section>
 
-      <section className="scroll-mt-6 space-y-14" aria-labelledby="examples">
+      <section className="scroll-mt-6 space-y-16" aria-labelledby="examples">
         <div className="space-y-2">
           <h2 id="examples" className="text-lg font-semibold tracking-tight text-foreground">
             Examples

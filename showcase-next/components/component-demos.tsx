@@ -437,7 +437,7 @@ export function ComponentDemo({ slug }: { slug: ShowcaseSlug }) {
           title="<LessonProgress />"
           description="Stepper for a lesson flow—use descriptions under each label for LMS context and match currentStep to the learner’s position."
           examplePreviews={[
-            <div key="lp-0" className="w-full max-w-lg">
+            <div key="lp-0" className="w-full max-w-2xl">
               <LessonProgress
                 currentStep={0}
                 steps={[
@@ -464,7 +464,7 @@ export function ComponentDemo({ slug }: { slug: ShowcaseSlug }) {
                 ]}
               />
             </div>,
-            <div key="lp-1" className="w-full max-w-lg">
+            <div key="lp-1" className="w-full max-w-2xl">
               <LessonProgress
                 currentStep={2}
                 steps={[
@@ -491,7 +491,7 @@ export function ComponentDemo({ slug }: { slug: ShowcaseSlug }) {
                 ]}
               />
             </div>,
-            <div key="lp-2" className="w-full max-w-lg">
+            <div key="lp-2" className="w-full max-w-2xl">
               <LessonProgress
                 currentStep={3}
                 steps={[
@@ -523,7 +523,7 @@ export function ComponentDemo({ slug }: { slug: ShowcaseSlug }) {
                 ]}
               />
             </div>,
-            <div key="lp-3" className="w-full max-w-lg">
+            <div key="lp-3" className="w-full max-w-2xl">
               <LessonProgress
                 currentStep={1}
                 steps={[
@@ -889,7 +889,7 @@ export function ComponentDemo({ slug }: { slug: ShowcaseSlug }) {
           title="<AssignmentDropzone />"
           description="Assignment-scoped uploads with accept list, optional size cap, live deadline countdown, and receipt state."
           examplePreviews={[
-            <div key="ad-0" className="max-w-lg">
+            <div key="ad-0" className="w-full max-w-lg">
               <AssignmentDropzone
                 accept=".pdf,.py,.zip,image/*"
                 assignmentTitle="Lab 3 — Submit notebook"
@@ -897,7 +897,7 @@ export function ComponentDemo({ slug }: { slug: ShowcaseSlug }) {
                 maxBytes={12 * 1024 * 1024}
               />
             </div>,
-            <div key="ad-1" className="max-w-lg">
+            <div key="ad-1" className="w-full max-w-lg">
               <AssignmentDropzone
                 accept=".pdf"
                 assignmentTitle="Final reflection"
@@ -905,7 +905,7 @@ export function ComponentDemo({ slug }: { slug: ShowcaseSlug }) {
                 maxBytes={5 * 1024 * 1024}
               />
             </div>,
-            <div key="ad-2" className="max-w-lg">
+            <div key="ad-2" className="w-full max-w-lg">
               <AssignmentDropzone
                 accept="*/*"
                 assignmentTitle="Portfolio artifact drop"
@@ -1339,9 +1339,15 @@ export function ComponentDemo({ slug }: { slug: ShowcaseSlug }) {
                 <p className="p-6 text-sm">Hidden until prerequisite completes.</p>
               </EnrollmentGate>
             </div>,
-            <div key="eg-2" className="max-w-md">
+            <div key="eg-2" className="w-full max-w-md min-h-[260px]">
               <EnrollmentGate enrolled={false} gateType="purchase" hasAccess={false} onAction={() => {}}>
-                <p className="p-6 text-sm">Preview-only syllabus excerpt.</p>
+                <div className="space-y-3 rounded-lg border border-border bg-muted/25 p-6 text-sm">
+                  <p className="font-medium text-foreground">Unit 3 — Polymorphism</p>
+                  <p className="leading-relaxed text-muted-foreground">
+                    Preview learners see this blurred block until they enroll. Keep it short so the lock overlay reads as
+                    the primary CTA.
+                  </p>
+                </div>
               </EnrollmentGate>
             </div>,
           ]}
@@ -1773,23 +1779,26 @@ export function ComponentDemo({ slug }: { slug: ShowcaseSlug }) {
           title="<AITutor />"
           description="Lesson-scoped Socratic chat via OpenRouter; injects lessonContent into the system prompt."
           examplePreviews={[
-            <div key="ait-0" className="max-w-lg">
+            <div key="ait-0" className="w-full max-w-lg">
               <AITutor
                 apiKey={apiKey}
+                className="h-[400px] max-h-[48vh] min-h-[300px]"
                 lessonContent="Lesson: Photosynthesis. Key ideas: chloroplasts, light reactions, Calvin cycle, outputs O₂ and glucose."
                 title="Photosynthesis tutor"
               />
             </div>,
-            <div key="ait-1" className="max-w-lg">
+            <div key="ait-1" className="w-full max-w-lg">
               <AITutor
                 apiKey={apiKey}
+                className="h-[400px] max-h-[48vh] min-h-[300px]"
                 lessonContent="Lesson: Solving linear equations. Isolate the variable; perform the same operation on both sides."
                 title="Algebra coach"
               />
             </div>,
-            <div key="ait-2" className="max-w-lg">
+            <div key="ait-2" className="w-full max-w-lg">
               <AITutor
                 apiKey={apiKey}
+                className="h-[400px] max-h-[48vh] min-h-[300px]"
                 lessonContent="Lesson: Thesis statements. Arguable claim, scope, roadmap for body paragraphs."
                 title="Writing studio"
               />
