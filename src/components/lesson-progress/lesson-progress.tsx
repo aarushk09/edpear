@@ -11,7 +11,10 @@ export const LessonProgress = forwardRef<HTMLDivElement, LessonProgressProps>(
     return (
       <div
         ref={ref}
-        className={cn("space-y-4 rounded-xl border bg-card p-6 text-card-foreground shadow-sm", className)}
+        className={cn(
+          "max-w-full space-y-4 rounded-xl border border-border/80 bg-card p-6 text-card-foreground shadow-sm",
+          className,
+        )}
         data-slot="lesson-progress"
         {...props}
       >
@@ -29,7 +32,7 @@ export const LessonProgress = forwardRef<HTMLDivElement, LessonProgressProps>(
             />
           </div>
         </div>
-        <ol className="grid gap-4 md:grid-cols-[repeat(auto-fit,minmax(0,1fr))] mt-6">
+        <ol className="mt-6 flex max-w-full flex-col gap-0">
           {steps.map((step, index) => {
             const state =
               index < safeCurrentStep ? "complete" : index === safeCurrentStep ? "active" : "upcoming";
@@ -37,11 +40,11 @@ export const LessonProgress = forwardRef<HTMLDivElement, LessonProgressProps>(
             return (
               <li
                 key={step.id}
-                className="flex items-start gap-3"
+                className="flex min-w-0 gap-3"
                 data-slot="lesson-progress-step"
                 data-state={state}
               >
-                <div className="flex flex-col items-center gap-2">
+                <div className="flex shrink-0 flex-col items-center">
                   <span
                     aria-hidden="true"
                     className={cn(
@@ -58,20 +61,25 @@ export const LessonProgress = forwardRef<HTMLDivElement, LessonProgressProps>(
                     <span
                       aria-hidden="true"
                       className={cn(
-                        "hidden h-10 w-px md:block",
+                        "my-1 min-h-[1.25rem] w-px grow basis-0",
                         index < safeCurrentStep ? "bg-primary" : "bg-border",
                       )}
                     />
                   ) : null}
                 </div>
                 {showLabels ? (
-                  <div className="space-y-1">
-                    <div className="font-medium">{step.label}</div>
+                  <div className="min-w-0 flex-1 space-y-1 pb-6 pt-0.5">
+                    <div className="font-medium leading-snug">{step.label}</div>
                     {step.description ? (
-                      <p className="text-sm text-muted-foreground">{step.description}</p>
+                      <p className="text-sm leading-relaxed text-muted-foreground">{step.description}</p>
                     ) : null}
                   </div>
-                ) : null}
+                ) : (
+                  <span className="sr-only">
+                    {step.label}
+                    {step.description ? `: ${step.description}` : ""}
+                  </span>
+                )}
               </li>
             );
           })}

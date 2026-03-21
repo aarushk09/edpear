@@ -298,22 +298,112 @@ export function ComponentDemo({ slug }: { slug: ShowcaseSlug }) {
     case "lesson-progress":
       return (
         <DemoFrame
-                    id="lesson-progress"
-                    title="<LessonProgress />"
-                    description="Stepper for a lesson flow: watch, check, apply, reflect."
-                  >
-                    <div className="max-w-lg">
-                      <LessonProgress
-                        currentStep={2}
-                        steps={[
-                          { id: "watch", label: "Watch", description: "8 min explainer" },
-                          { id: "check", label: "Check", description: "Concept checkpoint" },
-                          { id: "apply", label: "Apply", description: "Independent practice" },
-                          { id: "reflect", label: "Reflect", description: "Exit ticket" },
-                        ]}
-                      />
-                    </div>
-                  </DemoFrame>
+          id="lesson-progress"
+          title="<LessonProgress />"
+          description="Vertical lesson stepper with progress bar—use for module flows, studio weeks, and exam prep paths inside your LMS."
+          examplePreviews={[
+            <div key="lp-0" className="w-full max-w-lg">
+              <LessonProgress
+                currentStep={0}
+                steps={[
+                  {
+                    id: "syllabus",
+                    label: "Read syllabus & install Python",
+                    description: "Environment setup for Intro to Python for Data Science (24 lessons).",
+                  },
+                  {
+                    id: "video",
+                    label: "Watch: notebooks and variables",
+                    description: "12 min — walkthrough in the course player.",
+                  },
+                  {
+                    id: "lab",
+                    label: "Run your first cells",
+                    description: "Import pandas and load the practice CSV.",
+                  },
+                  {
+                    id: "submit",
+                    label: "Submit warm-up checkpoint",
+                    description: "Auto-graded; due before lesson 2 unlocks.",
+                  },
+                ]}
+              />
+            </div>,
+            <div key="lp-1" className="w-full max-w-lg">
+              <LessonProgress
+                currentStep={2}
+                steps={[
+                  {
+                    id: "brief",
+                    label: "Unpack the design brief",
+                    description: "Stakeholder goals for the mobile onboarding flow.",
+                  },
+                  {
+                    id: "sketch",
+                    label: "Low-fi wireframes",
+                    description: "Three variants in Figma; focus on first-run empty states.",
+                  },
+                  {
+                    id: "critique",
+                    label: "Studio critique",
+                    description: "Give and receive feedback using the rubric in the LMS.",
+                  },
+                  {
+                    id: "handoff",
+                    label: "Handoff checklist",
+                    description: "Annotations, redlines, and links for engineering.",
+                  },
+                ]}
+              />
+            </div>,
+            <div key="lp-2" className="w-full max-w-lg">
+              <LessonProgress
+                currentStep={3}
+                steps={[
+                  {
+                    id: "limits",
+                    label: "Limits & continuity review",
+                    description: "Problem set A–E with video solutions.",
+                  },
+                  {
+                    id: "derivatives",
+                    label: "Derivative techniques",
+                    description: "Chain rule, implicit, and related rates drill.",
+                  },
+                  {
+                    id: "frq",
+                    label: "Past FRQ practice",
+                    description: "Two College Board–style free response with rubric self-score.",
+                  },
+                  {
+                    id: "mock",
+                    label: "Timed mock exam",
+                    description: "90 minutes, calculator active section only.",
+                  },
+                  {
+                    id: "review",
+                    label: "Office hours review",
+                    description: "Live Q&A; bring missed problem IDs from the mock.",
+                  },
+                ]}
+              />
+            </div>,
+            <div key="lp-3" className="w-full max-w-xs">
+              <LessonProgress
+                currentStep={1}
+                showLabels={false}
+                steps={[
+                  { id: "syllabus", label: "Syllabus & setup", description: "Course policies and Python install." },
+                  { id: "video", label: "Variables video", description: "12 min in the player." },
+                  { id: "lab", label: "First notebook lab", description: "Pandas intro cells." },
+                  { id: "submit", label: "Warm-up checkpoint", description: "Due before lesson 2." },
+                ]}
+              />
+            </div>,
+          ]}
+        >
+          {null}
+        </DemoFrame>
       );
 
     case "quiz-card":

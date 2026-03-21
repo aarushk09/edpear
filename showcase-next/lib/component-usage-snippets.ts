@@ -2,6 +2,7 @@ import type { ShowcaseSlug } from "./showcase-nav";
 
 /**
  * Example usage for each showcase slug (imports use published package name).
+ * LessonProgress: see `usage-examples/lesson-progress/`.
  */
 export const COMPONENT_USAGE_SNIPPETS = {
   "course-card": `import { CourseCard } from "edpear-sdk";
@@ -54,18 +55,6 @@ import { Code } from "lucide-react";
   progress={12}
   status="Enrollment open"
   title="Systems programming in Rust"
-/>`,
-
-  "lesson-progress": `import { LessonProgress } from "edpear-sdk";
-
-<LessonProgress
-  currentStep={2}
-  steps={[
-    { id: "watch", label: "Watch", description: "8 min explainer" },
-    { id: "check", label: "Check", description: "Concept checkpoint" },
-    { id: "apply", label: "Apply", description: "Independent practice" },
-    { id: "reflect", label: "Reflect", description: "Exit ticket" },
-  ]}
 />`,
 
   "quiz-card": `import { QuizCard } from "edpear-sdk";
@@ -468,4 +457,4 @@ const questions = [
   lessonContent="Lesson: Photosynthesis. Key ideas: chloroplasts, light reactions…"
   title="Photosynthesis tutor"
 />`,
-} satisfies Record<ShowcaseSlug, string>;
+} satisfies Record<Exclude<ShowcaseSlug, "lesson-progress">, string>;
