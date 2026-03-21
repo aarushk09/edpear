@@ -39,6 +39,7 @@ import {
   AITutor,
 } from "edpear";
 import type { ReadingHighlight } from "edpear";
+import { Code } from "lucide-react";
 
 import { DemoFrame } from "./component-doc-page";
 import type { ShowcaseSlug } from "../lib/showcase-nav";
@@ -216,23 +217,82 @@ export function ComponentDemo({ slug }: { slug: ShowcaseSlug }) {
     case "course-card":
       return (
         <DemoFrame
-                    id="course-card"
-                    title="<CourseCard />"
-                    description="Course summary with progress, instructor, and CTA—typical catalog or dashboard tile."
-                  >
-                    <div className="max-w-md">
-                      <CourseCard
-                        categoryTag="Math"
-                        ctaLabel="Resume module"
-                        description="Linear equations, worked examples, and quick checks."
-                        href="#"
-                        instructor="Maya Chen"
-                        progress={68}
-                        status="Live cohort"
-                        title="Algebra I Foundations"
-                      />
-                    </div>
-                  </DemoFrame>
+          id="course-card"
+          title="<CourseCard />"
+          description="Course summary with progress, instructor, and CTA—use badges, thumbnails, custom icons, and progress to match catalog, dashboard, and completion flows."
+        >
+          <div className="space-y-12">
+            <div>
+              <h3 className="text-sm font-semibold text-foreground">In progress — cohort course</h3>
+              <p className="mt-1 max-w-2xl text-sm text-muted-foreground">
+                Category + status pills, body copy, and partial progress. Good for “continue learning” rows.
+              </p>
+              <div className="mt-4 max-w-md">
+                <CourseCard
+                  categoryTag="Math"
+                  ctaLabel="Resume module"
+                  description="Linear equations, worked examples, and quick checks."
+                  href="#"
+                  instructor="Maya Chen"
+                  progress={68}
+                  status="Live cohort"
+                  title="Algebra I Foundations"
+                />
+              </div>
+            </div>
+
+            <div>
+              <h3 className="text-sm font-semibold text-foreground">Not started — self-paced</h3>
+              <p className="mt-1 max-w-2xl text-sm text-muted-foreground">
+                Zero progress and a start CTA. Omit extras you don’t need (e.g. no category tag).
+              </p>
+              <div className="mt-4 max-w-md">
+                <CourseCard
+                  ctaLabel="Start course"
+                  description="Cell structure, organelles, and lab prep—go at your own pace."
+                  href="#"
+                  instructor="Dr. Kim · Biology"
+                  progress={0}
+                  status="Self-paced"
+                  title="Introduction to Cell Biology"
+                />
+              </div>
+            </div>
+
+            <div>
+              <h3 className="text-sm font-semibold text-foreground">Completed — thumbnail + custom icon slot</h3>
+              <p className="mt-1 max-w-2xl text-sm text-muted-foreground">
+                Use <code className="rounded bg-muted px-1 font-mono text-xs">thumbnailSrc</code> for artwork, or{" "}
+                <code className="rounded bg-muted px-1 font-mono text-xs">icon</code> when you only want a branded
+                placeholder (shown when there’s no image).
+              </p>
+              <div className="mt-4 grid max-w-4xl gap-8 md:grid-cols-2">
+                <CourseCard
+                  categoryTag="Web"
+                  ctaLabel="Review materials"
+                  description="You finished all modules—revisit lessons or download the capstone rubric."
+                  href="#"
+                  instructor="Alex Rivera"
+                  progress={100}
+                  status="Completed"
+                  thumbnailAlt="Code editor on a laptop"
+                  thumbnailSrc="https://images.unsplash.com/photo-1517694712202-14dd9538aa97?w=800&q=80"
+                  title="Full-stack project studio"
+                />
+                <CourseCard
+                  ctaLabel="Open syllabus"
+                  description="Rust ownership, borrowing, and error handling with weekly exercises."
+                  href="#"
+                  icon={<Code className="h-10 w-10 text-primary" aria-hidden />}
+                  instructor="Engineering · CS 310"
+                  progress={12}
+                  status="Enrollment open"
+                  title="Systems programming in Rust"
+                />
+              </div>
+            </div>
+          </div>
+        </DemoFrame>
       );
 
     case "lesson-progress":

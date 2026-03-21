@@ -5,7 +5,9 @@ import type { ShowcaseSlug } from "./showcase-nav";
  */
 export const COMPONENT_USAGE_SNIPPETS = {
   "course-card": `import { CourseCard } from "edpear-sdk";
+import { Code } from "lucide-react";
 
+// 1) In progress — badges + description + resume CTA
 <CourseCard
   categoryTag="Math"
   ctaLabel="Resume module"
@@ -15,6 +17,43 @@ export const COMPONENT_USAGE_SNIPPETS = {
   progress={68}
   status="Live cohort"
   title="Algebra I Foundations"
+/>
+
+// 2) Not started — minimal chrome, self-paced
+<CourseCard
+  ctaLabel="Start course"
+  description="Cell structure, organelles, and lab prep."
+  href="/courses/bio-101"
+  instructor="Dr. Kim · Biology"
+  progress={0}
+  status="Self-paced"
+  title="Introduction to Cell Biology"
+/>
+
+// 3a) Completed — real thumbnail
+<CourseCard
+  categoryTag="Web"
+  ctaLabel="Review materials"
+  description="Revisit lessons or download the capstone rubric."
+  href="/courses/fullstack"
+  instructor="Alex Rivera"
+  progress={100}
+  status="Completed"
+  thumbnailAlt="Student at a laptop"
+  thumbnailSrc="https://images.unsplash.com/photo-1517694712202-14dd9538aa97?w=800&q=80"
+  title="Full-stack project studio"
+/>
+
+// 3b) Custom icon instead of default book (when no thumbnail)
+<CourseCard
+  ctaLabel="Open syllabus"
+  description="Ownership, borrowing, and error handling."
+  href="/courses/rust"
+  icon={<Code className="h-10 w-10 text-primary" aria-hidden />}
+  instructor="Engineering · CS 310"
+  progress={12}
+  status="Enrollment open"
+  title="Systems programming in Rust"
 />`,
 
   "lesson-progress": `import { LessonProgress } from "edpear-sdk";
