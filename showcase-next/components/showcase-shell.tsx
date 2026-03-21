@@ -118,31 +118,3 @@ export function ShowcaseNav() {
   );
 }
 
-export function DemoFrame({
-  id,
-  title,
-  description,
-  children,
-}: {
-  id: string;
-  title: string;
-  description: string;
-  children: React.ReactNode;
-}) {
-  return (
-    <section id={id} className="scroll-mt-24" aria-labelledby={`${id}-heading`}>
-      <div className="overflow-hidden rounded-2xl border border-border bg-card shadow-sm ring-1 ring-foreground/5 dark:ring-white/10">
-        <header className="flex flex-col gap-1 border-b border-border bg-muted/40 px-5 py-4 sm:flex-row sm:items-start sm:justify-between sm:gap-6">
-          <h2
-            id={`${id}-heading`}
-            className="font-mono text-sm font-semibold tracking-tight text-foreground"
-          >
-            {title}
-          </h2>
-          <p className="max-w-2xl text-sm leading-relaxed text-muted-foreground">{description}</p>
-        </header>
-        <div className="bg-gradient-to-b from-muted/15 to-transparent p-5 md:p-8">{children}</div>
-      </div>
-    </section>
-  );
-}

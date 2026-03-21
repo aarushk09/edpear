@@ -2,17 +2,10 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 
 import { ComponentDemo } from "../../../components/component-demos";
-import { ALL_SHOWCASE_SLUGS, isShowcaseSlug } from "../../../lib/showcase-nav";
+import { ALL_SHOWCASE_SLUGS, getComponentLabel, isShowcaseSlug } from "../../../lib/showcase-nav";
 
 export function generateStaticParams() {
   return ALL_SHOWCASE_SLUGS.map((slug) => ({ slug }));
-}
-
-function titleFromSlug(slug: string) {
-  return slug
-    .split("-")
-    .map((w) => w.charAt(0).toUpperCase() + w.slice(1))
-    .join(" ");
 }
 
 export async function generateMetadata({
@@ -24,9 +17,10 @@ export async function generateMetadata({
   if (!isShowcaseSlug(slug)) {
     return { title: "Not found · EdPear showcase" };
   }
+  const label = getComponentLabel(slug);
   return {
-    title: `${titleFromSlug(slug)} · EdPear showcase`,
-    description: `Preview of the ${titleFromSlug(slug)} component from EdPear.`,
+    title: `${label} · EdPear showcase`,
+    description: `Preview and docs for the ${label} component from EdPear.`,
   };
 }
 

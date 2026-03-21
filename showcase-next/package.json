@@ -15,6 +15,7 @@
     "next": "latest",
     "react": "latest",
     "react-dom": "latest",
+    "shiki": "^4.0.2",
     "tailwind-merge": "latest",
     "zod": "latest"
   },

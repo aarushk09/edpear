@@ -69,3 +69,23 @@ const slugSet = new Set<string>(ALL_SHOWCASE_SLUGS);
 export function isShowcaseSlug(s: string): s is ShowcaseSlug {
   return slugSet.has(s);
 }
+
+export function getComponentLabel(slug: ShowcaseSlug): string {
+  for (const g of NAV_GROUPS) {
+    const hit = g.items.find((i) => i.id === slug);
+    if (hit) return hit.label;
+  }
+  return slug;
+}
+
+export function getNeighborSlugs(slug: ShowcaseSlug): {
+  prev: ShowcaseSlug | null;
+  next: ShowcaseSlug | null;
+} {
+  const i = ALL_SHOWCASE_SLUGS.indexOf(slug);
+  if (i < 0) return { prev: null, next: null };
+  return {
+    prev: i > 0 ? ALL_SHOWCASE_SLUGS[i - 1]! : null,
+    next: i < ALL_SHOWCASE_SLUGS.length - 1 ? ALL_SHOWCASE_SLUGS[i + 1]! : null,
+  };
+}

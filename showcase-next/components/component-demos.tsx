@@ -40,7 +40,7 @@ import {
 } from "edpear";
 import type { ReadingHighlight } from "edpear";
 
-import { DemoFrame } from "./showcase-shell";
+import { DemoFrame } from "./component-doc-page";
 import type { ShowcaseSlug } from "../lib/showcase-nav";
 
 const apiKey = process.env.NEXT_PUBLIC_OPENROUTER_API_KEY ?? "";

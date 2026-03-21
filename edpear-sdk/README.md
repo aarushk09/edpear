@@ -15,11 +15,21 @@ import { QuizCard, CourseDashboard } from "edpear-sdk";
 
 ## CLI
 
+Add component source into your project (default output: `components/<name>`, shared `lib/cn.ts`, styles):
+
 ```bash
-npx edpear-sdk add quiz-card lesson-progress
+npx edpear-sdk@latest add quiz-card lesson-progress
 ```
 
-The same CLI is also available as the `edpear` command after install (`npx edpear …` from this package).
+Other package managers:
+
+```bash
+pnpm dlx edpear-sdk@latest add quiz-card
+yarn dlx edpear-sdk@latest add quiz-card   # Yarn 2+
+bunx edpear-sdk@latest add quiz-card
+```
+
+The same CLI is available as the `edpear` / `edpear-sdk` bin after install.
 
 ## Maintainers: publish from this repo
 

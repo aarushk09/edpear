@@ -26,8 +26,10 @@ npm install edpear
 ## CLI Usage
 
 ```bash
-npx edpear add quiz-card lesson-progress
+npx edpear@latest add quiz-card lesson-progress
 ```
+
+Same for the published alias: `npx edpear-sdk@latest add <name>`. Other package managers: `pnpm dlx edpear@latest add …`, `yarn dlx edpear@latest add …` (Yarn 2+), `bunx edpear@latest add …`.
 
 The CLI copies source files into your app, including shared utilities like `lib/cn.ts` and `lib/openrouter.ts` when needed.
 
