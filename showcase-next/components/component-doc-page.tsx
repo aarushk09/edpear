@@ -94,7 +94,7 @@ function CopyBtn({ text, label = "Copy" }: { text: string; label?: string }) {
           setTimeout(() => setCopied(false), 2000);
         });
       }}
-      className="inline-flex h-8 shrink-0 items-center gap-1.5 rounded-lg border border-zinc-300/80 bg-white px-2.5 text-xs font-medium text-zinc-600 transition hover:border-zinc-400 hover:bg-zinc-50 hover:text-zinc-900 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-zinc-400 dark:border-zinc-700 dark:bg-zinc-900 dark:text-zinc-300 dark:hover:border-zinc-600 dark:hover:bg-zinc-800 dark:hover:text-zinc-100 dark:focus-visible:ring-zinc-500"
+      className="inline-flex h-8 shrink-0 items-center gap-1.5 rounded-lg bg-muted/70 px-2.5 text-xs font-medium text-muted-foreground transition hover:bg-muted hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
     >
       {copied ? <Check className="h-3.5 w-3.5 text-foreground" strokeWidth={2.5} /> : <Copy className="h-3.5 w-3.5" />}
       {copied ? "Copied" : label}
@@ -114,7 +114,7 @@ function TabRow<T extends string>({
   options: { id: T; label: string }[];
 }) {
   return (
-    <div className="inline-flex flex-wrap gap-1 rounded-xl bg-zinc-200/60 p-1 dark:bg-zinc-900/60">
+    <div className="inline-flex flex-wrap gap-1 rounded-xl bg-muted/50 p-1">
       {options.map((o) => (
         <button
           key={o.id}
@@ -123,8 +123,8 @@ function TabRow<T extends string>({
           className={cx(
             "rounded-lg px-3 py-1.5 text-xs font-medium transition",
             value === o.id
-              ? "bg-white text-zinc-900 shadow-sm dark:bg-zinc-800 dark:text-zinc-100"
-              : "text-zinc-600 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-zinc-100",
+              ? "bg-muted text-foreground"
+              : "text-muted-foreground hover:text-foreground",
           )}
         >
           {o.label}
@@ -197,15 +197,15 @@ function ExampleShowcaseCard({
           <p className="max-w-2xl text-[15px] leading-7 text-muted-foreground">{example.description}</p>
         ) : null}
       </div>
-      <div className="overflow-hidden rounded-xl border border-zinc-200 ring-1 ring-zinc-200/80 dark:border-zinc-800 dark:ring-zinc-800/80">
+      <div className="overflow-hidden rounded-xl border border-border">
         {showPreview ? (
-          <div className="border-b border-zinc-200 bg-zinc-50 p-6 sm:p-10 dark:border-zinc-800 dark:bg-zinc-950/40">
+          <div className="demo-preview-neutral border-b border-border bg-background p-6 sm:p-10">
             <div className="flex w-full min-w-0 justify-center [&>*]:max-w-full">{preview}</div>
           </div>
         ) : null}
-        <div className="min-h-0 bg-zinc-100 dark:bg-zinc-950">
-          <div className="flex items-center justify-between border-b border-zinc-200 bg-zinc-200/70 px-3 py-2.5 sm:px-4 dark:border-zinc-800 dark:bg-zinc-900/80">
-            <span className="text-xs font-medium text-zinc-500 dark:text-zinc-400">tsx</span>
+        <div className="min-h-0 bg-muted/30 dark:bg-[hsl(0_0%_4%)]">
+          <div className="flex items-center justify-between border-b border-border px-3 py-2.5 sm:px-4">
+            <span className="text-xs font-medium text-muted-foreground">tsx</span>
             <CopyBtn text={example.code} />
           </div>
           <div
@@ -215,21 +215,21 @@ function ExampleShowcaseCard({
             )}
             style={!codeOpen && !isTrivialSnippet ? { maxHeight: `${CODE_PREVIEW_MAX_HEIGHT_REM}rem` } : undefined}
           >
-            <ShikiCodeBlock code={example.code} lang="tsx" className="rounded-none !bg-transparent shadow-none" />
+            <ShikiCodeBlock code={example.code} lang="tsx" className="rounded-none bg-transparent shadow-none" />
             {!codeOpen && !isTrivialSnippet ? (
               <div
-                className="pointer-events-none absolute inset-x-0 bottom-0 h-20 bg-gradient-to-t from-zinc-100 from-35% via-zinc-100/75 to-transparent dark:from-zinc-950 dark:via-zinc-950/80"
+                className="pointer-events-none absolute inset-x-0 bottom-0 h-20 bg-gradient-to-t from-muted/80 from-40% via-muted/50 to-transparent dark:from-[hsl(0_0%_4%)] dark:via-[hsl(0_0%_4%)]/75"
                 aria-hidden
               />
             ) : null}
           </div>
           {!isTrivialSnippet ? (
-            <div className="flex justify-center border-t border-zinc-200 bg-zinc-100 px-3 py-3 dark:border-zinc-800 dark:bg-zinc-950">
+            <div className="flex justify-center border-t border-border bg-muted/30 px-3 py-3 dark:bg-[hsl(0_0%_4%)]">
               <button
                 type="button"
                 aria-expanded={codeOpen}
                 onClick={() => setCodeOpen((o) => !o)}
-                className="inline-flex items-center gap-1.5 rounded-full border border-zinc-800 bg-zinc-900 px-4 py-1.5 text-xs font-medium text-zinc-50 shadow-sm transition hover:bg-zinc-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-zinc-400 focus-visible:ring-offset-2 focus-visible:ring-offset-zinc-100 dark:border-zinc-600 dark:bg-zinc-100 dark:text-zinc-950 dark:hover:bg-white dark:focus-visible:ring-zinc-500 dark:focus-visible:ring-offset-zinc-950"
+                className="inline-flex items-center gap-1.5 rounded-full border border-border bg-foreground px-4 py-1.5 text-xs font-medium text-background shadow-sm transition hover:bg-foreground/90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background"
               >
                 {codeOpen ? "Hide code" : "View code"}
                 <ChevronDown
@@ -284,7 +284,7 @@ export function DemoFrame({
   }, [id]);
 
   return (
-    <div className="mx-auto grid w-full max-w-6xl gap-x-10 gap-y-10 xl:grid-cols-[minmax(0,42rem)_minmax(0,12rem)] xl:items-start xl:justify-center">
+    <div className="mx-auto grid w-full max-w-6xl gap-x-10 gap-y-10 xl:grid-cols-[minmax(0,42rem)_minmax(0,12rem)] xl:justify-center">
       <div className="min-w-0 space-y-12 pb-16">
       <header id="overview" className="scroll-mt-6 space-y-6">
         <div className="flex flex-col gap-6 sm:flex-row sm:items-start sm:justify-between">
@@ -300,13 +300,13 @@ export function DemoFrame({
         <p className="max-w-2xl text-[15px] leading-7 text-muted-foreground">{description}</p>
 
         <div className="flex flex-wrap gap-2">
-          <span className="rounded-lg border border-zinc-200 bg-zinc-100 px-2.5 py-1 text-xs font-medium text-zinc-600 dark:border-zinc-800 dark:bg-zinc-900 dark:text-zinc-400">
+          <span className="rounded-lg bg-muted/50 px-2.5 py-1 text-xs font-medium text-muted-foreground">
             React
           </span>
-          <span className="rounded-lg border border-zinc-200 bg-zinc-100 px-2.5 py-1 text-xs font-medium text-zinc-600 dark:border-zinc-800 dark:bg-zinc-900 dark:text-zinc-400">
+          <span className="rounded-lg bg-muted/50 px-2.5 py-1 text-xs font-medium text-muted-foreground">
             Tailwind CSS
           </span>
-          <span className="rounded-lg border border-zinc-200 bg-zinc-100 px-2.5 py-1 text-xs font-medium text-zinc-600 dark:border-zinc-800 dark:bg-zinc-900 dark:text-zinc-400">
+          <span className="rounded-lg bg-muted/50 px-2.5 py-1 text-xs font-medium text-muted-foreground">
             {EDPEAR_PACKAGE}
           </span>
         </div>
@@ -359,21 +359,21 @@ export function DemoFrame({
         {installTab === "command" ? (
           <div className="space-y-3">
             <TabRow value={pm} onChange={setPm} options={packageManagers().map((p) => ({ id: p, label: p }))} />
-            <div className="overflow-hidden rounded-xl border border-zinc-200 bg-zinc-100 dark:border-zinc-800 dark:bg-zinc-950">
-              <div className="flex items-center justify-between gap-2 border-b border-zinc-200 bg-zinc-200/70 px-3 py-2.5 sm:px-4 dark:border-zinc-800 dark:bg-zinc-900/80">
-                <span className="text-xs font-medium capitalize text-zinc-500 dark:text-zinc-400">{pm}</span>
+            <div className="overflow-hidden rounded-xl bg-muted/40">
+              <div className="flex items-center justify-between gap-2 px-3 py-2.5 sm:px-4">
+                <span className="text-xs font-medium text-muted-foreground capitalize">{pm}</span>
                 <CopyBtn text={cmds[pm]} />
               </div>
-              <ShikiCodeBlock code={cmds[pm]} lang="bash" className="rounded-none !bg-transparent border-0 shadow-none" />
+              <ShikiCodeBlock code={cmds[pm]} lang="bash" className="rounded-none border-0 shadow-none" />
             </div>
           </div>
         ) : (
-          <div className="overflow-hidden rounded-xl border border-zinc-200 bg-zinc-100 dark:border-zinc-800 dark:bg-zinc-950">
-            <div className="flex items-center justify-between gap-2 border-b border-zinc-200 bg-zinc-200/70 px-3 py-2.5 sm:px-4 dark:border-zinc-800 dark:bg-zinc-900/80">
-              <span className="text-xs font-medium text-zinc-500 dark:text-zinc-400">Steps</span>
+          <div className="overflow-hidden rounded-xl bg-muted/40">
+            <div className="flex items-center justify-between gap-2 px-3 py-2.5 sm:px-4">
+              <span className="text-xs font-medium text-muted-foreground">Steps</span>
               <CopyBtn text={manualMd} />
             </div>
-            <ShikiCodeBlock code={manualMd} lang="plaintext" className="rounded-none !bg-transparent border-0 shadow-none" />
+            <ShikiCodeBlock code={manualMd} lang="plaintext" className="rounded-none border-0 shadow-none" />
           </div>
         )}
       </section>
@@ -397,23 +397,19 @@ export function DemoFrame({
 
       <section
         id="package-meta"
-        className="scroll-mt-6 rounded-xl border border-zinc-200 bg-zinc-50 px-4 py-4 text-sm text-zinc-600 dark:border-zinc-800 dark:bg-zinc-950/50 dark:text-zinc-400"
+        className="scroll-mt-6 rounded-xl bg-muted/30 px-4 py-4 text-sm text-muted-foreground"
         aria-label="Package and styles"
       >
-        <strong className="font-medium text-zinc-900 dark:text-zinc-100">Package import:</strong>{" "}
-        <code className="rounded border border-zinc-200 bg-zinc-100 px-1.5 py-0.5 font-mono text-xs text-zinc-800 dark:border-zinc-700 dark:bg-zinc-900 dark:text-zinc-200">
-          {INSTALL_COMMAND}
-        </code>
+        <strong className="font-medium text-foreground">Package import:</strong>{" "}
+        <code className="rounded bg-muted px-1.5 py-0.5 font-mono text-xs">{INSTALL_COMMAND}</code>
         <span className="mx-2">·</span>
-        <strong className="font-medium text-zinc-900 dark:text-zinc-100">Styles:</strong>{" "}
-        <code className="rounded border border-zinc-200 bg-zinc-100 px-1.5 py-0.5 font-mono text-xs text-zinc-800 dark:border-zinc-700 dark:bg-zinc-900 dark:text-zinc-200">
-          {STYLES_IMPORT_LINE}
-        </code>
+        <strong className="font-medium text-foreground">Styles:</strong>{" "}
+        <code className="rounded bg-muted px-1.5 py-0.5 font-mono text-xs">{STYLES_IMPORT_LINE}</code>
       </section>
       </div>
 
       <aside className="hidden min-w-0 xl:block" aria-label="Page summary">
-        <div className="sticky top-8">
+        <div className="sticky top-6">
           <OnThisPageNav entries={tocEntries} />
         </div>
       </aside>

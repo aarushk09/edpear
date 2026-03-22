@@ -23,12 +23,12 @@
 }
 
 :root {
-  --showcase-sidebar: 210 40% 98%;
-  --showcase-sidebar-fg: 222.2 47.4% 11.2%;
-  --showcase-sidebar-border: 214.3 31.8% 90%;
-  --showcase-sidebar-accent: 210 40% 94%;
-  --showcase-sidebar-accent-fg: 222.2 47.4% 11.2%;
-  --showcase-sidebar-muted: 215.4 16.3% 46.9%;
+  --showcase-sidebar: 0 0% 99%;
+  --showcase-sidebar-fg: 220 9% 12%;
+  --showcase-sidebar-border: 220 13% 91%;
+  --showcase-sidebar-accent: 220 14% 96%;
+  --showcase-sidebar-accent-fg: 220 9% 12%;
+  --showcase-sidebar-muted: 220 9% 46%;
 }
 
 .dark {
@@ -78,43 +78,65 @@ html.dark {
 }
 
 /*
- * Light mode: neutral zinc ink only (overrides edpear chroma for this app).
- * Previews and tokens read black/white/gray so examples match a minimal doc.
+ * ─── Light-mode showcase overrides ───────────────────────────────────
+ * Override the colored edpear.css :root tokens so the entire showcase
+ * chrome stays neutral in light mode (clean, professional, shadcn-like).
  */
 html:not(.dark) {
-  --background: 0 0% 97%;
-  --foreground: 0 0% 9%;
+  --primary: 220 9% 46%;
+  --primary-foreground: 0 0% 100%;
+  --muted: 220 14% 96%;
+  --muted-foreground: 220 9% 46%;
+  --accent: 220 14% 96%;
+  --accent-foreground: 220 9% 12%;
+  --border: 220 13% 91%;
+  --input: 220 13% 91%;
+  --ring: 220 9% 46%;
   --card: 0 0% 100%;
-  --card-foreground: 0 0% 9%;
-  --popover: 0 0% 100%;
-  --popover-foreground: 0 0% 9%;
-  --muted: 0 0% 92%;
-  --muted-foreground: 0 0% 42%;
-  --accent: 0 0% 94%;
-  --accent-foreground: 0 0% 9%;
-  --secondary: 0 0% 94%;
-  --secondary-foreground: 0 0% 9%;
-  --border: 0 0% 86%;
-  --input: 0 0% 86%;
-  --ring: 0 0% 55%;
-  --primary: 0 0% 12%;
-  --primary-foreground: 0 0% 98%;
-  --destructive: 0 0% 28%;
-  --destructive-foreground: 0 0% 98%;
-  --lesson: 0 0% 38%;
-  --quiz: 0 0% 38%;
-  --progress: 0 0% 38%;
-  --feedback-correct: 0 0% 36%;
-  --feedback-incorrect: 0 0% 32%;
-  --showcase-sidebar: 0 0% 98%;
-  --showcase-sidebar-fg: 0 0% 12%;
-  --showcase-sidebar-border: 0 0% 88%;
-  --showcase-sidebar-accent: 0 0% 94%;
-  --showcase-sidebar-accent-fg: 0 0% 12%;
-  --showcase-sidebar-muted: 0 0% 45%;
+  --card-foreground: 220 9% 12%;
+  --secondary: 220 14% 96%;
+  --secondary-foreground: 220 9% 12%;
 }
 
-/* EdPear showcase: soft corner glow + micro-dot grid (grey only) */
+/*
+ * ─── Neutral palette for component demo previews (shadcn-style) ─────
+ * Scoped class that overrides all semantic color tokens to grayscale
+ * so demo previews show form/function without branding colors.
+ */
+.demo-preview-neutral {
+  --primary: 220 9% 46%;
+  --primary-foreground: 0 0% 100%;
+  --lesson: 220 9% 46%;
+  --quiz: 220 9% 46%;
+  --progress: 220 9% 42%;
+  --feedback-correct: 220 9% 42%;
+  --feedback-incorrect: 0 0% 45%;
+  --destructive: 0 0% 45%;
+  --destructive-foreground: 0 0% 98%;
+  --ring: 220 9% 46%;
+}
+
+html.dark .demo-preview-neutral {
+  --primary: 0 0% 76%;
+  --primary-foreground: 0 0% 7%;
+  --lesson: 0 0% 40%;
+  --quiz: 0 0% 46%;
+  --progress: 0 0% 38%;
+  --feedback-correct: 0 0% 40%;
+  --feedback-incorrect: 0 55% 52%;
+  --destructive: 0 55% 48%;
+  --destructive-foreground: 0 0% 98%;
+  --ring: 0 0% 42%;
+}
+
+/* ─── Showcase background ─────────────────────────────────────────── */
+/* Light mode: clean white, no gradient wash */
+html:not(.dark) .showcase-app-shell {
+  background-color: hsl(0 0% 100%);
+  background-image: none;
+}
+
+/* Dark mode: subtle corner glow + micro-dot grid (grey only) */
 html.dark .showcase-app-shell {
   background-color: hsl(var(--background));
   background-image:
@@ -122,26 +144,22 @@ html.dark .showcase-app-shell {
     radial-gradient(ellipse 70% 45% at -15% 100%, hsl(0 0% 100% / 0.03), transparent 45%),
     radial-gradient(circle at 1px 1px, hsl(0 0% 100% / 0.035) 1px, transparent 0);
   background-size: auto, auto, 22px 22px;
-  background-repeat: no-repeat, no-repeat, repeat;
 }
 
-html:not(.dark) .showcase-app-shell {
-  background-color: hsl(var(--background));
-  background-image:
-    radial-gradient(ellipse 85% 50% at 100% 0%, hsl(0 0% 0% / 0.035), transparent 50%),
-    radial-gradient(ellipse 65% 40% at 0% 100%, hsl(0 0% 0% / 0.025), transparent 48%),
-    radial-gradient(circle at 1px 1px, hsl(0 0% 0% / 0.055) 1px, transparent 0);
-  background-size: auto, auto, 18px 18px;
-  background-repeat: no-repeat, no-repeat, repeat;
+/*
+ * ─── Light-mode code block styling ───────────────────────────────────
+ * Give the Shiki wrapper a visible background + border so code doesn't
+ * float on the white page.
+ */
+html:not(.dark) .shiki-wrap {
+  background-color: hsl(220 14% 96%) !important;
+  border: 1px solid hsl(220 13% 91%);
 }
 
-/* Showcase code blocks: monochrome tokens (hue from Shiki → luminance only) */
-.showcase-code-block .shiki {
-  filter: grayscale(1);
-}
-
-html.dark .showcase-code-block .shiki {
-  filter: grayscale(1) brightness(1.06);
+/* Ensure the viewport background is pure white in light mode */
+html:not(.dark),
+html:not(.dark) body {
+  background-color: hsl(0 0% 100%);
 }
 
 /* Wins over edpear base body font when both apply */

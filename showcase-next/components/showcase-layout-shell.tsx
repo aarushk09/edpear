@@ -1,5 +1,8 @@
 "use client";
 
+import { usePathname } from "next/navigation";
+import { useEffect, useRef } from "react";
+
 import { ShowcaseNav, ThemeToggle } from "./showcase-shell";
 
 const apiKey = process.env.NEXT_PUBLIC_OPENROUTER_API_KEY ?? "";
@@ -8,6 +11,15 @@ const apiKey = process.env.NEXT_PUBLIC_OPENROUTER_API_KEY ?? "";
  * EdPear showcase shell: fixed viewport, independent scroll regions, neutral dark palette.
  */
 export function ShowcaseLayoutShell({ children }: { children: React.ReactNode }) {
+  const mainRef = useRef<HTMLElement>(null);
+  const pathname = usePathname();
+
+  // Reset scroll position when navigating between components
+  // to prevent the "bottom spacing bug" (stale scroll from a longer page).
+  useEffect(() => {
+    mainRef.current?.scrollTo({ top: 0 });
+  }, [pathname]);
+
   return (
     <div className="showcase-app-shell flex h-dvh flex-col overflow-hidden text-foreground">
       <header className="z-40 shrink-0 bg-transparent">
@@ -66,7 +78,7 @@ export function ShowcaseLayoutShell({ children }: { children: React.ReactNode })
           </div>
         </aside>
 
-        <main className="showcase-scroll-hide min-h-0 flex-1 overflow-y-auto overscroll-y-contain [-webkit-overflow-scrolling:touch]">
+        <main ref={mainRef} className="showcase-scroll-hide min-h-0 flex-1 overflow-y-auto overscroll-y-contain [-webkit-overflow-scrolling:touch]">
           <div className="mx-auto w-full px-4 py-8 sm:px-8 sm:py-12 lg:px-10 lg:py-14 xl:px-12">
             {children}
           </div>

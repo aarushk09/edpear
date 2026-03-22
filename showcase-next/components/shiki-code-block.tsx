@@ -59,7 +59,7 @@ export function ShikiCodeBlock({
   if (err) {
     return (
       <pre
-        className={`overflow-x-auto rounded-xl border border-zinc-200 bg-zinc-100 p-4 font-mono text-xs text-zinc-700 dark:border-zinc-800 dark:bg-zinc-950 dark:text-zinc-300 ${className}`}
+        className={`overflow-x-auto rounded-xl bg-muted/50 p-4 font-mono text-xs text-destructive ${className}`}
       >
         {err}
       </pre>
@@ -69,7 +69,7 @@ export function ShikiCodeBlock({
   if (!html) {
     return (
       <pre
-        className={`overflow-x-auto rounded-xl border border-zinc-200 bg-zinc-100 p-4 font-mono text-[13px] text-zinc-500 dark:border-zinc-800 dark:bg-zinc-950 dark:text-zinc-400 ${className}`}
+        className={`overflow-x-auto rounded-xl border border-border bg-muted/30 p-4 font-mono text-[13px] text-muted-foreground ${className}`}
       >
         <code>Loading…</code>
       </pre>
@@ -78,7 +78,7 @@ export function ShikiCodeBlock({
 
   return (
     <div
-      className={`showcase-code-block shiki-wrap overflow-x-auto rounded-xl border-0 bg-zinc-100 dark:bg-zinc-950 [&_pre]:m-0 [&_pre]:overflow-x-auto [&_pre]:!bg-transparent [&_pre]:px-4 [&_pre]:py-3.5 [&_pre]:text-[13px] [&_pre]:leading-relaxed ${className}`}
+      className={`shiki-wrap overflow-x-auto rounded-xl bg-muted/30 [&_pre]:m-0 [&_pre]:overflow-x-auto [&_pre]:!bg-transparent [&_pre]:px-4 [&_pre]:py-3.5 [&_pre]:text-[13px] [&_pre]:leading-relaxed ${className}`}
       dangerouslySetInnerHTML={{ __html: html }}
     />
   );
