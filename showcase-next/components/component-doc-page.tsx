@@ -355,17 +355,7 @@ export function DemoFrame({
 
           <p className="max-w-2xl text-[15px] leading-7 text-muted-foreground">{description}</p>
 
-          <div className="flex flex-wrap gap-2">
-            <span className="rounded-lg bg-muted/50 px-2.5 py-1 text-xs font-medium text-muted-foreground">
-              React
-            </span>
-            <span className="rounded-lg bg-muted/50 px-2.5 py-1 text-xs font-medium text-muted-foreground">
-              Tailwind CSS
-            </span>
-            <span className="rounded-lg bg-muted/50 px-2.5 py-1 text-xs font-medium text-muted-foreground">
-              {EDPEAR_PACKAGE}
-            </span>
-          </div>
+
 
           <nav className="flex flex-wrap gap-6 pt-2 text-sm" aria-label="Pager">
             {prev ? (
@@ -465,14 +455,26 @@ export function DemoFrame({
 
         <section
           id="package-meta"
-          className="scroll-mt-6 rounded-xl bg-muted/30 px-4 py-4 text-sm text-muted-foreground"
+          className="scroll-mt-6 space-y-3 rounded-xl border border-border bg-muted/10 px-5 py-5"
           aria-label="Package and styles"
         >
-          <strong className="font-medium text-foreground">Package import:</strong>{" "}
-          <code className="rounded bg-muted px-1.5 py-0.5 font-mono text-xs">{INSTALL_COMMAND}</code>
-          <span className="mx-2">·</span>
-          <strong className="font-medium text-foreground">Styles:</strong>{" "}
-          <code className="rounded bg-muted px-1.5 py-0.5 font-mono text-xs">{STYLES_IMPORT_LINE}</code>
+          <h3 className="text-sm font-semibold text-foreground">Quick reference</h3>
+          <div className="grid gap-3 sm:grid-cols-2">
+            <div className="space-y-1.5">
+              <p className="text-xs font-medium text-muted-foreground">Install</p>
+              <div className="flex items-center gap-2 rounded-lg border border-border bg-background px-3 py-2">
+                <code className="flex-1 truncate font-mono text-xs text-foreground">{INSTALL_COMMAND}</code>
+                <CopyIconBtn text={INSTALL_COMMAND} />
+              </div>
+            </div>
+            <div className="space-y-1.5">
+              <p className="text-xs font-medium text-muted-foreground">Styles</p>
+              <div className="flex items-center gap-2 rounded-lg border border-border bg-background px-3 py-2">
+                <code className="flex-1 truncate font-mono text-xs text-foreground">{STYLES_IMPORT_LINE}</code>
+                <CopyIconBtn text={STYLES_IMPORT_LINE} />
+              </div>
+            </div>
+          </div>
         </section>
       </div>
 
