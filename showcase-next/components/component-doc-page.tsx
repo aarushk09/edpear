@@ -1,6 +1,6 @@
 "use client";
 
-import { Check, ChevronDown, ChevronLeft, ChevronRight, Copy } from "lucide-react";
+import { Check, ChevronDown, ChevronLeft, ChevronRight, Copy, Terminal } from "lucide-react";
 import Link from "next/link";
 import {
   useCallback,
@@ -21,6 +21,7 @@ import {
   STYLES_IMPORT_LINE,
   cliAddCommands,
   manualInstallMarkdown,
+  manualInstallSteps,
   packageManagers,
 } from "../lib/package-docs";
 import {
@@ -99,6 +100,61 @@ function CopyBtn({ text, label = "Copy" }: { text: string; label?: string }) {
       {copied ? <Check className="h-3.5 w-3.5 text-foreground" strokeWidth={2.5} /> : <Copy className="h-3.5 w-3.5" />}
       {copied ? "Copied" : label}
     </button>
+  );
+}
+
+function CopyIconBtn({ text }: { text: string }) {
+  const [copied, setCopied] = useState(false);
+  return (
+    <button
+      type="button"
+      onClick={() => {
+        void navigator.clipboard.writeText(text).then(() => {
+          setCopied(true);
+          setTimeout(() => setCopied(false), 2000);
+        });
+      }}
+      className="inline-flex h-7 w-7 shrink-0 items-center justify-center rounded-md text-muted-foreground transition hover:bg-muted hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+      aria-label="Copy command"
+    >
+      {copied ? <Check className="h-3.5 w-3.5" strokeWidth={2.5} /> : <Copy className="h-3.5 w-3.5" />}
+    </button>
+  );
+}
+
+function InstallStepper({ slug }: { slug: string }) {
+  const steps = manualInstallSteps(slug as any);
+  return (
+    <div className="relative pl-8 space-y-8">
+      {/* Vertical line */}
+      <div
+        className="absolute left-[11px] top-1 bottom-1 w-px bg-border"
+        aria-hidden
+      />
+      {steps.map((step, i) => (
+        <div key={i} className="relative">
+          {/* Node circle */}
+          <div
+            className="absolute -left-8 top-0.5 flex h-[22px] w-[22px] items-center justify-center rounded-full border-2 border-border bg-background text-[11px] font-bold text-muted-foreground"
+            aria-hidden
+          >
+            {i + 1}
+          </div>
+          {/* Step content */}
+          <div className="space-y-2">
+            <h4 className="text-sm font-semibold text-foreground leading-snug">{step.title}</h4>
+            <p className="text-[13px] text-muted-foreground leading-relaxed">{step.description}</p>
+            <div className="overflow-hidden rounded-lg border border-border bg-muted/20">
+              <div className="flex items-center justify-between gap-2 px-3 py-1.5">
+                <span className="text-[11px] font-medium text-muted-foreground">{step.lang}</span>
+                <CopyIconBtn text={step.code} />
+              </div>
+              <ShikiCodeBlock code={step.code} lang={step.lang as any} className="rounded-none border-0 shadow-none" />
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
   );
 }
 
@@ -357,24 +413,36 @@ export function DemoFrame({
           />
 
           {installTab === "command" ? (
-            <div className="space-y-3">
-              <TabRow value={pm} onChange={setPm} options={packageManagers().map((p) => ({ id: p, label: p }))} />
-              <div className="overflow-hidden rounded-xl bg-muted/40">
-                <div className="flex items-center justify-between gap-2 px-3 py-2.5 sm:px-4">
-                  <span className="text-xs font-medium text-muted-foreground capitalize">{pm}</span>
-                  <CopyBtn text={cmds[pm]} />
+            <div className="overflow-hidden rounded-xl border border-border bg-muted/20">
+              {/* Header row: terminal icon + pm tabs left, copy icon right */}
+              <div className="flex items-center gap-3 border-b border-border px-3 py-2">
+                <Terminal className="h-3.5 w-3.5 shrink-0 text-muted-foreground" aria-hidden />
+                <div className="flex items-center gap-0.5">
+                  {packageManagers().map((p) => (
+                    <button
+                      key={p}
+                      type="button"
+                      onClick={() => setPm(p as PackageManager)}
+                      className={cx(
+                        "rounded-md px-2.5 py-1 text-xs font-medium transition",
+                        pm === p
+                          ? "bg-muted text-foreground"
+                          : "text-muted-foreground hover:text-foreground",
+                      )}
+                    >
+                      {p}
+                    </button>
+                  ))}
                 </div>
-                <ShikiCodeBlock code={cmds[pm]} lang="bash" className="rounded-none border-0 shadow-none" />
+                <div className="ml-auto">
+                  <CopyIconBtn text={cmds[pm]} />
+                </div>
               </div>
+              {/* Command line */}
+              <ShikiCodeBlock code={cmds[pm]} lang="bash" className="rounded-none border-0 shadow-none" />
             </div>
           ) : (
-            <div className="overflow-hidden rounded-xl bg-muted/40">
-              <div className="flex items-center justify-between gap-2 px-3 py-2.5 sm:px-4">
-                <span className="text-xs font-medium text-muted-foreground">Steps</span>
-                <CopyBtn text={manualMd} />
-              </div>
-              <ShikiCodeBlock code={manualMd} lang="plaintext" className="rounded-none border-0 shadow-none" />
-            </div>
+            <InstallStepper slug={id} />
           )}
         </section>
 
