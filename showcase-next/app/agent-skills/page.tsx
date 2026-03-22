@@ -7,8 +7,8 @@ export const metadata: Metadata = {
 
 export default function AgentSkillsPage() {
   return (
-    <main className="mx-auto w-full max-w-[800px] px-6 py-10 overflow-y-auto h-full text-foreground/90">
-      <div className="space-y-12 pb-16">
+    <main className="mx-auto w-full max-w-6xl px-4 sm:px-6 lg:px-8 py-10 lg:grid lg:grid-cols-[1fr_220px] lg:gap-14 text-foreground/90 h-full overflow-y-auto no-scrollbar">
+      <div className="space-y-12 pb-16 min-w-0">
         
         <header className="space-y-4">
           <h1 className="text-3xl font-bold tracking-tight text-foreground sm:text-4xl">Skills</h1>
@@ -91,6 +91,24 @@ export default function AgentSkillsPage() {
         </section>
 
       </div>
+
+      {/* Right Sidebar */}
+      <aside className="hidden text-sm xl:block">
+        <div className="sticky top-10 h-[calc(100vh-6rem)] overflow-y-auto no-scrollbar">
+          <h4 className="mb-4 font-semibold text-foreground tracking-tight text-xs uppercase">On this page</h4>
+          <div className="flex flex-col gap-2.5 text-muted-foreground">
+            <a href="#install" className="hover:text-foreground transition-colors">Install</a>
+            <a href="#whats-included" className="hover:text-foreground transition-colors">What&apos;s Included</a>
+            <div className="flex flex-col gap-2 pl-4 border-l ml-[3px] mt-1 space-y-1">
+              <a href="#project-context" className="hover:text-foreground transition-colors">Project Context</a>
+              <a href="#cli-commands" className="hover:text-foreground transition-colors">CLI Commands</a>
+              <a href="#theming-and-customization" className="hover:text-foreground transition-colors">Theming &amp; Customization</a>
+              <a href="#registry-authoring" className="hover:text-foreground transition-colors">Registry Authoring</a>
+              <a href="#mcp-server" className="hover:text-foreground transition-colors">MCP Server</a>
+            </div>
+          </div>
+        </div>
+      </aside>
     </main>
   );
 }

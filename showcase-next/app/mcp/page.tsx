@@ -7,8 +7,8 @@ export const metadata: Metadata = {
 
 export default function McpPage() {
   return (
-    <main className="mx-auto w-full max-w-[800px] px-6 py-10 overflow-y-auto h-full text-foreground/90">
-      <div className="space-y-12 pb-16">
+    <main className="mx-auto w-full max-w-6xl px-4 sm:px-6 lg:px-8 py-10 lg:grid lg:grid-cols-[1fr_220px] lg:gap-14 text-foreground/90 h-full overflow-y-auto no-scrollbar">
+      <div className="space-y-12 pb-16 min-w-0">
         
         <header className="space-y-4">
           <h1 className="text-3xl font-bold tracking-tight text-foreground sm:text-4xl">MCP Server</h1>
@@ -74,6 +74,21 @@ export default function McpPage() {
         </section>
 
       </div>
+
+      {/* Right Sidebar */}
+      <aside className="hidden text-sm xl:block">
+        <div className="sticky top-10 h-[calc(100vh-6rem)] overflow-y-auto no-scrollbar">
+          <h4 className="mb-4 font-semibold text-foreground tracking-tight text-xs uppercase">On this page</h4>
+          <div className="flex flex-col gap-2.5 text-muted-foreground">
+            <a href="#installation" className="hover:text-foreground transition-colors">Installation</a>
+            <a href="#available-tools" className="hover:text-foreground transition-colors">Available Tools</a>
+            <div className="flex flex-col gap-2 pl-4 border-l ml-[3px] mt-1 space-y-1">
+              <a href="#list_components" className="hover:text-foreground transition-colors">list_components</a>
+              <a href="#get_component_code" className="hover:text-foreground transition-colors">get_component_code</a>
+            </div>
+          </div>
+        </div>
+      </aside>
     </main>
   );
 }

@@ -59,13 +59,16 @@ export function SiteHeader() {
             </Link>
             <Link
               href="/mcp"
-              className={`px-3 py-1.5 text-sm font-medium rounded-md transition-colors ${
+              className={`px-3 py-1.5 text-sm font-medium rounded-md transition-colors flex items-center gap-2 ${
                 isMcp 
                   ? "bg-foreground/10 text-foreground" 
                   : "text-muted-foreground hover:bg-foreground/5 hover:text-foreground"
               }`}
             >
               MCP Server
+              <span className="rounded bg-primary/10 px-1.5 py-0.5 text-[10px] uppercase tracking-wider text-primary font-bold">
+                Beta
+              </span>
             </Link>
           </nav>
         </div>
@@ -98,13 +101,16 @@ export function SiteHeader() {
             </Link>
             <Link
               href="/mcp"
-              className={`px-3 py-1 text-sm font-medium rounded-md transition-colors ${
+              className={`px-3 py-1 text-sm font-medium rounded-md transition-colors flex items-center gap-2 ${
                 isMcp 
                   ? "bg-foreground/10 text-foreground" 
                   : "text-muted-foreground hover:bg-foreground/5 hover:text-foreground"
               }`}
             >
               MCP Server
+              <span className="rounded bg-primary/10 px-1.5 py-0.5 text-[10px] uppercase tracking-wider text-primary font-bold">
+                Beta
+              </span>
             </Link>
           </nav>
           
