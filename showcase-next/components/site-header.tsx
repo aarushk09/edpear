@@ -89,7 +89,7 @@ export function SiteHeader() {
   const isMcp = pathname === "/mcp";
 
   return (
-    <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
+    <header className="sticky top-0 z-50 w-full bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 flex h-14 max-w-7xl items-center justify-between">
         
         {/* Left section: Logo and Main Nav */}
