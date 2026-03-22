@@ -9,7 +9,7 @@ npx edpear add ai-feedback
 ```
 
 ## Basic Usage
-tes
+te
 ```tsx
 import { AIFeedback } from "edpear";
 
