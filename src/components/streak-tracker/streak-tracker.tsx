@@ -53,7 +53,7 @@ export const StreakTracker = forwardRef<HTMLDivElement, StreakTrackerProps>(
         </div>
         <div className="grid grid-cols-7 gap-2" aria-label="Last seven days">
           {days.slice(0, 7).map((day, index) => (
-            <div key={`${index}-${day.label}`} className="space-y-2 text-center">
+            <div key={index} className="space-y-2 text-center">
               <div className="text-xs font-medium text-muted-foreground">{day.label}</div>
               <div
                 className={cn(
