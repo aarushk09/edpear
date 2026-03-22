@@ -34,15 +34,14 @@ function ApiKeyInput() {
       <button
         type="button"
         onClick={() => setIsOpen(!isOpen)}
-        className={`rounded-lg px-2.5 py-1 text-[11px] font-medium transition-colors md:inline-flex ${
-          apiKey 
-            ? "bg-primary/10 text-primary hover:bg-primary/20" 
+        className={`rounded-lg px-2.5 py-1 text-[11px] font-medium transition-colors md:inline-flex ${apiKey
+            ? "bg-primary/10 text-primary hover:bg-primary/20"
             : "bg-muted/40 text-muted-foreground hover:bg-muted"
-        }`}
+          }`}
       >
         {apiKey ? "OpenRouter key set" : "No OpenRouter key"}
       </button>
-      
+
       {isOpen && (
         <div className="absolute right-0 top-full mt-2 w-72 rounded-xl border border-border bg-popover p-4 text-popover-foreground shadow-lg outline-none animate-in fade-in zoom-in-95 data-[state=closed]:animate-out data-[state=closed]:fade-out data-[state=closed]:zoom-out-95">
           <div className="space-y-3">
@@ -91,38 +90,30 @@ export function SiteHeader() {
   return (
     <header className="sticky top-0 z-50 w-full bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 border-b border-border/40">
       <div className="flex h-14 items-center">
-        
+
         {/* Left section: Logo matching sidebar width */}
         <div className="flex h-full items-center px-4 md:px-5 w-full md:w-[16.5rem] lg:w-[17.5rem] shrink-0 border-r border-border/40">
           <Link href="/" className="flex items-center gap-2 font-bold tracking-tight text-foreground transition-colors hover:text-foreground/80">
+            {/* EdPear pear logo */}
             <svg
               xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 256 256"
-              className="h-5 w-5"
+              viewBox="0 0 24 32"
+              className="h-6 w-auto"
+              fill="currentColor"
+              aria-label="EdPear logo"
             >
-              <rect width="256" height="256" fill="none" />
-              <line
-                x1="208"
-                y1="128"
-                x2="128"
-                y2="208"
-                fill="none"
+              {/* Pear body — two-circle geometric construction */}
+              <path d="M12 6A6 6 0 0 1 17.66 14A9 9 0 1 1 6.34 14A6 6 0 0 1 12 6Z" />
+              {/* Stem */}
+              <path
+                d="M12 6C12 4.5 13.2 3.2 14 2.8"
                 stroke="currentColor"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth="16"
-              />
-              <line
-                x1="192"
-                y1="40"
-                x2="40"
-                y2="192"
+                strokeWidth="1.4"
                 fill="none"
-                stroke="currentColor"
                 strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth="16"
               />
+              {/* Leaf */}
+              <path d="M13 3.5C14.2 2 16.5 2.4 15.8 3.8C15.2 5 13.2 4.6 13 3.5Z" />
             </svg>
             EdPear
           </Link>
@@ -133,27 +124,30 @@ export function SiteHeader() {
           <nav className="hidden sm:flex items-center gap-5 text-sm font-medium">
             <Link
               href="/"
-              className={`transition-colors hover:text-foreground ${
-                isComponents ? "text-foreground" : "text-foreground/60"
-              }`}
+              className={`transition-colors hover:text-foreground ${isComponents ? "text-foreground" : "text-foreground/60"
+                }`}
             >
               Components
             </Link>
             <Link
               href="/agent-skills"
-              className={`transition-colors hover:text-foreground ${
-                isAgentSkills ? "text-foreground" : "text-foreground/60"
-              }`}
+              className={`flex items-center gap-1.5 transition-colors hover:text-foreground ${isAgentSkills ? "text-foreground" : "text-foreground/60"
+                }`}
             >
               Agent Skills
+              <span className="rounded-md bg-primary/10 px-1.5 py-0.5 text-[10px] uppercase tracking-wider text-primary font-bold leading-none">
+                Beta
+              </span>
             </Link>
             <Link
               href="/mcp"
-              className={`transition-colors hover:text-foreground ${
-                isMcp ? "text-foreground" : "text-foreground/60"
-              }`}
+              className={`flex items-center gap-1.5 transition-colors hover:text-foreground ${isMcp ? "text-foreground" : "text-foreground/60"
+                }`}
             >
               MCP Server
+              <span className="rounded-md bg-primary/10 px-1.5 py-0.5 text-[10px] uppercase tracking-wider text-primary font-bold leading-none">
+                Beta
+              </span>
             </Link>
           </nav>
 
@@ -162,9 +156,8 @@ export function SiteHeader() {
             <nav className="flex items-center gap-1 sm:hidden w-full">
               <Link
                 href="/"
-                className={`text-xs font-medium transition-colors ${
-                  isComponents ? "text-foreground" : "text-muted-foreground"
-                }`}
+                className={`text-xs font-medium transition-colors ${isComponents ? "text-foreground" : "text-muted-foreground"
+                  }`}
               >
                 Components
               </Link>

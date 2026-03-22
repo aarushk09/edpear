@@ -1,6 +1,6 @@
 "use client";
 
-import { Check, ChevronDown, ChevronLeft, ChevronRight, Copy, Terminal } from "lucide-react";
+import { Check, ChevronDown, ChevronLeft, ChevronRight, Copy } from "lucide-react";
 import Link from "next/link";
 import {
   useCallback,
@@ -98,25 +98,6 @@ function CopyBtn({ text, label = "Copy" }: { text: string; label?: string }) {
     >
       {copied ? <Check className="h-3.5 w-3.5 text-foreground" strokeWidth={2.5} /> : <Copy className="h-3.5 w-3.5" />}
       {copied ? "Copied" : label}
-    </button>
-  );
-}
-
-function CopyIconBtn({ text }: { text: string }) {
-  const [copied, setCopied] = useState(false);
-  return (
-    <button
-      type="button"
-      onClick={() => {
-        void navigator.clipboard.writeText(text).then(() => {
-          setCopied(true);
-          setTimeout(() => setCopied(false), 2000);
-        });
-      }}
-      className="inline-flex h-7 w-7 shrink-0 items-center justify-center rounded-md text-muted-foreground transition hover:bg-muted hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
-      aria-label="Copy command"
-    >
-      {copied ? <Check className="h-3.5 w-3.5" strokeWidth={2.5} /> : <Copy className="h-3.5 w-3.5" />}
     </button>
   );
 }
@@ -305,144 +286,126 @@ export function DemoFrame({
   return (
     <div className="mx-auto grid w-full max-w-6xl gap-x-10 gap-y-10 xl:grid-cols-[minmax(0,42rem)_minmax(0,12rem)] xl:justify-center">
       <div className="min-w-0 space-y-12 pb-16">
-      <header id="overview" className="scroll-mt-6 space-y-6">
-        <div className="flex flex-col gap-6 sm:flex-row sm:items-start sm:justify-between">
-          <div className="min-w-0 space-y-2">
-            <h1 className="text-3xl font-semibold tracking-tight text-foreground sm:text-4xl">{label}</h1>
-            <p className="font-mono text-sm text-muted-foreground">{title}</p>
-          </div>
-          <div className="flex flex-wrap items-center gap-2">
-            <CopyBtn text={copyPageText} label="Copy page" />
-          </div>
-        </div>
-
-        <p className="max-w-2xl text-[15px] leading-7 text-muted-foreground">{description}</p>
-
-        <div className="flex flex-wrap gap-2">
-          <span className="rounded-lg bg-muted/50 px-2.5 py-1 text-xs font-medium text-muted-foreground">
-            React
-          </span>
-          <span className="rounded-lg bg-muted/50 px-2.5 py-1 text-xs font-medium text-muted-foreground">
-            Tailwind CSS
-          </span>
-          <span className="rounded-lg bg-muted/50 px-2.5 py-1 text-xs font-medium text-muted-foreground">
-            {EDPEAR_PACKAGE}
-          </span>
-        </div>
-
-        <nav className="flex flex-wrap gap-6 pt-2 text-sm" aria-label="Pager">
-          {prev ? (
-            <Link
-              href={`/${prev}`}
-              className="inline-flex items-center gap-1 font-medium text-muted-foreground transition hover:text-foreground"
-            >
-              <ChevronLeft className="h-4 w-4" />
-              Previous
-            </Link>
-          ) : (
-            <span className="inline-flex items-center gap-1 text-muted-foreground/50">
-              <ChevronLeft className="h-4 w-4" />
-              Previous
-            </span>
-          )}
-          {next ? (
-            <Link
-              href={`/${next}`}
-              className="inline-flex items-center gap-1 font-medium text-muted-foreground transition hover:text-foreground"
-            >
-              Next
-              <ChevronRight className="h-4 w-4" />
-            </Link>
-          ) : (
-            <span className="inline-flex items-center gap-1 text-muted-foreground/50">
-              Next
-              <ChevronRight className="h-4 w-4" />
-            </span>
-          )}
-        </nav>
-      </header>
-
-      <section className="scroll-mt-6 space-y-5" aria-labelledby="installation">
-        <h2 id="installation" className="text-lg font-semibold tracking-tight text-foreground">
-          Installation
-        </h2>
-        <TabRow
-          value={installTab}
-          onChange={setInstallTab}
-          options={[
-            { id: "command", label: "Command" },
-            { id: "manual", label: "Manual" },
-          ]}
-        />
-
-        {installTab === "command" ? (
-          <div className="overflow-hidden rounded-xl border border-border bg-muted/20">
-            {/* Header row: terminal icon + pm tabs left, copy icon right */}
-            <div className="flex items-center gap-3 border-b border-border px-3 py-2">
-              <Terminal className="h-3.5 w-3.5 shrink-0 text-muted-foreground" aria-hidden />
-              <div className="flex items-center gap-0.5">
-                {packageManagers().map((p) => (
-                  <button
-                    key={p}
-                    type="button"
-                    onClick={() => setPm(p as PackageManager)}
-                    className={cx(
-                      "rounded-md px-2.5 py-1 text-xs font-medium transition",
-                      pm === p
-                        ? "bg-muted text-foreground"
-                        : "text-muted-foreground hover:text-foreground",
-                    )}
-                  >
-                    {p}
-                  </button>
-                ))}
-              </div>
-              <div className="ml-auto">
-                <CopyIconBtn text={cmds[pm]} />
-              </div>
+        <header id="overview" className="scroll-mt-6 space-y-6">
+          <div className="flex flex-col gap-6 sm:flex-row sm:items-start sm:justify-between">
+            <div className="min-w-0 space-y-2">
+              <h1 className="text-3xl font-semibold tracking-tight text-foreground sm:text-4xl">{label}</h1>
+              <p className="font-mono text-sm text-muted-foreground">{title}</p>
             </div>
-            {/* Command line */}
-            <ShikiCodeBlock code={cmds[pm]} lang="bash" className="rounded-none border-0 shadow-none" />
-          </div>
-        ) : (
-          <div className="overflow-hidden rounded-xl border border-border bg-muted/20">
-            <div className="flex items-center gap-2 border-b border-border px-3 py-2.5 sm:px-4">
-              <span className="flex-1 text-xs font-medium text-muted-foreground">Manual steps</span>
-              <CopyIconBtn text={manualMd} />
+            <div className="flex flex-wrap items-center gap-2">
+              <CopyBtn text={copyPageText} label="Copy page" />
             </div>
-            <ShikiCodeBlock code={manualMd} lang="plaintext" className="rounded-none border-0 shadow-none" />
           </div>
-        )}
-      </section>
 
-      <section className="scroll-mt-6 space-y-16" aria-labelledby="examples">
-        <div className="space-y-2">
-          <h2 id="examples" className="text-lg font-semibold tracking-tight text-foreground">
-            Examples
+          <p className="max-w-2xl text-[15px] leading-7 text-muted-foreground">{description}</p>
+
+          <div className="flex flex-wrap gap-2">
+            <span className="rounded-lg bg-muted/50 px-2.5 py-1 text-xs font-medium text-muted-foreground">
+              React
+            </span>
+            <span className="rounded-lg bg-muted/50 px-2.5 py-1 text-xs font-medium text-muted-foreground">
+              Tailwind CSS
+            </span>
+            <span className="rounded-lg bg-muted/50 px-2.5 py-1 text-xs font-medium text-muted-foreground">
+              {EDPEAR_PACKAGE}
+            </span>
+          </div>
+
+          <nav className="flex flex-wrap gap-6 pt-2 text-sm" aria-label="Pager">
+            {prev ? (
+              <Link
+                href={`/${prev}`}
+                className="inline-flex items-center gap-1 font-medium text-muted-foreground transition hover:text-foreground"
+              >
+                <ChevronLeft className="h-4 w-4" />
+                Previous
+              </Link>
+            ) : (
+              <span className="inline-flex items-center gap-1 text-muted-foreground/50">
+                <ChevronLeft className="h-4 w-4" />
+                Previous
+              </span>
+            )}
+            {next ? (
+              <Link
+                href={`/${next}`}
+                className="inline-flex items-center gap-1 font-medium text-muted-foreground transition hover:text-foreground"
+              >
+                Next
+                <ChevronRight className="h-4 w-4" />
+              </Link>
+            ) : (
+              <span className="inline-flex items-center gap-1 text-muted-foreground/50">
+                Next
+                <ChevronRight className="h-4 w-4" />
+              </span>
+            )}
+          </nav>
+        </header>
+
+        <section className="scroll-mt-6 space-y-5" aria-labelledby="installation">
+          <h2 id="installation" className="text-lg font-semibold tracking-tight text-foreground">
+            Installation
           </h2>
-          <p className="max-w-2xl text-sm leading-relaxed text-muted-foreground">
-            Each example shows the component in context, then the exact code for that case (imports included). Copy the
-            block that matches your product.
-          </p>
-        </div>
-        {usageExamples.map((ex, i) => {
-          const slot = examplePreviews?.[i];
-          const preview = slot !== undefined ? slot : i === 0 ? children : null;
-          return <ExampleShowcaseCard key={ex.id} example={ex} preview={preview} />;
-        })}
-      </section>
+          <TabRow
+            value={installTab}
+            onChange={setInstallTab}
+            options={[
+              { id: "command", label: "Command" },
+              { id: "manual", label: "Manual" },
+            ]}
+          />
 
-      <section
-        id="package-meta"
-        className="scroll-mt-6 rounded-xl bg-muted/30 px-4 py-4 text-sm text-muted-foreground"
-        aria-label="Package and styles"
-      >
-        <strong className="font-medium text-foreground">Package import:</strong>{" "}
-        <code className="rounded bg-muted px-1.5 py-0.5 font-mono text-xs">{INSTALL_COMMAND}</code>
-        <span className="mx-2">·</span>
-        <strong className="font-medium text-foreground">Styles:</strong>{" "}
-        <code className="rounded bg-muted px-1.5 py-0.5 font-mono text-xs">{STYLES_IMPORT_LINE}</code>
-      </section>
+          {installTab === "command" ? (
+            <div className="space-y-3">
+              <TabRow value={pm} onChange={setPm} options={packageManagers().map((p) => ({ id: p, label: p }))} />
+              <div className="overflow-hidden rounded-xl bg-muted/40">
+                <div className="flex items-center justify-between gap-2 px-3 py-2.5 sm:px-4">
+                  <span className="text-xs font-medium text-muted-foreground capitalize">{pm}</span>
+                  <CopyBtn text={cmds[pm]} />
+                </div>
+                <ShikiCodeBlock code={cmds[pm]} lang="bash" className="rounded-none border-0 shadow-none" />
+              </div>
+            </div>
+          ) : (
+            <div className="overflow-hidden rounded-xl bg-muted/40">
+              <div className="flex items-center justify-between gap-2 px-3 py-2.5 sm:px-4">
+                <span className="text-xs font-medium text-muted-foreground">Steps</span>
+                <CopyBtn text={manualMd} />
+              </div>
+              <ShikiCodeBlock code={manualMd} lang="plaintext" className="rounded-none border-0 shadow-none" />
+            </div>
+          )}
+        </section>
+
+        <section className="scroll-mt-6 space-y-16" aria-labelledby="examples">
+          <div className="space-y-2">
+            <h2 id="examples" className="text-lg font-semibold tracking-tight text-foreground">
+              Examples
+            </h2>
+            <p className="max-w-2xl text-sm leading-relaxed text-muted-foreground">
+              Each example shows the component in context, then the exact code for that case (imports included). Copy the
+              block that matches your product.
+            </p>
+          </div>
+          {usageExamples.map((ex, i) => {
+            const slot = examplePreviews?.[i];
+            const preview = slot !== undefined ? slot : i === 0 ? children : null;
+            return <ExampleShowcaseCard key={ex.id} example={ex} preview={preview} />;
+          })}
+        </section>
+
+        <section
+          id="package-meta"
+          className="scroll-mt-6 rounded-xl bg-muted/30 px-4 py-4 text-sm text-muted-foreground"
+          aria-label="Package and styles"
+        >
+          <strong className="font-medium text-foreground">Package import:</strong>{" "}
+          <code className="rounded bg-muted px-1.5 py-0.5 font-mono text-xs">{INSTALL_COMMAND}</code>
+          <span className="mx-2">·</span>
+          <strong className="font-medium text-foreground">Styles:</strong>{" "}
+          <code className="rounded bg-muted px-1.5 py-0.5 font-mono text-xs">{STYLES_IMPORT_LINE}</code>
+        </section>
       </div>
 
       <aside className="hidden min-w-0 xl:block" aria-label="Page summary">
