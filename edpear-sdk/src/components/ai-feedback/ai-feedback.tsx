@@ -17,21 +17,21 @@ export const AIFeedback = forwardRef<HTMLDivElement, AIFeedbackProps>(
     return (
       <div
         ref={ref}
-        className={cn("space-y-4 rounded-xl border bg-card p-6 text-card-foreground shadow-sm", className)}
+        className={cn("space-y-5 rounded-xl bg-muted/30 p-6 text-card-foreground", className)}
         data-slot="ai-feedback"
         {...props}
       >
-        <div className="space-y-1">
-          <div className="flex items-center gap-2 text-sm font-medium text-primary">
-            <Sparkles className="h-4 w-4" />
+        <div className="space-y-2">
+          <div className="flex items-center gap-2 text-sm font-medium text-foreground">
+            <Sparkles className="h-4 w-4 text-foreground/50" />
             <span>AI feedback</span>
           </div>
-          <p className="text-sm text-muted-foreground">
+          <p className="text-sm leading-relaxed text-muted-foreground">
             Generate constructive, next-step-focused feedback for a learner response.
           </p>
         </div>
         <button
-          className="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-primary text-primary-foreground hover:bg-primary/90 h-10 px-4 py-2"
+          className="inline-flex h-10 items-center justify-center whitespace-nowrap rounded-lg bg-foreground px-4 py-2 text-sm font-medium text-background transition-colors hover:bg-foreground/90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background disabled:pointer-events-none disabled:opacity-50 dark:hover:bg-foreground/85"
           disabled={loading || !studentAnswer.trim() || !correctAnswer.trim()}
           type="button"
           onClick={async () => {
@@ -72,19 +72,19 @@ export const AIFeedback = forwardRef<HTMLDivElement, AIFeedbackProps>(
           {loading ? "Generating feedback..." : "Generate feedback"}
         </button>
         {loading ? (
-          <div className="space-y-2 rounded-md border bg-muted/50 p-4">
+          <div className="space-y-2 rounded-xl bg-muted/40 p-4">
             <div className="h-4 animate-pulse rounded bg-muted" />
             <div className="h-4 animate-pulse rounded bg-muted" />
             <div className="h-4 w-2/3 animate-pulse rounded bg-muted" />
           </div>
         ) : null}
         {error ? (
-          <div className="rounded-2xl border border-feedback-incorrect/30 bg-feedback-incorrect/10 p-4 text-sm text-feedback-incorrect">
+          <div className="rounded-xl bg-feedback-incorrect/12 p-4 text-sm text-feedback-incorrect">
             {error}
           </div>
         ) : null}
         {feedback ? (
-          <div className="rounded-md border bg-muted/50 p-4 text-sm leading-6">
+          <div className="rounded-xl bg-muted/40 p-4 text-sm leading-7 text-foreground/95">
             {feedback}
           </div>
         ) : null}

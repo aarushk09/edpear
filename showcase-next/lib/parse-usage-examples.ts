@@ -28,12 +28,33 @@ export function parseUsageExamples(full: string): ParsedUsageExample[] {
     const first = lines[0] ?? "";
     const m = first.match(/^\/\/ \d+[a-z]?\)\s*(.*)$/);
     const title = m?.[1]?.trim() || `Example ${i + 1}`;
-    const body = lines.slice(1).join("\n").trim();
-    const code = preamble ? `${preamble}\n\n${body}`.trim() : chunk.trim();
+
+    let j = 1;
+    const descParts: string[] = [];
+    while (j < lines.length) {
+      const line = lines[j] ?? "";
+      if (line.trim() === "") {
+        j += 1;
+        if (descParts.length > 0) break;
+        continue;
+      }
+      if (line.startsWith("//") && !/^\/\/ \d+[a-z]?\) /.test(line)) {
+        descParts.push(line.replace(/^\/\/\s?/, "").trim());
+        j += 1;
+        continue;
+      }
+      break;
+    }
+    while (j < lines.length && lines[j]?.trim() === "") j += 1;
+
+    const body = lines.slice(j).join("\n").trim();
+    const description = descParts.length > 0 ? descParts.join(" ") : undefined;
+    const code = preamble ? `${preamble}\n\n${body}`.trim() : (body || chunk.trim());
+
     return {
       id: `usage-example-${i + 1}`,
       title,
-      description: undefined,
+      description,
       code,
     };
   });

@@ -78,27 +78,70 @@ html.dark {
 }
 
 /*
- * EdPear showcase: dot field + soft vignettes (neutral only). No line grid.
- * Stronger dots than before so the texture reads without competing with content.
+ * Light mode: neutral zinc ink only (overrides edpear chroma for this app).
+ * Previews and tokens read black/white/gray so examples match a minimal doc.
  */
+html:not(.dark) {
+  --background: 0 0% 97%;
+  --foreground: 0 0% 9%;
+  --card: 0 0% 100%;
+  --card-foreground: 0 0% 9%;
+  --popover: 0 0% 100%;
+  --popover-foreground: 0 0% 9%;
+  --muted: 0 0% 92%;
+  --muted-foreground: 0 0% 42%;
+  --accent: 0 0% 94%;
+  --accent-foreground: 0 0% 9%;
+  --secondary: 0 0% 94%;
+  --secondary-foreground: 0 0% 9%;
+  --border: 0 0% 86%;
+  --input: 0 0% 86%;
+  --ring: 0 0% 55%;
+  --primary: 0 0% 12%;
+  --primary-foreground: 0 0% 98%;
+  --destructive: 0 0% 28%;
+  --destructive-foreground: 0 0% 98%;
+  --lesson: 0 0% 38%;
+  --quiz: 0 0% 38%;
+  --progress: 0 0% 38%;
+  --feedback-correct: 0 0% 36%;
+  --feedback-incorrect: 0 0% 32%;
+  --showcase-sidebar: 0 0% 98%;
+  --showcase-sidebar-fg: 0 0% 12%;
+  --showcase-sidebar-border: 0 0% 88%;
+  --showcase-sidebar-accent: 0 0% 94%;
+  --showcase-sidebar-accent-fg: 0 0% 12%;
+  --showcase-sidebar-muted: 0 0% 45%;
+}
+
+/* EdPear showcase: soft corner glow + micro-dot grid (grey only) */
 html.dark .showcase-app-shell {
   background-color: hsl(var(--background));
   background-image:
-    radial-gradient(ellipse 90% 55% at 100% -10%, hsl(0 0% 100% / 0.05), transparent 52%),
-    radial-gradient(ellipse 70% 45% at -15% 100%, hsl(0 0% 100% / 0.035), transparent 48%),
-    radial-gradient(circle at 1px 1px, hsl(0 0% 100% / 0.08) 1px, transparent 0);
-  background-size: auto, auto, 18px 18px;
+    radial-gradient(ellipse 90% 55% at 100% -10%, hsl(0 0% 100% / 0.045), transparent 50%),
+    radial-gradient(ellipse 70% 45% at -15% 100%, hsl(0 0% 100% / 0.03), transparent 45%),
+    radial-gradient(circle at 1px 1px, hsl(0 0% 100% / 0.035) 1px, transparent 0);
+  background-size: auto, auto, 22px 22px;
   background-repeat: no-repeat, no-repeat, repeat;
 }
 
 html:not(.dark) .showcase-app-shell {
-  background-color: hsl(var(--showcase-sidebar));
+  background-color: hsl(var(--background));
   background-image:
-    radial-gradient(ellipse 85% 50% at 100% 0%, hsl(222 47% 11% / 0.04), transparent 50%),
-    radial-gradient(ellipse 65% 40% at 0% 100%, hsl(222 47% 11% / 0.03), transparent 48%),
-    radial-gradient(circle at 1px 1px, hsl(222 47% 11% / 0.1) 1px, transparent 0);
-  background-size: auto, auto, 16px 16px;
+    radial-gradient(ellipse 85% 50% at 100% 0%, hsl(0 0% 0% / 0.035), transparent 50%),
+    radial-gradient(ellipse 65% 40% at 0% 100%, hsl(0 0% 0% / 0.025), transparent 48%),
+    radial-gradient(circle at 1px 1px, hsl(0 0% 0% / 0.055) 1px, transparent 0);
+  background-size: auto, auto, 18px 18px;
   background-repeat: no-repeat, no-repeat, repeat;
+}
+
+/* Showcase code blocks: monochrome tokens (hue from Shiki → luminance only) */
+.showcase-code-block .shiki {
+  filter: grayscale(1);
+}
+
+html.dark .showcase-code-block .shiki {
+  filter: grayscale(1) brightness(1.06);
 }
 
 /* Wins over edpear base body font when both apply */
