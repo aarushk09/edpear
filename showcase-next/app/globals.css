@@ -141,9 +141,8 @@ html.dark .showcase-app-shell {
   background-color: hsl(var(--background));
   background-image:
     radial-gradient(ellipse 90% 55% at 100% -10%, hsl(0 0% 100% / 0.045), transparent 50%),
-    radial-gradient(ellipse 70% 45% at -15% 100%, hsl(0 0% 100% / 0.03), transparent 45%),
-    radial-gradient(circle at 1px 1px, hsl(0 0% 100% / 0.035) 1px, transparent 0);
-  background-size: auto, auto, 22px 22px;
+    radial-gradient(ellipse 70% 45% at -15% 100%, hsl(0 0% 100% / 0.03), transparent 45%);
+  background-size: auto, auto;
 }
 
 /*
