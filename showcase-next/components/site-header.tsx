@@ -89,109 +89,89 @@ export function SiteHeader() {
   const isMcp = pathname === "/mcp";
 
   return (
-    <header className="sticky top-0 z-50 w-full bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8 flex h-14 max-w-7xl items-center justify-between">
+    <header className="sticky top-0 z-50 w-full bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 border-b border-border/40">
+      <div className="flex h-14 items-center">
         
-        {/* Left section: Logo and Main Nav */}
-        <div className="flex items-center gap-6 md:gap-8">
-          <Link href="/" className="flex items-center gap-2 group shrink-0">
-            <div className="flex size-8 items-center justify-center rounded-lg border border-border bg-gradient-to-br from-background to-muted/50 text-[10px] font-medium tracking-wider text-muted-foreground shadow-sm transition-all group-hover:bg-muted group-hover:text-foreground">
-              EP
-            </div>
-            <div className="flex flex-col">
-              <span className="text-[10px] font-bold tracking-widest text-muted-foreground/80 uppercase leading-none mb-1">
-                EdPear
-              </span>
-              <span className="font-semibold leading-none tracking-tight">Component showcase</span>
-            </div>
-            {/* Minimal separator before tabs */}
-            <div className="hidden sm:block h-6 w-[1px] bg-border ml-6"></div>
+        {/* Left section: Logo matching sidebar width */}
+        <div className="flex h-full items-center px-4 md:px-5 w-full md:w-[16.5rem] lg:w-[17.5rem] shrink-0 border-r border-border/40">
+          <Link href="/" className="flex items-center gap-2 font-bold tracking-tight text-foreground transition-colors hover:text-foreground/80">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 256 256"
+              className="h-5 w-5"
+            >
+              <rect width="256" height="256" fill="none" />
+              <line
+                x1="208"
+                y1="128"
+                x2="128"
+                y2="208"
+                fill="none"
+                stroke="currentColor"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth="16"
+              />
+              <line
+                x1="192"
+                y1="40"
+                x2="40"
+                y2="192"
+                fill="none"
+                stroke="currentColor"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth="16"
+              />
+            </svg>
+            EdPear
           </Link>
-
-          {/* Desktop Nav Tabs */}
-          <nav className="hidden sm:flex items-center gap-1">
-            <Link
-              href="/"
-              className={`px-3 py-1.5 text-sm font-medium rounded-md transition-colors ${
-                isComponents 
-                  ? "bg-foreground/10 text-foreground" 
-                  : "text-muted-foreground hover:bg-foreground/5 hover:text-foreground"
-              }`}
-            >
-              Components
-            </Link>
-            <Link
-              href="/agent-skills"
-              className={`px-3 py-1.5 text-sm font-medium rounded-md transition-colors flex items-center gap-2 ${
-                isAgentSkills 
-                  ? "bg-foreground/10 text-foreground" 
-                  : "text-muted-foreground hover:bg-foreground/5 hover:text-foreground"
-              }`}
-            >
-              Agent Skills
-              <span className="rounded bg-primary/10 px-1.5 py-0.5 text-[10px] uppercase tracking-wider text-primary font-bold">
-                Beta
-              </span>
-            </Link>
-            <Link
-              href="/mcp"
-              className={`px-3 py-1.5 text-sm font-medium rounded-md transition-colors flex items-center gap-2 ${
-                isMcp 
-                  ? "bg-foreground/10 text-foreground" 
-                  : "text-muted-foreground hover:bg-foreground/5 hover:text-foreground"
-              }`}
-            >
-              MCP Server
-              <span className="rounded bg-primary/10 px-1.5 py-0.5 text-[10px] uppercase tracking-wider text-primary font-bold">
-                Beta
-              </span>
-            </Link>
-          </nav>
         </div>
 
-        <div className="flex shrink-0 flex-wrap items-center justify-between sm:justify-end gap-2">
-          {/* Mobile nav duplicate */}
-          <nav className="flex sm:hidden items-center gap-1 w-full mb-2">
+        {/* Right Section: Main Nav & Utilities */}
+        <div className="flex flex-1 items-center justify-between px-4 md:px-6">
+          <nav className="hidden sm:flex items-center gap-5 text-sm font-medium">
             <Link
               href="/"
-              className={`px-3 py-1 text-sm font-medium rounded-md transition-colors ${
-                isComponents 
-                  ? "bg-foreground/10 text-foreground" 
-                  : "text-muted-foreground hover:bg-foreground/5 hover:text-foreground"
+              className={`transition-colors hover:text-foreground ${
+                isComponents ? "text-foreground" : "text-foreground/60"
               }`}
             >
               Components
             </Link>
             <Link
               href="/agent-skills"
-              className={`px-3 py-1 text-sm font-medium rounded-md transition-colors flex items-center gap-2 ${
-                isAgentSkills 
-                  ? "bg-foreground/10 text-foreground" 
-                  : "text-muted-foreground hover:bg-foreground/5 hover:text-foreground"
+              className={`transition-colors hover:text-foreground ${
+                isAgentSkills ? "text-foreground" : "text-foreground/60"
               }`}
-             >
+            >
               Agent Skills
-              <span className="rounded bg-primary/10 px-1.5 py-0.5 text-[10px] uppercase tracking-wider text-primary font-bold">
-                Beta
-              </span>
             </Link>
             <Link
               href="/mcp"
-              className={`px-3 py-1 text-sm font-medium rounded-md transition-colors flex items-center gap-2 ${
-                isMcp 
-                  ? "bg-foreground/10 text-foreground" 
-                  : "text-muted-foreground hover:bg-foreground/5 hover:text-foreground"
+              className={`transition-colors hover:text-foreground ${
+                isMcp ? "text-foreground" : "text-foreground/60"
               }`}
             >
               MCP Server
-              <span className="rounded bg-primary/10 px-1.5 py-0.5 text-[10px] uppercase tracking-wider text-primary font-bold">
-                Beta
-              </span>
             </Link>
           </nav>
-          
-          <ApiKeyInput />
-          <ThemeToggle />
+
+          {/* Utilities */}
+          <div className="flex flex-1 items-center justify-end gap-2 sm:gap-4">
+            <nav className="flex items-center gap-1 sm:hidden w-full">
+              <Link
+                href="/"
+                className={`text-xs font-medium transition-colors ${
+                  isComponents ? "text-foreground" : "text-muted-foreground"
+                }`}
+              >
+                Components
+              </Link>
+            </nav>
+            <ApiKeyInput />
+            <ThemeToggle />
+          </div>
         </div>
       </div>
     </header>
