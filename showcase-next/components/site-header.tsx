@@ -2,9 +2,85 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { useState, useRef, useEffect } from "react";
 import { ThemeToggle } from "./showcase-shell";
+import { useApiKey, setLocalApiKey } from "../lib/use-api-key";
 
-const apiKey = process.env.NEXT_PUBLIC_OPENROUTER_API_KEY ?? "";
+function ApiKeyInput() {
+  const apiKey = useApiKey();
+  const [isOpen, setIsOpen] = useState(false);
+  const [inputValue, setInputValue] = useState(apiKey);
+  const containerRef = useRef<HTMLDivElement>(null);
+
+  // Sync internal input when API key changes externally
+  useEffect(() => {
+    setInputValue(apiKey);
+  }, [apiKey]);
+
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (containerRef.current && !containerRef.current.contains(event.target as Node)) {
+        setIsOpen(false);
+      }
+    };
+    if (isOpen) {
+      document.addEventListener("mousedown", handleClickOutside);
+    }
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, [isOpen]);
+
+  return (
+    <div className="relative" ref={containerRef}>
+      <button
+        type="button"
+        onClick={() => setIsOpen(!isOpen)}
+        className={`rounded-lg px-2.5 py-1 text-[11px] font-medium transition-colors md:inline-flex ${
+          apiKey 
+            ? "bg-primary/10 text-primary hover:bg-primary/20" 
+            : "bg-muted/40 text-muted-foreground hover:bg-muted"
+        }`}
+      >
+        {apiKey ? "OpenRouter key set" : "No OpenRouter key"}
+      </button>
+      
+      {isOpen && (
+        <div className="absolute right-0 top-full mt-2 w-72 rounded-xl border border-border bg-popover p-4 text-popover-foreground shadow-lg outline-none animate-in fade-in zoom-in-95 data-[state=closed]:animate-out data-[state=closed]:fade-out data-[state=closed]:zoom-out-95">
+          <div className="space-y-3">
+            <h4 className="font-semibold leading-none text-sm">OpenRouter API Key</h4>
+            <p className="text-xs text-muted-foreground leading-relaxed">
+              Enter your key to test the AI-powered components in the showcase. It is stored securely in your browser's local storage.
+            </p>
+            <div className="flex gap-2">
+              <input
+                type="password"
+                className="flex h-8 w-full rounded-md border border-input bg-transparent px-3 py-1 text-sm shadow-sm transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50"
+                placeholder="sk-or-v1-..."
+                value={inputValue}
+                onChange={(e) => setInputValue(e.target.value)}
+                onKeyDown={(e) => {
+                  if (e.key === 'Enter') {
+                    setLocalApiKey(inputValue);
+                    setIsOpen(false);
+                  }
+                }}
+              />
+              <button
+                type="button"
+                className="inline-flex h-8 items-center justify-center whitespace-nowrap rounded-md bg-primary px-3 text-xs font-medium text-primary-foreground shadow hover:bg-primary/90 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring"
+                onClick={() => {
+                  setLocalApiKey(inputValue);
+                  setIsOpen(false);
+                }}
+              >
+                Save
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+    </div>
+  );
+}
 
 export function SiteHeader() {
   const pathname = usePathname();
@@ -114,19 +190,7 @@ export function SiteHeader() {
             </Link>
           </nav>
           
-          <span className="rounded-lg bg-muted/60 px-2.5 py-1 text-[11px] font-medium tabular-nums text-muted-foreground hidden lg:inline-flex">
-            35 components
-          </span>
-          <span className="rounded-lg bg-muted/60 px-2.5 py-1 text-[11px] font-medium text-muted-foreground hidden lg:inline-flex">
-            Tailwind v4
-          </span>
-          <span
-            className={`rounded-lg px-2.5 py-1 text-[11px] font-medium hidden md:inline-flex ${
-              apiKey ? "bg-muted text-foreground" : "bg-muted/40 text-muted-foreground"
-            }`}
-          >
-            {apiKey ? "OpenRouter key set" : "No OpenRouter key"}
-          </span>
+          <ApiKeyInput />
           <ThemeToggle />
         </div>
       </div>

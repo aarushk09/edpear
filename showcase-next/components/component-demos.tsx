@@ -43,8 +43,7 @@ import { Code } from "lucide-react";
 
 import { DemoFrame } from "./component-doc-page";
 import type { ShowcaseSlug } from "../lib/showcase-nav";
-
-const apiKey = process.env.NEXT_PUBLIC_OPENROUTER_API_KEY ?? "";
+import { useApiKey } from "../lib/use-api-key";
 
 function OnboardingWelcomePreview() {
   const [done, setDone] = useState<string[]>([]);
@@ -367,6 +366,8 @@ function FeedbackSliderVariantPreview({
 
 
 export function ComponentDemo({ slug }: { slug: ShowcaseSlug }) {
+  const apiKey = useApiKey();
+
   switch (slug) {
     case "course-card":
       return (
