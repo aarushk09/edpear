@@ -103,6 +103,77 @@ export { DiffViewer } from "./components/diff-viewer/index.js";
 export type { DiffViewerMode, DiffViewerProps } from "./components/diff-viewer/index.js";
 export { FeedbackSlider } from "./components/feedback-slider/index.js";
 export type { FeedbackPayload, FeedbackSliderProps, FeedbackVariant } from "./components/feedback-slider/index.js";
+export { SkillRadar } from "./components/skill-radar/index.js";
+export type { SkillRadarProps } from "./components/skill-radar/index.js";
+export { LearningStyleQuiz } from "./components/learning-style-quiz/index.js";
+export type { LearningStyleQuizProps } from "./components/learning-style-quiz/index.js";
+export { AdaptiveDifficultyMeter } from "./components/adaptive-difficulty-meter/index.js";
+export type { AdaptiveDifficultyMeterProps } from "./components/adaptive-difficulty-meter/index.js";
+export { KnowledgeGapAlert } from "./components/knowledge-gap-alert/index.js";
+export type { KnowledgeGapAlertProps } from "./components/knowledge-gap-alert/index.js";
+export { RecommendationCarousel } from "./components/recommendation-carousel/index.js";
+export type { RecommendationCarouselProps, RecommendationItem } from "./components/recommendation-carousel/index.js";
+
+export { StudyScheduler } from "./components/study-scheduler/index.js";
+export type { StudySchedulerProps } from "./components/study-scheduler/index.js";
+export { DeadlineCountdown } from "./components/deadline-countdown/index.js";
+export type { DeadlineCountdownProps } from "./components/deadline-countdown/index.js";
+export { GoalSetter } from "./components/goal-setter/index.js";
+export type { GoalSetterProps } from "./components/goal-setter/index.js";
+export { AttendanceTracker } from "./components/attendance-tracker/index.js";
+export type { AttendanceRecord, AttendanceSession, AttendanceStatus, AttendanceStudent, AttendanceTrackerProps } from "./components/attendance-tracker/index.js";
+export { PacingGuide } from "./components/pacing-guide/index.js";
+export type { PacingGuideProps, PacingItem } from "./components/pacing-guide/index.js";
+
+export { LeaderboardWidget } from "./components/leaderboard-widget/index.js";
+export type { LeaderboardEntry, LeaderboardScope, LeaderboardWidgetProps } from "./components/leaderboard-widget/index.js";
+export { XPProgressBar } from "./components/xp-progress-bar/index.js";
+export type { XPProgressBarProps } from "./components/xp-progress-bar/index.js";
+export { ChallengeCard } from "./components/challenge-card/index.js";
+export type { ChallengeCardProps, ChallengeReward, ChallengeStatus } from "./components/challenge-card/index.js";
+export { SpinToReview } from "./components/spin-to-review/index.js";
+export type { SpinItem, SpinToReviewProps } from "./components/spin-to-review/index.js";
+export { VirtualCurrency } from "./components/virtual-currency/index.js";
+export type { CurrencyTransaction, VirtualCurrencyProps } from "./components/virtual-currency/index.js";
+
+export { PollWidget } from "./components/poll-widget/index.js";
+export type { PollOption, PollStatus, PollWidgetProps } from "./components/poll-widget/index.js";
+export { RaiseHandQueue } from "./components/raise-hand-queue/index.js";
+export type { QueuedStudent, RaiseHandQueueProps } from "./components/raise-hand-queue/index.js";
+export { BreakoutRoomCard } from "./components/breakout-room-card/index.js";
+export type { BreakoutMember, BreakoutRoomCardProps, BreakoutStatus } from "./components/breakout-room-card/index.js";
+export { LectureCaptionOverlay } from "./components/lecture-caption-overlay/index.js";
+export type { CaptionSegment, LectureCaptionOverlayProps } from "./components/lecture-caption-overlay/index.js";
+export { WhiteboardEmbed } from "./components/whiteboard-embed/index.js";
+export type { WhiteboardEmbedProps } from "./components/whiteboard-embed/index.js";
+
+export { ChemistryFormulaBuilder } from "./components/chemistry-formula-builder/index.js";
+export type { ChemicalElement, ChemistryFormulaBuilderProps, FormulaPart } from "./components/chemistry-formula-builder/index.js";
+export { InteractiveTimeline } from "./components/interactive-timeline/index.js";
+export type { InteractiveTimelineProps, TimelineNode } from "./components/interactive-timeline/index.js";
+export { GeoMapQuiz } from "./components/geo-map-quiz/index.js";
+export type { GeoMapQuizProps, GeoMapRegion } from "./components/geo-map-quiz/index.js";
+export { CircuitSimulator } from "./components/circuit-simulator/index.js";
+export type { CircuitConnection, CircuitNode, CircuitSimulatorProps, LogicNodeType } from "./components/circuit-simulator/index.js";
+export { DataTableLab } from "./components/data-table-lab/index.js";
+export type { DataColumn, DataRow, DataTableLabProps } from "./components/data-table-lab/index.js";
+
+export { RubricBuilder } from "./components/rubric-builder/index.js";
+export type { RubricBuilderProps, RubricCell, RubricCriterion, RubricLevel } from "./components/rubric-builder/index.js";
+export { CohortComparisonChart } from "./components/cohort-comparison-chart/index.js";
+export type { CohortComparisonChartProps, ComparisonDataPoint } from "./components/cohort-comparison-chart/index.js";
+export { AttendanceHeatMap } from "./components/attendance-heat-map/index.js";
+export type { AttendanceHeatMapProps, HeatMapData } from "./components/attendance-heat-map/index.js";
+export { GradingQueueCard } from "./components/grading-queue-card/index.js";
+export type { GradingQueueCardProps, GradingTask } from "./components/grading-queue-card/index.js";
+export { PlagiarismScoreIndicator } from "./components/plagiarism-score-indicator/index.js";
+export type { PlagiarismScoreIndicatorProps, PlagiarismSource, PlagiarismStatus } from "./components/plagiarism-score-indicator/index.js";
+
+export { ReadingLevelToggle } from "./components/reading-level-toggle/index.js";
+export type { ReadingLevel, ReadingLevelToggleProps } from "./components/reading-level-toggle/index.js";
+export { TranslationOverlay } from "./components/translation-overlay/index.js";
+export type { TranslationOverlayProps } from "./components/translation-overlay/index.js";
+
 export { cn } from "./lib/cn.js";
 export {
   OPENROUTER_BASE,

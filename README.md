@@ -14,7 +14,6 @@
 <br />
 
 [![npm version](https://img.shields.io/npm/v/edpear-sdk?color=4f46e5&label=npm&style=flat-square)](https://www.npmjs.com/package/edpear-sdk)
-[![npm downloads](https://img.shields.io/npm/dm/edpear-sdk?color=0ea5e9&style=flat-square)](https://www.npmjs.com/package/edpear-sdk)
 [![TypeScript](https://img.shields.io/badge/TypeScript-strict-3178c6?style=flat-square&logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
 [![Tailwind CSS](https://img.shields.io/badge/Tailwind-CSS-38bdf8?style=flat-square&logo=tailwindcss&logoColor=white)](https://tailwindcss.com/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-22c55e?style=flat-square)](./LICENSE)

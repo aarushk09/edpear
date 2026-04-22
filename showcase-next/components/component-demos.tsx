@@ -37,6 +37,38 @@ import {
   MathRenderer,
   CourseDashboard,
   AITutor,
+  SkillRadar,
+  LearningStyleQuiz,
+  AdaptiveDifficultyMeter,
+  KnowledgeGapAlert,
+  RecommendationCarousel,
+  StudyScheduler,
+  DeadlineCountdown,
+  GoalSetter,
+  AttendanceTracker,
+  PacingGuide,
+  LeaderboardWidget,
+  XPProgressBar,
+  ChallengeCard,
+  SpinToReview,
+  VirtualCurrency,
+  PollWidget,
+  RaiseHandQueue,
+  BreakoutRoomCard,
+  LectureCaptionOverlay,
+  WhiteboardEmbed,
+  ChemistryFormulaBuilder,
+  InteractiveTimeline,
+  GeoMapQuiz,
+  CircuitSimulator,
+  DataTableLab,
+  RubricBuilder,
+  CohortComparisonChart,
+  AttendanceHeatMap,
+  GradingQueueCard,
+  PlagiarismScoreIndicator,
+  ReadingLevelToggle,
+  TranslationOverlay
 } from "edpear";
 import type { QuestionBankItem, ReadingHighlight, TimedQuizProps } from "edpear";
 import { Code } from "lucide-react";
@@ -1804,6 +1836,519 @@ export function ComponentDemo({ slug }: { slug: ShowcaseSlug }) {
                 title="Writing studio"
               />
             </div>,
+          ]}
+        >
+          {null}
+        </DemoFrame>
+      );
+
+    
+    case "skill-radar":
+      return (
+        <DemoFrame
+          id="skill-radar"
+          title="<SkillRadar />"
+          description="Interactive demo for SkillRadar."
+          examplePreviews={[
+            <div key="skill-radar-0" className="w-full max-w-lg">
+              <SkillRadar data={[{ name: "Math", value: 8 }, { name: "Reading", value: 5 }]} />
+            </div>
+          ]}
+        >
+          {null}
+        </DemoFrame>
+      );
+
+    case "learning-style-quiz":
+      return (
+        <DemoFrame
+          id="learning-style-quiz"
+          title="<LearningStyleQuiz />"
+          description="Interactive demo for LearningStyleQuiz."
+          examplePreviews={[
+            <div key="learning-style-quiz-0" className="w-full max-w-lg">
+              <LearningStyleQuiz onComplete={() => {}} />
+            </div>
+          ]}
+        >
+          {null}
+        </DemoFrame>
+      );
+
+    case "adaptive-difficulty-meter":
+      return (
+        <DemoFrame
+          id="adaptive-difficulty-meter"
+          title="<AdaptiveDifficultyMeter />"
+          description="Interactive demo for AdaptiveDifficultyMeter."
+          examplePreviews={[
+            <div key="adaptive-difficulty-meter-0" className="w-full max-w-lg">
+              <AdaptiveDifficultyMeter value={70} trend="increasing" />
+            </div>
+          ]}
+        >
+          {null}
+        </DemoFrame>
+      );
+
+    case "knowledge-gap-alert":
+      return (
+        <DemoFrame
+          id="knowledge-gap-alert"
+          title="<KnowledgeGapAlert />"
+          description="Interactive demo for KnowledgeGapAlert."
+          examplePreviews={[
+            <div key="knowledge-gap-alert-0" className="w-full max-w-lg">
+              <KnowledgeGapAlert gaps={[{ id: "1", topic: "Algebra Basics", remedyUrl: "#" }]} />
+            </div>
+          ]}
+        >
+          {null}
+        </DemoFrame>
+      );
+
+    case "recommendation-carousel":
+      return (
+        <DemoFrame
+          id="recommendation-carousel"
+          title="<RecommendationCarousel />"
+          description="Interactive demo for RecommendationCarousel."
+          examplePreviews={[
+            <div key="recommendation-carousel-0" className="w-full max-w-lg">
+              <RecommendationCarousel items={[{ id: "1", title: "Next: Calculus", type: "course", matchScore: 95 }]} />
+            </div>
+          ]}
+        >
+          {null}
+        </DemoFrame>
+      );
+
+    case "study-scheduler":
+      return (
+        <DemoFrame
+          id="study-scheduler"
+          title="<StudyScheduler />"
+          description="Interactive demo for StudyScheduler."
+          examplePreviews={[
+            <div key="study-scheduler-0" className="w-full max-w-lg">
+              <StudyScheduler sessions={[]} onSessionMove={() => {}} />
+            </div>
+          ]}
+        >
+          {null}
+        </DemoFrame>
+      );
+
+    case "deadline-countdown":
+      return (
+        <DemoFrame
+          id="deadline-countdown"
+          title="<DeadlineCountdown />"
+          description="Interactive demo for DeadlineCountdown."
+          examplePreviews={[
+            <div key="deadline-countdown-0" className="w-full max-w-lg">
+              <DeadlineCountdown targetDate={new Date(Date.now() + 86400000).toISOString()} title="Assignment Due" />
+            </div>
+          ]}
+        >
+          {null}
+        </DemoFrame>
+      );
+
+    case "goal-setter":
+      return (
+        <DemoFrame
+          id="goal-setter"
+          title="<GoalSetter />"
+          description="Interactive demo for GoalSetter."
+          examplePreviews={[
+            <div key="goal-setter-0" className="w-full max-w-lg">
+              <GoalSetter onSave={() => {}} />
+            </div>
+          ]}
+        >
+          {null}
+        </DemoFrame>
+      );
+
+    case "attendance-tracker":
+      return (
+        <DemoFrame
+          id="attendance-tracker"
+          title="<AttendanceTracker />"
+          description="Interactive demo for AttendanceTracker."
+          examplePreviews={[
+            <div key="attendance-tracker-0" className="w-full max-w-lg">
+              <AttendanceTracker students={[{ id: "1", name: "Alice" }]} sessions={[]} records={[]} />
+            </div>
+          ]}
+        >
+          {null}
+        </DemoFrame>
+      );
+
+    case "pacing-guide":
+      return (
+        <DemoFrame
+          id="pacing-guide"
+          title="<PacingGuide />"
+          description="Interactive demo for PacingGuide."
+          examplePreviews={[
+            <div key="pacing-guide-0" className="w-full max-w-lg">
+              <PacingGuide items={[{ id: "1", title: "Module 1", expectedDate: "2023-10-01" }]} />
+            </div>
+          ]}
+        >
+          {null}
+        </DemoFrame>
+      );
+
+    case "leaderboard-widget":
+      return (
+        <DemoFrame
+          id="leaderboard-widget"
+          title="<LeaderboardWidget />"
+          description="Interactive demo for LeaderboardWidget."
+          examplePreviews={[
+            <div key="leaderboard-widget-0" className="w-full max-w-lg">
+              <LeaderboardWidget entries={[{ id: "1", name: "Alice", score: 100, rank: 1 }]} />
+            </div>
+          ]}
+        >
+          {null}
+        </DemoFrame>
+      );
+
+    case "xp-progress-bar":
+      return (
+        <DemoFrame
+          id="xp-progress-bar"
+          title="<XPProgressBar />"
+          description="Interactive demo for XPProgressBar."
+          examplePreviews={[
+            <div key="xp-progress-bar-0" className="w-full max-w-lg">
+              <XPProgressBar currentXP={450} nextLevelXP={1000} level={5} />
+            </div>
+          ]}
+        >
+          {null}
+        </DemoFrame>
+      );
+
+    case "challenge-card":
+      return (
+        <DemoFrame
+          id="challenge-card"
+          title="<ChallengeCard />"
+          description="Interactive demo for ChallengeCard."
+          examplePreviews={[
+            <div key="challenge-card-0" className="w-full max-w-lg">
+              <ChallengeCard title="Daily Challenge" description="Complete 3 quizzes" expiresAt={Date.now() + 86400000} reward={{ type: "xp", amount: 50 }} />
+            </div>
+          ]}
+        >
+          {null}
+        </DemoFrame>
+      );
+
+    case "spin-to-review":
+      return (
+        <DemoFrame
+          id="spin-to-review"
+          title="<SpinToReview />"
+          description="Interactive demo for SpinToReview."
+          examplePreviews={[
+            <div key="spin-to-review-0" className="w-full max-w-lg">
+              <SpinToReview items={[{ id: "1", label: "Topic A" }]} onSpinEnd={() => {}} />
+            </div>
+          ]}
+        >
+          {null}
+        </DemoFrame>
+      );
+
+    case "virtual-currency":
+      return (
+        <DemoFrame
+          id="virtual-currency"
+          title="<VirtualCurrency />"
+          description="Interactive demo for VirtualCurrency."
+          examplePreviews={[
+            <div key="virtual-currency-0" className="w-full max-w-lg">
+              <VirtualCurrency balance={1500} currencyName="PearCoins" />
+            </div>
+          ]}
+        >
+          {null}
+        </DemoFrame>
+      );
+
+    case "poll-widget":
+      return (
+        <DemoFrame
+          id="poll-widget"
+          title="<PollWidget />"
+          description="Interactive demo for PollWidget."
+          examplePreviews={[
+            <div key="poll-widget-0" className="w-full max-w-lg">
+              <PollWidget question="What is 2+2?" options={[{ id: "1", label: "4", votes: 10 }]} status="open" onVote={() => {}} />
+            </div>
+          ]}
+        >
+          {null}
+        </DemoFrame>
+      );
+
+    case "raise-hand-queue":
+      return (
+        <DemoFrame
+          id="raise-hand-queue"
+          title="<RaiseHandQueue />"
+          description="Interactive demo for RaiseHandQueue."
+          examplePreviews={[
+            <div key="raise-hand-queue-0" className="w-full max-w-lg">
+              <RaiseHandQueue queue={[{ id: "1", name: "Alice", raisedAt: Date.now() }]} />
+            </div>
+          ]}
+        >
+          {null}
+        </DemoFrame>
+      );
+
+    case "breakout-room-card":
+      return (
+        <DemoFrame
+          id="breakout-room-card"
+          title="<BreakoutRoomCard />"
+          description="Interactive demo for BreakoutRoomCard."
+          examplePreviews={[
+            <div key="breakout-room-card-0" className="w-full max-w-lg">
+              <BreakoutRoomCard roomName="Room 1" members={[{ id: "1", name: "Alice" }]} status="assigned" />
+            </div>
+          ]}
+        >
+          {null}
+        </DemoFrame>
+      );
+
+    case "lecture-caption-overlay":
+      return (
+        <DemoFrame
+          id="lecture-caption-overlay"
+          title="<LectureCaptionOverlay />"
+          description="Interactive demo for LectureCaptionOverlay."
+          examplePreviews={[
+            <div key="lecture-caption-overlay-0" className="w-full max-w-lg">
+              <LectureCaptionOverlay captions={[{ id: "1", startTime: 0, endTime: 10, text: "Hello and welcome to the class." }]} currentTime={2}><div className="w-full h-40 bg-black/10" /></LectureCaptionOverlay>
+            </div>
+          ]}
+        >
+          {null}
+        </DemoFrame>
+      );
+
+    case "whiteboard-embed":
+      return (
+        <DemoFrame
+          id="whiteboard-embed"
+          title="<WhiteboardEmbed />"
+          description="Interactive demo for WhiteboardEmbed."
+          examplePreviews={[
+            <div key="whiteboard-embed-0" className="w-full max-w-lg">
+              <WhiteboardEmbed roomName="Room 1" />
+            </div>
+          ]}
+        >
+          {null}
+        </DemoFrame>
+      );
+
+    case "chemistry-formula-builder":
+      return (
+        <DemoFrame
+          id="chemistry-formula-builder"
+          title="<ChemistryFormulaBuilder />"
+          description="Interactive demo for ChemistryFormulaBuilder."
+          examplePreviews={[
+            <div key="chemistry-formula-builder-0" className="w-full max-w-lg">
+              <ChemistryFormulaBuilder availableElements={[{ symbol: "H", name: "Hydrogen", atomicNumber: 1 }, { symbol: "O", name: "Oxygen", atomicNumber: 8 }]} onChange={() => {}} />
+            </div>
+          ]}
+        >
+          {null}
+        </DemoFrame>
+      );
+
+    case "interactive-timeline":
+      return (
+        <DemoFrame
+          id="interactive-timeline"
+          title="<InteractiveTimeline />"
+          description="Interactive demo for InteractiveTimeline."
+          examplePreviews={[
+            <div key="interactive-timeline-0" className="w-full max-w-lg">
+              <InteractiveTimeline nodes={[{ id: "1", title: "Event 1", dateLabel: "2023", description: "Desc" }]} />
+            </div>
+          ]}
+        >
+          {null}
+        </DemoFrame>
+      );
+
+    case "geo-map-quiz":
+      return (
+        <DemoFrame
+          id="geo-map-quiz"
+          title="<GeoMapQuiz />"
+          description="Interactive demo for GeoMapQuiz."
+          examplePreviews={[
+            <div key="geo-map-quiz-0" className="w-full max-w-lg">
+              <GeoMapQuiz regions={[{ id: "1", name: "Region", d: "M0,0 L10,10 L0,10 Z" }]} onRegionClick={() => {}} />
+            </div>
+          ]}
+        >
+          {null}
+        </DemoFrame>
+      );
+
+    case "circuit-simulator":
+      return (
+        <DemoFrame
+          id="circuit-simulator"
+          title="<CircuitSimulator />"
+          description="Interactive demo for CircuitSimulator."
+          examplePreviews={[
+            <div key="circuit-simulator-0" className="w-full max-w-lg">
+              <CircuitSimulator initialNodes={[]} initialConnections={[]} />
+            </div>
+          ]}
+        >
+          {null}
+        </DemoFrame>
+      );
+
+    case "data-table-lab":
+      return (
+        <DemoFrame
+          id="data-table-lab"
+          title="<DataTableLab />"
+          description="Interactive demo for DataTableLab."
+          examplePreviews={[
+            <div key="data-table-lab-0" className="w-full max-w-lg">
+              <DataTableLab columns={[{ id: "col1", label: "Col 1", type: "text" }]} initialData={[]} onChange={() => {}} />
+            </div>
+          ]}
+        >
+          {null}
+        </DemoFrame>
+      );
+
+    case "rubric-builder":
+      return (
+        <DemoFrame
+          id="rubric-builder"
+          title="<RubricBuilder />"
+          description="Interactive demo for RubricBuilder."
+          examplePreviews={[
+            <div key="rubric-builder-0" className="w-full max-w-lg">
+              <RubricBuilder criteria={[{ id: "1", name: "Grammar", description: "Proper usage" }]} levels={[{ id: "l1", label: "Excellent", points: 5 }]} cells={[]} />
+            </div>
+          ]}
+        >
+          {null}
+        </DemoFrame>
+      );
+
+    case "cohort-comparison-chart":
+      return (
+        <DemoFrame
+          id="cohort-comparison-chart"
+          title="<CohortComparisonChart />"
+          description="Interactive demo for CohortComparisonChart."
+          examplePreviews={[
+            <div key="cohort-comparison-chart-0" className="w-full max-w-lg">
+              <CohortComparisonChart data={[{ label: "Average Score", studentScore: 85, cohortAverage: 78 }]} />
+            </div>
+          ]}
+        >
+          {null}
+        </DemoFrame>
+      );
+
+    case "attendance-heat-map":
+      return (
+        <DemoFrame
+          id="attendance-heat-map"
+          title="<AttendanceHeatMap />"
+          description="Interactive demo for AttendanceHeatMap."
+          examplePreviews={[
+            <div key="attendance-heat-map-0" className="w-full max-w-lg">
+              <AttendanceHeatMap data={[{ date: "2023-10-01", count: 1 }]} />
+            </div>
+          ]}
+        >
+          {null}
+        </DemoFrame>
+      );
+
+    case "grading-queue-card":
+      return (
+        <DemoFrame
+          id="grading-queue-card"
+          title="<GradingQueueCard />"
+          description="Interactive demo for GradingQueueCard."
+          examplePreviews={[
+            <div key="grading-queue-card-0" className="w-full max-w-lg">
+              <GradingQueueCard title="Assignment 1" tasks={[{ id: "1", studentName: "Alice", assignmentTitle: "A1", submittedAt: new Date(), status: "pending" }]} />
+            </div>
+          ]}
+        >
+          {null}
+        </DemoFrame>
+      );
+
+    case "plagiarism-score-indicator":
+      return (
+        <DemoFrame
+          id="plagiarism-score-indicator"
+          title="<PlagiarismScoreIndicator />"
+          description="Interactive demo for PlagiarismScoreIndicator."
+          examplePreviews={[
+            <div key="plagiarism-score-indicator-0" className="w-full max-w-lg">
+              <PlagiarismScoreIndicator score={15}  />
+            </div>
+          ]}
+        >
+          {null}
+        </DemoFrame>
+      );
+
+    case "reading-level-toggle":
+      return (
+        <DemoFrame
+          id="reading-level-toggle"
+          title="<ReadingLevelToggle />"
+          description="Interactive demo for ReadingLevelToggle."
+          examplePreviews={[
+            <div key="reading-level-toggle-0" className="w-full max-w-lg">
+              <ReadingLevelToggle level="intermediate" onChange={() => {}} texts={{ beginner: "Beginner text", intermediate: "Intermediate text", advanced: "Advanced text" }} />
+            </div>
+          ]}
+        >
+          {null}
+        </DemoFrame>
+      );
+
+    case "translation-overlay":
+      return (
+        <DemoFrame
+          id="translation-overlay"
+          title="<TranslationOverlay />"
+          description="Interactive demo for TranslationOverlay."
+          examplePreviews={[
+            <div key="translation-overlay-0" className="w-full max-w-lg">
+              <TranslationOverlay originalText="Hola" translatedText="Hello" />
+            </div>
           ]}
         >
           {null}

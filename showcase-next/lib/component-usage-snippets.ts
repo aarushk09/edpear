@@ -1177,4 +1177,132 @@ const key = process.env.NEXT_PUBLIC_OPENROUTER_API_KEY ?? "";
   lessonContent="Lesson: Thesis statements. Arguable claim, scope, roadmap for body paragraphs."
   title="Writing studio"
 />`,
+  "skill-radar": `import { SkillRadar } from "edpear-sdk";
+
+// 1) Basic Usage
+<SkillRadar dimensions={[{ id: "1", label: "Math", value: 8 }, { id: "2", label: "Reading", value: 5 }]} />`,
+  "learning-style-quiz": `import { LearningStyleQuiz } from "edpear-sdk";
+
+// 1) Basic Usage
+<LearningStyleQuiz onComplete={() => {}} />`,
+  "adaptive-difficulty-meter": `import { AdaptiveDifficultyMeter } from "edpear-sdk";
+
+// 1) Basic Usage
+<AdaptiveDifficultyMeter difficulty={0.7} trend="up" />`,
+  "knowledge-gap-alert": `import { KnowledgeGapAlert } from "edpear-sdk";
+
+// 1) Basic Usage
+<KnowledgeGapAlert gaps={[{ id: "1", topic: "Algebra Basics", urgency: "high", relatedResourceHref: "#" }]} />`,
+  "recommendation-carousel": `import { RecommendationCarousel } from "edpear-sdk";
+
+// 1) Basic Usage
+<RecommendationCarousel items={[{ id: "1", title: "Next: Calculus", type: "course", matchScore: 95 }]} />`,
+  "study-scheduler": `import { StudyScheduler } from "edpear-sdk";
+
+// 1) Basic Usage
+<StudyScheduler sessions={[]} onSessionsChange={() => {}} />`,
+  "deadline-countdown": `import { DeadlineCountdown } from "edpear-sdk";
+
+// 1) Basic Usage
+<DeadlineCountdown deadline={new Date(Date.now() + 86400000).toISOString()} label="Assignment Due" />`,
+  "goal-setter": `import { GoalSetter } from "edpear-sdk";
+
+// 1) Basic Usage
+<GoalSetter onGoalSet={() => {}} />`,
+  "attendance-tracker": `import { AttendanceTracker } from "edpear-sdk";
+
+// 1) Basic Usage
+<AttendanceTracker students={[{ id: "1", name: "Alice", status: "present" }]} onStatusChange={() => {}} />`,
+  "pacing-guide": `import { PacingGuide } from "edpear-sdk";
+
+// 1) Basic Usage
+<PacingGuide items={[{ id: "1", label: "Module 1", expectedDate: "2023-10-01", status: "completed" }]} />`,
+  "leaderboard-widget": `import { LeaderboardWidget } from "edpear-sdk";
+
+// 1) Basic Usage
+<LeaderboardWidget entries={[{ id: "1", name: "Alice", score: 100, rank: 1 }]} />`,
+  "xp-progress-bar": `import { XPProgressBar } from "edpear-sdk";
+
+// 1) Basic Usage
+<XPProgressBar currentXP={450} maxXP={1000} level={5} />`,
+  "challenge-card": `import { ChallengeCard } from "edpear-sdk";
+
+// 1) Basic Usage
+<ChallengeCard title="Daily Challenge" description="Complete 3 quizzes" xpReward={50} progress={1} maxProgress={3} />`,
+  "spin-to-review": `import { SpinToReview } from "edpear-sdk";
+
+// 1) Basic Usage
+<SpinToReview items={[{ id: "1", label: "Topic A" }]} onSpin={() => {}} />`,
+  "virtual-currency": `import { VirtualCurrency } from "edpear-sdk";
+
+// 1) Basic Usage
+<VirtualCurrency balance={1500} currencyName="PearCoins" />`,
+  "poll-widget": `import { PollWidget } from "edpear-sdk";
+
+// 1) Basic Usage
+<PollWidget question="What is 2+2?" options={[{ id: "1", text: "4", votes: 10 }]} onVote={() => {}} />`,
+  "raise-hand-queue": `import { RaiseHandQueue } from "edpear-sdk";
+
+// 1) Basic Usage
+<RaiseHandQueue queue={[{ id: "1", name: "Alice", timeJoined: Date.now() }]} />`,
+  "breakout-room-card": `import { BreakoutRoomCard } from "edpear-sdk";
+
+// 1) Basic Usage
+<BreakoutRoomCard roomName="Room 1" members={[{ id: "1", name: "Alice" }]} />`,
+  "lecture-caption-overlay": `import { LectureCaptionOverlay } from "edpear-sdk";
+
+// 1) Basic Usage
+<LectureCaptionOverlay currentCaption="Hello and welcome to the class." />`,
+  "whiteboard-embed": `import { WhiteboardEmbed } from "edpear-sdk";
+
+// 1) Basic Usage
+<WhiteboardEmbed roomUrl="#" />`,
+  "chemistry-formula-builder": `import { ChemistryFormulaBuilder } from "edpear-sdk";
+
+// 1) Basic Usage
+<ChemistryFormulaBuilder initialFormula="H2O" onChange={() => {}} />`,
+  "interactive-timeline": `import { InteractiveTimeline } from "edpear-sdk";
+
+// 1) Basic Usage
+<InteractiveTimeline events={[{ id: "1", title: "Event 1", date: "2023", description: "Desc" }]} />`,
+  "geo-map-quiz": `import { GeoMapQuiz } from "edpear-sdk";
+
+// 1) Basic Usage
+<GeoMapQuiz regions={[{ id: "1", name: "Region", pathData: "M0,0 L10,10 L0,10 Z" }]} onRegionClick={() => {}} />`,
+  "circuit-simulator": `import { CircuitSimulator } from "edpear-sdk";
+
+// 1) Basic Usage
+<CircuitSimulator initialNodes={[]} initialConnections={[]} />`,
+  "data-table-lab": `import { DataTableLab } from "edpear-sdk";
+
+// 1) Basic Usage
+<DataTableLab columns={[{ id: "col1", label: "Col 1", type: "string" }]} initialData={[]} onDataChange={() => {}} />`,
+  "rubric-builder": `import { RubricBuilder } from "edpear-sdk";
+
+// 1) Basic Usage
+<RubricBuilder criteria={[{ id: "1", label: "Grammar", description: "Proper usage" }]} levels={[{ id: "l1", label: "Excellent", points: 5 }]} />`,
+  "cohort-comparison-chart": `import { CohortComparisonChart } from "edpear-sdk";
+
+// 1) Basic Usage
+<CohortComparisonChart metricLabel="Average Score" studentValue={85} cohortValue={78} />`,
+  "attendance-heat-map": `import { AttendanceHeatMap } from "edpear-sdk";
+
+// 1) Basic Usage
+<AttendanceHeatMap data={[{ date: "2023-10-01", count: 1 }]} />`,
+  "grading-queue-card": `import { GradingQueueCard } from "edpear-sdk";
+
+// 1) Basic Usage
+<GradingQueueCard title="Assignment 1" submittedCount={10} gradedCount={5} onClick={() => {}} />`,
+  "plagiarism-score-indicator": `import { PlagiarismScoreIndicator } from "edpear-sdk";
+
+// 1) Basic Usage
+<PlagiarismScoreIndicator score={15} riskLevel="low" />`,
+  "reading-level-toggle": `import { ReadingLevelToggle } from "edpear-sdk";
+
+// 1) Basic Usage
+<ReadingLevelToggle level="intermediate" onLevelChange={() => {}} />`,
+  "translation-overlay": `import { TranslationOverlay } from "edpear-sdk";
+
+// 1) Basic Usage
+<TranslationOverlay originalText="Hola" translatedText="Hello" />`
 } satisfies Record<Exclude<ShowcaseSlug, "course-card" | "lesson-progress">, string>;
