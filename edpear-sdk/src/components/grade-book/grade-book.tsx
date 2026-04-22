@@ -148,7 +148,7 @@ export function GradeBook({
                           )}
                           value={v}
                           onChange={(e) =>
-                            onGradeChange?.(s.id, a.id, e.target.value as GradeCellValue)
+                            onGradeChange?.(s.id, a.id, e.target.value)
                           }
                         />
                       ) : (

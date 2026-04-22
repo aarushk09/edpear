@@ -1,6 +1,6 @@
 {
   "name": "edpear-sdk",
-  "version": "2.0.0",
+  "version": "2.1.0",
   "description": "EdPear SDK — React component library for edtech (publish alias; same bits as the edpear package).",
   "license": "MIT",
   "author": "EdPear",

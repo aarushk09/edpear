@@ -31,7 +31,7 @@ export const AIFeedback = forwardRef<HTMLDivElement, AIFeedbackProps>(
           </p>
         </div>
         <button
-          className="inline-flex h-10 items-center justify-center whitespace-nowrap rounded-lg bg-foreground px-4 py-2 text-sm font-medium text-background transition-colors hover:bg-foreground/90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background disabled:pointer-events-none disabled:opacity-50 dark:hover:bg-foreground/85"
+          className="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-primary text-primary-foreground hover:bg-primary/90 h-10 px-4 py-2"
           disabled={loading || !studentAnswer.trim() || !correctAnswer.trim()}
           type="button"
           onClick={async () => {

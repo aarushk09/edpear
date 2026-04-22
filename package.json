@@ -1,6 +1,6 @@
 {
   "name": "edpear",
-  "version": "2.0.0",
+  "version": "2.1.0",
   "description": "EdPear is an edtech-focused component library with production-ready UI primitives and optional OpenRouter-powered teaching helpers.",
   "license": "MIT",
   "author": "EdPear",

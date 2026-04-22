@@ -105,7 +105,7 @@ export function MathRenderer({ content, displayMode = "auto", className }: MathR
     }
     for (const s of segments) {
       if (s.kind !== "text") continue;
-      let t = s.value;
+      const t = s.value;
       let i = 0;
       while (i < t.length) {
         const o = t.indexOf("$", i);

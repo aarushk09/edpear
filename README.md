@@ -62,7 +62,7 @@ export function Demo() {
 
 |  | Feature |
 |---|---|
-| 🧩 | **35+ purpose-built components** — from `FlashCard` to `GradeBook` to `LearningPathMap` |
+| 🧩 | **65+ purpose-built components** — from `FlashCard` to `CircuitSimulator` to `LearningPathMap` |
 | 🤖 | **Optional AI helpers** — `AITutor`, `AIFeedback`, `AIHint`, `AIQuizGenerator`, powered by OpenRouter |
 | 🎨 | **Tailwind-first theming** — edtech-specific CSS tokens (`--lesson`, `--quiz`, `--progress`, `--feedback-correct`) |
 | 🔷 | **Strict TypeScript** — every prop typed, every callback typed, no `any` surprises |
@@ -119,6 +119,26 @@ The CLI copies component source files into your project alongside shared utiliti
 | [`EnrollmentGate`](./src/components/enrollment-gate/README.md) | Lock content behind enrollment or payment status |
 | [`OnboardingChecklist`](./src/components/onboarding-checklist/README.md) | Guided first-session checklist for new learners |
 
+### 🎯 Adaptive & Personalization
+
+| Component | Description |
+|---|---|
+| [`SkillRadar`](./src/components/skill-radar/README.md) | Spider/radar chart visualizing mastery across skill dimensions |
+| [`LearningStyleQuiz`](./src/components/learning-style-quiz/README.md) | Onboarding diagnostic that profiles a learner |
+| [`AdaptiveDifficultyMeter`](./src/components/adaptive-difficulty-meter/README.md) | Real-time difficulty gauge that adjusts based on response accuracy |
+| [`KnowledgeGapAlert`](./src/components/knowledge-gap-alert/README.md) | Inline callout that surfaces prerequisite gaps before a lesson |
+| [`RecommendationCarousel`](./src/components/recommendation-carousel/README.md) | "Up next for you" horizontally scrolling card rail |
+
+### 📅 Scheduling & Accountability
+
+| Component | Description |
+|---|---|
+| [`StudyScheduler`](./src/components/study-scheduler/README.md) | Drag-and-drop weekly planner optimized for blocking study sessions |
+| [`DeadlineCountdown`](./src/components/deadline-countdown/README.md) | High-visibility ticking timer for assignment due dates |
+| [`GoalSetter`](./src/components/goal-setter/README.md) | Form widget to declare weekly commitments |
+| [`AttendanceTracker`](./src/components/attendance-tracker/README.md) | Roster-based check-in grid |
+| [`PacingGuide`](./src/components/pacing-guide/README.md) | Timeline showing expected vs. actual progress |
+
 ### 📝 Quizzing & Assessment
 
 | Component | Description |
@@ -142,6 +162,41 @@ The CLI copies component source files into your project alongside shared utiliti
 | [`CertificateRenderer`](./src/components/certificate-renderer/README.md) | Printable / downloadable completion certificate |
 | [`ActivityFeed`](./src/components/activity-feed/README.md) | Timeline feed of learner actions and achievements |
 | [`StudentProfileCard`](./src/components/student-profile-card/README.md) | Avatar, bio, stats, and badge display for learners |
+| [`LeaderboardWidget`](./src/components/leaderboard-widget/README.md) | Ranked player list with class vs. global toggles |
+| [`XPProgressBar`](./src/components/xp-progress-bar/README.md) | Animated experience bar tracking levels |
+| [`ChallengeCard`](./src/components/challenge-card/README.md) | Bounty-style "Daily Challenge" card |
+| [`SpinToReview`](./src/components/spin-to-review/README.md) | Gamified roulette wheel for selecting random review topics |
+| [`VirtualCurrency`](./src/components/virtual-currency/README.md) | Coin/gem balance display with wallet history |
+
+### 📡 Live Learning
+
+| Component | Description |
+|---|---|
+| [`PollWidget`](./src/components/poll-widget/README.md) | Real-time multi-choice poll with live results visualization |
+| [`RaiseHandQueue`](./src/components/raise-hand-queue/README.md) | Sidebar queue showing students waiting for help |
+| [`BreakoutRoomCard`](./src/components/breakout-room-card/README.md) | Dashboard card managing small group session states |
+| [`LectureCaptionOverlay`](./src/components/lecture-caption-overlay/README.md) | Floating transcript box for video feeds |
+| [`WhiteboardEmbed`](./src/components/whiteboard-embed/README.md) | Shared digital canvas wrapper for real-time collaboration |
+
+### 🔬 STEM & Specialized
+
+| Component | Description |
+|---|---|
+| [`ChemistryFormulaBuilder`](./src/components/chemistry-formula-builder/README.md) | Drag-and-drop or typed input for molecular structures |
+| [`InteractiveTimeline`](./src/components/interactive-timeline/README.md) | Zoomable horizontal timeline for historical events |
+| [`GeoMapQuiz`](./src/components/geo-map-quiz/README.md) | Click-to-label map supporting dynamic SVG path highlighting |
+| [`CircuitSimulator`](./src/components/circuit-simulator/README.md) | Logic gate builder allowing dynamic connections |
+| [`DataTableLab`](./src/components/data-table-lab/README.md) | Spreadsheet-like widget for science experiments |
+
+### 👩‍🏫 Instructor Tooling
+
+| Component | Description |
+|---|---|
+| [`RubricBuilder`](./src/components/rubric-builder/README.md) | Interactive grading matrix enabling point calculation |
+| [`CohortComparisonChart`](./src/components/cohort-comparison-chart/README.md) | Benchmarking bar chart component |
+| [`AttendanceHeatMap`](./src/components/attendance-heat-map/README.md) | GitHub-style contribution graph for learner presence |
+| [`GradingQueueCard`](./src/components/grading-queue-card/README.md) | To-do list workflow widget for pending assignment review |
+| [`PlagiarismScoreIndicator`](./src/components/plagiarism-score-indicator/README.md) | Dynamic circular gauge for highlighting academic integrity |
 
 ### 💬 Feedback & Collaboration
 
@@ -153,6 +208,13 @@ The CLI copies component source files into your project alongside shared utiliti
 | [`AssignmentDropzone`](./src/components/assignment-dropzone/README.md) | File upload zone with type validation and status tracking |
 | [`ReadingAnnotator`](./src/components/reading-annotator/README.md) | Highlight and annotate passages in reading content |
 | [`RichTextEditor`](./src/components/rich-text-editor/README.md) | WYSIWYG editor optimized for student submissions |
+
+### ♿ Accessibility
+
+| Component | Description |
+|---|---|
+| [`ReadingLevelToggle`](./src/components/reading-level-toggle/README.md) | Segmented text control that adjusts vocabulary density |
+| [`TranslationOverlay`](./src/components/translation-overlay/README.md) | Inline text translation helper utilizing ruby-like display |
 
 ### 🤖 AI-Powered Helpers
 
