@@ -80,4 +80,10 @@ export const nextGenRegistryComponents: RegistryComponent[] = [
     description: "Flesch-Kincaid inspired readability surface for previewing text difficulty before publishing.",
     ai: false,
   },
+  {
+    name: "learning-objective-editor",
+    title: "LearningObjectiveEditor",
+    description: "Structured planning surface for writing SMART objectives and aligning success criteria.",
+    ai: false,
+  },
 ];

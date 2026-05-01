@@ -14,7 +14,8 @@ import {
   HomeActivitySuggester,
   BloomsTaxonomyTagger,
   CurriculumDragBuilder,
-  ContentReadabilityMeter
+  ContentReadabilityMeter,
+  LearningObjectiveEditor
 } from "edpear";
 
 import { DemoFrame } from "./component-doc-page";
@@ -274,6 +275,26 @@ export function renderNextGenComponentDemo(slug: ShowcaseSlug) {
             <div key="content-readability-meter-1" className="w-full max-w-5xl"><ContentReadabilityMeter
         title="Workspace view" /></div>,
             <div key="content-readability-meter-2" className="w-full max-w-5xl"><ContentReadabilityMeter
+        disabled
+        subtitle="Compact read-only preview for dashboards and summaries." /></div>,
+          ]}
+        >
+          {null}
+        </DemoFrame>
+      );
+
+    case "learning-objective-editor":
+      return (
+        <DemoFrame
+          id="learning-objective-editor"
+          title="<LearningObjectiveEditor />"
+          description="Structured planning surface for writing SMART objectives and aligning success criteria."
+          layout="wide"
+          examplePreviews={[
+            <div key="learning-objective-editor-0" className="w-full max-w-5xl"><LearningObjectiveEditor /></div>,
+            <div key="learning-objective-editor-1" className="w-full max-w-5xl"><LearningObjectiveEditor
+        title="Workspace view" /></div>,
+            <div key="learning-objective-editor-2" className="w-full max-w-5xl"><LearningObjectiveEditor
         disabled
         subtitle="Compact read-only preview for dashboards and summaries." /></div>,
           ]}

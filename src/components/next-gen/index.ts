@@ -36,3 +36,6 @@ export type { CurriculumSequenceItem, CurriculumDragBuilderProps } from "../curr
 
 export { ContentReadabilityMeter } from "../content-readability-meter/index.js";
 export type { ReadabilitySample, ContentReadabilityMeterProps } from "../content-readability-meter/index.js";
+
+export { LearningObjectiveEditor } from "../learning-objective-editor/index.js";
+export type { LearningObjectiveDraft, LearningObjectiveEditorProps } from "../learning-objective-editor/index.js";
