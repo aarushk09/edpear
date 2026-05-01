@@ -64,6 +64,7 @@ export const NEXT_GEN_NAV_GROUPS = [
     title: "Assessment Integrity",
     items: [
       { id: "proctor-mode-overlay", label: "ProctorModeOverlay" },
+      { id: "question-variant-manager", label: "QuestionVariantManager" },
     ],
   },
 ] as const;

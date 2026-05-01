@@ -75,3 +75,6 @@ export type { KudosEntry, KudosBoardProps } from "../kudos-board/index.js";
 
 export { ProctorModeOverlay } from "../proctor-mode-overlay/index.js";
 export type { ProctorSignal, ProctorModeOverlayProps } from "../proctor-mode-overlay/index.js";
+
+export { QuestionVariantManager } from "../question-variant-manager/index.js";
+export type { QuestionVariantDraft, QuestionVariantManagerProps } from "../question-variant-manager/index.js";

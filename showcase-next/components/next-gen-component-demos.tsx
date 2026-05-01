@@ -27,7 +27,8 @@ import {
   StudyGroupFinder,
   CollaborativeNotepad,
   KudosBoard,
-  ProctorModeOverlay
+  ProctorModeOverlay,
+  QuestionVariantManager
 } from "edpear";
 
 import { DemoFrame } from "./component-doc-page";
@@ -547,6 +548,26 @@ export function renderNextGenComponentDemo(slug: ShowcaseSlug) {
             <div key="proctor-mode-overlay-1" className="w-full max-w-5xl"><ProctorModeOverlay
         title="Workspace view" /></div>,
             <div key="proctor-mode-overlay-2" className="w-full max-w-5xl"><ProctorModeOverlay
+        disabled
+        subtitle="Compact read-only preview for dashboards and summaries." /></div>,
+          ]}
+        >
+          {null}
+        </DemoFrame>
+      );
+
+    case "question-variant-manager":
+      return (
+        <DemoFrame
+          id="question-variant-manager"
+          title="<QuestionVariantManager />"
+          description="Variant planning surface for shuffling question pools and parameter sets per learner seat."
+          layout="wide"
+          examplePreviews={[
+            <div key="question-variant-manager-0" className="w-full max-w-5xl"><QuestionVariantManager /></div>,
+            <div key="question-variant-manager-1" className="w-full max-w-5xl"><QuestionVariantManager
+        title="Workspace view" /></div>,
+            <div key="question-variant-manager-2" className="w-full max-w-5xl"><QuestionVariantManager
         disabled
         subtitle="Compact read-only preview for dashboards and summaries." /></div>,
           ]}

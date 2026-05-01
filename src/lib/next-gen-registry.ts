@@ -158,4 +158,10 @@ export const nextGenRegistryComponents: RegistryComponent[] = [
     description: "Fullscreen assessment shell that surfaces focus loss, blur events, and live integrity status.",
     ai: false,
   },
+  {
+    name: "question-variant-manager",
+    title: "QuestionVariantManager",
+    description: "Variant planning surface for shuffling question pools and parameter sets per learner seat.",
+    ai: false,
+  },
 ];
