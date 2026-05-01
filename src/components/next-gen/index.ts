@@ -66,3 +66,6 @@ export type { WellnessNudgeVariant, WellnessNudgeProps } from "../wellness-nudge
 
 export { StudyGroupFinder } from "../study-group-finder/index.js";
 export type { StudyGroupMatch, StudyGroupFinderProps } from "../study-group-finder/index.js";
+
+export { CollaborativeNotepad } from "../collaborative-notepad/index.js";
+export type { CollaborativeNote, CollaborativeNotepadProps } from "../collaborative-notepad/index.js";

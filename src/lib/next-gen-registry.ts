@@ -140,4 +140,10 @@ export const nextGenRegistryComponents: RegistryComponent[] = [
     description: "Learner matching surface that organizes study partners by topic, timezone, and availability.",
     ai: false,
   },
+  {
+    name: "collaborative-notepad",
+    title: "CollaborativeNotepad",
+    description: "Shared lesson-scoped notes surface with visible contributions and easy synthesis.",
+    ai: false,
+  },
 ];

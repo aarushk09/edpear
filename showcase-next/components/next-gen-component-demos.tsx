@@ -24,7 +24,8 @@ import {
   BurnoutRiskIndicator,
   FocusTimer,
   WellnessNudge,
-  StudyGroupFinder
+  StudyGroupFinder,
+  CollaborativeNotepad
 } from "edpear";
 
 import { DemoFrame } from "./component-doc-page";
@@ -484,6 +485,26 @@ export function renderNextGenComponentDemo(slug: ShowcaseSlug) {
             <div key="study-group-finder-1" className="w-full max-w-5xl"><StudyGroupFinder
         title="Workspace view" /></div>,
             <div key="study-group-finder-2" className="w-full max-w-5xl"><StudyGroupFinder
+        disabled
+        subtitle="Compact read-only preview for dashboards and summaries." /></div>,
+          ]}
+        >
+          {null}
+        </DemoFrame>
+      );
+
+    case "collaborative-notepad":
+      return (
+        <DemoFrame
+          id="collaborative-notepad"
+          title="<CollaborativeNotepad />"
+          description="Shared lesson-scoped notes surface with visible contributions and easy synthesis."
+          layout="wide"
+          examplePreviews={[
+            <div key="collaborative-notepad-0" className="w-full max-w-5xl"><CollaborativeNotepad /></div>,
+            <div key="collaborative-notepad-1" className="w-full max-w-5xl"><CollaborativeNotepad
+        title="Workspace view" /></div>,
+            <div key="collaborative-notepad-2" className="w-full max-w-5xl"><CollaborativeNotepad
         disabled
         subtitle="Compact read-only preview for dashboards and summaries." /></div>,
           ]}
