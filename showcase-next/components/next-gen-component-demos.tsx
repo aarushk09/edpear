@@ -34,7 +34,8 @@ import {
   ScreenReaderQuizAdapter,
   CaptionEditor,
   PortfolioBuilder,
-  DigitalTranscript
+  DigitalTranscript,
+  SkillEndorsementCard
 } from "edpear";
 
 import { DemoFrame } from "./component-doc-page";
@@ -694,6 +695,26 @@ export function renderNextGenComponentDemo(slug: ShowcaseSlug) {
             <div key="digital-transcript-1" className="w-full max-w-5xl"><DigitalTranscript
         title="Workspace view" /></div>,
             <div key="digital-transcript-2" className="w-full max-w-5xl"><DigitalTranscript
+        disabled
+        subtitle="Compact read-only preview for dashboards and summaries." /></div>,
+          ]}
+        >
+          {null}
+        </DemoFrame>
+      );
+
+    case "skill-endorsement-card":
+      return (
+        <DemoFrame
+          id="skill-endorsement-card"
+          title="<SkillEndorsementCard />"
+          description="Instructor-signed competency card for showcasing validated skills on learner profiles."
+          layout="wide"
+          examplePreviews={[
+            <div key="skill-endorsement-card-0" className="w-full max-w-5xl"><SkillEndorsementCard /></div>,
+            <div key="skill-endorsement-card-1" className="w-full max-w-5xl"><SkillEndorsementCard
+        title="Workspace view" /></div>,
+            <div key="skill-endorsement-card-2" className="w-full max-w-5xl"><SkillEndorsementCard
         disabled
         subtitle="Compact read-only preview for dashboards and summaries." /></div>,
           ]}

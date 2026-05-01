@@ -200,4 +200,10 @@ export const nextGenRegistryComponents: RegistryComponent[] = [
     description: "Verifiable course history view with completion evidence and a shareable signature surface.",
     ai: false,
   },
+  {
+    name: "skill-endorsement-card",
+    title: "SkillEndorsementCard",
+    description: "Instructor-signed competency card for showcasing validated skills on learner profiles.",
+    ai: false,
+  },
 ];

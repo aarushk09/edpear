@@ -96,3 +96,6 @@ export type { PortfolioArtifact, PortfolioBuilderProps } from "../portfolio-buil
 
 export { DigitalTranscript } from "../digital-transcript/index.js";
 export type { TranscriptCourseEntry, DigitalTranscriptProps } from "../digital-transcript/index.js";
+
+export { SkillEndorsementCard } from "../skill-endorsement-card/index.js";
+export type { SkillEndorsement, SkillEndorsementCardProps } from "../skill-endorsement-card/index.js";
