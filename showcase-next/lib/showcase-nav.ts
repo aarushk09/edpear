@@ -1,6 +1,6 @@
 import { NEXT_GEN_NAV_GROUPS } from "./next-gen-showcase-nav";
 
-export const NAV_GROUPS = [
+const BASE_NAV_GROUPS = [
   {
     title: "Learning Elements",
     items: [
@@ -132,10 +132,53 @@ export const NAV_GROUPS = [
   },
 ] as const;
 
-export type ShowcaseSlug = (typeof NAV_GROUPS)[number]["items"][number]["id"];
+type RawNavGroup = (typeof BASE_NAV_GROUPS | typeof NEXT_GEN_NAV_GROUPS)[number];
 
-export const ALL_SHOWCASE_SLUGS: ShowcaseSlug[] = NAV_GROUPS.flatMap((g) =>
-  g.items.map((i) => i.id),
+function formatNavLabel(label: string) {
+  return label
+    .replace(/([A-Z]+)([A-Z][a-z])/g, "$1 $2")
+    .replace(/([a-z0-9])([A-Z])/g, "$1 $2")
+    .replace(/\bAi\b/g, "AI")
+    .replace(/\bXp\b/g, "XP")
+    .replace(/\bMcp\b/g, "MCP");
+}
+
+function normalizeNavGroups(groups: readonly RawNavGroup[]) {
+  const mergedGroups: Array<{ title: string; items: Array<{ id: string; label: string }> }> = [];
+  const groupsByTitle = new Map<string, { title: string; items: Array<{ id: string; label: string }> }>();
+  const seenIds = new Set<string>();
+
+  for (const group of groups) {
+    const existingGroup =
+      groupsByTitle.get(group.title) ??
+      (() => {
+        const nextGroup = { title: group.title, items: [] as Array<{ id: string; label: string }> };
+        groupsByTitle.set(group.title, nextGroup);
+        mergedGroups.push(nextGroup);
+        return nextGroup;
+      })();
+
+    for (const item of group.items) {
+      if (seenIds.has(item.id)) continue;
+      seenIds.add(item.id);
+      existingGroup.items.push({
+        id: item.id,
+        label: formatNavLabel(item.label),
+      });
+    }
+  }
+
+  return mergedGroups;
+}
+
+const RAW_NAV_GROUPS = [...BASE_NAV_GROUPS, ...NEXT_GEN_NAV_GROUPS] as const;
+
+export const NAV_GROUPS = normalizeNavGroups(RAW_NAV_GROUPS);
+
+export type ShowcaseSlug = (typeof RAW_NAV_GROUPS)[number]["items"][number]["id"];
+
+export const ALL_SHOWCASE_SLUGS = NAV_GROUPS.flatMap((g) =>
+  g.items.map((i) => i.id as ShowcaseSlug),
 );
 
 export const DEFAULT_SHOWCASE_SLUG: ShowcaseSlug = ALL_SHOWCASE_SLUGS[0];

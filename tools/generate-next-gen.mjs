@@ -899,7 +899,7 @@ ${cases}
 function buildNavFile(generatedSpecs) {
   const grouped = new Map(groups.map((group) => [group, []]));
   for (const entry of generatedSpecs) {
-    grouped.get(entry.group)?.push(`      { id: "${entry.slug}", label: "${entry.name}" },`);
+    grouped.get(entry.group)?.push(`      { id: "${entry.slug}", label: "${words(entry.name)}" },`);
   }
   const body = groups
     .filter((group) => grouped.get(group)?.length)
