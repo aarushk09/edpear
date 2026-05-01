@@ -24,6 +24,12 @@ export const NAV_GROUPS = [
     ],
   },
   {
+    title: "Metacognition & Reflection",
+    items: [
+      { id: "learning-journal", label: "LearningJournal" },
+    ],
+  },
+  {
     title: "Scheduling & Accountability",
     items: [
       { id: "study-scheduler", label: "StudyScheduler" },

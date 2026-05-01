@@ -120,6 +120,13 @@ export { DeadlineCountdown } from "./components/deadline-countdown/index.js";
 export type { DeadlineCountdownProps } from "./components/deadline-countdown/index.js";
 export { GoalSetter } from "./components/goal-setter/index.js";
 export type { GoalSetterProps } from "./components/goal-setter/index.js";
+export { LearningJournal } from "./components/learning-journal/index.js";
+export type {
+  LearningJournalEntry,
+  LearningJournalMood,
+  LearningJournalPromptSet,
+  LearningJournalProps,
+} from "./components/learning-journal/index.js";
 export { AttendanceTracker } from "./components/attendance-tracker/index.js";
 export type { AttendanceRecord, AttendanceSession, AttendanceStatus, AttendanceStudent, AttendanceTrackerProps } from "./components/attendance-tracker/index.js";
 export { PacingGuide } from "./components/pacing-guide/index.js";

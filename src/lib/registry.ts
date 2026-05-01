@@ -145,6 +145,12 @@ export const registryComponents: RegistryComponent[] = [
     ai: false,
   },
   {
+    name: "learning-journal",
+    title: "LearningJournal",
+    description: "Daily reflection log with mood, wins, blockers, and next-step notes.",
+    ai: false,
+  },
+  {
     name: "attendance-tracker",
     title: "AttendanceTracker",
     description: "Instructor-side grid for marking presence.",

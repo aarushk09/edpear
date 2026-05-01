@@ -1209,6 +1209,54 @@ const key = process.env.NEXT_PUBLIC_OPENROUTER_API_KEY ?? "";
 
 // 1) Basic Usage
 <GoalSetter onGoalSet={() => {}} />`,
+  "learning-journal": `import { useState } from "react";
+import { LearningJournal, type LearningJournalEntry } from "edpear-sdk";
+
+// 1) Daily learner check-in
+// Save entries into local state or your analytics layer to build a reflection history over time.
+function DailyReflection() {
+  const [entries, setEntries] = useState<LearningJournalEntry[]>([]);
+
+  return (
+    <LearningJournal
+      currentDateLabel="Tue, May 5"
+      entries={entries}
+      onSaveEntry={(entry) => setEntries((prev) => [entry, ...prev])}
+    />
+  );
+}
+
+// 2) Coach-facing retrospective
+// Rename labels and keep delete enabled when mentors are refining the log together.
+<LearningJournal
+  currentDateLabel="Week 4 retrospective"
+  entries={entries}
+  onDeleteEntry={(entryId) => setEntries((prev) => prev.filter((entry) => entry.id !== entryId))}
+  onSaveEntry={(entry) => setEntries((prev) => [entry, ...prev])}
+  prompt="What adjustment would make the next study block easier to start?"
+  prompts={{
+    winsLabel: "Signals of progress",
+    blockersLabel: "Friction to address",
+    reflectionLabel: "Coach note",
+  }}
+/>
+
+// 3) Read-only reflection archive
+// Disable editing if you only want to display prior journal entries in a learner profile.
+<LearningJournal
+  allowDelete={false}
+  disabled
+  entries={[
+    {
+      id: "archive-1",
+      dateLabel: "Mon, Apr 29",
+      mood: "proud",
+      wins: ["Finished the practice quiz without hints"],
+      blockers: ["Still need to review confidence intervals"],
+      reflection: "Retry question 6 before the next session.",
+    },
+  ]}
+/>`,
   "attendance-tracker": `import { AttendanceTracker } from "edpear-sdk";
 
 // 1) Basic Usage

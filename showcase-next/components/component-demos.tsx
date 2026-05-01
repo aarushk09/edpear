@@ -45,6 +45,7 @@ import {
   StudyScheduler,
   DeadlineCountdown,
   GoalSetter,
+  LearningJournal,
   AttendanceTracker,
   PacingGuide,
   LeaderboardWidget,
@@ -70,7 +71,7 @@ import {
   ReadingLevelToggle,
   TranslationOverlay
 } from "edpear";
-import type { QuestionBankItem, ReadingHighlight, TimedQuizProps } from "edpear";
+import type { LearningJournalEntry, QuestionBankItem, ReadingHighlight, TimedQuizProps } from "edpear";
 import { Code } from "lucide-react";
 
 import { DemoFrame } from "./component-doc-page";
@@ -392,6 +393,85 @@ function FeedbackSliderVariantPreview({
       {log ? (
         <pre className="max-h-24 overflow-auto rounded-md border bg-muted/50 p-2 text-[11px]">{log}</pre>
       ) : null}
+    </div>
+  );
+}
+
+function LearningJournalStarterPreview() {
+  const [entries, setEntries] = useState<LearningJournalEntry[]>([]);
+
+  return (
+    <div className="w-full max-w-5xl">
+      <LearningJournal
+        currentDateLabel="Tue, May 5"
+        entries={entries}
+        onSaveEntry={(entry) => setEntries((prev) => [entry, ...prev])}
+      />
+    </div>
+  );
+}
+
+function LearningJournalArchivePreview() {
+  const [entries, setEntries] = useState<LearningJournalEntry[]>([
+    {
+      id: "journal-1",
+      dateLabel: "Mon, Apr 29",
+      mood: "proud",
+      wins: ["Explained slope-intercept form without prompts", "Finished the unit review early"],
+      blockers: ["Still mixing up standard form conversions under time pressure"],
+      reflection: "Retry the mixed-practice set before tomorrow's checkpoint.",
+    },
+    {
+      id: "journal-2",
+      dateLabel: "Fri, Apr 26",
+      mood: "stuck",
+      wins: ["Caught an error in my graph labels before submitting"],
+      blockers: ["Need a cleaner process for checking intercepts"],
+      reflection: "Make a two-step checklist for graphing homework.",
+    },
+  ]);
+
+  return (
+    <div className="w-full max-w-5xl">
+      <LearningJournal
+        currentDateLabel="Wed, May 1"
+        entries={entries}
+        initialMood="energized"
+        onDeleteEntry={(entryId) => setEntries((prev) => prev.filter((entry) => entry.id !== entryId))}
+        onSaveEntry={(entry) => setEntries((prev) => [entry, ...prev])}
+        prompt="What should your teacher or coach know before the next check-in?"
+        prompts={{
+          winsLabel: "Momentum worth repeating",
+          blockersLabel: "Misconceptions to untangle",
+          reflectionLabel: "Coach handoff note",
+        }}
+        saveLabel="Add coaching note"
+      />
+    </div>
+  );
+}
+
+function LearningJournalReadonlyPreview() {
+  const entries: LearningJournalEntry[] = [
+    {
+      id: "journal-readonly-1",
+      dateLabel: "Portfolio sample",
+      mood: "steady",
+      wins: ["Built a reliable note-taking routine", "Asked for help before getting stuck"],
+      blockers: [],
+      reflection: "This week showed how reflection turns small habits into visible progress.",
+    },
+  ];
+
+  return (
+    <div className="w-full max-w-5xl">
+      <LearningJournal
+        allowDelete={false}
+        currentDateLabel="Archived entry"
+        disabled
+        entries={entries}
+        subtitle="A read-only journal snapshot can live inside advisor dashboards, portfolios, or family updates."
+      />
     </div>
   );
 }
@@ -1965,6 +2045,23 @@ export function ComponentDemo({ slug }: { slug: ShowcaseSlug }) {
             <div key="goal-setter-0" className="w-full max-w-lg">
               <GoalSetter onSave={() => {}} />
             </div>
+          ]}
+        >
+          {null}
+        </DemoFrame>
+      );
+
+    case "learning-journal":
+      return (
+        <DemoFrame
+          id="learning-journal"
+          title="<LearningJournal />"
+          description="Daily reflection log for capturing learner mood, wins, blockers, and a short next-step note after each study session."
+          layout="wide"
+          examplePreviews={[
+            <LearningJournalStarterPreview key="learning-journal-0" />,
+            <LearningJournalArchivePreview key="learning-journal-1" />,
+            <LearningJournalReadonlyPreview key="learning-journal-2" />,
           ]}
         >
           {null}

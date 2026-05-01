@@ -37,6 +37,7 @@ function cx(...parts: (string | false | undefined)[]) {
 }
 
 type TocEntry = { id: string; label: string; depth: 0 | 1 };
+const GENERIC_DESCRIPTION_RE = /^Interactive demo for [A-Za-z0-9]+\.?$/;
 
 const ComponentDocsContext = createContext<ComponentDocsData | null>(null);
 
@@ -264,6 +265,14 @@ ${examplesBody}
 `;
 }
 
+function createFallbackDescription(label: string, docs: ComponentDocsData) {
+  return (
+    docs.overview ??
+    docs.registryDescription ??
+    `${label} is a production-ready EdTech component with typed APIs, live examples, and implementation guidance.`
+  );
+}
+
 /** ~3 lines of Shiki body text at text-[13px] leading-relaxed */
 const CODE_PREVIEW_MAX_HEIGHT_REM = 5.5;
 const CODE_COLLAPSE_LINE_THRESHOLD = 4;
@@ -374,17 +383,25 @@ export function DemoFrame({
   description,
   children,
   examplePreviews,
+  layout = "default",
 }: {
   id: ShowcaseSlug;
   title: string;
   description: string;
   children: React.ReactNode;
   examplePreviews?: ReactNode[];
+  layout?: "default" | "wide";
 }) {
   const docs = useComponentDocs();
   const label = getComponentLabel(id);
   const { prev, next } = getNeighborSlugs(id);
   const cmds = cliAddCommands(id);
+  const effectiveDescription = useMemo(() => {
+    if (!description.trim() || GENERIC_DESCRIPTION_RE.test(description.trim())) {
+      return createFallbackDescription(label, docs);
+    }
+    return description;
+  }, [description, docs, label]);
 
   const usageExamples = useMemo(() => getUsageExamplesForSlug(id), [id]);
   const tocEntries = useMemo(() => buildTocEntries(usageExamples, docs), [docs, usageExamples]);
@@ -394,8 +411,8 @@ export function DemoFrame({
 
   const copyPageText = useMemo(
     () =>
-      buildCopyPageMarkdown(id, label, description, title, usageExamples, pm),
-    [id, label, description, title, usageExamples, pm],
+      buildCopyPageMarkdown(id, label, effectiveDescription, title, usageExamples, pm),
+    [id, label, effectiveDescription, title, usageExamples, pm],
   );
 
   useEffect(() => {
@@ -406,7 +423,14 @@ export function DemoFrame({
   }, [id]);
 
   return (
-    <div className="mx-auto grid w-full max-w-6xl gap-x-10 gap-y-10 xl:grid-cols-[minmax(0,42rem)_minmax(0,12rem)] xl:justify-center">
+    <div
+      className={cx(
+        "mx-auto grid w-full max-w-6xl gap-x-10 gap-y-10 xl:justify-center",
+        layout === "wide"
+          ? "xl:grid-cols-[minmax(0,52rem)_minmax(0,12rem)]"
+          : "xl:grid-cols-[minmax(0,42rem)_minmax(0,12rem)]",
+      )}
+    >
       <div className="min-w-0 space-y-12 pb-16">
         <header id="overview" className="scroll-mt-6 space-y-6">
           <div className="flex flex-col gap-6 sm:flex-row sm:items-start sm:justify-between">
@@ -419,7 +443,7 @@ export function DemoFrame({
             </div>
           </div>
 
-          <p className="max-w-2xl text-[15px] leading-7 text-muted-foreground">{description}</p>
+          <p className="max-w-2xl text-[15px] leading-7 text-muted-foreground">{effectiveDescription}</p>
 
           <div className="grid gap-3 sm:grid-cols-3">
             <StatPill label="Examples" value={`${usageExamples.length} copy-paste snippets`} />
