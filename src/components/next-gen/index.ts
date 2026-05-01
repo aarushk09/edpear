@@ -81,3 +81,6 @@ export type { QuestionVariantDraft, QuestionVariantManagerProps } from "../quest
 
 export { SuspiciousActivityLog } from "../suspicious-activity-log/index.js";
 export type { SuspiciousActivityEvent, SuspiciousActivityLogProps } from "../suspicious-activity-log/index.js";
+
+export { DyslexiaFontToggle } from "../dyslexia-font-toggle/index.js";
+export type { DyslexiaFontVariant, DyslexiaFontToggleProps } from "../dyslexia-font-toggle/index.js";

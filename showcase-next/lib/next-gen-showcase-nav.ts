@@ -68,4 +68,10 @@ export const NEXT_GEN_NAV_GROUPS = [
       { id: "suspicious-activity-log", label: "SuspiciousActivityLog" },
     ],
   },
+  {
+    title: "Accessibility & Inclusion",
+    items: [
+      { id: "dyslexia-font-toggle", label: "DyslexiaFontToggle" },
+    ],
+  },
 ] as const;

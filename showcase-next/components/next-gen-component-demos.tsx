@@ -29,7 +29,8 @@ import {
   KudosBoard,
   ProctorModeOverlay,
   QuestionVariantManager,
-  SuspiciousActivityLog
+  SuspiciousActivityLog,
+  DyslexiaFontToggle
 } from "edpear";
 
 import { DemoFrame } from "./component-doc-page";
@@ -589,6 +590,26 @@ export function renderNextGenComponentDemo(slug: ShowcaseSlug) {
             <div key="suspicious-activity-log-1" className="w-full max-w-5xl"><SuspiciousActivityLog
         title="Workspace view" /></div>,
             <div key="suspicious-activity-log-2" className="w-full max-w-5xl"><SuspiciousActivityLog
+        disabled
+        subtitle="Compact read-only preview for dashboards and summaries." /></div>,
+          ]}
+        >
+          {null}
+        </DemoFrame>
+      );
+
+    case "dyslexia-font-toggle":
+      return (
+        <DemoFrame
+          id="dyslexia-font-toggle"
+          title="<DyslexiaFontToggle />"
+          description="One-click reading preview that switches to a dyslexia-friendly font and spacing profile."
+          layout="wide"
+          examplePreviews={[
+            <div key="dyslexia-font-toggle-0" className="w-full max-w-5xl"><DyslexiaFontToggle /></div>,
+            <div key="dyslexia-font-toggle-1" className="w-full max-w-5xl"><DyslexiaFontToggle
+        title="Workspace view" /></div>,
+            <div key="dyslexia-font-toggle-2" className="w-full max-w-5xl"><DyslexiaFontToggle
         disabled
         subtitle="Compact read-only preview for dashboards and summaries." /></div>,
           ]}

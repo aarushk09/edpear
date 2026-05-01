@@ -170,4 +170,10 @@ export const nextGenRegistryComponents: RegistryComponent[] = [
     description: "Timestamped audit trail for paste events, focus losses, idle gaps, and integrity review notes.",
     ai: false,
   },
+  {
+    name: "dyslexia-font-toggle",
+    title: "DyslexiaFontToggle",
+    description: "One-click reading preview that switches to a dyslexia-friendly font and spacing profile.",
+    ai: false,
+  },
 ];

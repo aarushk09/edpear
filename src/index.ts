@@ -184,6 +184,8 @@ export { QuestionVariantManager } from "./components/question-variant-manager/in
 export type { QuestionVariantDraft, QuestionVariantManagerProps } from "./components/question-variant-manager/index.js";
 export { SuspiciousActivityLog } from "./components/suspicious-activity-log/index.js";
 export type { SuspiciousActivityEvent, SuspiciousActivityLogProps } from "./components/suspicious-activity-log/index.js";
+export { DyslexiaFontToggle } from "./components/dyslexia-font-toggle/index.js";
+export type { DyslexiaFontVariant, DyslexiaFontToggleProps } from "./components/dyslexia-font-toggle/index.js";
 // NEXT_GEN_EXPORTS_END
 export { AttendanceTracker } from "./components/attendance-tracker/index.js";
 export type { AttendanceRecord, AttendanceSession, AttendanceStatus, AttendanceStudent, AttendanceTrackerProps } from "./components/attendance-tracker/index.js";
