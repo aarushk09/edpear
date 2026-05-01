@@ -98,4 +98,10 @@ export const nextGenRegistryComponents: RegistryComponent[] = [
     description: "Word-tile practice surface for assembling grammatically correct sentence order.",
     ai: false,
   },
+  {
+    name: "pronunciation-scorer",
+    title: "PronunciationScorer",
+    description: "Waveform-inspired scoring card with phoneme-level feedback for spoken practice.",
+    ai: false,
+  },
 ];

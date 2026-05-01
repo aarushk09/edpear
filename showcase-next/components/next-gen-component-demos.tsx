@@ -17,7 +17,8 @@ import {
   ContentReadabilityMeter,
   LearningObjectiveEditor,
   VocabFlashDeck,
-  SentenceConstructor
+  SentenceConstructor,
+  PronunciationScorer
 } from "edpear";
 
 import { DemoFrame } from "./component-doc-page";
@@ -337,6 +338,26 @@ export function renderNextGenComponentDemo(slug: ShowcaseSlug) {
             <div key="sentence-constructor-1" className="w-full max-w-5xl"><SentenceConstructor
         title="Workspace view" /></div>,
             <div key="sentence-constructor-2" className="w-full max-w-5xl"><SentenceConstructor
+        disabled
+        subtitle="Compact read-only preview for dashboards and summaries." /></div>,
+          ]}
+        >
+          {null}
+        </DemoFrame>
+      );
+
+    case "pronunciation-scorer":
+      return (
+        <DemoFrame
+          id="pronunciation-scorer"
+          title="<PronunciationScorer />"
+          description="Waveform-inspired scoring card with phoneme-level feedback for spoken practice."
+          layout="wide"
+          examplePreviews={[
+            <div key="pronunciation-scorer-0" className="w-full max-w-5xl"><PronunciationScorer /></div>,
+            <div key="pronunciation-scorer-1" className="w-full max-w-5xl"><PronunciationScorer
+        title="Workspace view" /></div>,
+            <div key="pronunciation-scorer-2" className="w-full max-w-5xl"><PronunciationScorer
         disabled
         subtitle="Compact read-only preview for dashboards and summaries." /></div>,
           ]}

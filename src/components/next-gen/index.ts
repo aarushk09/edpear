@@ -45,3 +45,6 @@ export type { VocabFlashVariant, VocabFlashDeckProps } from "../vocab-flash-deck
 
 export { SentenceConstructor } from "../sentence-constructor/index.js";
 export type { SentenceTile, SentenceConstructorProps } from "../sentence-constructor/index.js";
+
+export { PronunciationScorer } from "../pronunciation-scorer/index.js";
+export type { PronunciationPhoneme, PronunciationScorerProps } from "../pronunciation-scorer/index.js";
