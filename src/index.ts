@@ -162,6 +162,8 @@ export { SentenceConstructor } from "./components/sentence-constructor/index.js"
 export type { SentenceTile, SentenceConstructorProps } from "./components/sentence-constructor/index.js";
 export { PronunciationScorer } from "./components/pronunciation-scorer/index.js";
 export type { PronunciationPhoneme, PronunciationScorerProps } from "./components/pronunciation-scorer/index.js";
+export { BilingualTextToggle } from "./components/bilingual-text-toggle/index.js";
+export type { BilingualParagraphVariant, BilingualTextToggleProps } from "./components/bilingual-text-toggle/index.js";
 // NEXT_GEN_EXPORTS_END
 export { AttendanceTracker } from "./components/attendance-tracker/index.js";
 export type { AttendanceRecord, AttendanceSession, AttendanceStatus, AttendanceStudent, AttendanceTrackerProps } from "./components/attendance-tracker/index.js";

@@ -40,6 +40,7 @@ export const NEXT_GEN_NAV_GROUPS = [
       { id: "vocab-flash-deck", label: "VocabFlashDeck" },
       { id: "sentence-constructor", label: "SentenceConstructor" },
       { id: "pronunciation-scorer", label: "PronunciationScorer" },
+      { id: "bilingual-text-toggle", label: "BilingualTextToggle" },
     ],
   },
 ] as const;

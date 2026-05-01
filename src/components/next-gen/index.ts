@@ -48,3 +48,6 @@ export type { SentenceTile, SentenceConstructorProps } from "../sentence-constru
 
 export { PronunciationScorer } from "../pronunciation-scorer/index.js";
 export type { PronunciationPhoneme, PronunciationScorerProps } from "../pronunciation-scorer/index.js";
+
+export { BilingualTextToggle } from "../bilingual-text-toggle/index.js";
+export type { BilingualParagraphVariant, BilingualTextToggleProps } from "../bilingual-text-toggle/index.js";

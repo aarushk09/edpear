@@ -18,7 +18,8 @@ import {
   LearningObjectiveEditor,
   VocabFlashDeck,
   SentenceConstructor,
-  PronunciationScorer
+  PronunciationScorer,
+  BilingualTextToggle
 } from "edpear";
 
 import { DemoFrame } from "./component-doc-page";
@@ -358,6 +359,26 @@ export function renderNextGenComponentDemo(slug: ShowcaseSlug) {
             <div key="pronunciation-scorer-1" className="w-full max-w-5xl"><PronunciationScorer
         title="Workspace view" /></div>,
             <div key="pronunciation-scorer-2" className="w-full max-w-5xl"><PronunciationScorer
+        disabled
+        subtitle="Compact read-only preview for dashboards and summaries." /></div>,
+          ]}
+        >
+          {null}
+        </DemoFrame>
+      );
+
+    case "bilingual-text-toggle":
+      return (
+        <DemoFrame
+          id="bilingual-text-toggle"
+          title="<BilingualTextToggle />"
+          description="Paragraph-level language switch that supports scaffolded reading across two texts."
+          layout="wide"
+          examplePreviews={[
+            <div key="bilingual-text-toggle-0" className="w-full max-w-5xl"><BilingualTextToggle /></div>,
+            <div key="bilingual-text-toggle-1" className="w-full max-w-5xl"><BilingualTextToggle
+        title="Workspace view" /></div>,
+            <div key="bilingual-text-toggle-2" className="w-full max-w-5xl"><BilingualTextToggle
         disabled
         subtitle="Compact read-only preview for dashboards and summaries." /></div>,
           ]}

@@ -104,4 +104,10 @@ export const nextGenRegistryComponents: RegistryComponent[] = [
     description: "Waveform-inspired scoring card with phoneme-level feedback for spoken practice.",
     ai: false,
   },
+  {
+    name: "bilingual-text-toggle",
+    title: "BilingualTextToggle",
+    description: "Paragraph-level language switch that supports scaffolded reading across two texts.",
+    ai: false,
+  },
 ];
