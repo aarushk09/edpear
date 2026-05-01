@@ -134,4 +134,10 @@ export const nextGenRegistryComponents: RegistryComponent[] = [
     description: "Contextual micro-tip card that nudges learners to stretch, hydrate, breathe, or reset.",
     ai: false,
   },
+  {
+    name: "study-group-finder",
+    title: "StudyGroupFinder",
+    description: "Learner matching surface that organizes study partners by topic, timezone, and availability.",
+    ai: false,
+  },
 ];

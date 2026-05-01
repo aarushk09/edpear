@@ -23,7 +23,8 @@ import {
   MoodCheckIn,
   BurnoutRiskIndicator,
   FocusTimer,
-  WellnessNudge
+  WellnessNudge,
+  StudyGroupFinder
 } from "edpear";
 
 import { DemoFrame } from "./component-doc-page";
@@ -463,6 +464,26 @@ export function renderNextGenComponentDemo(slug: ShowcaseSlug) {
             <div key="wellness-nudge-1" className="w-full max-w-5xl"><WellnessNudge
         title="Workspace view" /></div>,
             <div key="wellness-nudge-2" className="w-full max-w-5xl"><WellnessNudge
+        disabled
+        subtitle="Compact read-only preview for dashboards and summaries." /></div>,
+          ]}
+        >
+          {null}
+        </DemoFrame>
+      );
+
+    case "study-group-finder":
+      return (
+        <DemoFrame
+          id="study-group-finder"
+          title="<StudyGroupFinder />"
+          description="Learner matching surface that organizes study partners by topic, timezone, and availability."
+          layout="wide"
+          examplePreviews={[
+            <div key="study-group-finder-0" className="w-full max-w-5xl"><StudyGroupFinder /></div>,
+            <div key="study-group-finder-1" className="w-full max-w-5xl"><StudyGroupFinder
+        title="Workspace view" /></div>,
+            <div key="study-group-finder-2" className="w-full max-w-5xl"><StudyGroupFinder
         disabled
         subtitle="Compact read-only preview for dashboards and summaries." /></div>,
           ]}

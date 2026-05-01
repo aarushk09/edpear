@@ -172,6 +172,8 @@ export { FocusTimer } from "./components/focus-timer/index.js";
 export type { FocusTimerCycle, FocusTimerProps } from "./components/focus-timer/index.js";
 export { WellnessNudge } from "./components/wellness-nudge/index.js";
 export type { WellnessNudgeVariant, WellnessNudgeProps } from "./components/wellness-nudge/index.js";
+export { StudyGroupFinder } from "./components/study-group-finder/index.js";
+export type { StudyGroupMatch, StudyGroupFinderProps } from "./components/study-group-finder/index.js";
 // NEXT_GEN_EXPORTS_END
 export { AttendanceTracker } from "./components/attendance-tracker/index.js";
 export type { AttendanceRecord, AttendanceSession, AttendanceStatus, AttendanceStudent, AttendanceTrackerProps } from "./components/attendance-tracker/index.js";

@@ -52,4 +52,10 @@ export const NEXT_GEN_NAV_GROUPS = [
       { id: "wellness-nudge", label: "WellnessNudge" },
     ],
   },
+  {
+    title: "Social & Collaboration",
+    items: [
+      { id: "study-group-finder", label: "StudyGroupFinder" },
+    ],
+  },
 ] as const;

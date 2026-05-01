@@ -63,3 +63,6 @@ export type { FocusTimerCycle, FocusTimerProps } from "../focus-timer/index.js";
 
 export { WellnessNudge } from "../wellness-nudge/index.js";
 export type { WellnessNudgeVariant, WellnessNudgeProps } from "../wellness-nudge/index.js";
+
+export { StudyGroupFinder } from "../study-group-finder/index.js";
+export type { StudyGroupMatch, StudyGroupFinderProps } from "../study-group-finder/index.js";
