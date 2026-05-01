@@ -75,6 +75,7 @@ import type { LearningJournalEntry, QuestionBankItem, ReadingHighlight, TimedQui
 import { Code } from "lucide-react";
 
 import { DemoFrame } from "./component-doc-page";
+import { renderNextGenComponentDemo } from "./next-gen-component-demos";
 import type { ShowcaseSlug } from "../lib/showcase-nav";
 import { useApiKey } from "../lib/use-api-key";
 
@@ -479,6 +480,11 @@ function LearningJournalReadonlyPreview() {
 
 export function ComponentDemo({ slug }: { slug: ShowcaseSlug }) {
   const apiKey = useApiKey();
+  const nextGenDemo = renderNextGenComponentDemo(slug);
+
+  if (nextGenDemo) {
+    return nextGenDemo;
+  }
 
   switch (slug) {
     case "course-card":
@@ -2453,8 +2459,7 @@ export function ComponentDemo({ slug }: { slug: ShowcaseSlug }) {
       );
 
     default: {
-      const _exhaustive: never = slug;
-      return _exhaustive;
+      return null;
     }
   }
 }

@@ -1,3 +1,5 @@
+import { nextGenRegistryComponents } from "./next-gen-registry.js";
+
 export interface RegistryComponent {
   name: string;
   title: string;
@@ -293,7 +295,8 @@ export const registryComponents: RegistryComponent[] = [
     title: "TranslationOverlay",
     description: "Inline translation helper.",
     ai: false,
-  }
+  },
+  ...nextGenRegistryComponents,
 ];
 
 export function getRegistryComponent(name: string): RegistryComponent | undefined {

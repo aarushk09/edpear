@@ -127,6 +127,10 @@ export type {
   LearningJournalPromptSet,
   LearningJournalProps,
 } from "./components/learning-journal/index.js";
+// NEXT_GEN_EXPORTS_START
+export { ConfidenceCalibrator } from "./components/confidence-calibrator/index.js";
+export type { ConfidenceCheckpoint, ConfidenceCalibratorProps } from "./components/confidence-calibrator/index.js";
+// NEXT_GEN_EXPORTS_END
 export { AttendanceTracker } from "./components/attendance-tracker/index.js";
 export type { AttendanceRecord, AttendanceSession, AttendanceStatus, AttendanceStudent, AttendanceTrackerProps } from "./components/attendance-tracker/index.js";
 export { PacingGuide } from "./components/pacing-guide/index.js";

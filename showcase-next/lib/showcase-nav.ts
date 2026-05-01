@@ -1,3 +1,5 @@
+import { NEXT_GEN_NAV_GROUPS } from "./next-gen-showcase-nav";
+
 export const NAV_GROUPS = [
   {
     title: "Learning Elements",
@@ -29,6 +31,7 @@ export const NAV_GROUPS = [
       { id: "learning-journal", label: "LearningJournal" },
     ],
   },
+  ...NEXT_GEN_NAV_GROUPS,
   {
     title: "Scheduling & Accountability",
     items: [

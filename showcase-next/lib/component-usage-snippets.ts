@@ -1,4 +1,5 @@
 import type { ShowcaseSlug } from "./showcase-nav";
+import { NEXT_GEN_COMPONENT_USAGE_SNIPPETS } from "./next-gen-component-usage-snippets";
 
 /**
  * Example usage for each showcase slug (imports use published package name).
@@ -1352,5 +1353,6 @@ function DailyReflection() {
   "translation-overlay": `import { TranslationOverlay } from "edpear-sdk";
 
 // 1) Basic Usage
-<TranslationOverlay originalText="Hola" translatedText="Hello" />`
+<TranslationOverlay originalText="Hola" translatedText="Hello" />`,
+  ...NEXT_GEN_COMPONENT_USAGE_SNIPPETS,
 } satisfies Record<Exclude<ShowcaseSlug, "course-card" | "lesson-progress">, string>;
