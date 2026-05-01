@@ -146,6 +146,8 @@ export { ParentProgressDigest } from "./components/parent-progress-digest/index.
 export type { ParentProgressDigestSection, ParentProgressDigestProps } from "./components/parent-progress-digest/index.js";
 export { GuardianNotificationCenter } from "./components/guardian-notification-center/index.js";
 export type { GuardianNotification, GuardianNotificationCenterProps } from "./components/guardian-notification-center/index.js";
+export { HomeActivitySuggester } from "./components/home-activity-suggester/index.js";
+export type { HomeActivitySuggestion, HomeActivitySuggesterProps } from "./components/home-activity-suggester/index.js";
 // NEXT_GEN_EXPORTS_END
 export { AttendanceTracker } from "./components/attendance-tracker/index.js";
 export type { AttendanceRecord, AttendanceSession, AttendanceStatus, AttendanceStudent, AttendanceTrackerProps } from "./components/attendance-tracker/index.js";

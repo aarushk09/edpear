@@ -56,4 +56,10 @@ export const nextGenRegistryComponents: RegistryComponent[] = [
     description: "Threshold-based alert center for grades, absences, overdue work, and support follow-ups.",
     ai: false,
   },
+  {
+    name: "home-activity-suggester",
+    title: "HomeActivitySuggester",
+    description: "Curated offline exercises families can do together to reinforce classroom learning.",
+    ai: false,
+  },
 ];

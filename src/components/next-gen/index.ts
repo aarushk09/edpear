@@ -24,3 +24,6 @@ export type { ParentProgressDigestSection, ParentProgressDigestProps } from "../
 
 export { GuardianNotificationCenter } from "../guardian-notification-center/index.js";
 export type { GuardianNotification, GuardianNotificationCenterProps } from "../guardian-notification-center/index.js";
+
+export { HomeActivitySuggester } from "../home-activity-suggester/index.js";
+export type { HomeActivitySuggestion, HomeActivitySuggesterProps } from "../home-activity-suggester/index.js";

@@ -10,7 +10,8 @@ import {
   CompetencyMatrix,
   PrePostTestComparison,
   ParentProgressDigest,
-  GuardianNotificationCenter
+  GuardianNotificationCenter,
+  HomeActivitySuggester
 } from "edpear";
 
 import { DemoFrame } from "./component-doc-page";
@@ -190,6 +191,26 @@ export function renderNextGenComponentDemo(slug: ShowcaseSlug) {
             <div key="guardian-notification-center-1" className="w-full max-w-5xl"><GuardianNotificationCenter
         title="Workspace view" /></div>,
             <div key="guardian-notification-center-2" className="w-full max-w-5xl"><GuardianNotificationCenter
+        disabled
+        subtitle="Compact read-only preview for dashboards and summaries." /></div>,
+          ]}
+        >
+          {null}
+        </DemoFrame>
+      );
+
+    case "home-activity-suggester":
+      return (
+        <DemoFrame
+          id="home-activity-suggester"
+          title="<HomeActivitySuggester />"
+          description="Curated offline exercises families can do together to reinforce classroom learning."
+          layout="wide"
+          examplePreviews={[
+            <div key="home-activity-suggester-0" className="w-full max-w-5xl"><HomeActivitySuggester /></div>,
+            <div key="home-activity-suggester-1" className="w-full max-w-5xl"><HomeActivitySuggester
+        title="Workspace view" /></div>,
+            <div key="home-activity-suggester-2" className="w-full max-w-5xl"><HomeActivitySuggester
         disabled
         subtitle="Compact read-only preview for dashboards and summaries." /></div>,
           ]}
