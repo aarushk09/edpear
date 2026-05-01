@@ -122,4 +122,10 @@ export const nextGenRegistryComponents: RegistryComponent[] = [
     description: "Engagement signal composite that flags overload trends before learners disengage.",
     ai: false,
   },
+  {
+    name: "focus-timer",
+    title: "FocusTimer",
+    description: "Pomodoro-style work and break planner with quick visibility into distractions and recovery.",
+    ai: false,
+  },
 ];

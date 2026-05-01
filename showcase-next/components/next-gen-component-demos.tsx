@@ -21,7 +21,8 @@ import {
   PronunciationScorer,
   BilingualTextToggle,
   MoodCheckIn,
-  BurnoutRiskIndicator
+  BurnoutRiskIndicator,
+  FocusTimer
 } from "edpear";
 
 import { DemoFrame } from "./component-doc-page";
@@ -421,6 +422,26 @@ export function renderNextGenComponentDemo(slug: ShowcaseSlug) {
             <div key="burnout-risk-indicator-1" className="w-full max-w-5xl"><BurnoutRiskIndicator
         title="Workspace view" /></div>,
             <div key="burnout-risk-indicator-2" className="w-full max-w-5xl"><BurnoutRiskIndicator
+        disabled
+        subtitle="Compact read-only preview for dashboards and summaries." /></div>,
+          ]}
+        >
+          {null}
+        </DemoFrame>
+      );
+
+    case "focus-timer":
+      return (
+        <DemoFrame
+          id="focus-timer"
+          title="<FocusTimer />"
+          description="Pomodoro-style work and break planner with quick visibility into distractions and recovery."
+          layout="wide"
+          examplePreviews={[
+            <div key="focus-timer-0" className="w-full max-w-5xl"><FocusTimer /></div>,
+            <div key="focus-timer-1" className="w-full max-w-5xl"><FocusTimer
+        title="Workspace view" /></div>,
+            <div key="focus-timer-2" className="w-full max-w-5xl"><FocusTimer
         disabled
         subtitle="Compact read-only preview for dashboards and summaries." /></div>,
           ]}

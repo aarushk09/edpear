@@ -57,3 +57,6 @@ export type { MoodCheckInEntry, MoodCheckInProps } from "../mood-check-in/index.
 
 export { BurnoutRiskIndicator } from "../burnout-risk-indicator/index.js";
 export type { BurnoutRiskSignal, BurnoutRiskIndicatorProps } from "../burnout-risk-indicator/index.js";
+
+export { FocusTimer } from "../focus-timer/index.js";
+export type { FocusTimerCycle, FocusTimerProps } from "../focus-timer/index.js";
