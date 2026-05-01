@@ -93,3 +93,6 @@ export type { CaptionCueDraft, CaptionEditorProps } from "../caption-editor/inde
 
 export { PortfolioBuilder } from "../portfolio-builder/index.js";
 export type { PortfolioArtifact, PortfolioBuilderProps } from "../portfolio-builder/index.js";
+
+export { DigitalTranscript } from "../digital-transcript/index.js";
+export type { TranscriptCourseEntry, DigitalTranscriptProps } from "../digital-transcript/index.js";

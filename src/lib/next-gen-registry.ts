@@ -194,4 +194,10 @@ export const nextGenRegistryComponents: RegistryComponent[] = [
     description: "Curated artifact gallery where learners pair project evidence with reflection and growth notes.",
     ai: false,
   },
+  {
+    name: "digital-transcript",
+    title: "DigitalTranscript",
+    description: "Verifiable course history view with completion evidence and a shareable signature surface.",
+    ai: false,
+  },
 ];

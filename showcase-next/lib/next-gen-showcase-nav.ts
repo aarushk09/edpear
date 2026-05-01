@@ -80,6 +80,7 @@ export const NEXT_GEN_NAV_GROUPS = [
     title: "Portfolio & Credentials",
     items: [
       { id: "portfolio-builder", label: "PortfolioBuilder" },
+      { id: "digital-transcript", label: "DigitalTranscript" },
     ],
   },
 ] as const;

@@ -192,6 +192,8 @@ export { CaptionEditor } from "./components/caption-editor/index.js";
 export type { CaptionCueDraft, CaptionEditorProps } from "./components/caption-editor/index.js";
 export { PortfolioBuilder } from "./components/portfolio-builder/index.js";
 export type { PortfolioArtifact, PortfolioBuilderProps } from "./components/portfolio-builder/index.js";
+export { DigitalTranscript } from "./components/digital-transcript/index.js";
+export type { TranscriptCourseEntry, DigitalTranscriptProps } from "./components/digital-transcript/index.js";
 // NEXT_GEN_EXPORTS_END
 export { AttendanceTracker } from "./components/attendance-tracker/index.js";
 export type { AttendanceRecord, AttendanceSession, AttendanceStatus, AttendanceStudent, AttendanceTrackerProps } from "./components/attendance-tracker/index.js";

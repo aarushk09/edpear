@@ -33,7 +33,8 @@ import {
   DyslexiaFontToggle,
   ScreenReaderQuizAdapter,
   CaptionEditor,
-  PortfolioBuilder
+  PortfolioBuilder,
+  DigitalTranscript
 } from "edpear";
 
 import { DemoFrame } from "./component-doc-page";
@@ -673,6 +674,26 @@ export function renderNextGenComponentDemo(slug: ShowcaseSlug) {
             <div key="portfolio-builder-1" className="w-full max-w-5xl"><PortfolioBuilder
         title="Workspace view" /></div>,
             <div key="portfolio-builder-2" className="w-full max-w-5xl"><PortfolioBuilder
+        disabled
+        subtitle="Compact read-only preview for dashboards and summaries." /></div>,
+          ]}
+        >
+          {null}
+        </DemoFrame>
+      );
+
+    case "digital-transcript":
+      return (
+        <DemoFrame
+          id="digital-transcript"
+          title="<DigitalTranscript />"
+          description="Verifiable course history view with completion evidence and a shareable signature surface."
+          layout="wide"
+          examplePreviews={[
+            <div key="digital-transcript-0" className="w-full max-w-5xl"><DigitalTranscript /></div>,
+            <div key="digital-transcript-1" className="w-full max-w-5xl"><DigitalTranscript
+        title="Workspace view" /></div>,
+            <div key="digital-transcript-2" className="w-full max-w-5xl"><DigitalTranscript
         disabled
         subtitle="Compact read-only preview for dashboards and summaries." /></div>,
           ]}
