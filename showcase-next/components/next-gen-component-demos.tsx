@@ -31,7 +31,8 @@ import {
   QuestionVariantManager,
   SuspiciousActivityLog,
   DyslexiaFontToggle,
-  ScreenReaderQuizAdapter
+  ScreenReaderQuizAdapter,
+  CaptionEditor
 } from "edpear";
 
 import { DemoFrame } from "./component-doc-page";
@@ -631,6 +632,26 @@ export function renderNextGenComponentDemo(slug: ShowcaseSlug) {
             <div key="screen-reader-quiz-adapter-1" className="w-full max-w-5xl"><ScreenReaderQuizAdapter
         title="Workspace view" /></div>,
             <div key="screen-reader-quiz-adapter-2" className="w-full max-w-5xl"><ScreenReaderQuizAdapter
+        disabled
+        subtitle="Compact read-only preview for dashboards and summaries." /></div>,
+          ]}
+        >
+          {null}
+        </DemoFrame>
+      );
+
+    case "caption-editor":
+      return (
+        <DemoFrame
+          id="caption-editor"
+          title="<CaptionEditor />"
+          description="Editable timed transcript surface for keeping lesson captions accurate and learner-friendly."
+          layout="wide"
+          examplePreviews={[
+            <div key="caption-editor-0" className="w-full max-w-5xl"><CaptionEditor /></div>,
+            <div key="caption-editor-1" className="w-full max-w-5xl"><CaptionEditor
+        title="Workspace view" /></div>,
+            <div key="caption-editor-2" className="w-full max-w-5xl"><CaptionEditor
         disabled
         subtitle="Compact read-only preview for dashboards and summaries." /></div>,
           ]}

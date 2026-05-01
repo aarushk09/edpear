@@ -73,6 +73,7 @@ export const NEXT_GEN_NAV_GROUPS = [
     items: [
       { id: "dyslexia-font-toggle", label: "DyslexiaFontToggle" },
       { id: "screen-reader-quiz-adapter", label: "ScreenReaderQuizAdapter" },
+      { id: "caption-editor", label: "CaptionEditor" },
     ],
   },
 ] as const;

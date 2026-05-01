@@ -182,4 +182,10 @@ export const nextGenRegistryComponents: RegistryComponent[] = [
     description: "Linearized quiz presentation with clearer announcements, grouping, and assistive-tech hints.",
     ai: false,
   },
+  {
+    name: "caption-editor",
+    title: "CaptionEditor",
+    description: "Editable timed transcript surface for keeping lesson captions accurate and learner-friendly.",
+    ai: false,
+  },
 ];

@@ -87,3 +87,6 @@ export type { DyslexiaFontVariant, DyslexiaFontToggleProps } from "../dyslexia-f
 
 export { ScreenReaderQuizAdapter } from "../screen-reader-quiz-adapter/index.js";
 export type { ScreenReaderQuizVariant, ScreenReaderQuizAdapterProps } from "../screen-reader-quiz-adapter/index.js";
+
+export { CaptionEditor } from "../caption-editor/index.js";
+export type { CaptionCueDraft, CaptionEditorProps } from "../caption-editor/index.js";
