@@ -15,3 +15,6 @@ export type { ErrorPatternCluster, ErrorPatternAnalyzerProps } from "../error-pa
 
 export { CompetencyMatrix } from "../competency-matrix/index.js";
 export type { CompetencyMatrixEntry, CompetencyMatrixProps } from "../competency-matrix/index.js";
+
+export { PrePostTestComparison } from "../pre-post-test-comparison/index.js";
+export type { PrePostComparisonPoint, PrePostTestComparisonProps } from "../pre-post-test-comparison/index.js";

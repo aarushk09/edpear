@@ -38,4 +38,10 @@ export const nextGenRegistryComponents: RegistryComponent[] = [
     description: "Skills-by-proficiency matrix with evidence drill-down for each competency.",
     ai: false,
   },
+  {
+    name: "pre-post-test-comparison",
+    title: "PrePostTestComparison",
+    description: "Side-by-side unit view that compares knowledge before instruction and after mastery work.",
+    ai: false,
+  },
 ];

@@ -7,7 +7,8 @@ import {
   ConceptMapBuilder,
   LearningVelocityChart,
   ErrorPatternAnalyzer,
-  CompetencyMatrix
+  CompetencyMatrix,
+  PrePostTestComparison
 } from "edpear";
 
 import { DemoFrame } from "./component-doc-page";
@@ -127,6 +128,26 @@ export function renderNextGenComponentDemo(slug: ShowcaseSlug) {
             <div key="competency-matrix-1" className="w-full max-w-5xl"><CompetencyMatrix
         title="Workspace view" /></div>,
             <div key="competency-matrix-2" className="w-full max-w-5xl"><CompetencyMatrix
+        disabled
+        subtitle="Compact read-only preview for dashboards and summaries." /></div>,
+          ]}
+        >
+          {null}
+        </DemoFrame>
+      );
+
+    case "pre-post-test-comparison":
+      return (
+        <DemoFrame
+          id="pre-post-test-comparison"
+          title="<PrePostTestComparison />"
+          description="Side-by-side unit view that compares knowledge before instruction and after mastery work."
+          layout="wide"
+          examplePreviews={[
+            <div key="pre-post-test-comparison-0" className="w-full max-w-5xl"><PrePostTestComparison /></div>,
+            <div key="pre-post-test-comparison-1" className="w-full max-w-5xl"><PrePostTestComparison
+        title="Workspace view" /></div>,
+            <div key="pre-post-test-comparison-2" className="w-full max-w-5xl"><PrePostTestComparison
         disabled
         subtitle="Compact read-only preview for dashboards and summaries." /></div>,
           ]}

@@ -140,6 +140,8 @@ export { ErrorPatternAnalyzer } from "./components/error-pattern-analyzer/index.
 export type { ErrorPatternCluster, ErrorPatternAnalyzerProps } from "./components/error-pattern-analyzer/index.js";
 export { CompetencyMatrix } from "./components/competency-matrix/index.js";
 export type { CompetencyMatrixEntry, CompetencyMatrixProps } from "./components/competency-matrix/index.js";
+export { PrePostTestComparison } from "./components/pre-post-test-comparison/index.js";
+export type { PrePostComparisonPoint, PrePostTestComparisonProps } from "./components/pre-post-test-comparison/index.js";
 // NEXT_GEN_EXPORTS_END
 export { AttendanceTracker } from "./components/attendance-tracker/index.js";
 export type { AttendanceRecord, AttendanceSession, AttendanceStatus, AttendanceStudent, AttendanceTrackerProps } from "./components/attendance-tracker/index.js";
