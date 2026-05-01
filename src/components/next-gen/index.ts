@@ -60,3 +60,6 @@ export type { BurnoutRiskSignal, BurnoutRiskIndicatorProps } from "../burnout-ri
 
 export { FocusTimer } from "../focus-timer/index.js";
 export type { FocusTimerCycle, FocusTimerProps } from "../focus-timer/index.js";
+
+export { WellnessNudge } from "../wellness-nudge/index.js";
+export type { WellnessNudgeVariant, WellnessNudgeProps } from "../wellness-nudge/index.js";

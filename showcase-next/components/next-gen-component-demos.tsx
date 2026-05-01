@@ -22,7 +22,8 @@ import {
   BilingualTextToggle,
   MoodCheckIn,
   BurnoutRiskIndicator,
-  FocusTimer
+  FocusTimer,
+  WellnessNudge
 } from "edpear";
 
 import { DemoFrame } from "./component-doc-page";
@@ -442,6 +443,26 @@ export function renderNextGenComponentDemo(slug: ShowcaseSlug) {
             <div key="focus-timer-1" className="w-full max-w-5xl"><FocusTimer
         title="Workspace view" /></div>,
             <div key="focus-timer-2" className="w-full max-w-5xl"><FocusTimer
+        disabled
+        subtitle="Compact read-only preview for dashboards and summaries." /></div>,
+          ]}
+        >
+          {null}
+        </DemoFrame>
+      );
+
+    case "wellness-nudge":
+      return (
+        <DemoFrame
+          id="wellness-nudge"
+          title="<WellnessNudge />"
+          description="Contextual micro-tip card that nudges learners to stretch, hydrate, breathe, or reset."
+          layout="wide"
+          examplePreviews={[
+            <div key="wellness-nudge-0" className="w-full max-w-5xl"><WellnessNudge /></div>,
+            <div key="wellness-nudge-1" className="w-full max-w-5xl"><WellnessNudge
+        title="Workspace view" /></div>,
+            <div key="wellness-nudge-2" className="w-full max-w-5xl"><WellnessNudge
         disabled
         subtitle="Compact read-only preview for dashboards and summaries." /></div>,
           ]}

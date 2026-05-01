@@ -49,6 +49,7 @@ export const NEXT_GEN_NAV_GROUPS = [
       { id: "mood-check-in", label: "MoodCheckIn" },
       { id: "burnout-risk-indicator", label: "BurnoutRiskIndicator" },
       { id: "focus-timer", label: "FocusTimer" },
+      { id: "wellness-nudge", label: "WellnessNudge" },
     ],
   },
 ] as const;

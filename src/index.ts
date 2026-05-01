@@ -170,6 +170,8 @@ export { BurnoutRiskIndicator } from "./components/burnout-risk-indicator/index.
 export type { BurnoutRiskSignal, BurnoutRiskIndicatorProps } from "./components/burnout-risk-indicator/index.js";
 export { FocusTimer } from "./components/focus-timer/index.js";
 export type { FocusTimerCycle, FocusTimerProps } from "./components/focus-timer/index.js";
+export { WellnessNudge } from "./components/wellness-nudge/index.js";
+export type { WellnessNudgeVariant, WellnessNudgeProps } from "./components/wellness-nudge/index.js";
 // NEXT_GEN_EXPORTS_END
 export { AttendanceTracker } from "./components/attendance-tracker/index.js";
 export type { AttendanceRecord, AttendanceSession, AttendanceStatus, AttendanceStudent, AttendanceTrackerProps } from "./components/attendance-tracker/index.js";

@@ -128,4 +128,10 @@ export const nextGenRegistryComponents: RegistryComponent[] = [
     description: "Pomodoro-style work and break planner with quick visibility into distractions and recovery.",
     ai: false,
   },
+  {
+    name: "wellness-nudge",
+    title: "WellnessNudge",
+    description: "Contextual micro-tip card that nudges learners to stretch, hydrate, breathe, or reset.",
+    ai: false,
+  },
 ];
