@@ -15,7 +15,8 @@ import {
   BloomsTaxonomyTagger,
   CurriculumDragBuilder,
   ContentReadabilityMeter,
-  LearningObjectiveEditor
+  LearningObjectiveEditor,
+  VocabFlashDeck
 } from "edpear";
 
 import { DemoFrame } from "./component-doc-page";
@@ -295,6 +296,26 @@ export function renderNextGenComponentDemo(slug: ShowcaseSlug) {
             <div key="learning-objective-editor-1" className="w-full max-w-5xl"><LearningObjectiveEditor
         title="Workspace view" /></div>,
             <div key="learning-objective-editor-2" className="w-full max-w-5xl"><LearningObjectiveEditor
+        disabled
+        subtitle="Compact read-only preview for dashboards and summaries." /></div>,
+          ]}
+        >
+          {null}
+        </DemoFrame>
+      );
+
+    case "vocab-flash-deck":
+      return (
+        <DemoFrame
+          id="vocab-flash-deck"
+          title="<VocabFlashDeck />"
+          description="Paired vocabulary flip deck with L1/L2 cues, quick audio affordances, and picture-ready copy."
+          layout="wide"
+          examplePreviews={[
+            <div key="vocab-flash-deck-0" className="w-full max-w-5xl"><VocabFlashDeck /></div>,
+            <div key="vocab-flash-deck-1" className="w-full max-w-5xl"><VocabFlashDeck
+        title="Workspace view" /></div>,
+            <div key="vocab-flash-deck-2" className="w-full max-w-5xl"><VocabFlashDeck
         disabled
         subtitle="Compact read-only preview for dashboards and summaries." /></div>,
           ]}

@@ -86,4 +86,10 @@ export const nextGenRegistryComponents: RegistryComponent[] = [
     description: "Structured planning surface for writing SMART objectives and aligning success criteria.",
     ai: false,
   },
+  {
+    name: "vocab-flash-deck",
+    title: "VocabFlashDeck",
+    description: "Paired vocabulary flip deck with L1/L2 cues, quick audio affordances, and picture-ready copy.",
+    ai: false,
+  },
 ];

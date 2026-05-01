@@ -156,6 +156,8 @@ export { ContentReadabilityMeter } from "./components/content-readability-meter/
 export type { ReadabilitySample, ContentReadabilityMeterProps } from "./components/content-readability-meter/index.js";
 export { LearningObjectiveEditor } from "./components/learning-objective-editor/index.js";
 export type { LearningObjectiveDraft, LearningObjectiveEditorProps } from "./components/learning-objective-editor/index.js";
+export { VocabFlashDeck } from "./components/vocab-flash-deck/index.js";
+export type { VocabFlashVariant, VocabFlashDeckProps } from "./components/vocab-flash-deck/index.js";
 // NEXT_GEN_EXPORTS_END
 export { AttendanceTracker } from "./components/attendance-tracker/index.js";
 export type { AttendanceRecord, AttendanceSession, AttendanceStatus, AttendanceStudent, AttendanceTrackerProps } from "./components/attendance-tracker/index.js";

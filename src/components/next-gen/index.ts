@@ -39,3 +39,6 @@ export type { ReadabilitySample, ContentReadabilityMeterProps } from "../content
 
 export { LearningObjectiveEditor } from "../learning-objective-editor/index.js";
 export type { LearningObjectiveDraft, LearningObjectiveEditorProps } from "../learning-objective-editor/index.js";
+
+export { VocabFlashDeck } from "../vocab-flash-deck/index.js";
+export type { VocabFlashVariant, VocabFlashDeckProps } from "../vocab-flash-deck/index.js";

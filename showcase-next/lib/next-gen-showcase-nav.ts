@@ -34,4 +34,10 @@ export const NEXT_GEN_NAV_GROUPS = [
       { id: "learning-objective-editor", label: "LearningObjectiveEditor" },
     ],
   },
+  {
+    title: "Language & Multilingual",
+    items: [
+      { id: "vocab-flash-deck", label: "VocabFlashDeck" },
+    ],
+  },
 ] as const;
