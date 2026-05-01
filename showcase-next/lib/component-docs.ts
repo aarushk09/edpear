@@ -24,6 +24,7 @@ export type ComponentUsageNote = {
 export type ComponentDocsData = {
   label: string;
   overview?: string;
+  registryDescription?: string;
   props: ComponentPropDoc[];
   accessibility: string[];
   usageNotes: ComponentUsageNote[];
@@ -48,6 +49,7 @@ type ReadmePropRow = {
 };
 
 const COMPONENTS_ROOT = path.join(/*turbopackIgnore: true*/ process.cwd(), "..", "src", "components");
+const REGISTRY_FILE = path.join(/*turbopackIgnore: true*/ process.cwd(), "..", "src", "lib", "registry.ts");
 const DOC_SECTION_TITLES = ["advanced usage", "interactions", "usage patterns", "notes"];
 
 function toAbsolutePath(...parts: string[]) {
@@ -144,6 +146,23 @@ function paragraphBullets(body?: string) {
     .filter(Boolean)
     .filter((block) => !block.startsWith("```"));
 }
+
+const getRegistryDescriptions = cache(() => {
+  if (!fs.existsSync(REGISTRY_FILE)) {
+    return new Map<string, string>();
+  }
+
+  const registryText = normalizeNewlines(fs.readFileSync(REGISTRY_FILE, "utf8"));
+  const map = new Map<string, string>();
+  const regex =
+    /name:\s*"([^"]+)"[\s\S]*?description:\s*"([^"]+)"/g;
+
+  for (const match of Array.from(registryText.matchAll(regex))) {
+    map.set(match[1], match[2]);
+  }
+
+  return map;
+});
 
 function createProgramForFile(filePath: string) {
   return ts.createProgram([filePath], {
@@ -244,10 +263,12 @@ function buildDocsData(slug: ShowcaseSlug, label: string): ComponentDocsData {
   const extracted = typesPath
     ? extractPropsFromTypesFile(toAbsolutePath(componentDir, typesPath), label, readme.propTable)
     : { props: [] as ComponentPropDoc[], forwardedProps: [] as string[] };
+  const registryDescription = getRegistryDescriptions().get(slug);
 
   return {
     label,
     overview: readme.overview,
+    registryDescription,
     props: extracted.props,
     accessibility: readme.accessibility,
     usageNotes: readme.usageNotes,
