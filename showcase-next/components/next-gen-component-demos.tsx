@@ -2,7 +2,8 @@
 "use client";
 
 import {
-  ConfidenceCalibrator
+  ConfidenceCalibrator,
+  MistakeNotebook
 } from "edpear";
 
 import { DemoFrame } from "./component-doc-page";
@@ -22,6 +23,26 @@ export function renderNextGenComponentDemo(slug: ShowcaseSlug) {
             <div key="confidence-calibrator-1" className="w-full max-w-5xl"><ConfidenceCalibrator
         title="Workspace view" /></div>,
             <div key="confidence-calibrator-2" className="w-full max-w-5xl"><ConfidenceCalibrator
+        disabled
+        subtitle="Compact read-only preview for dashboards and summaries." /></div>,
+          ]}
+        >
+          {null}
+        </DemoFrame>
+      );
+
+    case "mistake-notebook":
+      return (
+        <DemoFrame
+          id="mistake-notebook"
+          title="<MistakeNotebook />"
+          description="Personal error log that resurfaces wrong answers for re-study and coaching."
+          layout="wide"
+          examplePreviews={[
+            <div key="mistake-notebook-0" className="w-full max-w-5xl"><MistakeNotebook /></div>,
+            <div key="mistake-notebook-1" className="w-full max-w-5xl"><MistakeNotebook
+        title="Workspace view" /></div>,
+            <div key="mistake-notebook-2" className="w-full max-w-5xl"><MistakeNotebook
         disabled
         subtitle="Compact read-only preview for dashboards and summaries." /></div>,
           ]}

@@ -130,6 +130,8 @@ export type {
 // NEXT_GEN_EXPORTS_START
 export { ConfidenceCalibrator } from "./components/confidence-calibrator/index.js";
 export type { ConfidenceCheckpoint, ConfidenceCalibratorProps } from "./components/confidence-calibrator/index.js";
+export { MistakeNotebook } from "./components/mistake-notebook/index.js";
+export type { MistakeNotebookEntry, MistakeNotebookProps } from "./components/mistake-notebook/index.js";
 // NEXT_GEN_EXPORTS_END
 export { AttendanceTracker } from "./components/attendance-tracker/index.js";
 export type { AttendanceRecord, AttendanceSession, AttendanceStatus, AttendanceStudent, AttendanceTrackerProps } from "./components/attendance-tracker/index.js";
