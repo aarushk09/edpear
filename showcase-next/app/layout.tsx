@@ -12,8 +12,15 @@ const sans = Plus_Jakarta_Sans({
 });
 
 export const metadata: Metadata = {
-  title: "EdPear component showcase",
-  description: "Per-component previews of EdPear React components for Next.js.",
+  title: "EdPear",
+  description: "EdPear component showcase and documentation for next-generation EdTech products.",
+  icons: {
+    icon: [
+      { url: "/icon.svg", type: "image/svg+xml" },
+    ],
+    shortcut: "/icon.svg",
+    apple: "/icon.svg",
+  },
 };
 
 export default function RootLayout({
