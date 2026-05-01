@@ -102,3 +102,6 @@ export type { SkillEndorsement, SkillEndorsementCardProps } from "../skill-endor
 
 export { BulkEnrollmentUploader } from "../bulk-enrollment-uploader/index.js";
 export type { BulkEnrollmentRow, BulkEnrollmentUploaderProps } from "../bulk-enrollment-uploader/index.js";
+
+export { LicenseSeatManager } from "../license-seat-manager/index.js";
+export type { LicenseSeatPlan, LicenseSeatManagerProps } from "../license-seat-manager/index.js";

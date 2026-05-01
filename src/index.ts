@@ -198,6 +198,8 @@ export { SkillEndorsementCard } from "./components/skill-endorsement-card/index.
 export type { SkillEndorsement, SkillEndorsementCardProps } from "./components/skill-endorsement-card/index.js";
 export { BulkEnrollmentUploader } from "./components/bulk-enrollment-uploader/index.js";
 export type { BulkEnrollmentRow, BulkEnrollmentUploaderProps } from "./components/bulk-enrollment-uploader/index.js";
+export { LicenseSeatManager } from "./components/license-seat-manager/index.js";
+export type { LicenseSeatPlan, LicenseSeatManagerProps } from "./components/license-seat-manager/index.js";
 // NEXT_GEN_EXPORTS_END
 export { AttendanceTracker } from "./components/attendance-tracker/index.js";
 export type { AttendanceRecord, AttendanceSession, AttendanceStatus, AttendanceStudent, AttendanceTrackerProps } from "./components/attendance-tracker/index.js";

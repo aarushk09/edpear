@@ -212,4 +212,10 @@ export const nextGenRegistryComponents: RegistryComponent[] = [
     description: "Roster upload surface with field mapping previews, row errors, and quick cleanup guidance.",
     ai: false,
   },
+  {
+    name: "license-seat-manager",
+    title: "LicenseSeatManager",
+    description: "Org-level seat dashboard that compares allocation, usage, and remaining capacity at a glance.",
+    ai: false,
+  },
 ];

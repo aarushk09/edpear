@@ -36,7 +36,8 @@ import {
   PortfolioBuilder,
   DigitalTranscript,
   SkillEndorsementCard,
-  BulkEnrollmentUploader
+  BulkEnrollmentUploader,
+  LicenseSeatManager
 } from "edpear";
 
 import { DemoFrame } from "./component-doc-page";
@@ -736,6 +737,26 @@ export function renderNextGenComponentDemo(slug: ShowcaseSlug) {
             <div key="bulk-enrollment-uploader-1" className="w-full max-w-5xl"><BulkEnrollmentUploader
         title="Workspace view" /></div>,
             <div key="bulk-enrollment-uploader-2" className="w-full max-w-5xl"><BulkEnrollmentUploader
+        disabled
+        subtitle="Compact read-only preview for dashboards and summaries." /></div>,
+          ]}
+        >
+          {null}
+        </DemoFrame>
+      );
+
+    case "license-seat-manager":
+      return (
+        <DemoFrame
+          id="license-seat-manager"
+          title="<LicenseSeatManager />"
+          description="Org-level seat dashboard that compares allocation, usage, and remaining capacity at a glance."
+          layout="wide"
+          examplePreviews={[
+            <div key="license-seat-manager-0" className="w-full max-w-5xl"><LicenseSeatManager /></div>,
+            <div key="license-seat-manager-1" className="w-full max-w-5xl"><LicenseSeatManager
+        title="Workspace view" /></div>,
+            <div key="license-seat-manager-2" className="w-full max-w-5xl"><LicenseSeatManager
         disabled
         subtitle="Compact read-only preview for dashboards and summaries." /></div>,
           ]}

@@ -88,6 +88,7 @@ export const NEXT_GEN_NAV_GROUPS = [
     title: "Admin & Operations",
     items: [
       { id: "bulk-enrollment-uploader", label: "BulkEnrollmentUploader" },
+      { id: "license-seat-manager", label: "LicenseSeatManager" },
     ],
   },
 ] as const;
