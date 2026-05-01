@@ -13,6 +13,7 @@ export const NEXT_GEN_NAV_GROUPS = [
     items: [
       { id: "learning-velocity-chart", label: "LearningVelocityChart" },
       { id: "error-pattern-analyzer", label: "ErrorPatternAnalyzer" },
+      { id: "competency-matrix", label: "CompetencyMatrix" },
     ],
   },
 ] as const;

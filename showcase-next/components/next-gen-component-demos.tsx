@@ -6,7 +6,8 @@ import {
   MistakeNotebook,
   ConceptMapBuilder,
   LearningVelocityChart,
-  ErrorPatternAnalyzer
+  ErrorPatternAnalyzer,
+  CompetencyMatrix
 } from "edpear";
 
 import { DemoFrame } from "./component-doc-page";
@@ -106,6 +107,26 @@ export function renderNextGenComponentDemo(slug: ShowcaseSlug) {
             <div key="error-pattern-analyzer-1" className="w-full max-w-5xl"><ErrorPatternAnalyzer
         title="Workspace view" /></div>,
             <div key="error-pattern-analyzer-2" className="w-full max-w-5xl"><ErrorPatternAnalyzer
+        disabled
+        subtitle="Compact read-only preview for dashboards and summaries." /></div>,
+          ]}
+        >
+          {null}
+        </DemoFrame>
+      );
+
+    case "competency-matrix":
+      return (
+        <DemoFrame
+          id="competency-matrix"
+          title="<CompetencyMatrix />"
+          description="Skills-by-proficiency matrix with evidence drill-down for each competency."
+          layout="wide"
+          examplePreviews={[
+            <div key="competency-matrix-0" className="w-full max-w-5xl"><CompetencyMatrix /></div>,
+            <div key="competency-matrix-1" className="w-full max-w-5xl"><CompetencyMatrix
+        title="Workspace view" /></div>,
+            <div key="competency-matrix-2" className="w-full max-w-5xl"><CompetencyMatrix
         disabled
         subtitle="Compact read-only preview for dashboards and summaries." /></div>,
           ]}

@@ -12,3 +12,6 @@ export type { LearningVelocityPoint, LearningVelocityChartProps } from "../learn
 
 export { ErrorPatternAnalyzer } from "../error-pattern-analyzer/index.js";
 export type { ErrorPatternCluster, ErrorPatternAnalyzerProps } from "../error-pattern-analyzer/index.js";
+
+export { CompetencyMatrix } from "../competency-matrix/index.js";
+export type { CompetencyMatrixEntry, CompetencyMatrixProps } from "../competency-matrix/index.js";

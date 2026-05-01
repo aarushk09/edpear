@@ -32,4 +32,10 @@ export const nextGenRegistryComponents: RegistryComponent[] = [
     description: "Clusters repeated wrong answers into misconception groups that teams can address.",
     ai: false,
   },
+  {
+    name: "competency-matrix",
+    title: "CompetencyMatrix",
+    description: "Skills-by-proficiency matrix with evidence drill-down for each competency.",
+    ai: false,
+  },
 ];
