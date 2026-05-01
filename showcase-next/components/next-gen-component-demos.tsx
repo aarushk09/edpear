@@ -16,7 +16,8 @@ import {
   CurriculumDragBuilder,
   ContentReadabilityMeter,
   LearningObjectiveEditor,
-  VocabFlashDeck
+  VocabFlashDeck,
+  SentenceConstructor
 } from "edpear";
 
 import { DemoFrame } from "./component-doc-page";
@@ -316,6 +317,26 @@ export function renderNextGenComponentDemo(slug: ShowcaseSlug) {
             <div key="vocab-flash-deck-1" className="w-full max-w-5xl"><VocabFlashDeck
         title="Workspace view" /></div>,
             <div key="vocab-flash-deck-2" className="w-full max-w-5xl"><VocabFlashDeck
+        disabled
+        subtitle="Compact read-only preview for dashboards and summaries." /></div>,
+          ]}
+        >
+          {null}
+        </DemoFrame>
+      );
+
+    case "sentence-constructor":
+      return (
+        <DemoFrame
+          id="sentence-constructor"
+          title="<SentenceConstructor />"
+          description="Word-tile practice surface for assembling grammatically correct sentence order."
+          layout="wide"
+          examplePreviews={[
+            <div key="sentence-constructor-0" className="w-full max-w-5xl"><SentenceConstructor /></div>,
+            <div key="sentence-constructor-1" className="w-full max-w-5xl"><SentenceConstructor
+        title="Workspace view" /></div>,
+            <div key="sentence-constructor-2" className="w-full max-w-5xl"><SentenceConstructor
         disabled
         subtitle="Compact read-only preview for dashboards and summaries." /></div>,
           ]}

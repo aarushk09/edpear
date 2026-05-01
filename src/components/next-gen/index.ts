@@ -42,3 +42,6 @@ export type { LearningObjectiveDraft, LearningObjectiveEditorProps } from "../le
 
 export { VocabFlashDeck } from "../vocab-flash-deck/index.js";
 export type { VocabFlashVariant, VocabFlashDeckProps } from "../vocab-flash-deck/index.js";
+
+export { SentenceConstructor } from "../sentence-constructor/index.js";
+export type { SentenceTile, SentenceConstructorProps } from "../sentence-constructor/index.js";

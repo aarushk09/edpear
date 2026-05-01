@@ -38,6 +38,7 @@ export const NEXT_GEN_NAV_GROUPS = [
     title: "Language & Multilingual",
     items: [
       { id: "vocab-flash-deck", label: "VocabFlashDeck" },
+      { id: "sentence-constructor", label: "SentenceConstructor" },
     ],
   },
 ] as const;

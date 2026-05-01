@@ -92,4 +92,10 @@ export const nextGenRegistryComponents: RegistryComponent[] = [
     description: "Paired vocabulary flip deck with L1/L2 cues, quick audio affordances, and picture-ready copy.",
     ai: false,
   },
+  {
+    name: "sentence-constructor",
+    title: "SentenceConstructor",
+    description: "Word-tile practice surface for assembling grammatically correct sentence order.",
+    ai: false,
+  },
 ];
