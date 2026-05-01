@@ -43,4 +43,10 @@ export const NEXT_GEN_NAV_GROUPS = [
       { id: "bilingual-text-toggle", label: "BilingualTextToggle" },
     ],
   },
+  {
+    title: "Student Wellbeing",
+    items: [
+      { id: "mood-check-in", label: "MoodCheckIn" },
+    ],
+  },
 ] as const;

@@ -164,6 +164,8 @@ export { PronunciationScorer } from "./components/pronunciation-scorer/index.js"
 export type { PronunciationPhoneme, PronunciationScorerProps } from "./components/pronunciation-scorer/index.js";
 export { BilingualTextToggle } from "./components/bilingual-text-toggle/index.js";
 export type { BilingualParagraphVariant, BilingualTextToggleProps } from "./components/bilingual-text-toggle/index.js";
+export { MoodCheckIn } from "./components/mood-check-in/index.js";
+export type { MoodCheckInEntry, MoodCheckInProps } from "./components/mood-check-in/index.js";
 // NEXT_GEN_EXPORTS_END
 export { AttendanceTracker } from "./components/attendance-tracker/index.js";
 export type { AttendanceRecord, AttendanceSession, AttendanceStatus, AttendanceStudent, AttendanceTrackerProps } from "./components/attendance-tracker/index.js";

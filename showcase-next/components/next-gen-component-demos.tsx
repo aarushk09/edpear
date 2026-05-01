@@ -19,7 +19,8 @@ import {
   VocabFlashDeck,
   SentenceConstructor,
   PronunciationScorer,
-  BilingualTextToggle
+  BilingualTextToggle,
+  MoodCheckIn
 } from "edpear";
 
 import { DemoFrame } from "./component-doc-page";
@@ -379,6 +380,26 @@ export function renderNextGenComponentDemo(slug: ShowcaseSlug) {
             <div key="bilingual-text-toggle-1" className="w-full max-w-5xl"><BilingualTextToggle
         title="Workspace view" /></div>,
             <div key="bilingual-text-toggle-2" className="w-full max-w-5xl"><BilingualTextToggle
+        disabled
+        subtitle="Compact read-only preview for dashboards and summaries." /></div>,
+          ]}
+        >
+          {null}
+        </DemoFrame>
+      );
+
+    case "mood-check-in":
+      return (
+        <DemoFrame
+          id="mood-check-in"
+          title="<MoodCheckIn />"
+          description="Session-start emotional check-in that logs learner mood and surfaces support needs early."
+          layout="wide"
+          examplePreviews={[
+            <div key="mood-check-in-0" className="w-full max-w-5xl"><MoodCheckIn /></div>,
+            <div key="mood-check-in-1" className="w-full max-w-5xl"><MoodCheckIn
+        title="Workspace view" /></div>,
+            <div key="mood-check-in-2" className="w-full max-w-5xl"><MoodCheckIn
         disabled
         subtitle="Compact read-only preview for dashboards and summaries." /></div>,
           ]}

@@ -110,4 +110,10 @@ export const nextGenRegistryComponents: RegistryComponent[] = [
     description: "Paragraph-level language switch that supports scaffolded reading across two texts.",
     ai: false,
   },
+  {
+    name: "mood-check-in",
+    title: "MoodCheckIn",
+    description: "Session-start emotional check-in that logs learner mood and surfaces support needs early.",
+    ai: false,
+  },
 ];

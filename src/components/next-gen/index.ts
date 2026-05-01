@@ -51,3 +51,6 @@ export type { PronunciationPhoneme, PronunciationScorerProps } from "../pronunci
 
 export { BilingualTextToggle } from "../bilingual-text-toggle/index.js";
 export type { BilingualParagraphVariant, BilingualTextToggleProps } from "../bilingual-text-toggle/index.js";
+
+export { MoodCheckIn } from "../mood-check-in/index.js";
+export type { MoodCheckInEntry, MoodCheckInProps } from "../mood-check-in/index.js";
