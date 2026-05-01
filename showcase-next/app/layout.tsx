@@ -12,7 +12,7 @@ const sans = Plus_Jakarta_Sans({
 });
 
 export const metadata: Metadata = {
-  title: "EdPear — Component showcase",
+  title: "EdPear component showcase",
   description: "Per-component previews of EdPear React components for Next.js.",
 };
 

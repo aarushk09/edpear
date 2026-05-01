@@ -3,6 +3,8 @@
 import { Check, ChevronDown, ChevronLeft, ChevronRight, Copy, Terminal } from "lucide-react";
 import Link from "next/link";
 import {
+  createContext,
+  useContext,
   useCallback,
   useEffect,
   useMemo,
@@ -12,15 +14,14 @@ import {
 } from "react";
 
 import type { ParsedUsageExample } from "../lib/parse-usage-examples";
+import type { ComponentDocsData } from "../lib/component-docs";
 
 import { getUsageExamplesForSlug } from "../lib/get-usage-examples";
 import {
-  EDPEAR_PACKAGE,
   INSTALL_COMMAND,
   type PackageManager,
   STYLES_IMPORT_LINE,
   cliAddCommands,
-  manualInstallMarkdown,
   manualInstallSteps,
   packageManagers,
 } from "../lib/package-docs";
@@ -37,14 +38,48 @@ function cx(...parts: (string | false | undefined)[]) {
 
 type TocEntry = { id: string; label: string; depth: 0 | 1 };
 
-function buildTocEntries(examples: { id: string; title: string }[]): TocEntry[] {
-  return [
+const ComponentDocsContext = createContext<ComponentDocsData | null>(null);
+
+export function ComponentDocsProvider({
+  docs,
+  children,
+}: {
+  docs: ComponentDocsData;
+  children: ReactNode;
+}) {
+  return <ComponentDocsContext.Provider value={docs}>{children}</ComponentDocsContext.Provider>;
+}
+
+function useComponentDocs() {
+  const value = useContext(ComponentDocsContext);
+  if (!value) {
+    throw new Error("Component docs are required to render a DemoFrame.");
+  }
+  return value;
+}
+
+function buildTocEntries(
+  examples: { id: string; title: string }[],
+  docs: ComponentDocsData,
+): TocEntry[] {
+  const entries: TocEntry[] = [
     { id: "overview", label: "Overview", depth: 0 },
     { id: "installation", label: "Installation", depth: 0 },
     { id: "examples", label: "Examples", depth: 0 },
     ...examples.map((e) => ({ id: e.id, label: e.title, depth: 1 as const })),
-    { id: "package-meta", label: "Package & styles", depth: 0 },
   ];
+
+  if (docs.props.length > 0) {
+    entries.push({ id: "api-reference", label: "API reference", depth: 0 });
+  }
+  if (docs.usageNotes.length > 0) {
+    entries.push({ id: "usage-guidance", label: "Usage guidance", depth: 0 });
+  }
+  entries.push({ id: "accessibility", label: "Accessibility", depth: 0 });
+  entries.push({ id: "docs-status", label: "Docs status", depth: 0 });
+  entries.push({ id: "package-meta", label: "Package & styles", depth: 0 });
+
+  return entries;
 }
 
 function scrollToSection(id: string) {
@@ -301,6 +336,38 @@ function ExampleShowcaseCard({
   );
 }
 
+function StatPill({ label, value }: { label: string; value: string }) {
+  return (
+    <div className="rounded-xl border border-border bg-muted/20 px-3 py-2">
+      <p className="text-[11px] uppercase tracking-[0.14em] text-muted-foreground">{label}</p>
+      <p className="mt-1 text-sm font-medium text-foreground">{value}</p>
+    </div>
+  );
+}
+
+function CoveragePill({
+  label,
+  complete,
+  missingLabel,
+}: {
+  label: string;
+  complete: boolean;
+  missingLabel: string;
+}) {
+  return (
+    <span
+      className={cx(
+        "inline-flex items-center rounded-full px-2.5 py-1 text-[11px] font-medium",
+        complete
+          ? "bg-emerald-500/10 text-emerald-700 dark:text-emerald-300"
+          : "bg-amber-500/10 text-amber-700 dark:text-amber-300",
+      )}
+    >
+      {complete ? label : missingLabel}
+    </span>
+  );
+}
+
 export function DemoFrame({
   id,
   title,
@@ -314,12 +381,13 @@ export function DemoFrame({
   children: React.ReactNode;
   examplePreviews?: ReactNode[];
 }) {
+  const docs = useComponentDocs();
   const label = getComponentLabel(id);
   const { prev, next } = getNeighborSlugs(id);
   const cmds = cliAddCommands(id);
 
   const usageExamples = useMemo(() => getUsageExamplesForSlug(id), [id]);
-  const tocEntries = useMemo(() => buildTocEntries(usageExamples), [usageExamples]);
+  const tocEntries = useMemo(() => buildTocEntries(usageExamples, docs), [docs, usageExamples]);
 
   const [installTab, setInstallTab] = useState<InstallTab>("command");
   const [pm, setPm] = useState<PackageManager>("npm");
@@ -329,8 +397,6 @@ export function DemoFrame({
       buildCopyPageMarkdown(id, label, description, title, usageExamples, pm),
     [id, label, description, title, usageExamples, pm],
   );
-
-  const manualMd = useMemo(() => manualInstallMarkdown(id), [id]);
 
   useEffect(() => {
     const hash = typeof window !== "undefined" ? window.location.hash.slice(1) : "";
@@ -355,7 +421,14 @@ export function DemoFrame({
 
           <p className="max-w-2xl text-[15px] leading-7 text-muted-foreground">{description}</p>
 
-
+          <div className="grid gap-3 sm:grid-cols-3">
+            <StatPill label="Examples" value={`${usageExamples.length} copy-paste snippets`} />
+            <StatPill label="API props" value={`${docs.props.length} typed entries`} />
+            <StatPill
+              label="Docs source"
+              value={docs.coverage.hasReadme ? "README-backed reference" : "Generated from source"}
+            />
+          </div>
 
           <nav className="flex flex-wrap gap-6 pt-2 text-sm" aria-label="Pager">
             {prev ? (
@@ -453,6 +526,151 @@ export function DemoFrame({
           })}
         </section>
 
+        {docs.props.length > 0 ? (
+          <section className="scroll-mt-6 space-y-4" aria-labelledby="api-reference">
+            <div className="space-y-2">
+              <h2 id="api-reference" className="text-lg font-semibold tracking-tight text-foreground">
+                API reference
+              </h2>
+              <p className="max-w-2xl text-sm leading-relaxed text-muted-foreground">
+                Prop definitions are pulled from the TypeScript source so the reference stays aligned with the package.
+              </p>
+              {docs.forwardedProps.length > 0 ? (
+                <p className="max-w-2xl text-sm leading-relaxed text-muted-foreground">
+                  Also forwards native props from <code>{docs.forwardedProps.join(", ")}</code>.
+                </p>
+              ) : null}
+            </div>
+
+            <div className="overflow-hidden rounded-xl border border-border">
+              <div className="overflow-x-auto">
+                <table className="w-full min-w-[760px] text-left text-sm">
+                  <thead className="bg-muted/30 text-muted-foreground">
+                    <tr>
+                      <th className="px-4 py-3 font-medium">Prop</th>
+                      <th className="px-4 py-3 font-medium">Type</th>
+                      <th className="px-4 py-3 font-medium">Required</th>
+                      <th className="px-4 py-3 font-medium">Default</th>
+                      <th className="px-4 py-3 font-medium">Description</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {docs.props.map((prop) => (
+                      <tr key={prop.name} className="border-t border-border align-top">
+                        <td className="px-4 py-3 font-mono text-xs text-foreground">{prop.name}</td>
+                        <td className="px-4 py-3">
+                          <code className="text-xs text-muted-foreground">{prop.type}</code>
+                        </td>
+                        <td className="px-4 py-3 text-sm text-foreground">
+                          {prop.required ? "Yes" : "No"}
+                        </td>
+                        <td className="px-4 py-3 text-sm text-muted-foreground">
+                          {prop.defaultValue && prop.defaultValue !== "required" ? prop.defaultValue : "-"}
+                        </td>
+                        <td className="px-4 py-3 text-sm text-muted-foreground">
+                          {prop.description || "No inline description yet."}
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </section>
+        ) : null}
+
+        {docs.usageNotes.length > 0 ? (
+          <section className="scroll-mt-6 space-y-4" aria-labelledby="usage-guidance">
+            <div className="space-y-2">
+              <h2 id="usage-guidance" className="text-lg font-semibold tracking-tight text-foreground">
+                Usage guidance
+              </h2>
+              <p className="max-w-2xl text-sm leading-relaxed text-muted-foreground">
+                Operational notes for real product flows, pulled from the component docs instead of duplicated page copy.
+              </p>
+            </div>
+
+            <div className="grid gap-4 md:grid-cols-2">
+              {docs.usageNotes.map((note) => (
+                <div key={note.title} className="rounded-xl border border-border bg-muted/10 p-5">
+                  <h3 className="text-sm font-semibold text-foreground">{note.title}</h3>
+                  <ul className="mt-3 space-y-2 text-sm leading-relaxed text-muted-foreground">
+                    {note.bullets.map((bullet) => (
+                      <li key={bullet} className="flex gap-2">
+                        <span aria-hidden>-</span>
+                        <span>{bullet}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              ))}
+            </div>
+          </section>
+        ) : null}
+
+        <section className="scroll-mt-6 space-y-4" aria-labelledby="accessibility">
+          <div className="space-y-2">
+            <h2 id="accessibility" className="text-lg font-semibold tracking-tight text-foreground">
+              Accessibility
+            </h2>
+            <p className="max-w-2xl text-sm leading-relaxed text-muted-foreground">
+              Adoption is faster when teams know the interaction model up front. This section highlights keyboard, focus,
+              and announcement behavior where it has been documented.
+            </p>
+          </div>
+
+          {docs.accessibility.length > 0 ? (
+            <div className="rounded-xl border border-border bg-muted/10 p-5">
+              <ul className="space-y-2 text-sm leading-relaxed text-muted-foreground">
+                {docs.accessibility.map((item) => (
+                  <li key={item} className="flex gap-2">
+                    <span aria-hidden>-</span>
+                    <span>{item}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ) : (
+            <div className="rounded-xl border border-amber-500/30 bg-amber-500/10 px-4 py-3 text-sm text-amber-800 dark:text-amber-200">
+              Accessibility notes have not been written for this component yet. The live example is available, but the
+              guidance still needs to be completed before this page reaches the target documentation bar.
+            </div>
+          )}
+        </section>
+
+        <section id="docs-status" className="scroll-mt-6 space-y-4" aria-label="Documentation status">
+          <div className="space-y-2">
+            <h2 className="text-lg font-semibold tracking-tight text-foreground">Documentation status</h2>
+            <p className="max-w-2xl text-sm leading-relaxed text-muted-foreground">
+              This audit surface is generated from the component folder so gaps are visible while we continue upgrading
+              the library.
+            </p>
+          </div>
+
+          <div className="flex flex-wrap gap-2">
+            <CoveragePill
+              label="README coverage"
+              missingLabel="README missing"
+              complete={docs.coverage.hasReadme}
+            />
+            <CoveragePill
+              label="API reference ready"
+              missingLabel="API reference incomplete"
+              complete={docs.coverage.hasApiReference}
+            />
+            <CoveragePill
+              label="Accessibility documented"
+              missingLabel="Accessibility guidance missing"
+              complete={docs.coverage.hasAccessibility}
+            />
+            <CoveragePill
+              label="Usage notes included"
+              missingLabel="Usage notes missing"
+              complete={docs.coverage.hasUsageNotes}
+            />
+          </div>
+        </section>
+
         <section
           id="package-meta"
           className="scroll-mt-6 space-y-3 rounded-xl border border-border bg-muted/10 px-5 py-5"
@@ -475,6 +693,16 @@ export function DemoFrame({
               </div>
             </div>
           </div>
+          {(docs.sourceFiles.component || docs.sourceFiles.types || docs.sourceFiles.readme) ? (
+            <div className="space-y-1.5 sm:col-span-2">
+              <p className="text-xs font-medium text-muted-foreground">Source files</p>
+              <div className="rounded-lg border border-border bg-background px-3 py-3 text-xs text-muted-foreground">
+                {docs.sourceFiles.component ? <div>{docs.sourceFiles.component}</div> : null}
+                {docs.sourceFiles.types ? <div>{docs.sourceFiles.types}</div> : null}
+                {docs.sourceFiles.readme ? <div>{docs.sourceFiles.readme}</div> : null}
+              </div>
+            </div>
+          ) : null}
         </section>
       </div>
 

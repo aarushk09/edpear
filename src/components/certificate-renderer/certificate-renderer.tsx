@@ -134,7 +134,7 @@ ${org ? `<p class="org">${esc(org)}</p>` : ""}
 ${data.subtitle ? `<p class="sub">${esc(data.subtitle)}</p>` : ""}
 <p class="date">Completed ${esc(formatDate(data.completedAt))}</p>
 <div class="sig"><div>${esc(data.instructorName)}</div><div class="line">Instructor</div></div>
-</div><script>window.onload=function(){window.print();window.onafterprint=function(){window.close();}};<\/script></body></html>`;
+</div><script>window.onload=function(){window.print();window.onafterprint=function(){window.close();}};</script></body></html>`;
 }
 
 export function CertificateRenderer({ data, organizationName, className }: CertificateRendererProps) {
@@ -205,7 +205,7 @@ export function CertificateRenderer({ data, organizationName, className }: Certi
           </div>
         </div>
         <p className="mt-3 text-center text-xs text-muted-foreground">
-          PDF opens a print dialog—choose “Save as PDF” where supported.
+          PDF opens a print dialog - choose "Save as PDF" where supported.
         </p>
       </div>
     </div>

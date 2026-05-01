@@ -12,7 +12,6 @@ export const BadgeAward = forwardRef<HTMLDivElement, BadgeAwardProps>(
       icon,
       unlocked = true,
       earnedAt,
-      animate = true,
       className,
       ...props
     },

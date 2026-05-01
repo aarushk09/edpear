@@ -1,7 +1,7 @@
 import { Check, Clock, Download, Minus, UserCircle, X } from "lucide-react";
 import { forwardRef } from "react";
 import { cn } from "../../lib/cn.js";
-import type { AttendanceRecord, AttendanceStatus, AttendanceTrackerProps } from "./attendance-tracker.types.js";
+import type { AttendanceStatus, AttendanceTrackerProps } from "./attendance-tracker.types.js";
 
 const STATUS_ICONS: Record<AttendanceStatus, React.ElementType | null> = {
   present: Check,

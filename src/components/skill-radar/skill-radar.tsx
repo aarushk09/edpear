@@ -106,7 +106,6 @@ export const SkillRadar = forwardRef<HTMLDivElement, SkillRadarProps>((props, re
 
           {/* Labels */}
           {data.map((d, i) => {
-            const max = d.fullMark ?? 100;
             // Place labels slightly further out than the max radius
             const p = getPoint(1.15, 1, i);
             // Adjust anchor based on x position

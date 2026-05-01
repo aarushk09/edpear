@@ -1,7 +1,7 @@
 import { BookOpen, FileText, Play, HelpCircle, GraduationCap, ChevronLeft, ChevronRight, Sparkles } from "lucide-react";
 import { forwardRef, useRef } from "react";
 import { cn } from "../../lib/cn.js";
-import type { RecommendationCarouselProps, RecommendationItem, RecommendationType } from "./recommendation-carousel.types.js";
+import type { RecommendationCarouselProps, RecommendationType } from "./recommendation-carousel.types.js";
 
 const TYPE_ICONS: Record<RecommendationType, React.ElementType> = {
   course: GraduationCap,

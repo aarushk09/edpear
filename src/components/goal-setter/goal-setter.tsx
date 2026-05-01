@@ -1,7 +1,7 @@
 import { Plus, Target, Trash2 } from "lucide-react";
 import { forwardRef, useState } from "react";
 import { cn } from "../../lib/cn.js";
-import type { CheckInCadence, GoalData, GoalMilestone, GoalSetterProps } from "./goal-setter.types.js";
+import type { CheckInCadence, GoalMilestone, GoalSetterProps } from "./goal-setter.types.js";
 
 export const GoalSetter = forwardRef<HTMLDivElement, GoalSetterProps>((props, ref) => {
   const { onSave, onCancel, className, ...rest } = props;

@@ -1,7 +1,7 @@
 import { ArrowDownRight, ArrowRight, ArrowUpRight, Gauge } from "lucide-react";
 import { forwardRef } from "react";
 import { cn } from "../../lib/cn.js";
-import type { AdaptiveDifficultyMeterProps, DifficultyTrend } from "./adaptive-difficulty-meter.types.js";
+import type { AdaptiveDifficultyMeterProps } from "./adaptive-difficulty-meter.types.js";
 
 export const AdaptiveDifficultyMeter = forwardRef<HTMLDivElement, AdaptiveDifficultyMeterProps>((props, ref) => {
   const {

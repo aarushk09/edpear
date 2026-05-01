@@ -1,4 +1,4 @@
-import { Check, CheckCircle2, Clock, Coins, Flame, Star, Trophy, X } from "lucide-react";
+import { CheckCircle2, Clock, Coins, Flame, Star, Trophy, X } from "lucide-react";
 import { forwardRef, useEffect, useState } from "react";
 import { cn } from "../../lib/cn.js";
 import type { ChallengeCardProps, ChallengeStatus } from "./challenge-card.types.js";

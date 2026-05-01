@@ -25,7 +25,7 @@ export function KnowledgeCheck({
 
   const allCorrect =
     questions.length > 0 &&
-    questions.every((q, i) => choices[q.id] === q.correctIndex);
+    questions.every((q) => choices[q.id] === q.correctIndex);
 
   const handleSubmit = () => {
     setSubmitted(true);
@@ -95,7 +95,7 @@ export function KnowledgeCheck({
           ) : null}
         </div>
         {submitted && !allCorrect ? (
-          <p className="text-sm text-destructive">Not quite—review the lesson and try again.</p>
+          <p className="text-sm text-destructive">Not quite - review the lesson and try again.</p>
         ) : null}
       </div>
       {children ? (

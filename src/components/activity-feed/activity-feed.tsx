@@ -3,7 +3,7 @@
 import { Award, BookOpen, MessageCircle, Sparkles, UserPlus } from "lucide-react";
 
 import { cn } from "../../lib/cn.js";
-import type { ActivityFeedItem, ActivityFeedItemType, ActivityFeedProps } from "./activity-feed.types.js";
+import type { ActivityFeedItemType, ActivityFeedProps } from "./activity-feed.types.js";
 
 function relTime(ts: string | Date): string {
   const t = typeof ts === "string" ? new Date(ts).getTime() : ts.getTime();

@@ -1,7 +1,7 @@
 import { Calendar } from "lucide-react";
 import { forwardRef, useState } from "react";
 import { cn } from "../../lib/cn.js";
-import type { StudySchedulerProps, StudySession } from "./study-scheduler.types.js";
+import type { StudySchedulerProps } from "./study-scheduler.types.js";
 
 const DAYS = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
 

@@ -26,7 +26,7 @@ export const PacingGuide = forwardRef<HTMLDivElement, PacingGuideProps>((props, 
         {/* Continuous vertical line */}
         <div className="absolute bottom-4 left-[1.375rem] top-4 w-px bg-border" />
 
-        {sortedItems.map((item, index) => {
+        {sortedItems.map((item) => {
           const expected = new Date(item.expectedDate);
           const expectedTime = expected.getTime();
           const actual = item.actualDate ? new Date(item.actualDate) : undefined;

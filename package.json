@@ -31,6 +31,11 @@
     },
     "./styles.css": "./styles/edpear.css"
   },
+  "workspaces": [
+    "showcase-next",
+    "mcp-server",
+    "edpear-sdk"
+  ],
   "scripts": {
     "prepublishOnly": "npm run build",
     "build": "tsc -p tsconfig.build.json",
