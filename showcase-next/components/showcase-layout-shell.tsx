@@ -3,9 +3,11 @@
 import { usePathname } from "next/navigation";
 import { useEffect, useRef } from "react";
 
+import { NAV_GROUPS } from "../lib/showcase-nav";
 import { ShowcaseNav, ThemeToggle } from "./showcase-shell";
 
 const apiKey = process.env.NEXT_PUBLIC_OPENROUTER_API_KEY ?? "";
+const componentCount = NAV_GROUPS.reduce((total, group) => total + group.items.length, 0);
 
 /**
  * EdPear showcase shell: fixed viewport, independent scroll regions, neutral dark palette.
@@ -33,7 +35,7 @@ export function ShowcaseLayoutShell({ children }: { children: React.ReactNode })
             </span>
             <div className="min-w-0 space-y-1">
               <p className="text-[11px] font-medium uppercase tracking-[0.16em] text-muted-foreground">
-                EdPear · Next.js
+                EdPear / Next.js
               </p>
               <h1 className="truncate text-xl font-semibold tracking-tight text-foreground sm:text-2xl">
                 Component showcase
@@ -45,7 +47,7 @@ export function ShowcaseLayoutShell({ children }: { children: React.ReactNode })
           </div>
           <div className="flex shrink-0 flex-wrap items-center gap-2">
             <span className="rounded-lg bg-muted/60 px-2.5 py-1 text-[11px] font-medium tabular-nums text-muted-foreground">
-              35 components
+              {componentCount} components
             </span>
             <span className="rounded-lg bg-muted/60 px-2.5 py-1 text-[11px] font-medium text-muted-foreground">
               Tailwind v4
@@ -78,7 +80,10 @@ export function ShowcaseLayoutShell({ children }: { children: React.ReactNode })
           </div>
         </aside>
 
-        <main ref={mainRef} className="showcase-scroll-hide min-h-0 flex-1 overflow-y-auto overscroll-y-contain [-webkit-overflow-scrolling:touch]">
+        <main
+          ref={mainRef}
+          className="showcase-scroll-hide min-h-0 flex-1 overflow-y-auto overscroll-y-contain [-webkit-overflow-scrolling:touch]"
+        >
           <div className="mx-auto w-full px-4 py-8 sm:px-8 sm:py-12 lg:px-10 lg:py-14 xl:px-12">
             {children}
           </div>

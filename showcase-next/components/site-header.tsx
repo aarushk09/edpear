@@ -5,6 +5,7 @@ import { usePathname } from "next/navigation";
 import { useState, useRef, useEffect } from "react";
 import { ThemeToggle } from "./showcase-shell";
 import { useApiKey, setLocalApiKey } from "../lib/use-api-key";
+import { NAV_GROUPS } from "../lib/showcase-nav";
 
 function ApiKeyInput() {
   const apiKey = useApiKey();
@@ -86,6 +87,7 @@ export function SiteHeader() {
   const isComponents = pathname === "/" || pathname?.startsWith("/docs");
   const isAgentSkills = pathname === "/agent-skills";
   const isMcp = pathname === "/mcp";
+  const componentCount = NAV_GROUPS.reduce((total, group) => total + group.items.length, 0);
 
   return (
     <header className="sticky top-0 z-50 w-full bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 border-b border-border/40">
@@ -162,6 +164,9 @@ export function SiteHeader() {
                 Components
               </Link>
             </nav>
+            <span className="hidden rounded-lg bg-muted/60 px-2.5 py-1 text-[11px] font-medium tabular-nums text-muted-foreground md:inline-flex">
+              {componentCount} components
+            </span>
             <ApiKeyInput />
             <ThemeToggle />
           </div>
