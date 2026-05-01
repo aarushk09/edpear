@@ -69,3 +69,6 @@ export type { StudyGroupMatch, StudyGroupFinderProps } from "../study-group-find
 
 export { CollaborativeNotepad } from "../collaborative-notepad/index.js";
 export type { CollaborativeNote, CollaborativeNotepadProps } from "../collaborative-notepad/index.js";
+
+export { KudosBoard } from "../kudos-board/index.js";
+export type { KudosEntry, KudosBoardProps } from "../kudos-board/index.js";

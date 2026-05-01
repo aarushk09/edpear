@@ -176,6 +176,8 @@ export { StudyGroupFinder } from "./components/study-group-finder/index.js";
 export type { StudyGroupMatch, StudyGroupFinderProps } from "./components/study-group-finder/index.js";
 export { CollaborativeNotepad } from "./components/collaborative-notepad/index.js";
 export type { CollaborativeNote, CollaborativeNotepadProps } from "./components/collaborative-notepad/index.js";
+export { KudosBoard } from "./components/kudos-board/index.js";
+export type { KudosEntry, KudosBoardProps } from "./components/kudos-board/index.js";
 // NEXT_GEN_EXPORTS_END
 export { AttendanceTracker } from "./components/attendance-tracker/index.js";
 export type { AttendanceRecord, AttendanceSession, AttendanceStatus, AttendanceStudent, AttendanceTrackerProps } from "./components/attendance-tracker/index.js";

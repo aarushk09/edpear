@@ -57,6 +57,7 @@ export const NEXT_GEN_NAV_GROUPS = [
     items: [
       { id: "study-group-finder", label: "StudyGroupFinder" },
       { id: "collaborative-notepad", label: "CollaborativeNotepad" },
+      { id: "kudos-board", label: "KudosBoard" },
     ],
   },
 ] as const;

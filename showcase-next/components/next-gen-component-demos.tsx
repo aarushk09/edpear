@@ -25,7 +25,8 @@ import {
   FocusTimer,
   WellnessNudge,
   StudyGroupFinder,
-  CollaborativeNotepad
+  CollaborativeNotepad,
+  KudosBoard
 } from "edpear";
 
 import { DemoFrame } from "./component-doc-page";
@@ -505,6 +506,26 @@ export function renderNextGenComponentDemo(slug: ShowcaseSlug) {
             <div key="collaborative-notepad-1" className="w-full max-w-5xl"><CollaborativeNotepad
         title="Workspace view" /></div>,
             <div key="collaborative-notepad-2" className="w-full max-w-5xl"><CollaborativeNotepad
+        disabled
+        subtitle="Compact read-only preview for dashboards and summaries." /></div>,
+          ]}
+        >
+          {null}
+        </DemoFrame>
+      );
+
+    case "kudos-board":
+      return (
+        <DemoFrame
+          id="kudos-board"
+          title="<KudosBoard />"
+          description="Recognition wall where classmates can celebrate helpful actions, persistence, and wins."
+          layout="wide"
+          examplePreviews={[
+            <div key="kudos-board-0" className="w-full max-w-5xl"><KudosBoard /></div>,
+            <div key="kudos-board-1" className="w-full max-w-5xl"><KudosBoard
+        title="Workspace view" /></div>,
+            <div key="kudos-board-2" className="w-full max-w-5xl"><KudosBoard
         disabled
         subtitle="Compact read-only preview for dashboards and summaries." /></div>,
           ]}

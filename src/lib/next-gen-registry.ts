@@ -146,4 +146,10 @@ export const nextGenRegistryComponents: RegistryComponent[] = [
     description: "Shared lesson-scoped notes surface with visible contributions and easy synthesis.",
     ai: false,
   },
+  {
+    name: "kudos-board",
+    title: "KudosBoard",
+    description: "Recognition wall where classmates can celebrate helpful actions, persistence, and wins.",
+    ai: false,
+  },
 ];
