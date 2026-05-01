@@ -182,6 +182,8 @@ export { ProctorModeOverlay } from "./components/proctor-mode-overlay/index.js";
 export type { ProctorSignal, ProctorModeOverlayProps } from "./components/proctor-mode-overlay/index.js";
 export { QuestionVariantManager } from "./components/question-variant-manager/index.js";
 export type { QuestionVariantDraft, QuestionVariantManagerProps } from "./components/question-variant-manager/index.js";
+export { SuspiciousActivityLog } from "./components/suspicious-activity-log/index.js";
+export type { SuspiciousActivityEvent, SuspiciousActivityLogProps } from "./components/suspicious-activity-log/index.js";
 // NEXT_GEN_EXPORTS_END
 export { AttendanceTracker } from "./components/attendance-tracker/index.js";
 export type { AttendanceRecord, AttendanceSession, AttendanceStatus, AttendanceStudent, AttendanceTrackerProps } from "./components/attendance-tracker/index.js";

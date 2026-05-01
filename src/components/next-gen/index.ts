@@ -78,3 +78,6 @@ export type { ProctorSignal, ProctorModeOverlayProps } from "../proctor-mode-ove
 
 export { QuestionVariantManager } from "../question-variant-manager/index.js";
 export type { QuestionVariantDraft, QuestionVariantManagerProps } from "../question-variant-manager/index.js";
+
+export { SuspiciousActivityLog } from "../suspicious-activity-log/index.js";
+export type { SuspiciousActivityEvent, SuspiciousActivityLogProps } from "../suspicious-activity-log/index.js";

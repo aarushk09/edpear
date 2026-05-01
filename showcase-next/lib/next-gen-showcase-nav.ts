@@ -65,6 +65,7 @@ export const NEXT_GEN_NAV_GROUPS = [
     items: [
       { id: "proctor-mode-overlay", label: "ProctorModeOverlay" },
       { id: "question-variant-manager", label: "QuestionVariantManager" },
+      { id: "suspicious-activity-log", label: "SuspiciousActivityLog" },
     ],
   },
 ] as const;

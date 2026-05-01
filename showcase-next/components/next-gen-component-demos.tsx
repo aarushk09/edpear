@@ -28,7 +28,8 @@ import {
   CollaborativeNotepad,
   KudosBoard,
   ProctorModeOverlay,
-  QuestionVariantManager
+  QuestionVariantManager,
+  SuspiciousActivityLog
 } from "edpear";
 
 import { DemoFrame } from "./component-doc-page";
@@ -568,6 +569,26 @@ export function renderNextGenComponentDemo(slug: ShowcaseSlug) {
             <div key="question-variant-manager-1" className="w-full max-w-5xl"><QuestionVariantManager
         title="Workspace view" /></div>,
             <div key="question-variant-manager-2" className="w-full max-w-5xl"><QuestionVariantManager
+        disabled
+        subtitle="Compact read-only preview for dashboards and summaries." /></div>,
+          ]}
+        >
+          {null}
+        </DemoFrame>
+      );
+
+    case "suspicious-activity-log":
+      return (
+        <DemoFrame
+          id="suspicious-activity-log"
+          title="<SuspiciousActivityLog />"
+          description="Timestamped audit trail for paste events, focus losses, idle gaps, and integrity review notes."
+          layout="wide"
+          examplePreviews={[
+            <div key="suspicious-activity-log-0" className="w-full max-w-5xl"><SuspiciousActivityLog /></div>,
+            <div key="suspicious-activity-log-1" className="w-full max-w-5xl"><SuspiciousActivityLog
+        title="Workspace view" /></div>,
+            <div key="suspicious-activity-log-2" className="w-full max-w-5xl"><SuspiciousActivityLog
         disabled
         subtitle="Compact read-only preview for dashboards and summaries." /></div>,
           ]}

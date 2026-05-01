@@ -164,4 +164,10 @@ export const nextGenRegistryComponents: RegistryComponent[] = [
     description: "Variant planning surface for shuffling question pools and parameter sets per learner seat.",
     ai: false,
   },
+  {
+    name: "suspicious-activity-log",
+    title: "SuspiciousActivityLog",
+    description: "Timestamped audit trail for paste events, focus losses, idle gaps, and integrity review notes.",
+    ai: false,
+  },
 ];
