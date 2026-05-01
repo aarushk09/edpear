@@ -20,7 +20,8 @@ import {
   SentenceConstructor,
   PronunciationScorer,
   BilingualTextToggle,
-  MoodCheckIn
+  MoodCheckIn,
+  BurnoutRiskIndicator
 } from "edpear";
 
 import { DemoFrame } from "./component-doc-page";
@@ -400,6 +401,26 @@ export function renderNextGenComponentDemo(slug: ShowcaseSlug) {
             <div key="mood-check-in-1" className="w-full max-w-5xl"><MoodCheckIn
         title="Workspace view" /></div>,
             <div key="mood-check-in-2" className="w-full max-w-5xl"><MoodCheckIn
+        disabled
+        subtitle="Compact read-only preview for dashboards and summaries." /></div>,
+          ]}
+        >
+          {null}
+        </DemoFrame>
+      );
+
+    case "burnout-risk-indicator":
+      return (
+        <DemoFrame
+          id="burnout-risk-indicator"
+          title="<BurnoutRiskIndicator />"
+          description="Engagement signal composite that flags overload trends before learners disengage."
+          layout="wide"
+          examplePreviews={[
+            <div key="burnout-risk-indicator-0" className="w-full max-w-5xl"><BurnoutRiskIndicator /></div>,
+            <div key="burnout-risk-indicator-1" className="w-full max-w-5xl"><BurnoutRiskIndicator
+        title="Workspace view" /></div>,
+            <div key="burnout-risk-indicator-2" className="w-full max-w-5xl"><BurnoutRiskIndicator
         disabled
         subtitle="Compact read-only preview for dashboards and summaries." /></div>,
           ]}

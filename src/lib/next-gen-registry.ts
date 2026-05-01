@@ -116,4 +116,10 @@ export const nextGenRegistryComponents: RegistryComponent[] = [
     description: "Session-start emotional check-in that logs learner mood and surfaces support needs early.",
     ai: false,
   },
+  {
+    name: "burnout-risk-indicator",
+    title: "BurnoutRiskIndicator",
+    description: "Engagement signal composite that flags overload trends before learners disengage.",
+    ai: false,
+  },
 ];

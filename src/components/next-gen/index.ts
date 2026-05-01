@@ -54,3 +54,6 @@ export type { BilingualParagraphVariant, BilingualTextToggleProps } from "../bil
 
 export { MoodCheckIn } from "../mood-check-in/index.js";
 export type { MoodCheckInEntry, MoodCheckInProps } from "../mood-check-in/index.js";
+
+export { BurnoutRiskIndicator } from "../burnout-risk-indicator/index.js";
+export type { BurnoutRiskSignal, BurnoutRiskIndicatorProps } from "../burnout-risk-indicator/index.js";

@@ -47,6 +47,7 @@ export const NEXT_GEN_NAV_GROUPS = [
     title: "Student Wellbeing",
     items: [
       { id: "mood-check-in", label: "MoodCheckIn" },
+      { id: "burnout-risk-indicator", label: "BurnoutRiskIndicator" },
     ],
   },
 ] as const;
