@@ -1,7 +1,7 @@
 
 "use client";
 
-import { TrendingUp, Target, TrendingUp } from "lucide-react";
+import { TrendingUp, Target } from "lucide-react";
 import { forwardRef, useMemo, useState } from "react";
 
 import { cn } from "../../lib/cn.js";

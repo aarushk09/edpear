@@ -32,10 +32,6 @@ if (!spec) {
 }
 
 const componentDir = path.join(root, "src", "components", spec.slug);
-if (fs.existsSync(componentDir)) {
-  console.error(`Component already exists: ${spec.slug}`);
-  process.exit(1);
-}
 
 function ensureDir(dir) {
   fs.mkdirSync(dir, { recursive: true });
@@ -326,10 +322,11 @@ ${specEntry.name}.displayName = "${specEntry.name}";
 }
 
 function buildMetricComponent(specEntry) {
+  const metricImports = Array.from(new Set([specEntry.icon, "Target", "TrendingUp"])).join(", ");
   return `
 "use client";
 
-import { ${specEntry.icon}, Target, TrendingUp } from "lucide-react";
+import { ${metricImports} } from "lucide-react";
 import { forwardRef, useMemo, useState } from "react";
 
 import { cn } from "../../lib/cn.js";
@@ -521,11 +518,13 @@ export const ${specEntry.name} = forwardRef<HTMLDivElement, ${specEntry.name}Pro
   const [draftTitle, setDraftTitle] = useState("");
   const [draftDetail, setDraftDetail] = useState("");
 
-  const moveItem = (index, direction) => {
+  const moveItem = (index: number, direction: number) => {
     const nextIndex = index + direction;
     if (nextIndex < 0 || nextIndex >= items.length) return;
     const next = [...items];
-    const [entry] = next.splice(index, 1);
+    const entry = next[index];
+    if (!entry) return;
+    next.splice(index, 1);
     next.splice(nextIndex, 0, entry);
     setItems(next);
   };
