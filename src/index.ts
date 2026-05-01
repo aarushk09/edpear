@@ -196,6 +196,8 @@ export { DigitalTranscript } from "./components/digital-transcript/index.js";
 export type { TranscriptCourseEntry, DigitalTranscriptProps } from "./components/digital-transcript/index.js";
 export { SkillEndorsementCard } from "./components/skill-endorsement-card/index.js";
 export type { SkillEndorsement, SkillEndorsementCardProps } from "./components/skill-endorsement-card/index.js";
+export { BulkEnrollmentUploader } from "./components/bulk-enrollment-uploader/index.js";
+export type { BulkEnrollmentRow, BulkEnrollmentUploaderProps } from "./components/bulk-enrollment-uploader/index.js";
 // NEXT_GEN_EXPORTS_END
 export { AttendanceTracker } from "./components/attendance-tracker/index.js";
 export type { AttendanceRecord, AttendanceSession, AttendanceStatus, AttendanceStudent, AttendanceTrackerProps } from "./components/attendance-tracker/index.js";

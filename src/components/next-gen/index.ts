@@ -99,3 +99,6 @@ export type { TranscriptCourseEntry, DigitalTranscriptProps } from "../digital-t
 
 export { SkillEndorsementCard } from "../skill-endorsement-card/index.js";
 export type { SkillEndorsement, SkillEndorsementCardProps } from "../skill-endorsement-card/index.js";
+
+export { BulkEnrollmentUploader } from "../bulk-enrollment-uploader/index.js";
+export type { BulkEnrollmentRow, BulkEnrollmentUploaderProps } from "../bulk-enrollment-uploader/index.js";

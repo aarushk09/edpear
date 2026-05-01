@@ -35,7 +35,8 @@ import {
   CaptionEditor,
   PortfolioBuilder,
   DigitalTranscript,
-  SkillEndorsementCard
+  SkillEndorsementCard,
+  BulkEnrollmentUploader
 } from "edpear";
 
 import { DemoFrame } from "./component-doc-page";
@@ -715,6 +716,26 @@ export function renderNextGenComponentDemo(slug: ShowcaseSlug) {
             <div key="skill-endorsement-card-1" className="w-full max-w-5xl"><SkillEndorsementCard
         title="Workspace view" /></div>,
             <div key="skill-endorsement-card-2" className="w-full max-w-5xl"><SkillEndorsementCard
+        disabled
+        subtitle="Compact read-only preview for dashboards and summaries." /></div>,
+          ]}
+        >
+          {null}
+        </DemoFrame>
+      );
+
+    case "bulk-enrollment-uploader":
+      return (
+        <DemoFrame
+          id="bulk-enrollment-uploader"
+          title="<BulkEnrollmentUploader />"
+          description="Roster upload surface with field mapping previews, row errors, and quick cleanup guidance."
+          layout="wide"
+          examplePreviews={[
+            <div key="bulk-enrollment-uploader-0" className="w-full max-w-5xl"><BulkEnrollmentUploader /></div>,
+            <div key="bulk-enrollment-uploader-1" className="w-full max-w-5xl"><BulkEnrollmentUploader
+        title="Workspace view" /></div>,
+            <div key="bulk-enrollment-uploader-2" className="w-full max-w-5xl"><BulkEnrollmentUploader
         disabled
         subtitle="Compact read-only preview for dashboards and summaries." /></div>,
           ]}

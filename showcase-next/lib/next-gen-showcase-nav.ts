@@ -84,4 +84,10 @@ export const NEXT_GEN_NAV_GROUPS = [
       { id: "skill-endorsement-card", label: "SkillEndorsementCard" },
     ],
   },
+  {
+    title: "Admin & Operations",
+    items: [
+      { id: "bulk-enrollment-uploader", label: "BulkEnrollmentUploader" },
+    ],
+  },
 ] as const;

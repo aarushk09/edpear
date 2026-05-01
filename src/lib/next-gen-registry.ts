@@ -206,4 +206,10 @@ export const nextGenRegistryComponents: RegistryComponent[] = [
     description: "Instructor-signed competency card for showcasing validated skills on learner profiles.",
     ai: false,
   },
+  {
+    name: "bulk-enrollment-uploader",
+    title: "BulkEnrollmentUploader",
+    description: "Roster upload surface with field mapping previews, row errors, and quick cleanup guidance.",
+    ai: false,
+  },
 ];
