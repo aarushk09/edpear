@@ -74,4 +74,10 @@ export const nextGenRegistryComponents: RegistryComponent[] = [
     description: "Sequencing surface for arranging modules and lessons into a coherent learning arc.",
     ai: false,
   },
+  {
+    name: "content-readability-meter",
+    title: "ContentReadabilityMeter",
+    description: "Flesch-Kincaid inspired readability surface for previewing text difficulty before publishing.",
+    ai: false,
+  },
 ];

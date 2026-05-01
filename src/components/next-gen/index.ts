@@ -33,3 +33,6 @@ export type { BloomsTaggedObjective, BloomsTaxonomyTaggerProps } from "../blooms
 
 export { CurriculumDragBuilder } from "../curriculum-drag-builder/index.js";
 export type { CurriculumSequenceItem, CurriculumDragBuilderProps } from "../curriculum-drag-builder/index.js";
+
+export { ContentReadabilityMeter } from "../content-readability-meter/index.js";
+export type { ReadabilitySample, ContentReadabilityMeterProps } from "../content-readability-meter/index.js";

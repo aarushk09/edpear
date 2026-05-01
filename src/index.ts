@@ -152,6 +152,8 @@ export { BloomsTaxonomyTagger } from "./components/blooms-taxonomy-tagger/index.
 export type { BloomsTaggedObjective, BloomsTaxonomyTaggerProps } from "./components/blooms-taxonomy-tagger/index.js";
 export { CurriculumDragBuilder } from "./components/curriculum-drag-builder/index.js";
 export type { CurriculumSequenceItem, CurriculumDragBuilderProps } from "./components/curriculum-drag-builder/index.js";
+export { ContentReadabilityMeter } from "./components/content-readability-meter/index.js";
+export type { ReadabilitySample, ContentReadabilityMeterProps } from "./components/content-readability-meter/index.js";
 // NEXT_GEN_EXPORTS_END
 export { AttendanceTracker } from "./components/attendance-tracker/index.js";
 export type { AttendanceRecord, AttendanceSession, AttendanceStatus, AttendanceStudent, AttendanceTrackerProps } from "./components/attendance-tracker/index.js";

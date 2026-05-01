@@ -13,7 +13,8 @@ import {
   GuardianNotificationCenter,
   HomeActivitySuggester,
   BloomsTaxonomyTagger,
-  CurriculumDragBuilder
+  CurriculumDragBuilder,
+  ContentReadabilityMeter
 } from "edpear";
 
 import { DemoFrame } from "./component-doc-page";
@@ -253,6 +254,26 @@ export function renderNextGenComponentDemo(slug: ShowcaseSlug) {
             <div key="curriculum-drag-builder-1" className="w-full max-w-5xl"><CurriculumDragBuilder
         title="Workspace view" /></div>,
             <div key="curriculum-drag-builder-2" className="w-full max-w-5xl"><CurriculumDragBuilder
+        disabled
+        subtitle="Compact read-only preview for dashboards and summaries." /></div>,
+          ]}
+        >
+          {null}
+        </DemoFrame>
+      );
+
+    case "content-readability-meter":
+      return (
+        <DemoFrame
+          id="content-readability-meter"
+          title="<ContentReadabilityMeter />"
+          description="Flesch-Kincaid inspired readability surface for previewing text difficulty before publishing."
+          layout="wide"
+          examplePreviews={[
+            <div key="content-readability-meter-0" className="w-full max-w-5xl"><ContentReadabilityMeter /></div>,
+            <div key="content-readability-meter-1" className="w-full max-w-5xl"><ContentReadabilityMeter
+        title="Workspace view" /></div>,
+            <div key="content-readability-meter-2" className="w-full max-w-5xl"><ContentReadabilityMeter
         disabled
         subtitle="Compact read-only preview for dashboards and summaries." /></div>,
           ]}
