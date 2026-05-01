@@ -60,4 +60,10 @@ export const NEXT_GEN_NAV_GROUPS = [
       { id: "kudos-board", label: "KudosBoard" },
     ],
   },
+  {
+    title: "Assessment Integrity",
+    items: [
+      { id: "proctor-mode-overlay", label: "ProctorModeOverlay" },
+    ],
+  },
 ] as const;

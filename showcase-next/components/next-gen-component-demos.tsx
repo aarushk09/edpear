@@ -26,7 +26,8 @@ import {
   WellnessNudge,
   StudyGroupFinder,
   CollaborativeNotepad,
-  KudosBoard
+  KudosBoard,
+  ProctorModeOverlay
 } from "edpear";
 
 import { DemoFrame } from "./component-doc-page";
@@ -526,6 +527,26 @@ export function renderNextGenComponentDemo(slug: ShowcaseSlug) {
             <div key="kudos-board-1" className="w-full max-w-5xl"><KudosBoard
         title="Workspace view" /></div>,
             <div key="kudos-board-2" className="w-full max-w-5xl"><KudosBoard
+        disabled
+        subtitle="Compact read-only preview for dashboards and summaries." /></div>,
+          ]}
+        >
+          {null}
+        </DemoFrame>
+      );
+
+    case "proctor-mode-overlay":
+      return (
+        <DemoFrame
+          id="proctor-mode-overlay"
+          title="<ProctorModeOverlay />"
+          description="Fullscreen assessment shell that surfaces focus loss, blur events, and live integrity status."
+          layout="wide"
+          examplePreviews={[
+            <div key="proctor-mode-overlay-0" className="w-full max-w-5xl"><ProctorModeOverlay /></div>,
+            <div key="proctor-mode-overlay-1" className="w-full max-w-5xl"><ProctorModeOverlay
+        title="Workspace view" /></div>,
+            <div key="proctor-mode-overlay-2" className="w-full max-w-5xl"><ProctorModeOverlay
         disabled
         subtitle="Compact read-only preview for dashboards and summaries." /></div>,
           ]}

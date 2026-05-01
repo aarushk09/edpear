@@ -152,4 +152,10 @@ export const nextGenRegistryComponents: RegistryComponent[] = [
     description: "Recognition wall where classmates can celebrate helpful actions, persistence, and wins.",
     ai: false,
   },
+  {
+    name: "proctor-mode-overlay",
+    title: "ProctorModeOverlay",
+    description: "Fullscreen assessment shell that surfaces focus loss, blur events, and live integrity status.",
+    ai: false,
+  },
 ];

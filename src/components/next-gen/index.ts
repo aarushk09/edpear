@@ -72,3 +72,6 @@ export type { CollaborativeNote, CollaborativeNotepadProps } from "../collaborat
 
 export { KudosBoard } from "../kudos-board/index.js";
 export type { KudosEntry, KudosBoardProps } from "../kudos-board/index.js";
+
+export { ProctorModeOverlay } from "../proctor-mode-overlay/index.js";
+export type { ProctorSignal, ProctorModeOverlayProps } from "../proctor-mode-overlay/index.js";
