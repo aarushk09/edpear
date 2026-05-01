@@ -17,4 +17,10 @@ export const NEXT_GEN_NAV_GROUPS = [
       { id: "pre-post-test-comparison", label: "PrePostTestComparison" },
     ],
   },
+  {
+    title: "Parent & Guardian",
+    items: [
+      { id: "parent-progress-digest", label: "ParentProgressDigest" },
+    ],
+  },
 ] as const;

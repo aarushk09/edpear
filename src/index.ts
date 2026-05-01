@@ -142,6 +142,8 @@ export { CompetencyMatrix } from "./components/competency-matrix/index.js";
 export type { CompetencyMatrixEntry, CompetencyMatrixProps } from "./components/competency-matrix/index.js";
 export { PrePostTestComparison } from "./components/pre-post-test-comparison/index.js";
 export type { PrePostComparisonPoint, PrePostTestComparisonProps } from "./components/pre-post-test-comparison/index.js";
+export { ParentProgressDigest } from "./components/parent-progress-digest/index.js";
+export type { ParentProgressDigestSection, ParentProgressDigestProps } from "./components/parent-progress-digest/index.js";
 // NEXT_GEN_EXPORTS_END
 export { AttendanceTracker } from "./components/attendance-tracker/index.js";
 export type { AttendanceRecord, AttendanceSession, AttendanceStatus, AttendanceStudent, AttendanceTrackerProps } from "./components/attendance-tracker/index.js";

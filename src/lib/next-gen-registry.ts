@@ -44,4 +44,10 @@ export const nextGenRegistryComponents: RegistryComponent[] = [
     description: "Side-by-side unit view that compares knowledge before instruction and after mastery work.",
     ai: false,
   },
+  {
+    name: "parent-progress-digest",
+    title: "ParentProgressDigest",
+    description: "Weekly summary card that packages activity, effort, and scores into a family-ready digest.",
+    ai: false,
+  },
 ];

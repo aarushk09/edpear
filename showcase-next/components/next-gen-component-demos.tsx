@@ -8,7 +8,8 @@ import {
   LearningVelocityChart,
   ErrorPatternAnalyzer,
   CompetencyMatrix,
-  PrePostTestComparison
+  PrePostTestComparison,
+  ParentProgressDigest
 } from "edpear";
 
 import { DemoFrame } from "./component-doc-page";
@@ -148,6 +149,26 @@ export function renderNextGenComponentDemo(slug: ShowcaseSlug) {
             <div key="pre-post-test-comparison-1" className="w-full max-w-5xl"><PrePostTestComparison
         title="Workspace view" /></div>,
             <div key="pre-post-test-comparison-2" className="w-full max-w-5xl"><PrePostTestComparison
+        disabled
+        subtitle="Compact read-only preview for dashboards and summaries." /></div>,
+          ]}
+        >
+          {null}
+        </DemoFrame>
+      );
+
+    case "parent-progress-digest":
+      return (
+        <DemoFrame
+          id="parent-progress-digest"
+          title="<ParentProgressDigest />"
+          description="Weekly summary card that packages activity, effort, and scores into a family-ready digest."
+          layout="wide"
+          examplePreviews={[
+            <div key="parent-progress-digest-0" className="w-full max-w-5xl"><ParentProgressDigest /></div>,
+            <div key="parent-progress-digest-1" className="w-full max-w-5xl"><ParentProgressDigest
+        title="Workspace view" /></div>,
+            <div key="parent-progress-digest-2" className="w-full max-w-5xl"><ParentProgressDigest
         disabled
         subtitle="Compact read-only preview for dashboards and summaries." /></div>,
           ]}

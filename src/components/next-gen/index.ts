@@ -18,3 +18,6 @@ export type { CompetencyMatrixEntry, CompetencyMatrixProps } from "../competency
 
 export { PrePostTestComparison } from "../pre-post-test-comparison/index.js";
 export type { PrePostComparisonPoint, PrePostTestComparisonProps } from "../pre-post-test-comparison/index.js";
+
+export { ParentProgressDigest } from "../parent-progress-digest/index.js";
+export type { ParentProgressDigestSection, ParentProgressDigestProps } from "../parent-progress-digest/index.js";
