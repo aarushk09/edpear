@@ -9,3 +9,6 @@ export type { ConceptMapNode, ConceptMapBuilderProps } from "../concept-map-buil
 
 export { LearningVelocityChart } from "../learning-velocity-chart/index.js";
 export type { LearningVelocityPoint, LearningVelocityChartProps } from "../learning-velocity-chart/index.js";
+
+export { ErrorPatternAnalyzer } from "../error-pattern-analyzer/index.js";
+export type { ErrorPatternCluster, ErrorPatternAnalyzerProps } from "../error-pattern-analyzer/index.js";

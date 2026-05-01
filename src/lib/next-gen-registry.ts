@@ -26,4 +26,10 @@ export const nextGenRegistryComponents: RegistryComponent[] = [
     description: "Time-series view of how quickly concepts are being acquired across a course.",
     ai: false,
   },
+  {
+    name: "error-pattern-analyzer",
+    title: "ErrorPatternAnalyzer",
+    description: "Clusters repeated wrong answers into misconception groups that teams can address.",
+    ai: false,
+  },
 ];

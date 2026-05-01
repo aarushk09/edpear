@@ -5,7 +5,8 @@ import {
   ConfidenceCalibrator,
   MistakeNotebook,
   ConceptMapBuilder,
-  LearningVelocityChart
+  LearningVelocityChart,
+  ErrorPatternAnalyzer
 } from "edpear";
 
 import { DemoFrame } from "./component-doc-page";
@@ -85,6 +86,26 @@ export function renderNextGenComponentDemo(slug: ShowcaseSlug) {
             <div key="learning-velocity-chart-1" className="w-full max-w-5xl"><LearningVelocityChart
         title="Workspace view" /></div>,
             <div key="learning-velocity-chart-2" className="w-full max-w-5xl"><LearningVelocityChart
+        disabled
+        subtitle="Compact read-only preview for dashboards and summaries." /></div>,
+          ]}
+        >
+          {null}
+        </DemoFrame>
+      );
+
+    case "error-pattern-analyzer":
+      return (
+        <DemoFrame
+          id="error-pattern-analyzer"
+          title="<ErrorPatternAnalyzer />"
+          description="Clusters repeated wrong answers into misconception groups that teams can address."
+          layout="wide"
+          examplePreviews={[
+            <div key="error-pattern-analyzer-0" className="w-full max-w-5xl"><ErrorPatternAnalyzer /></div>,
+            <div key="error-pattern-analyzer-1" className="w-full max-w-5xl"><ErrorPatternAnalyzer
+        title="Workspace view" /></div>,
+            <div key="error-pattern-analyzer-2" className="w-full max-w-5xl"><ErrorPatternAnalyzer
         disabled
         subtitle="Compact read-only preview for dashboards and summaries." /></div>,
           ]}

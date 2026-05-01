@@ -12,6 +12,7 @@ export const NEXT_GEN_NAV_GROUPS = [
     title: "Learning Analytics",
     items: [
       { id: "learning-velocity-chart", label: "LearningVelocityChart" },
+      { id: "error-pattern-analyzer", label: "ErrorPatternAnalyzer" },
     ],
   },
 ] as const;

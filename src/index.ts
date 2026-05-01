@@ -136,6 +136,8 @@ export { ConceptMapBuilder } from "./components/concept-map-builder/index.js";
 export type { ConceptMapNode, ConceptMapBuilderProps } from "./components/concept-map-builder/index.js";
 export { LearningVelocityChart } from "./components/learning-velocity-chart/index.js";
 export type { LearningVelocityPoint, LearningVelocityChartProps } from "./components/learning-velocity-chart/index.js";
+export { ErrorPatternAnalyzer } from "./components/error-pattern-analyzer/index.js";
+export type { ErrorPatternCluster, ErrorPatternAnalyzerProps } from "./components/error-pattern-analyzer/index.js";
 // NEXT_GEN_EXPORTS_END
 export { AttendanceTracker } from "./components/attendance-tracker/index.js";
 export type { AttendanceRecord, AttendanceSession, AttendanceStatus, AttendanceStudent, AttendanceTrackerProps } from "./components/attendance-tracker/index.js";
