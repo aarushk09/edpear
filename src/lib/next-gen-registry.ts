@@ -50,4 +50,10 @@ export const nextGenRegistryComponents: RegistryComponent[] = [
     description: "Weekly summary card that packages activity, effort, and scores into a family-ready digest.",
     ai: false,
   },
+  {
+    name: "guardian-notification-center",
+    title: "GuardianNotificationCenter",
+    description: "Threshold-based alert center for grades, absences, overdue work, and support follow-ups.",
+    ai: false,
+  },
 ];

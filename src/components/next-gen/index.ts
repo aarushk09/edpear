@@ -21,3 +21,6 @@ export type { PrePostComparisonPoint, PrePostTestComparisonProps } from "../pre-
 
 export { ParentProgressDigest } from "../parent-progress-digest/index.js";
 export type { ParentProgressDigestSection, ParentProgressDigestProps } from "../parent-progress-digest/index.js";
+
+export { GuardianNotificationCenter } from "../guardian-notification-center/index.js";
+export type { GuardianNotification, GuardianNotificationCenterProps } from "../guardian-notification-center/index.js";

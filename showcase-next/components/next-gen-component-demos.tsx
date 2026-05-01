@@ -9,7 +9,8 @@ import {
   ErrorPatternAnalyzer,
   CompetencyMatrix,
   PrePostTestComparison,
-  ParentProgressDigest
+  ParentProgressDigest,
+  GuardianNotificationCenter
 } from "edpear";
 
 import { DemoFrame } from "./component-doc-page";
@@ -169,6 +170,26 @@ export function renderNextGenComponentDemo(slug: ShowcaseSlug) {
             <div key="parent-progress-digest-1" className="w-full max-w-5xl"><ParentProgressDigest
         title="Workspace view" /></div>,
             <div key="parent-progress-digest-2" className="w-full max-w-5xl"><ParentProgressDigest
+        disabled
+        subtitle="Compact read-only preview for dashboards and summaries." /></div>,
+          ]}
+        >
+          {null}
+        </DemoFrame>
+      );
+
+    case "guardian-notification-center":
+      return (
+        <DemoFrame
+          id="guardian-notification-center"
+          title="<GuardianNotificationCenter />"
+          description="Threshold-based alert center for grades, absences, overdue work, and support follow-ups."
+          layout="wide"
+          examplePreviews={[
+            <div key="guardian-notification-center-0" className="w-full max-w-5xl"><GuardianNotificationCenter /></div>,
+            <div key="guardian-notification-center-1" className="w-full max-w-5xl"><GuardianNotificationCenter
+        title="Workspace view" /></div>,
+            <div key="guardian-notification-center-2" className="w-full max-w-5xl"><GuardianNotificationCenter
         disabled
         subtitle="Compact read-only preview for dashboards and summaries." /></div>,
           ]}

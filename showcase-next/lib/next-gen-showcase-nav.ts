@@ -21,6 +21,7 @@ export const NEXT_GEN_NAV_GROUPS = [
     title: "Parent & Guardian",
     items: [
       { id: "parent-progress-digest", label: "ParentProgressDigest" },
+      { id: "guardian-notification-center", label: "GuardianNotificationCenter" },
     ],
   },
 ] as const;
