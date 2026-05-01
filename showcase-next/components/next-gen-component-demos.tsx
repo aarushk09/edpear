@@ -37,7 +37,8 @@ import {
   DigitalTranscript,
   SkillEndorsementCard,
   BulkEnrollmentUploader,
-  LicenseSeatManager
+  LicenseSeatManager,
+  AnnouncementScheduler
 } from "edpear";
 
 import { DemoFrame } from "./component-doc-page";
@@ -757,6 +758,26 @@ export function renderNextGenComponentDemo(slug: ShowcaseSlug) {
             <div key="license-seat-manager-1" className="w-full max-w-5xl"><LicenseSeatManager
         title="Workspace view" /></div>,
             <div key="license-seat-manager-2" className="w-full max-w-5xl"><LicenseSeatManager
+        disabled
+        subtitle="Compact read-only preview for dashboards and summaries." /></div>,
+          ]}
+        >
+          {null}
+        </DemoFrame>
+      );
+
+    case "announcement-scheduler":
+      return (
+        <DemoFrame
+          id="announcement-scheduler"
+          title="<AnnouncementScheduler />"
+          description="Rich-text announcement composer with timezone-aware scheduling and send-window visibility."
+          layout="wide"
+          examplePreviews={[
+            <div key="announcement-scheduler-0" className="w-full max-w-5xl"><AnnouncementScheduler /></div>,
+            <div key="announcement-scheduler-1" className="w-full max-w-5xl"><AnnouncementScheduler
+        title="Workspace view" /></div>,
+            <div key="announcement-scheduler-2" className="w-full max-w-5xl"><AnnouncementScheduler
         disabled
         subtitle="Compact read-only preview for dashboards and summaries." /></div>,
           ]}

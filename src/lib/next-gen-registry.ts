@@ -218,4 +218,10 @@ export const nextGenRegistryComponents: RegistryComponent[] = [
     description: "Org-level seat dashboard that compares allocation, usage, and remaining capacity at a glance.",
     ai: false,
   },
+  {
+    name: "announcement-scheduler",
+    title: "AnnouncementScheduler",
+    description: "Rich-text announcement composer with timezone-aware scheduling and send-window visibility.",
+    ai: false,
+  },
 ];

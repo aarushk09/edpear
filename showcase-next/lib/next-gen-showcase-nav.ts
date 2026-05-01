@@ -89,6 +89,7 @@ export const NEXT_GEN_NAV_GROUPS = [
     items: [
       { id: "bulk-enrollment-uploader", label: "BulkEnrollmentUploader" },
       { id: "license-seat-manager", label: "LicenseSeatManager" },
+      { id: "announcement-scheduler", label: "AnnouncementScheduler" },
     ],
   },
 ] as const;

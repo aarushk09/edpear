@@ -105,3 +105,6 @@ export type { BulkEnrollmentRow, BulkEnrollmentUploaderProps } from "../bulk-enr
 
 export { LicenseSeatManager } from "../license-seat-manager/index.js";
 export type { LicenseSeatPlan, LicenseSeatManagerProps } from "../license-seat-manager/index.js";
+
+export { AnnouncementScheduler } from "../announcement-scheduler/index.js";
+export type { ScheduledAnnouncementDraft, AnnouncementSchedulerProps } from "../announcement-scheduler/index.js";
