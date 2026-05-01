@@ -32,7 +32,8 @@ import {
   SuspiciousActivityLog,
   DyslexiaFontToggle,
   ScreenReaderQuizAdapter,
-  CaptionEditor
+  CaptionEditor,
+  PortfolioBuilder
 } from "edpear";
 
 import { DemoFrame } from "./component-doc-page";
@@ -652,6 +653,26 @@ export function renderNextGenComponentDemo(slug: ShowcaseSlug) {
             <div key="caption-editor-1" className="w-full max-w-5xl"><CaptionEditor
         title="Workspace view" /></div>,
             <div key="caption-editor-2" className="w-full max-w-5xl"><CaptionEditor
+        disabled
+        subtitle="Compact read-only preview for dashboards and summaries." /></div>,
+          ]}
+        >
+          {null}
+        </DemoFrame>
+      );
+
+    case "portfolio-builder":
+      return (
+        <DemoFrame
+          id="portfolio-builder"
+          title="<PortfolioBuilder />"
+          description="Curated artifact gallery where learners pair project evidence with reflection and growth notes."
+          layout="wide"
+          examplePreviews={[
+            <div key="portfolio-builder-0" className="w-full max-w-5xl"><PortfolioBuilder /></div>,
+            <div key="portfolio-builder-1" className="w-full max-w-5xl"><PortfolioBuilder
+        title="Workspace view" /></div>,
+            <div key="portfolio-builder-2" className="w-full max-w-5xl"><PortfolioBuilder
         disabled
         subtitle="Compact read-only preview for dashboards and summaries." /></div>,
           ]}

@@ -188,4 +188,10 @@ export const nextGenRegistryComponents: RegistryComponent[] = [
     description: "Editable timed transcript surface for keeping lesson captions accurate and learner-friendly.",
     ai: false,
   },
+  {
+    name: "portfolio-builder",
+    title: "PortfolioBuilder",
+    description: "Curated artifact gallery where learners pair project evidence with reflection and growth notes.",
+    ai: false,
+  },
 ];

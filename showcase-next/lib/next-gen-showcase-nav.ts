@@ -76,4 +76,10 @@ export const NEXT_GEN_NAV_GROUPS = [
       { id: "caption-editor", label: "CaptionEditor" },
     ],
   },
+  {
+    title: "Portfolio & Credentials",
+    items: [
+      { id: "portfolio-builder", label: "PortfolioBuilder" },
+    ],
+  },
 ] as const;

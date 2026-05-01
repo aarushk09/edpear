@@ -90,3 +90,6 @@ export type { ScreenReaderQuizVariant, ScreenReaderQuizAdapterProps } from "../s
 
 export { CaptionEditor } from "../caption-editor/index.js";
 export type { CaptionCueDraft, CaptionEditorProps } from "../caption-editor/index.js";
+
+export { PortfolioBuilder } from "../portfolio-builder/index.js";
+export type { PortfolioArtifact, PortfolioBuilderProps } from "../portfolio-builder/index.js";

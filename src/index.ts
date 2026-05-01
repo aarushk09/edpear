@@ -190,6 +190,8 @@ export { ScreenReaderQuizAdapter } from "./components/screen-reader-quiz-adapter
 export type { ScreenReaderQuizVariant, ScreenReaderQuizAdapterProps } from "./components/screen-reader-quiz-adapter/index.js";
 export { CaptionEditor } from "./components/caption-editor/index.js";
 export type { CaptionCueDraft, CaptionEditorProps } from "./components/caption-editor/index.js";
+export { PortfolioBuilder } from "./components/portfolio-builder/index.js";
+export type { PortfolioArtifact, PortfolioBuilderProps } from "./components/portfolio-builder/index.js";
 // NEXT_GEN_EXPORTS_END
 export { AttendanceTracker } from "./components/attendance-tracker/index.js";
 export type { AttendanceRecord, AttendanceSession, AttendanceStatus, AttendanceStudent, AttendanceTrackerProps } from "./components/attendance-tracker/index.js";
