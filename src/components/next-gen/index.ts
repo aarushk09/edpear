@@ -3,3 +3,6 @@ export type { ConfidenceCheckpoint, ConfidenceCalibratorProps } from "../confide
 
 export { MistakeNotebook } from "../mistake-notebook/index.js";
 export type { MistakeNotebookEntry, MistakeNotebookProps } from "../mistake-notebook/index.js";
+
+export { ConceptMapBuilder } from "../concept-map-builder/index.js";
+export type { ConceptMapNode, ConceptMapBuilderProps } from "../concept-map-builder/index.js";

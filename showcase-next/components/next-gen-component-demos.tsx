@@ -3,7 +3,8 @@
 
 import {
   ConfidenceCalibrator,
-  MistakeNotebook
+  MistakeNotebook,
+  ConceptMapBuilder
 } from "edpear";
 
 import { DemoFrame } from "./component-doc-page";
@@ -43,6 +44,26 @@ export function renderNextGenComponentDemo(slug: ShowcaseSlug) {
             <div key="mistake-notebook-1" className="w-full max-w-5xl"><MistakeNotebook
         title="Workspace view" /></div>,
             <div key="mistake-notebook-2" className="w-full max-w-5xl"><MistakeNotebook
+        disabled
+        subtitle="Compact read-only preview for dashboards and summaries." /></div>,
+          ]}
+        >
+          {null}
+        </DemoFrame>
+      );
+
+    case "concept-map-builder":
+      return (
+        <DemoFrame
+          id="concept-map-builder"
+          title="<ConceptMapBuilder />"
+          description="Freeform node-link planning surface for learner-generated knowledge maps."
+          layout="wide"
+          examplePreviews={[
+            <div key="concept-map-builder-0" className="w-full max-w-5xl"><ConceptMapBuilder /></div>,
+            <div key="concept-map-builder-1" className="w-full max-w-5xl"><ConceptMapBuilder
+        title="Workspace view" /></div>,
+            <div key="concept-map-builder-2" className="w-full max-w-5xl"><ConceptMapBuilder
         disabled
         subtitle="Compact read-only preview for dashboards and summaries." /></div>,
           ]}

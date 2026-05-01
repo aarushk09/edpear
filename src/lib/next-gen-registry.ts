@@ -14,4 +14,10 @@ export const nextGenRegistryComponents: RegistryComponent[] = [
     description: "Personal error log that resurfaces wrong answers for re-study and coaching.",
     ai: false,
   },
+  {
+    name: "concept-map-builder",
+    title: "ConceptMapBuilder",
+    description: "Freeform node-link planning surface for learner-generated knowledge maps.",
+    ai: false,
+  },
 ];

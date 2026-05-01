@@ -132,6 +132,8 @@ export { ConfidenceCalibrator } from "./components/confidence-calibrator/index.j
 export type { ConfidenceCheckpoint, ConfidenceCalibratorProps } from "./components/confidence-calibrator/index.js";
 export { MistakeNotebook } from "./components/mistake-notebook/index.js";
 export type { MistakeNotebookEntry, MistakeNotebookProps } from "./components/mistake-notebook/index.js";
+export { ConceptMapBuilder } from "./components/concept-map-builder/index.js";
+export type { ConceptMapNode, ConceptMapBuilderProps } from "./components/concept-map-builder/index.js";
 // NEXT_GEN_EXPORTS_END
 export { AttendanceTracker } from "./components/attendance-tracker/index.js";
 export type { AttendanceRecord, AttendanceSession, AttendanceStatus, AttendanceStudent, AttendanceTrackerProps } from "./components/attendance-tracker/index.js";
