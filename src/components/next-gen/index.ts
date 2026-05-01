@@ -84,3 +84,6 @@ export type { SuspiciousActivityEvent, SuspiciousActivityLogProps } from "../sus
 
 export { DyslexiaFontToggle } from "../dyslexia-font-toggle/index.js";
 export type { DyslexiaFontVariant, DyslexiaFontToggleProps } from "../dyslexia-font-toggle/index.js";
+
+export { ScreenReaderQuizAdapter } from "../screen-reader-quiz-adapter/index.js";
+export type { ScreenReaderQuizVariant, ScreenReaderQuizAdapterProps } from "../screen-reader-quiz-adapter/index.js";

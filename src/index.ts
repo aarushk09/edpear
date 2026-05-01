@@ -186,6 +186,8 @@ export { SuspiciousActivityLog } from "./components/suspicious-activity-log/inde
 export type { SuspiciousActivityEvent, SuspiciousActivityLogProps } from "./components/suspicious-activity-log/index.js";
 export { DyslexiaFontToggle } from "./components/dyslexia-font-toggle/index.js";
 export type { DyslexiaFontVariant, DyslexiaFontToggleProps } from "./components/dyslexia-font-toggle/index.js";
+export { ScreenReaderQuizAdapter } from "./components/screen-reader-quiz-adapter/index.js";
+export type { ScreenReaderQuizVariant, ScreenReaderQuizAdapterProps } from "./components/screen-reader-quiz-adapter/index.js";
 // NEXT_GEN_EXPORTS_END
 export { AttendanceTracker } from "./components/attendance-tracker/index.js";
 export type { AttendanceRecord, AttendanceSession, AttendanceStatus, AttendanceStudent, AttendanceTrackerProps } from "./components/attendance-tracker/index.js";

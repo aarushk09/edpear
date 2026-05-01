@@ -30,7 +30,8 @@ import {
   ProctorModeOverlay,
   QuestionVariantManager,
   SuspiciousActivityLog,
-  DyslexiaFontToggle
+  DyslexiaFontToggle,
+  ScreenReaderQuizAdapter
 } from "edpear";
 
 import { DemoFrame } from "./component-doc-page";
@@ -610,6 +611,26 @@ export function renderNextGenComponentDemo(slug: ShowcaseSlug) {
             <div key="dyslexia-font-toggle-1" className="w-full max-w-5xl"><DyslexiaFontToggle
         title="Workspace view" /></div>,
             <div key="dyslexia-font-toggle-2" className="w-full max-w-5xl"><DyslexiaFontToggle
+        disabled
+        subtitle="Compact read-only preview for dashboards and summaries." /></div>,
+          ]}
+        >
+          {null}
+        </DemoFrame>
+      );
+
+    case "screen-reader-quiz-adapter":
+      return (
+        <DemoFrame
+          id="screen-reader-quiz-adapter"
+          title="<ScreenReaderQuizAdapter />"
+          description="Linearized quiz presentation with clearer announcements, grouping, and assistive-tech hints."
+          layout="wide"
+          examplePreviews={[
+            <div key="screen-reader-quiz-adapter-0" className="w-full max-w-5xl"><ScreenReaderQuizAdapter /></div>,
+            <div key="screen-reader-quiz-adapter-1" className="w-full max-w-5xl"><ScreenReaderQuizAdapter
+        title="Workspace view" /></div>,
+            <div key="screen-reader-quiz-adapter-2" className="w-full max-w-5xl"><ScreenReaderQuizAdapter
         disabled
         subtitle="Compact read-only preview for dashboards and summaries." /></div>,
           ]}

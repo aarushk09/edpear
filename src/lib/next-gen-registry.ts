@@ -176,4 +176,10 @@ export const nextGenRegistryComponents: RegistryComponent[] = [
     description: "One-click reading preview that switches to a dyslexia-friendly font and spacing profile.",
     ai: false,
   },
+  {
+    name: "screen-reader-quiz-adapter",
+    title: "ScreenReaderQuizAdapter",
+    description: "Linearized quiz presentation with clearer announcements, grouping, and assistive-tech hints.",
+    ai: false,
+  },
 ];
