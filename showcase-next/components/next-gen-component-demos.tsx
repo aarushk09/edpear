@@ -11,7 +11,8 @@ import {
   PrePostTestComparison,
   ParentProgressDigest,
   GuardianNotificationCenter,
-  HomeActivitySuggester
+  HomeActivitySuggester,
+  BloomsTaxonomyTagger
 } from "edpear";
 
 import { DemoFrame } from "./component-doc-page";
@@ -211,6 +212,26 @@ export function renderNextGenComponentDemo(slug: ShowcaseSlug) {
             <div key="home-activity-suggester-1" className="w-full max-w-5xl"><HomeActivitySuggester
         title="Workspace view" /></div>,
             <div key="home-activity-suggester-2" className="w-full max-w-5xl"><HomeActivitySuggester
+        disabled
+        subtitle="Compact read-only preview for dashboards and summaries." /></div>,
+          ]}
+        >
+          {null}
+        </DemoFrame>
+      );
+
+    case "blooms-taxonomy-tagger":
+      return (
+        <DemoFrame
+          id="blooms-taxonomy-tagger"
+          title="<BloomsTaxonomyTagger />"
+          description="Labels learning objectives across remember-to-create levels with curriculum-ready consistency."
+          layout="wide"
+          examplePreviews={[
+            <div key="blooms-taxonomy-tagger-0" className="w-full max-w-5xl"><BloomsTaxonomyTagger /></div>,
+            <div key="blooms-taxonomy-tagger-1" className="w-full max-w-5xl"><BloomsTaxonomyTagger
+        title="Workspace view" /></div>,
+            <div key="blooms-taxonomy-tagger-2" className="w-full max-w-5xl"><BloomsTaxonomyTagger
         disabled
         subtitle="Compact read-only preview for dashboards and summaries." /></div>,
           ]}

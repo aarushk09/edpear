@@ -62,4 +62,10 @@ export const nextGenRegistryComponents: RegistryComponent[] = [
     description: "Curated offline exercises families can do together to reinforce classroom learning.",
     ai: false,
   },
+  {
+    name: "blooms-taxonomy-tagger",
+    title: "BloomsTaxonomyTagger",
+    description: "Labels learning objectives across remember-to-create levels with curriculum-ready consistency.",
+    ai: false,
+  },
 ];

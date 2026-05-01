@@ -25,4 +25,10 @@ export const NEXT_GEN_NAV_GROUPS = [
       { id: "home-activity-suggester", label: "HomeActivitySuggester" },
     ],
   },
+  {
+    title: "Curriculum & Content Design",
+    items: [
+      { id: "blooms-taxonomy-tagger", label: "BloomsTaxonomyTagger" },
+    ],
+  },
 ] as const;

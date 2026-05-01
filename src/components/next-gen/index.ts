@@ -27,3 +27,6 @@ export type { GuardianNotification, GuardianNotificationCenterProps } from "../g
 
 export { HomeActivitySuggester } from "../home-activity-suggester/index.js";
 export type { HomeActivitySuggestion, HomeActivitySuggesterProps } from "../home-activity-suggester/index.js";
+
+export { BloomsTaxonomyTagger } from "../blooms-taxonomy-tagger/index.js";
+export type { BloomsTaggedObjective, BloomsTaxonomyTaggerProps } from "../blooms-taxonomy-tagger/index.js";
