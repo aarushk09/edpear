@@ -150,6 +150,8 @@ export { HomeActivitySuggester } from "./components/home-activity-suggester/inde
 export type { HomeActivitySuggestion, HomeActivitySuggesterProps } from "./components/home-activity-suggester/index.js";
 export { BloomsTaxonomyTagger } from "./components/blooms-taxonomy-tagger/index.js";
 export type { BloomsTaggedObjective, BloomsTaxonomyTaggerProps } from "./components/blooms-taxonomy-tagger/index.js";
+export { CurriculumDragBuilder } from "./components/curriculum-drag-builder/index.js";
+export type { CurriculumSequenceItem, CurriculumDragBuilderProps } from "./components/curriculum-drag-builder/index.js";
 // NEXT_GEN_EXPORTS_END
 export { AttendanceTracker } from "./components/attendance-tracker/index.js";
 export type { AttendanceRecord, AttendanceSession, AttendanceStatus, AttendanceStudent, AttendanceTrackerProps } from "./components/attendance-tracker/index.js";

@@ -30,3 +30,6 @@ export type { HomeActivitySuggestion, HomeActivitySuggesterProps } from "../home
 
 export { BloomsTaxonomyTagger } from "../blooms-taxonomy-tagger/index.js";
 export type { BloomsTaggedObjective, BloomsTaxonomyTaggerProps } from "../blooms-taxonomy-tagger/index.js";
+
+export { CurriculumDragBuilder } from "../curriculum-drag-builder/index.js";
+export type { CurriculumSequenceItem, CurriculumDragBuilderProps } from "../curriculum-drag-builder/index.js";

@@ -29,6 +29,7 @@ export const NEXT_GEN_NAV_GROUPS = [
     title: "Curriculum & Content Design",
     items: [
       { id: "blooms-taxonomy-tagger", label: "BloomsTaxonomyTagger" },
+      { id: "curriculum-drag-builder", label: "CurriculumDragBuilder" },
     ],
   },
 ] as const;

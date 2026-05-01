@@ -12,7 +12,8 @@ import {
   ParentProgressDigest,
   GuardianNotificationCenter,
   HomeActivitySuggester,
-  BloomsTaxonomyTagger
+  BloomsTaxonomyTagger,
+  CurriculumDragBuilder
 } from "edpear";
 
 import { DemoFrame } from "./component-doc-page";
@@ -232,6 +233,26 @@ export function renderNextGenComponentDemo(slug: ShowcaseSlug) {
             <div key="blooms-taxonomy-tagger-1" className="w-full max-w-5xl"><BloomsTaxonomyTagger
         title="Workspace view" /></div>,
             <div key="blooms-taxonomy-tagger-2" className="w-full max-w-5xl"><BloomsTaxonomyTagger
+        disabled
+        subtitle="Compact read-only preview for dashboards and summaries." /></div>,
+          ]}
+        >
+          {null}
+        </DemoFrame>
+      );
+
+    case "curriculum-drag-builder":
+      return (
+        <DemoFrame
+          id="curriculum-drag-builder"
+          title="<CurriculumDragBuilder />"
+          description="Sequencing surface for arranging modules and lessons into a coherent learning arc."
+          layout="wide"
+          examplePreviews={[
+            <div key="curriculum-drag-builder-0" className="w-full max-w-5xl"><CurriculumDragBuilder /></div>,
+            <div key="curriculum-drag-builder-1" className="w-full max-w-5xl"><CurriculumDragBuilder
+        title="Workspace view" /></div>,
+            <div key="curriculum-drag-builder-2" className="w-full max-w-5xl"><CurriculumDragBuilder
         disabled
         subtitle="Compact read-only preview for dashboards and summaries." /></div>,
           ]}

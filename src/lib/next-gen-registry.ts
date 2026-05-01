@@ -68,4 +68,10 @@ export const nextGenRegistryComponents: RegistryComponent[] = [
     description: "Labels learning objectives across remember-to-create levels with curriculum-ready consistency.",
     ai: false,
   },
+  {
+    name: "curriculum-drag-builder",
+    title: "CurriculumDragBuilder",
+    description: "Sequencing surface for arranging modules and lessons into a coherent learning arc.",
+    ai: false,
+  },
 ];
