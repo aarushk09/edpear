@@ -20,4 +20,10 @@ export const nextGenRegistryComponents: RegistryComponent[] = [
     description: "Freeform node-link planning surface for learner-generated knowledge maps.",
     ai: false,
   },
+  {
+    name: "learning-velocity-chart",
+    title: "LearningVelocityChart",
+    description: "Time-series view of how quickly concepts are being acquired across a course.",
+    ai: false,
+  },
 ];

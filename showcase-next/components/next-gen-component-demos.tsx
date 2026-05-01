@@ -4,7 +4,8 @@
 import {
   ConfidenceCalibrator,
   MistakeNotebook,
-  ConceptMapBuilder
+  ConceptMapBuilder,
+  LearningVelocityChart
 } from "edpear";
 
 import { DemoFrame } from "./component-doc-page";
@@ -64,6 +65,26 @@ export function renderNextGenComponentDemo(slug: ShowcaseSlug) {
             <div key="concept-map-builder-1" className="w-full max-w-5xl"><ConceptMapBuilder
         title="Workspace view" /></div>,
             <div key="concept-map-builder-2" className="w-full max-w-5xl"><ConceptMapBuilder
+        disabled
+        subtitle="Compact read-only preview for dashboards and summaries." /></div>,
+          ]}
+        >
+          {null}
+        </DemoFrame>
+      );
+
+    case "learning-velocity-chart":
+      return (
+        <DemoFrame
+          id="learning-velocity-chart"
+          title="<LearningVelocityChart />"
+          description="Time-series view of how quickly concepts are being acquired across a course."
+          layout="wide"
+          examplePreviews={[
+            <div key="learning-velocity-chart-0" className="w-full max-w-5xl"><LearningVelocityChart /></div>,
+            <div key="learning-velocity-chart-1" className="w-full max-w-5xl"><LearningVelocityChart
+        title="Workspace view" /></div>,
+            <div key="learning-velocity-chart-2" className="w-full max-w-5xl"><LearningVelocityChart
         disabled
         subtitle="Compact read-only preview for dashboards and summaries." /></div>,
           ]}

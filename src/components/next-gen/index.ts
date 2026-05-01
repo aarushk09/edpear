@@ -6,3 +6,6 @@ export type { MistakeNotebookEntry, MistakeNotebookProps } from "../mistake-note
 
 export { ConceptMapBuilder } from "../concept-map-builder/index.js";
 export type { ConceptMapNode, ConceptMapBuilderProps } from "../concept-map-builder/index.js";
+
+export { LearningVelocityChart } from "../learning-velocity-chart/index.js";
+export type { LearningVelocityPoint, LearningVelocityChartProps } from "../learning-velocity-chart/index.js";
