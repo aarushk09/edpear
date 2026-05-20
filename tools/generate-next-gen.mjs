@@ -6,6 +6,7 @@ const specs = JSON.parse(
   fs.readFileSync(path.join(root, "tools", "next-gen-specs.json"), "utf8"),
 );
 const groups = [
+  "Data-driven shells",
   "Metacognition & Reflection",
   "Learning Analytics",
   "Parent & Guardian",
@@ -20,8 +21,13 @@ const groups = [
 ];
 
 const slug = process.argv[2];
+const forceDuplicate = process.argv.includes("--force-duplicate");
+
 if (!slug) {
-  console.error("Usage: node tools/generate-next-gen.mjs <slug>");
+  console.error("Usage: node tools/generate-next-gen.mjs <slug> [--force-duplicate]");
+  console.error(
+    "New public components must have distinct layout/interaction — not new copy on an existing template kind.",
+  );
   process.exit(1);
 }
 
@@ -29,6 +35,21 @@ const spec = specs.find((entry) => entry.slug === slug);
 if (!spec) {
   console.error(`Unknown slug: ${slug}`);
   process.exit(1);
+}
+
+if (!forceDuplicate) {
+  const existingSameKind = specs.find(
+    (entry) => entry.kind === spec.kind && entry.slug !== spec.slug,
+  );
+  if (existingSameKind) {
+    console.error(
+      `Refusing to generate "${spec.slug}": template kind "${spec.kind}" already exists as "${existingSameKind.slug}".`,
+    );
+    console.error(
+      "Extend the existing component, add a genuinely new interaction, or pass --force-duplicate.",
+    );
+    process.exit(1);
+  }
 }
 
 const componentDir = path.join(root, "src", "components", spec.slug);

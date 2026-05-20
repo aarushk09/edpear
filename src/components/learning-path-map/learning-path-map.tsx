@@ -64,13 +64,20 @@ export function LearningPathMap({
             const a = map.get(e.from);
             const b = map.get(e.to);
             if (!a || !b) return null;
+            
+            const dx = b.x - a.x;
+            const dy = b.y - a.y;
+            const angle = Math.atan2(dy, dx);
+            const rStart = 46; // node radius (44) + stroke
+            const rEnd = 52; // node radius + arrowhead offset
+
             return (
               <line
                 key={`${e.from}-${e.to}-${i}`}
-                x1={a.x}
-                y1={a.y}
-                x2={b.x}
-                y2={b.y}
+                x1={a.x + Math.cos(angle) * rStart}
+                y1={a.y + Math.sin(angle) * rStart}
+                x2={b.x - Math.cos(angle) * rEnd}
+                y2={b.y - Math.sin(angle) * rEnd}
                 stroke="hsl(var(--muted-foreground) / 0.35)"
                 strokeWidth={3}
                 markerEnd="url(#arrowhead)"

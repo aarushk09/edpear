@@ -11,12 +11,26 @@ import { ShowcaseNav } from "./showcase-shell";
 export function ShowcaseSidebarShell({ children }: { children: React.ReactNode }) {
   const mainRef = useRef<HTMLElement>(null);
   const pathname = usePathname();
+  const isDocsRoute = pathname !== "/" && pathname !== "/blocks";
 
   // Reset scroll position when navigating between components
   // to prevent the "bottom spacing bug" (stale scroll from a longer page).
   useEffect(() => {
     mainRef.current?.scrollTo({ top: 0 });
   }, [pathname]);
+
+  if (!isDocsRoute) {
+    return (
+      <main
+        ref={mainRef}
+        className="showcase-scroll-hide min-h-0 flex-1 overflow-y-auto overscroll-y-contain [-webkit-overflow-scrolling:touch]"
+      >
+        <div className="mx-auto w-full px-4 py-8 sm:px-8 sm:py-12 lg:px-10 lg:py-14 xl:px-12">
+          {children}
+        </div>
+      </main>
+    );
+  }
 
   return (
     <div className="flex min-h-0 flex-1 flex-col md:flex-row">

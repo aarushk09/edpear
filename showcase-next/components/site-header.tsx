@@ -36,7 +36,7 @@ function ApiKeyInput() {
         type="button"
         onClick={() => setIsOpen(!isOpen)}
         className={`rounded-lg px-2.5 py-1 text-[11px] font-medium transition-colors md:inline-flex ${apiKey
-            ? "bg-primary/10 text-primary hover:bg-primary/20"
+            ? "border border-border bg-muted text-foreground hover:bg-accent"
             : "bg-muted/40 text-muted-foreground hover:bg-muted"
           }`}
       >
@@ -84,7 +84,9 @@ function ApiKeyInput() {
 
 export function SiteHeader() {
   const pathname = usePathname();
-  const isComponents = pathname === "/" || pathname?.startsWith("/docs");
+  const isHome = pathname === "/";
+  const isBlocks = pathname === "/blocks";
+  const isDocumentation = !isHome && !isBlocks && pathname !== "/agent-skills" && pathname !== "/mcp";
   const isAgentSkills = pathname === "/agent-skills";
   const isMcp = pathname === "/mcp";
   const componentCount = NAV_GROUPS.reduce((total, group) => total + group.items.length, 0);
@@ -94,7 +96,11 @@ export function SiteHeader() {
       <div className="flex h-14 items-center">
 
         {/* Left section: Logo matching sidebar width */}
-        <div className="flex h-full items-center px-4 md:px-5 w-full md:w-[16.5rem] lg:w-[17.5rem] shrink-0 border-r border-border/40">
+        <div
+          className={`flex h-full shrink-0 items-center px-4 md:px-5 ${
+            isDocumentation ? "w-full border-r border-border/40 md:w-[16.5rem] lg:w-[17.5rem]" : "w-auto"
+          }`}
+        >
           <Link href="/" className="flex items-center gap-2 font-bold tracking-tight text-foreground transition-colors hover:text-foreground/80">
             {/* EdPear pear logo */}
             <svg
@@ -126,28 +132,42 @@ export function SiteHeader() {
           <nav className="hidden sm:flex items-center gap-5 text-sm font-medium">
             <Link
               href="/"
-              className={`transition-colors hover:text-foreground ${isComponents ? "text-foreground" : "text-foreground/60"
+              className={`transition-colors hover:text-foreground ${isHome ? "text-foreground" : "text-muted-foreground"
                 }`}
             >
-              Components
+              Home
+            </Link>
+            <Link
+              href="/blocks"
+              className={`transition-colors hover:text-foreground ${isBlocks ? "text-foreground" : "text-muted-foreground"
+                }`}
+            >
+              Blocks
+            </Link>
+            <Link
+              href="/course-card"
+              className={`transition-colors hover:text-foreground ${isDocumentation ? "text-foreground" : "text-muted-foreground"
+                }`}
+            >
+              Documentation
             </Link>
             <Link
               href="/agent-skills"
-              className={`flex items-center gap-1.5 transition-colors hover:text-foreground ${isAgentSkills ? "text-foreground" : "text-foreground/60"
+              className={`flex items-center gap-1.5 transition-colors hover:text-foreground ${isAgentSkills ? "text-foreground" : "text-muted-foreground"
                 }`}
             >
               Agent Skills
-              <span className="rounded-md bg-primary/10 px-1.5 py-0.5 text-[10px] uppercase tracking-wider text-primary font-bold leading-none">
+              <span className="rounded-md border border-border bg-muted px-1.5 py-0.5 text-[10px] font-bold uppercase tracking-wider text-foreground leading-none">
                 Beta
               </span>
             </Link>
             <Link
               href="/mcp"
-              className={`flex items-center gap-1.5 transition-colors hover:text-foreground ${isMcp ? "text-foreground" : "text-foreground/60"
+              className={`flex items-center gap-1.5 transition-colors hover:text-foreground ${isMcp ? "text-foreground" : "text-muted-foreground"
                 }`}
             >
               MCP Server
-              <span className="rounded-md bg-primary/10 px-1.5 py-0.5 text-[10px] uppercase tracking-wider text-primary font-bold leading-none">
+              <span className="rounded-md border border-border bg-muted px-1.5 py-0.5 text-[10px] font-bold uppercase tracking-wider text-foreground leading-none">
                 Beta
               </span>
             </Link>
@@ -158,10 +178,24 @@ export function SiteHeader() {
             <nav className="flex items-center gap-1 sm:hidden w-full">
               <Link
                 href="/"
-                className={`text-xs font-medium transition-colors ${isComponents ? "text-foreground" : "text-muted-foreground"
+                className={`text-xs font-medium transition-colors ${isHome ? "text-foreground" : "text-muted-foreground"
                   }`}
               >
-                Components
+                Home
+              </Link>
+              <Link
+                href="/blocks"
+                className={`text-xs font-medium transition-colors ${isBlocks ? "text-foreground" : "text-muted-foreground"
+                  }`}
+              >
+                Blocks
+              </Link>
+              <Link
+                href="/course-card"
+                className={`text-xs font-medium transition-colors ${isDocumentation ? "text-foreground" : "text-muted-foreground"
+                  }`}
+              >
+                Docs
               </Link>
             </nav>
             <span className="hidden rounded-lg bg-muted/60 px-2.5 py-1 text-[11px] font-medium tabular-nums text-muted-foreground md:inline-flex">

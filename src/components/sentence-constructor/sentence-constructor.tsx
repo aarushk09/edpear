@@ -81,14 +81,14 @@ export const SentenceConstructor = forwardRef<HTMLDivElement, SentenceConstructo
           <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-primary/10 text-primary">
             <Pilcrow className="h-5 w-5" />
           </div>
-          <div className="space-y-1">
+          <div className="space-y-1 min-w-0 flex-1">
             <h3 className="text-lg font-semibold tracking-tight">{title}</h3>
-            <p className="text-sm text-muted-foreground">{subtitle}</p>
+            <p className="text-sm text-muted-foreground break-words">{subtitle}</p>
           </div>
         </div>
       </div>
 
-      <div className="grid gap-6 p-5 sm:p-6 xl:grid-cols-[minmax(0,1fr)_minmax(18rem,0.95fr)]">
+      <div className="grid gap-6 p-5 sm:p-6 lg:grid-cols-[minmax(0,1fr)_minmax(18rem,0.95fr)]">
         <div className="space-y-4">
           <div className="rounded-2xl border border-border bg-muted/20 p-4">
             <div className="grid gap-3 md:grid-cols-[minmax(0,1fr)_minmax(0,1fr)_auto]">
@@ -122,16 +122,16 @@ export const SentenceConstructor = forwardRef<HTMLDivElement, SentenceConstructo
             {items.map((item, index) => (
               <div key={item.id} className="rounded-2xl border border-border bg-background p-4">
                 <div className="flex flex-col gap-3 md:flex-row md:items-start md:justify-between">
-                  <div className="flex gap-3">
+                  <div className="flex flex-1 gap-3 min-w-0">
                     <div className="mt-1 flex h-8 w-8 items-center justify-center rounded-lg bg-muted text-muted-foreground">
                       <GripVertical className="h-4 w-4" />
                     </div>
-                    <div className="space-y-1">
+                    <div className="space-y-1 min-w-0 flex-1">
                       <div className="flex flex-wrap items-center gap-2">
-                        <p className="text-sm font-semibold">{item.title}</p>
+                        <p className="text-sm font-semibold break-words">{item.title}</p>
                         {item.tag ? <span className="rounded-full bg-muted px-2 py-0.5 text-[11px] text-muted-foreground">{item.tag}</span> : null}
                       </div>
-                      <p className="text-sm text-muted-foreground">{item.detail}</p>
+                      <p className="text-sm text-muted-foreground break-words">{item.detail}</p>
                     </div>
                   </div>
                   <div className="flex gap-2">
@@ -144,16 +144,16 @@ export const SentenceConstructor = forwardRef<HTMLDivElement, SentenceConstructo
           </div>
         </div>
 
-        <aside className="rounded-2xl border border-border bg-muted/10 p-4 sm:p-5">
+        <aside className="rounded-2xl border border-border bg-muted/10 p-4 sm:p-5 min-w-0">
           <div className="space-y-3">
             <h4 className="text-base font-semibold tracking-tight">Preview sequence</h4>
-            <p className="text-sm text-muted-foreground">Use the ordered list below to sense-check pacing, tagging, and flow before saving.</p>
+            <p className="text-sm text-muted-foreground break-words">Use the ordered list below to sense-check pacing, tagging, and flow before saving.</p>
             <div className="space-y-3">
               {items.map((item, index) => (
                 <div key={item.id} className="rounded-2xl border border-border bg-background px-4 py-3">
                   <p className="text-xs uppercase tracking-[0.14em] text-muted-foreground">Step {index + 1}</p>
-                  <p className="mt-1 text-sm font-semibold">{item.title}</p>
-                  <p className="mt-1 text-sm text-muted-foreground">{item.detail}</p>
+                  <p className="mt-1 text-sm font-semibold break-words">{item.title}</p>
+                  <p className="mt-1 text-sm text-muted-foreground break-words">{item.detail}</p>
                 </div>
               ))}
             </div>

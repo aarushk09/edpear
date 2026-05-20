@@ -164,6 +164,10 @@ const getRegistryDescriptions = cache(() => {
   return map;
 });
 
+export function getRegistryDescriptionMap(): Record<string, string> {
+  return Object.fromEntries(getRegistryDescriptions());
+}
+
 function createProgramForFile(filePath: string) {
   return ts.createProgram([filePath], {
     target: ts.ScriptTarget.ES2022,

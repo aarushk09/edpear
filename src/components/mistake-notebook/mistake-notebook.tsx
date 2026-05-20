@@ -82,9 +82,9 @@ export const MistakeNotebook = forwardRef<HTMLDivElement, MistakeNotebookProps>(
             <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-primary/10 text-primary">
               <NotebookPen className="h-5 w-5" />
             </div>
-            <div className="space-y-1">
+            <div className="space-y-1 min-w-0 flex-1">
               <h3 className="text-lg font-semibold tracking-tight">{title}</h3>
-              <p className="text-sm text-muted-foreground">{subtitle}</p>
+              <p className="text-sm text-muted-foreground break-words">{subtitle}</p>
             </div>
           </div>
 
@@ -105,7 +105,7 @@ export const MistakeNotebook = forwardRef<HTMLDivElement, MistakeNotebookProps>(
         </div>
       </div>
 
-      <div className="grid gap-6 p-5 sm:p-6 xl:grid-cols-[minmax(0,1fr)_minmax(18rem,0.95fr)]">
+      <div className="grid gap-6 p-5 sm:p-6 lg:grid-cols-[minmax(0,1fr)_minmax(18rem,0.95fr)]">
         <div className="space-y-3">
           {entries.map((entry) => {
             const selected = activeItem?.id === entry.id;
@@ -122,9 +122,9 @@ export const MistakeNotebook = forwardRef<HTMLDivElement, MistakeNotebookProps>(
                 )}
               >
                 <div className="flex items-start justify-between gap-3">
-                  <div className="space-y-1">
+                  <div className="space-y-1 min-w-0 flex-1">
                     <div className="flex flex-wrap items-center gap-2">
-                      <p className="text-sm font-semibold">{entry.title}</p>
+                      <p className="text-sm font-semibold break-words">{entry.title}</p>
                       {entry.tag ? (
                         <span className="rounded-full bg-muted px-2 py-0.5 text-[11px] text-muted-foreground">{entry.tag}</span>
                       ) : null}
@@ -141,7 +141,7 @@ export const MistakeNotebook = forwardRef<HTMLDivElement, MistakeNotebookProps>(
           })}
         </div>
 
-        <aside className="rounded-2xl border border-border bg-muted/10 p-4 sm:p-5">
+        <aside className="rounded-2xl border border-border bg-muted/10 p-4 sm:p-5 min-w-0">
           {activeItem ? (
             <div className="space-y-4">
               <div className="space-y-2">

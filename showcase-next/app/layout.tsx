@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 import { Plus_Jakarta_Sans } from "next/font/google";
-import Script from "next/script";
 
 import { SiteHeader } from "../components/site-header";
+import { ThemeInitializer } from "../components/theme-initializer";
 import "./globals.css";
 
 const sans = Plus_Jakarta_Sans({
@@ -34,9 +34,7 @@ export default function RootLayout({
         className={`${sans.variable} h-dvh overflow-hidden font-sans antialiased`}
         suppressHydrationWarning
       >
-        <Script id="showcase-default-dark" strategy="beforeInteractive">
-          {`document.documentElement.classList.add("dark");`}
-        </Script>
+        <ThemeInitializer />
         <div className="showcase-app-shell flex h-dvh flex-col overflow-hidden text-foreground">
           <SiteHeader />
           {children}

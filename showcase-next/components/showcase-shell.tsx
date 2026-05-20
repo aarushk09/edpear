@@ -7,19 +7,43 @@ import { useEffect, useMemo, useState } from "react";
 
 import { NAV_GROUPS } from "../lib/showcase-nav";
 
+const THEME_STORAGE_KEY = "edpear-showcase-theme";
+
 export function ThemeToggle() {
-  const [dark, setDark] = useState(true);
+  const [dark, setDark] = useState<boolean | null>(null);
 
   useEffect(() => {
     const root = document.documentElement;
-    if (dark) root.classList.add("dark");
-    else root.classList.remove("dark");
+    const savedTheme = window.localStorage.getItem(THEME_STORAGE_KEY);
+    if (savedTheme === "light") {
+      setDark(false);
+      return;
+    }
+    if (savedTheme === "dark") {
+      setDark(true);
+      return;
+    }
+    setDark(root.classList.contains("dark"));
+  }, []);
+
+  useEffect(() => {
+    if (dark === null) return;
+
+    const root = document.documentElement;
+    if (dark) {
+      root.classList.add("dark");
+      window.localStorage.setItem(THEME_STORAGE_KEY, "dark");
+      return;
+    }
+
+    root.classList.remove("dark");
+    window.localStorage.setItem(THEME_STORAGE_KEY, "light");
   }, [dark]);
 
   return (
     <button
       type="button"
-      onClick={() => setDark((d) => !d)}
+      onClick={() => setDark((current) => !(current ?? true))}
       className="inline-flex h-9 w-9 items-center justify-center rounded-lg bg-muted/70 text-foreground transition hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background"
       aria-label={dark ? "Switch to light mode" : "Switch to dark mode"}
     >
@@ -71,7 +95,7 @@ export function ShowcaseNav() {
           filteredGroups.map((group) => (
             <div key={group.title}>
               <p className="mb-2 flex items-center gap-2 px-1 text-[11px] font-medium uppercase tracking-[0.12em] text-showcase-sidebar-muted">
-                <span className="h-px w-4 shrink-0 bg-foreground/15" aria-hidden />
+                <span className="h-px w-4 shrink-0 bg-border" aria-hidden />
                 {group.title}
               </p>
               <ul className="space-y-0.5">
@@ -89,7 +113,7 @@ export function ShowcaseNav() {
                       >
                         <span
                           className={`absolute left-1 top-1/2 h-5 w-0.5 -translate-y-1/2 rounded-full transition-colors ${
-                            isActive ? "bg-foreground/55" : "bg-transparent group-hover:bg-foreground/20"
+                            isActive ? "bg-foreground/70" : "bg-transparent group-hover:bg-muted-foreground/40"
                           }`}
                           aria-hidden
                         />

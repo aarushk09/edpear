@@ -183,7 +183,7 @@ export const LearningJournal = forwardRef<HTMLDivElement, LearningJournalProps>(
               </p>
             </div>
 
-            <div className="grid gap-3 sm:grid-cols-2 2xl:grid-cols-3">
+            <div className="flex flex-wrap gap-2 sm:gap-3">
               {MOOD_OPTIONS.map((option) => {
                 const Icon = option.icon;
                 const isSelected = option.value === selectedMood;
@@ -195,32 +195,25 @@ export const LearningJournal = forwardRef<HTMLDivElement, LearningJournalProps>(
                     disabled={disabled}
                     onClick={() => setSelectedMood(option.value)}
                     className={cn(
-                      "rounded-xl border px-3 py-3 text-left transition",
+                      "flex items-center gap-2 rounded-full border px-3 py-1.5 text-sm font-medium transition-colors",
                       isSelected
                         ? option.accentClass
-                        : "border-border bg-background hover:bg-muted/30",
+                        : "border-border bg-background text-muted-foreground hover:bg-muted/50 hover:text-foreground",
                       disabled && "cursor-not-allowed opacity-60",
                     )}
                     aria-pressed={isSelected}
                   >
-                    <div className="flex items-start gap-2">
-                      <div
-                        className={cn(
-                          "mt-0.5 flex h-8 w-8 shrink-0 items-center justify-center rounded-lg",
-                          isSelected ? "bg-background/70" : "bg-muted/60 text-muted-foreground",
-                        )}
-                      >
-                        <Icon className="h-4 w-4" />
-                      </div>
-                      <div className="space-y-1">
-                        <p className="text-sm font-semibold">{option.label}</p>
-                        <p className="text-xs leading-relaxed text-muted-foreground">{option.description}</p>
-                      </div>
-                    </div>
+                    <Icon className={cn("h-4 w-4", isSelected ? "" : "opacity-70")} />
+                    {option.label}
                   </button>
                 );
               })}
             </div>
+            {selectedMoodMeta && (
+              <p className="text-sm text-muted-foreground animate-in fade-in">
+                <span className="font-medium text-foreground">{selectedMoodMeta.label}:</span> {selectedMoodMeta.description}
+              </p>
+            )}
           </section>
 
           <section className="grid gap-4 2xl:grid-cols-2">

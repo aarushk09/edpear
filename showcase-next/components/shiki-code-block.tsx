@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 
 function useHtmlDarkClass() {
   const [dark, setDark] = useState(false);
@@ -23,8 +23,7 @@ const highlightedHtmlCache = new Map<string, string>();
 const highlightPromiseCache = new Map<string, Promise<string>>();
 let shikiModulePromise: Promise<typeof import("shiki")> | null = null;
 
-async function getHighlightedHtml(code: string, lang: Lang, dark: boolean) {
-  const theme = dark ? "github-dark" : "github-light";
+async function getHighlightedHtml(code: string, lang: Lang, theme: "github-dark" | "github-light") {
   const cacheKey = `${theme}::${lang}::${code}`;
   const cached = highlightedHtmlCache.get(cacheKey);
   if (cached) {
@@ -76,11 +75,14 @@ export function ShikiCodeBlock({
   className?: string;
 }) {
   const dark = useHtmlDarkClass();
+  const theme = useMemo<"github-dark" | "github-light">(
+    () => (dark ? "github-dark" : "github-light"),
+    [dark],
+  );
   const [html, setHtml] = useState<string>("");
   const [err, setErr] = useState<string | null>(null);
 
   useEffect(() => {
-    const theme = dark ? "github-dark" : "github-light";
     const cacheKey = `${theme}::${lang}::${code}`;
     const cached = highlightedHtmlCache.get(cacheKey);
     if (cached) {
@@ -90,9 +92,10 @@ export function ShikiCodeBlock({
     }
 
     let cancelled = false;
+    setHtml("");
     setErr(null);
 
-    void getHighlightedHtml(code, lang, dark)
+    void getHighlightedHtml(code, lang, theme)
       .then((out) => {
         if (!cancelled) {
           setHtml(out);
@@ -108,7 +111,7 @@ export function ShikiCodeBlock({
     return () => {
       cancelled = true;
     };
-  }, [code, lang, dark]);
+  }, [code, lang, theme]);
 
   if (err) {
     return (
@@ -126,7 +129,8 @@ export function ShikiCodeBlock({
 
   return (
     <div
-      className={`shiki-wrap overflow-x-auto rounded-xl bg-muted/30 [&_pre]:m-0 [&_pre]:overflow-x-auto [&_pre]:!bg-transparent [&_pre]:px-4 [&_pre]:py-3.5 [&_pre]:text-[13px] [&_pre]:leading-relaxed ${className}`}
+      key={theme}
+      className={`shiki-wrap overflow-x-auto rounded-xl bg-muted/30 [&_.shiki]:!bg-transparent [&_.shiki]:!text-inherit [&_.shiki_span]:!font-inherit [&_pre]:m-0 [&_pre]:overflow-x-auto [&_pre]:!bg-transparent [&_pre]:px-4 [&_pre]:py-3.5 [&_pre]:text-[13px] [&_pre]:leading-relaxed ${className}`}
       dangerouslySetInnerHTML={{ __html: html }}
     />
   );

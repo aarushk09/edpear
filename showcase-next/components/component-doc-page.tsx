@@ -303,8 +303,8 @@ function ExampleShowcaseCard({
             <div className="flex w-full min-w-0 justify-center [&>*]:max-w-full">{preview}</div>
           </div>
         ) : null}
-        <div className="min-h-0 bg-muted/30 dark:bg-[hsl(0_0%_4%)]">
-          <div className="flex items-center justify-between border-b border-border px-3 py-2.5 sm:px-4">
+        <div className="code-preview-shell min-h-0">
+          <div className="flex items-center justify-between border-b border-border bg-muted/35 px-3 py-2.5 sm:px-4">
             <span className="text-xs font-medium text-muted-foreground">tsx</span>
             <CopyBtn text={example.code} />
           </div>
@@ -318,13 +318,17 @@ function ExampleShowcaseCard({
             <ShikiCodeBlock code={example.code} lang="tsx" className="rounded-none bg-transparent shadow-none" />
             {!codeOpen && !isTrivialSnippet ? (
               <div
-                className="pointer-events-none absolute inset-x-0 bottom-0 h-20 bg-gradient-to-t from-muted/80 from-40% via-muted/50 to-transparent dark:from-[hsl(0_0%_4%)] dark:via-[hsl(0_0%_4%)]/75"
+                className="pointer-events-none absolute inset-x-0 bottom-0 h-20"
+                style={{
+                  background:
+                    "linear-gradient(to top, var(--code-shell-bg) 0%, color-mix(in srgb, var(--code-shell-bg) 80%, transparent) 50%, transparent 100%)",
+                }}
                 aria-hidden
               />
             ) : null}
           </div>
           {!isTrivialSnippet ? (
-            <div className="flex justify-center border-t border-border bg-muted/30 px-3 py-3 dark:bg-[hsl(0_0%_4%)]">
+            <div className="flex justify-center border-t border-border bg-muted/35 px-3 py-3">
               <button
                 type="button"
                 aria-expanded={codeOpen}
@@ -368,8 +372,8 @@ function CoveragePill({
       className={cx(
         "inline-flex items-center rounded-full px-2.5 py-1 text-[11px] font-medium",
         complete
-          ? "bg-emerald-500/10 text-emerald-700 dark:text-emerald-300"
-          : "bg-amber-500/10 text-amber-700 dark:text-amber-300",
+          ? "bg-emerald-100 text-emerald-900 dark:bg-emerald-500/10 dark:text-emerald-300"
+          : "bg-amber-100 text-amber-900 dark:bg-amber-500/10 dark:text-amber-300",
       )}
     >
       {complete ? label : missingLabel}
@@ -655,7 +659,7 @@ export function DemoFrame({
               </ul>
             </div>
           ) : (
-            <div className="rounded-xl border border-amber-500/30 bg-amber-500/10 px-4 py-3 text-sm text-amber-800 dark:text-amber-200">
+            <div className="rounded-xl border border-amber-300 bg-amber-50 px-4 py-3 text-sm text-amber-950 dark:border-amber-500/30 dark:bg-amber-500/10 dark:text-amber-200">
               Accessibility notes have not been written for this component yet. The live example is available, but the
               guidance still needs to be completed before this page reaches the target documentation bar.
             </div>
